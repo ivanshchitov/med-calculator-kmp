@@ -1,34 +1,116 @@
-# Gradle files
+# ==================================================
+# Gradle
+# ==================================================
 .gradle/
 build/
+*/build/
 
-# Local configuration file (sdk path, etc)
+!gradle/wrapper/gradle-wrapper.jar
+
+# ==================================================
+# Kotlin
+# ==================================================
+.kotlin/
+.konan/
+
+# ==================================================
+# IntelliJ IDEA / Android Studio
+# ==================================================
+.idea/
+*.iml
+
+# Keep shared project code style settings if desired
+!.idea/codeStyles
+!.idea/codeStyles/*
+!.idea/inspectionProfiles
+!.idea/inspectionProfiles/*
+
+# ==================================================
+# Android
+# ==================================================
 local.properties
-
-# Log/OS Files
-*.log
-
-# Android Studio generated files and folders
 captures/
 .externalNativeBuild/
 .cxx/
-*.aab
-*.apk
-output-metadata.json
 
-# IntelliJ
-*.iml
-.idea/
-misc.xml
-deploymentTargetDropDown.xml
-render.experimental.xml
-
-# Keystore files
+# Android signing
 *.jks
 *.keystore
 
-# Google Services (e.g. APIs or Firebase)
-google-services.json
+# Android outputs
+*.apk
+*.aab
+*.ap_
 
-# Android Profiling
-*.hprof
+# ==================================================
+# Compose Multiplatform
+# ==================================================
+composeApp/build/
+shared/build/
+
+# Desktop distributions
+composeApp/distributions/
+composeApp/release/
+
+# ==================================================
+# iOS / Xcode
+# ==================================================
+iosApp/build/
+
+DerivedData/
+*.xcuserstate
+*.xcworkspace/xcuserdata/
+*.xcuserdatad/
+
+# ==================================================
+# Swift Package Manager
+# ==================================================
+.build/
+Packages/
+
+# ==================================================
+# CocoaPods
+# ==================================================
+Pods/
+
+# Usually commit Podfile.lock for apps.
+# Uncomment if your team prefers otherwise:
+# Podfile.lock
+
+# ==================================================
+# macOS
+# ==================================================
+.DS_Store
+
+# ==================================================
+# Logs
+# ==================================================
+*.log
+
+# ==================================================
+# Temporary files
+# ==================================================
+*.swp
+*.swo
+*~
+
+# ==================================================
+# Environment / Secrets
+# ==================================================
+.env
+.env.*
+secrets.properties
+google-services.json
+GoogleService-Info.plist
+
+# ==================================================
+# Kover / JaCoCo
+# ==================================================
+.kover/
+jacoco/
+
+# ==================================================
+# Generated Kotlin/Native Frameworks
+# ==================================================
+*.framework
+*.dSYM
