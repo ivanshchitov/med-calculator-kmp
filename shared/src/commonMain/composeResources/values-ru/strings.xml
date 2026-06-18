@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">МедКалькулятор</string>
+    <string name="dosage_calculation">Расчет дозировки</string>
+    <string name="calculate">Рассчитать</string>
+    <string name="patient_weight">Вес пациента</string>
+    <string name="patient_age">Возраст пациента</string>
+    <string name="chosen_medication">Выбранный препарат</string>
+    <string name="months">мес.</string>
+    <string name="years">лет</string>
+    <string name="months_full">Месяцы</string>
+    <string name="years_full">Годы</string>
+    <string name="kg">кг</string>
+</resources>
