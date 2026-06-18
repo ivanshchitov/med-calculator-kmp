@@ -1,5 +1,6 @@
 package org.dishch.medcalculator.ui.components.cards
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -23,6 +24,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import org.dishch.medcalculator.ui.theme.AppColors.Border
 import org.dishch.medcalculator.ui.theme.AppDimens.CardCorner
 
 @Composable
@@ -36,8 +38,12 @@ fun AppCard(
 ) {
     Card(
         modifier = modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(
+            containerColor = Color.Transparent
+        ),
+        border = BorderStroke(2.dp, Border),
         elevation = CardDefaults.cardElevation(
-            defaultElevation = 2.dp
+            defaultElevation = 0.dp
         )
     ) {
         Box(
