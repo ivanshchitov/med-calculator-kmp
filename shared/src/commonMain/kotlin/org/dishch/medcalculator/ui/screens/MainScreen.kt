@@ -78,13 +78,6 @@ fun MainScreen() {
             verticalArrangement = Arrangement.spacedBy(CardSpacing)
         ) {
 
-            WeightCard(
-                weight = weight,
-                onWeightChanged = {
-                    weight = it
-                }
-            )
-
             AgeCard(
                 age = age,
                 unit = ageUnit,
@@ -93,6 +86,13 @@ fun MainScreen() {
                 },
                 onUnitChanged = {
                     ageUnit = it
+                }
+            )
+
+            WeightCard(
+                weight = weight,
+                onWeightChanged = {
+                    weight = it
                 }
             )
 
