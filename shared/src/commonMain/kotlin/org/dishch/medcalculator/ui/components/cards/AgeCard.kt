@@ -42,7 +42,7 @@ fun AgeCard(
         InputTextField(
             value = age,
             onValueChange = { value: String ->
-                if (value.isEmpty() || value.all { it.isDigit() }) {
+                if ((value.isEmpty() || value.all { it.isDigit() }) && value.length <= 2) {
                     onAgeChanged(value)
                 }
             },
