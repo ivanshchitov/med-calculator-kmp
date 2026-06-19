@@ -16,13 +16,15 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun MedicationCard(
     medicationName: String,
-    medicationDose: String
+    medicationDose: String,
+    onClick: () -> Unit = {}
 ) {
     AppCard(
         title = stringResource(Res.string.chosen_medication),
         icon = Icons.Outlined.Medication,
         verticalAlignment = Alignment.CenterVertically,
-        trailingIcon = Icons.AutoMirrored.Filled.KeyboardArrowRight
+        trailingIcon = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+        onClick = onClick
     ) {
         Text(
             text = medicationName,

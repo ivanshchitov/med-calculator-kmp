@@ -34,12 +34,16 @@ fun AppCard(
     modifier: Modifier = Modifier,
     trailingIcon: ImageVector? = null,
     verticalAlignment: Alignment.Vertical = Alignment.CenterVertically,
+    onClick: (() -> Unit)? = null,
     content: @Composable ColumnScope.() -> Unit
 ) {
     Card(
+        onClick = onClick ?: {},
+        enabled = onClick != null,
         modifier = modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
-            containerColor = AppColors.Background
+            containerColor = AppColors.Background,
+            disabledContainerColor = AppColors.Background
         ),
         border = BorderStroke(2.dp, AppColors.Border),
         elevation = CardDefaults.cardElevation(
