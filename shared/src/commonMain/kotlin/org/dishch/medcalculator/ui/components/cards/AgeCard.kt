@@ -2,12 +2,14 @@ package org.dishch.medcalculator.ui.components.cards
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.dishch.medcalculator.domain.AgeUnit
@@ -16,7 +18,7 @@ import medcalculator.shared.generated.resources.months_full
 import medcalculator.shared.generated.resources.patient_age
 import medcalculator.shared.generated.resources.years_full
 import org.dishch.medcalculator.ui.components.InputTextField
-import org.dishch.medcalculator.ui.theme.AppDimens.ButtonCorner
+import org.dishch.medcalculator.ui.theme.AppDimens
 import org.dishch.medcalculator.ui.theme.MedCalculatorAppTheme
 import org.jetbrains.compose.resources.stringResource
 
@@ -26,7 +28,9 @@ fun AgeCard(
     age: String,
     unit: AgeUnit,
     onAgeChanged: (String) -> Unit,
-    onUnitChanged: (AgeUnit) -> Unit
+    onUnitChanged: (AgeUnit) -> Unit,
+    imeAction: ImeAction = ImeAction.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default
 ) {
     AppCard(
         title = stringResource(Res.string.patient_age),
@@ -40,7 +44,9 @@ fun AgeCard(
                     onAgeChanged(value)
                 }
             },
-            suffix = stringResource(unit.suffix)
+            suffix = stringResource(unit.suffix),
+            imeAction = imeAction,
+            keyboardActions = keyboardActions
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -57,7 +63,7 @@ fun AgeCard(
                 inactiveBorderColor = Color.Transparent
             )
             val border = SegmentedButtonDefaults.borderStroke(Color.Transparent)
-            val baseShape = RoundedCornerShape(ButtonCorner)
+            val baseShape = RoundedCornerShape(AppDimens.ButtonCorner)
 
             SegmentedButton(
                 selected = unit == AgeUnit.MONTHS,
