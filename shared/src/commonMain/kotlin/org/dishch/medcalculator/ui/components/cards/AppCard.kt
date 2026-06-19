@@ -24,8 +24,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import org.dishch.medcalculator.ui.theme.AppColors.Border
-import org.dishch.medcalculator.ui.theme.AppDimens.CardCorner
+import org.dishch.medcalculator.ui.theme.AppColors
+import org.dishch.medcalculator.ui.theme.AppDimens
 
 @Composable
 fun AppCard(
@@ -39,9 +39,9 @@ fun AppCard(
     Card(
         modifier = modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
-            containerColor = Color.Transparent
+            containerColor = AppColors.Background
         ),
-        border = BorderStroke(2.dp, Border),
+        border = BorderStroke(2.dp, AppColors.Border),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 0.dp
         )
@@ -56,7 +56,7 @@ fun AppCard(
                 // Icon container
                 Surface(
                     modifier = Modifier.size(64.dp),
-                    shape = RoundedCornerShape(CardCorner),
+                    shape = RoundedCornerShape(AppDimens.CardCorner),
                     color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.1f)
                 ) {
                     Box(contentAlignment = Alignment.Center) {

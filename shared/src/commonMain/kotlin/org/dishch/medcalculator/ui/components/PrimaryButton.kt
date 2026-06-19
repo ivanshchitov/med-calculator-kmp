@@ -18,7 +18,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import org.dishch.medcalculator.ui.theme.AppDimens.ButtonCorner
+import org.dishch.medcalculator.ui.theme.AppDimens
 import org.dishch.medcalculator.ui.theme.MedCalculatorAppTheme
 
 @Composable
@@ -28,7 +28,7 @@ fun PrimaryButton(
     onClick: () -> Unit
 ) {
     Button(
-        shape = RoundedCornerShape(ButtonCorner),
+        shape = RoundedCornerShape(AppDimens.ButtonCorner),
         onClick = onClick,
         modifier = Modifier
             .fillMaxWidth()
