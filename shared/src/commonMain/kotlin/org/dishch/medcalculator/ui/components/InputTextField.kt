@@ -22,6 +22,8 @@ fun InputTextField(
     onValueChange: (String) -> Unit,
     suffix: String,
     modifier: Modifier = Modifier,
+    isError: Boolean = false,
+    supportingText: String = "",
     keyboardType: KeyboardType = KeyboardType.Number,
     imeAction: ImeAction = ImeAction.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default
@@ -38,9 +40,14 @@ fun InputTextField(
             Text(
                 text = suffix,
                 style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                color = if (isError) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurfaceVariant
             )
         },
+//        supportingText = supportingText,
+        supportingText = {
+            Text(supportingText)
+        },
+        isError = isError,
         colors = TextFieldDefaults.colors(
             focusedContainerColor = Color.Transparent,
             unfocusedContainerColor = Color.Transparent,

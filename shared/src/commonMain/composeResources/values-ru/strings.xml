@@ -10,4 +10,6 @@
     <string name="months_full">Месяцы</string>
     <string name="years_full">Годы</string>
     <string name="kg">кг</string>
+    <string name="age_supporting_months">Введите значение от 1 до 11</string>
+    <string name="age_supporting_years">Введите значение от 1 до 17</string>
 </resources>
