@@ -1,6 +1,7 @@
 package org.dishch.medcalculator.ui.components.cards
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -20,6 +21,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
@@ -37,10 +39,16 @@ fun AppCard(
     onClick: (() -> Unit)? = null,
     content: @Composable ColumnScope.() -> Unit
 ) {
+
+    val cardShape = RoundedCornerShape(AppDimens.CardCorner)
+
     Card(
-        onClick = onClick ?: {},
-        enabled = onClick != null,
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier
+            .fillMaxWidth()
+            .clip(cardShape)
+            .conditional(onClick != null) {
+                clickable { onClick?.invoke() }
+            },
         colors = CardDefaults.cardColors(
             containerColor = AppColors.Background,
             disabledContainerColor = AppColors.Background
@@ -60,7 +68,7 @@ fun AppCard(
                 // Icon container
                 Surface(
                     modifier = Modifier.size(64.dp),
-                    shape = RoundedCornerShape(AppDimens.CardCorner),
+                    shape = cardShape,
                     color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.1f)
                 ) {
                     Box(contentAlignment = Alignment.Center) {
@@ -94,5 +102,18 @@ fun AppCard(
                 }
             }
         }
+    }
+}
+
+/**
+ * Extension to make a modifier conditional.
+ * If the condition is true, the modifier will be applied, otherwise it won't.
+ * This is useful to add (or not) the onClickListener to a card.
+ */
+fun Modifier.conditional(condition: Boolean, modifier: Modifier.() -> Modifier): Modifier {
+    return if (condition) {
+        then(modifier(Modifier))
+    } else {
+        this
     }
 }

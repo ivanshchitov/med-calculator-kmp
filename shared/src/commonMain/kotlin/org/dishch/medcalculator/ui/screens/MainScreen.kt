@@ -128,6 +128,7 @@ fun MainScreen() {
                 medicationName = medication.name,
                 medicationDose = medication.dose,
                 onClick = {
+                    focusManager.clearFocus()
                     // TODO: Open screen to choose a medication
                 }
             )
