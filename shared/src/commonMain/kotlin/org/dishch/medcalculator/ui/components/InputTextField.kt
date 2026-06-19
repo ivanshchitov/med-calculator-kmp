@@ -43,9 +43,8 @@ fun InputTextField(
                 color = if (isError) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurfaceVariant
             )
         },
-//        supportingText = supportingText,
         supportingText = {
-            Text(supportingText)
+            Text(text = supportingText)
         },
         isError = isError,
         colors = TextFieldDefaults.colors(

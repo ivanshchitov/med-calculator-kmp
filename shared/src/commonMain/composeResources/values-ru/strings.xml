@@ -12,4 +12,5 @@
     <string name="kg">кг</string>
     <string name="age_supporting_months">Введите значение от 1 до 11</string>
     <string name="age_supporting_years">Введите значение от 1 до 17</string>
+    <string name="weight_supporting_text">Введите значение от 1 до 100</string>
 </resources>
