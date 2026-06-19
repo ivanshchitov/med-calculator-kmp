@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "from_age": 0,
+    "to_age": 204, // 17 years 
+    "min_dose_per_kg": 0.01,
+    "max_dose_per_kg": 0.01,
+    "med_id": 1 // Atropin
+  },
+    {
+    "id": 2,
+    "from_age": 0,
+    "to_age": 12,
+    "min_dose_per_kg": 2,
+    "max_dose_per_kg": 3,
+    "med_id": 2 // Prednisolone
+  },
+  {
+    "id": 3,
+    "from_age": 13,
+    "to_age": 168, // 14 years
+    "min_dose_per_kg": 1,
+    "max_dose_per_kg": 2,
+    "med_id": 2 // Prednisolone
+  },
+  {
+    "id": 4,
+    "from_age": 0,
+    "to_age": 204, // 17 years
+    "min_dose_per_kg": 0.02776,
+    "max_dose_per_kg": 0.16665,
+    "med_id": 3 // Dexamethasone
+  },
+  {
+    "id": 5,
+    "from_age": 0,
+    "to_age": 204, // 17 years
+    "min_dose_per_kg": 2,
+    "max_dose_per_kg": 3,
+    "med_id": 4 // Euphylline
+  },
+  {
+    "id": 5,
+    "from_age": 192, // 16 years
+    "to_age": 204, // 17 years
+    "min_dose_per_kg": 10,
+    "max_dose_per_kg": 30,
+    "med_id": 5 // Ketorol
+  },
+]
