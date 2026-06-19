@@ -53,7 +53,7 @@ fun AgeCard(
             keyboardActions = keyboardActions
         )
 
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(16.dp))
 
         SingleChoiceSegmentedButtonRow(
             modifier = Modifier.fillMaxWidth()
