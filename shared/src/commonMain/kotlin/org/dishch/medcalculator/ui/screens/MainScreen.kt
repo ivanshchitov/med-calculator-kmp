@@ -126,7 +126,10 @@ fun MainScreen() {
 
             MedicationCard(
                 medicationName = medication.name,
-                medicationDose = medication.dose
+                medicationDose = medication.dose,
+                onClick = {
+                    // TODO: Open screen to choose a medication
+                }
             )
 
             Spacer(
