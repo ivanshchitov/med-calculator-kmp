@@ -7,9 +7,21 @@
     <string name="chosen_medication">Выбранный препарат</string>
     <string name="months">мес.</string>
     <string name="years">лет</string>
+    <plurals name="months_suffix">
+        <item quantity="one">месяц</item>
+        <item quantity="few">месяца</item>
+        <item quantity="many">месяцев</item>
+        <item quantity="other">месяца</item>
+    </plurals>
+    <plurals name="years_suffix">
+        <item quantity="one">год</item>
+        <item quantity="few">года</item>
+        <item quantity="many">лет</item>
+        <item quantity="other">года</item>
+    </plurals>
     <string name="months_full">Месяцы</string>
     <string name="years_full">Годы</string>
-    <string name="kg">кг</string>
+    <string name="kg">кг.</string>
     <string name="age_supporting_months">Введите значение от 1 до 11</string>
     <string name="age_supporting_years">Введите значение от 1 до 17</string>
     <string name="weight_supporting_text">Введите значение от 1 до 100</string>

@@ -7,6 +7,14 @@
     <string name="chosen_medication">Chosen medication</string>
     <string name="months">months</string>
     <string name="years">years</string>
+    <plurals name="months_suffix">
+        <item quantity="one">month</item>
+        <item quantity="other">months</item>
+    </plurals>
+    <plurals name="years_suffix">
+        <item quantity="one">year</item>
+        <item quantity="other">years</item>
+    </plurals>
     <string name="months_full">Months</string>
     <string name="years_full">Years</string>
     <string name="kg">kg</string>
