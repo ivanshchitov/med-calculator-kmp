@@ -17,6 +17,7 @@ import medcalculator.shared.generated.resources.*
 import org.dishch.medcalculator.ui.components.InputTextField
 import org.dishch.medcalculator.ui.theme.AppDimens
 import org.dishch.medcalculator.ui.theme.MedCalculatorAppTheme
+import org.jetbrains.compose.resources.pluralStringResource
 import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -46,7 +47,7 @@ fun AgeCard(
                     onAgeChanged(value)
                 }
             },
-            suffix = stringResource(unit.suffix),
+            suffix = pluralStringResource(unit.suffix, ageInt ?: 0),
             isError = isError,
             supportingText = if (isError) stringResource(unit.supportingText) else "",
             imeAction = imeAction,
