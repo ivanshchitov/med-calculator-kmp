@@ -10,4 +10,6 @@
     <string name="months_full">Months</string>
     <string name="years_full">Years</string>
     <string name="kg">kg</string>
+    <string name="age_supporting_months">Enter a value from 1 to 11</string>
+    <string name="age_supporting_years">Enter a value from 1 to 17</string>
 </resources>

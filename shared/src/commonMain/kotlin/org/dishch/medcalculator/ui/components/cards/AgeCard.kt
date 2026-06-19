@@ -13,10 +13,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.dishch.medcalculator.domain.AgeUnit
-import medcalculator.shared.generated.resources.Res
-import medcalculator.shared.generated.resources.months_full
-import medcalculator.shared.generated.resources.patient_age
-import medcalculator.shared.generated.resources.years_full
+import medcalculator.shared.generated.resources.*
 import org.dishch.medcalculator.ui.components.InputTextField
 import org.dishch.medcalculator.ui.theme.AppDimens
 import org.dishch.medcalculator.ui.theme.MedCalculatorAppTheme
@@ -32,6 +29,12 @@ fun AgeCard(
     imeAction: ImeAction = ImeAction.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default
 ) {
+    val ageInt = age.toIntOrNull()
+    val isError = when (unit) {
+        AgeUnit.MONTHS -> ageInt == null || ageInt !in 1..11
+        AgeUnit.YEARS -> ageInt == null || ageInt !in 1..17
+    }
+
     AppCard(
         title = stringResource(Res.string.patient_age),
         icon = Icons.Outlined.CalendarMonth
@@ -39,17 +42,18 @@ fun AgeCard(
         InputTextField(
             value = age,
             onValueChange = { value: String ->
-                val number = value.toIntOrNull()
-                if (value.isEmpty() || (number != null && number >= 0)) {
+                if (value.isEmpty() || value.all { it.isDigit() }) {
                     onAgeChanged(value)
                 }
             },
             suffix = stringResource(unit.suffix),
+            isError = isError,
+            supportingText = if (isError) stringResource(unit.supportingText) else "",
             imeAction = imeAction,
             keyboardActions = keyboardActions
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(8.dp))
 
         SingleChoiceSegmentedButtonRow(
             modifier = Modifier.fillMaxWidth()
