@@ -21,4 +21,6 @@
     <string name="age_supporting_months">Enter a value from 1 to 11</string>
     <string name="age_supporting_years">Enter a value from 1 to 17</string>
     <string name="weight_supporting_text">Enter a value from 1 to 100</string>
+    <string name="choose_medication">Choose medication</string>
+    <string name="search">Search</string>
 </resources>

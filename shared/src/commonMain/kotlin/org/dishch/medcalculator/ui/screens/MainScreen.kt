@@ -78,7 +78,7 @@ fun MainScreen() {
                     icon = Icons.Filled.Calculate,
                     onClick = {
                         focusManager.clearFocus()
-                        // TODO
+                        // TODO: Calculate and open screen with results
                     }
                 )
             }
