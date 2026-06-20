@@ -50,8 +50,8 @@ fun AppCard(
                 clickable { onClick?.invoke() }
             },
         colors = CardDefaults.cardColors(
-            containerColor = AppColors.Background,
-            disabledContainerColor = AppColors.Background
+            containerColor = AppColors.Surface,
+            disabledContainerColor = AppColors.Surface
         ),
         border = BorderStroke(2.dp, AppColors.Border),
         elevation = CardDefaults.cardElevation(
