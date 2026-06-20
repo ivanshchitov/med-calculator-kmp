@@ -27,4 +27,5 @@
     <string name="weight_supporting_text">Введите значение от 1 до 100</string>
     <string name="choose_medication">Выбор препарата</string>
     <string name="search">Поиск</string>
+    <string name="medication_info_description">Информация о %1$s</string>
 </resources>

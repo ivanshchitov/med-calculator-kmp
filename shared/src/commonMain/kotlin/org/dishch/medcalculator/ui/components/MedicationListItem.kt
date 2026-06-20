@@ -5,8 +5,9 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,14 +17,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import medcalculator.shared.generated.resources.Res
+import medcalculator.shared.generated.resources.medication_info_description
 import org.dishch.medcalculator.domain.MedicationUi
 import org.dishch.medcalculator.ui.theme.AppColors
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun MedicationListItem(
     medication: MedicationUi,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onInfoClick: (() -> Unit)
 ) {
     val avatarColor = remember(medication.name) {
         val colors = listOf(
@@ -75,10 +80,15 @@ fun MedicationListItem(
             modifier = Modifier.padding(horizontal = 8.dp)
         )
 
-        Icon(
-            imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
-            contentDescription = null,
-            tint = AppColors.TextSecondary
-        )
+        IconButton(
+            onClick = onInfoClick,
+            modifier = Modifier.size(24.dp)
+        ) {
+            Icon(
+                imageVector = Icons.Outlined.Info,
+                contentDescription = stringResource(Res.string.medication_info_description, medication.name),
+                tint = MaterialTheme.colorScheme.primary
+            )
+        }
     }
 }

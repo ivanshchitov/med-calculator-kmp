@@ -23,4 +23,5 @@
     <string name="weight_supporting_text">Enter a value from 1 to 100</string>
     <string name="choose_medication">Choose medication</string>
     <string name="search">Search</string>
+    <string name="medication_info_description">Information about %1$s</string>
 </resources>
