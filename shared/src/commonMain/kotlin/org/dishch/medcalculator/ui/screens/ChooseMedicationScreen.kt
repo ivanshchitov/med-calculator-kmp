@@ -122,7 +122,10 @@ fun ChooseMedicationScreen(
                     itemsIndexed(filteredMedications) { index, medication ->
                         MedicationListItem(
                             medication = medication,
-                            onClick = { onMedicationSelected(medication) }
+                            onClick = { onMedicationSelected(medication) },
+                            onInfoClick = {
+                            // TODO: Show an information about the medication
+                            }
                         )
                         if (index < filteredMedications.lastIndex) {
                             HorizontalDivider(
