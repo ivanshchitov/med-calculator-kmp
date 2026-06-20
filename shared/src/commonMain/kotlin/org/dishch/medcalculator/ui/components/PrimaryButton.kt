@@ -42,7 +42,7 @@ fun PrimaryButton(
         Spacer(Modifier.width(8.dp))
         Text(
             text = text,
-            style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)
+            style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold)
         )
     }
 }

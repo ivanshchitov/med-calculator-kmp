@@ -22,6 +22,7 @@ import org.dishch.medcalculator.domain.MedicationUi
 import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.calculate
 import medcalculator.shared.generated.resources.dosage_calculation
+import org.dishch.medcalculator.domain.CalculationResults
 import org.dishch.medcalculator.ui.components.cards.AgeCard
 import org.dishch.medcalculator.ui.components.cards.MedicationCard
 import org.dishch.medcalculator.ui.components.PrimaryButton
@@ -34,7 +35,8 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun MainScreen(
     selectedMedication: MedicationUi,
-    onChooseMedication: () -> Unit
+    onChooseMedication: () -> Unit,
+    onCalculate: (CalculationResults) -> Unit
 ) {
 
     // Stub values
@@ -75,7 +77,16 @@ fun MainScreen(
                     icon = Icons.Filled.Calculate,
                     onClick = {
                         focusManager.clearFocus()
-                        // TODO: Calculate and open screen with results
+                        val result = CalculationResults(
+                            weight = weight.toDoubleOrNull() ?: 0.0,
+                            age = age.toIntOrNull() ?: 0,
+                            ageUnit = ageUnit,
+                            medication = selectedMedication,
+                            dosageMg = 150, // Stub
+                            volumeMl = 6.25, // Stub
+                            isMaxDailyDoseExceeded = false // Stub
+                        )
+                        onCalculate(result)
                     }
                 )
             }
@@ -143,7 +154,8 @@ fun MainScreenPreview() {
     MedCalculatorAppTheme {
         MainScreen(
             selectedMedication = MedicationUi("Парацетамол", "120 мг/мл"),
-            onChooseMedication = {}
+            onChooseMedication = {},
+            onCalculate = {}
         )
     }
 }
