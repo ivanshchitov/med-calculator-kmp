@@ -12,4 +12,12 @@ object AppColors {
     val TextSecondary = Color(0xFF6E7485)
 
     val Border = Color(0xFFE7EAF1)
+
+    val Success = Color(0xFF2E7D32)
+    val SuccessContainer = Color(0xFFE8F5E9)
+
+    val Warning = Color(0xFFED6C02)
+    val WarningContainer = Color(0xFFFFF4E5)
+    
+    val InfoContainer = Color(0xFFE3F2FD)
 }

@@ -24,4 +24,16 @@
     <string name="choose_medication">Choose medication</string>
     <string name="search">Search</string>
     <string name="medication_info_description">Information about %1$s</string>
+    <string name="calculation_results">Calculation results</string>
+    <string name="input_data">Input data</string>
+    <string name="medication">Medication</string>
+    <string name="medication_dosage">Medication dose</string>
+    <string name="medication_volume">Medication volume</string>
+    <string name="max_daily_dose">Max daily dose</string>
+    <string name="not_exceeded">Not exceeded</string>
+    <string name="exceeded">Exceeded</string>
+    <string name="new_calculation">New calculation</string>
+    <string name="ml">ml</string>
+    <string name="mg">mg</string>
+    <string name="ml_per_kg">ml/kg</string>
 </resources>

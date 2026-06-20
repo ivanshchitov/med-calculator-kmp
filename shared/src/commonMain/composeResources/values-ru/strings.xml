@@ -28,4 +28,16 @@
     <string name="choose_medication">Выбор препарата</string>
     <string name="search">Поиск</string>
     <string name="medication_info_description">Информация о %1$s</string>
+    <string name="calculation_results">Результаты расчета</string>
+    <string name="input_data">Входные данные</string>
+    <string name="medication">Препарат</string>
+    <string name="medication_dosage">Доза препарата</string>
+    <string name="medication_volume">Объем препарата</string>
+    <string name="max_daily_dose">Максимальная суточная доза</string>
+    <string name="not_exceeded">Не превышена</string>
+    <string name="exceeded">Превышена</string>
+    <string name="new_calculation">Новый расчет</string>
+    <string name="ml">мл</string>
+    <string name="mg">мг</string>
+    <string name="ml_per_kg">мл/кг</string>
 </resources>
