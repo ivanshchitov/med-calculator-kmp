@@ -32,18 +32,15 @@ import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen() {
+fun MainScreen(
+    selectedMedication: MedicationUi,
+    onChooseMedication: () -> Unit
+) {
 
     // Stub values
     var weight by remember { mutableStateOf("12.5") }
     var age by remember { mutableStateOf("3") }
     var ageUnit by remember { mutableStateOf(AgeUnit.YEARS) }
-    val medication = remember {
-        MedicationUi(
-            name = "Paracetamol",
-            dose = "120 mg/ml"
-        )
-    }
 
     val focusManager = LocalFocusManager.current
 
@@ -125,11 +122,11 @@ fun MainScreen() {
             )
 
             MedicationCard(
-                medicationName = medication.name,
-                medicationDose = medication.dose,
+                medicationName = selectedMedication.name,
+                medicationDose = selectedMedication.dose,
                 onClick = {
                     focusManager.clearFocus()
-                    // TODO: Open screen to choose a medication
+                    onChooseMedication()
                 }
             )
 
@@ -144,6 +141,9 @@ fun MainScreen() {
 @Preview
 fun MainScreenPreview() {
     MedCalculatorAppTheme {
-        MainScreen()
+        MainScreen(
+            selectedMedication = MedicationUi("Парацетамол", "120 мг/мл"),
+            onChooseMedication = {}
+        )
     }
 }
