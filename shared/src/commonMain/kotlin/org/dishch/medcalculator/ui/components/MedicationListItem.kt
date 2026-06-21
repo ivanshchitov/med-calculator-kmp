@@ -19,13 +19,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.medication_info_description
-import org.dishch.medcalculator.domain.MedicationUi
+import org.dishch.medcalculator.domain.Medication
 import org.dishch.medcalculator.ui.theme.AppColors
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun MedicationListItem(
-    medication: MedicationUi,
+    medication: Medication,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     onInfoClick: (() -> Unit)
@@ -74,7 +74,7 @@ fun MedicationListItem(
         )
 
         Text(
-            text = medication.dose,
+            text = "${medication.dosage} мг/мл",
             style = MaterialTheme.typography.bodyMedium,
             color = AppColors.TextSecondary,
             modifier = Modifier.padding(horizontal = 8.dp)

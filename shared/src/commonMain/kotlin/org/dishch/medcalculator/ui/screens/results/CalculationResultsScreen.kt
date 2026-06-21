@@ -1,4 +1,4 @@
-package org.dishch.medcalculator.ui.screens
+package org.dishch.medcalculator.ui.screens.results
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
@@ -23,7 +23,7 @@ import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.*
 import org.dishch.medcalculator.domain.AgeUnit
 import org.dishch.medcalculator.domain.CalculationResults
-import org.dishch.medcalculator.domain.MedicationUi
+import org.dishch.medcalculator.domain.Medication
 import org.dishch.medcalculator.ui.components.ResultRow
 import org.dishch.medcalculator.ui.components.cards.MaxDoseCard
 import org.dishch.medcalculator.ui.components.cards.ResultCard
@@ -114,7 +114,7 @@ fun CalculationResultsScreen(
                     icon = Icons.Outlined.Medication,
                     label = stringResource(Res.string.medication),
                     value = result.medication.name,
-                    supportingText = result.medication.dose
+                    supportingText = "${result.medication.dosage} мг/мл"
                 )
             }
 
@@ -177,7 +177,7 @@ fun CalculationResultsScreenPreview() {
                 weight = 12.5,
                 age = 3,
                 ageUnit = AgeUnit.YEARS,
-                medication = MedicationUi("Парацетамол", "120 мг/5 мл"),
+                medication = Medication(0, "Парацетамол", 120, 0, 0),
                 dosageMg = 150,
                 volumeMl = 6.25,
                 isMaxDailyDoseExceeded = false
@@ -195,7 +195,7 @@ fun CalculationResultsScreenExceededPreview() {
                 weight = 12.5,
                 age = 3,
                 ageUnit = AgeUnit.YEARS,
-                medication = MedicationUi("Парацетамол", "120 мг/5 мл"),
+                medication = Medication(0, "Парацетамол", 120, 0, 0),
                 dosageMg = 1200,
                 volumeMl = 50.0,
                 isMaxDailyDoseExceeded = true

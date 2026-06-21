@@ -1,0 +1,7 @@
+package org.dishch.medcalculator.domain
+
+import kotlinx.coroutines.flow.Flow
+
+interface MedicationRepository {
+    fun getAllMedications(): Flow<List<Medication>>
+}

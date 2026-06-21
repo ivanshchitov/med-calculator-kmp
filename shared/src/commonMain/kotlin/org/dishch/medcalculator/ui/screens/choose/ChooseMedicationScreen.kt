@@ -1,4 +1,4 @@
-package org.dishch.medcalculator.ui.screens
+package org.dishch.medcalculator.ui.screens.choose
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.gestures.detectTapGestures
@@ -18,42 +18,28 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.choose_medication
 import medcalculator.shared.generated.resources.search
-import org.dishch.medcalculator.domain.MedicationUi
+import org.dishch.medcalculator.domain.Medication
 import org.dishch.medcalculator.ui.components.MedicationListItem
 import org.dishch.medcalculator.ui.theme.AppColors
 import org.dishch.medcalculator.ui.theme.AppDimens
 import org.dishch.medcalculator.ui.theme.MedCalculatorAppTheme
 import org.jetbrains.compose.resources.stringResource
+import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.annotation.KoinExperimentalAPI
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, KoinExperimentalAPI::class)
 @Composable
 fun ChooseMedicationScreen(
-    onMedicationSelected: (MedicationUi) -> Unit,
-    onBack: () -> Unit
+    onMedicationSelected: (Medication) -> Unit,
+    onBack: () -> Unit,
+    viewModel: ChooseMedicationViewModel = koinViewModel()
 ) {
-    var searchQuery by remember { mutableStateOf("") }
-
-    val medications = remember {
-        listOf(
-            MedicationUi("Парацетамол", "120 мг/мл"),
-            MedicationUi("Ибупрофен", "100 мг/мл"),
-            MedicationUi("Амоксициллин", "250 мг/мл"),
-            MedicationUi("Цефтриаксон", "1000 мг/мл"),
-            MedicationUi("Дексаметазон", "4 мг/мл"),
-            MedicationUi("Сальбутамол", "2 мг/мл"),
-            MedicationUi("Но-шпа", "40 мг/мл"),
-            MedicationUi("Метоклопрамид", "5 мг/мл"),
-            MedicationUi("Преднизолон", "5 мг/мл"),
-            MedicationUi("Лоратадин", "10 мг/мл")
-        )
-    }
-
-    val filteredMedications = medications.filter {
-        it.name.startsWith(searchQuery, ignoreCase = true)
-    }
+    val searchQuery by viewModel.searchQuery.collectAsStateWithLifecycle()
+    val filteredMedications by viewModel.filteredMedications.collectAsStateWithLifecycle()
 
     val focusManager = LocalFocusManager.current
 
@@ -95,7 +81,7 @@ fun ChooseMedicationScreen(
         ) {
             OutlinedTextField(
                 value = searchQuery,
-                onValueChange = { searchQuery = it },
+                onValueChange = viewModel::onSearchQueryChange,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 16.dp),
@@ -124,7 +110,7 @@ fun ChooseMedicationScreen(
                             medication = medication,
                             onClick = { onMedicationSelected(medication) },
                             onInfoClick = {
-                            // TODO: Show an information about the medication
+                                // TODO: Show an information about the medication
                             }
                         )
                         if (index < filteredMedications.lastIndex) {
@@ -147,9 +133,5 @@ fun ChooseMedicationScreen(
 @Preview
 fun ChooseMedicationScreenPreview() {
     MedCalculatorAppTheme {
-        ChooseMedicationScreen(
-            onMedicationSelected = {},
-            onBack = {}
-        )
     }
 }
