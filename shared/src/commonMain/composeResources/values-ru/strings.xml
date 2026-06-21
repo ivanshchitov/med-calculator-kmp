@@ -40,4 +40,5 @@
     <string name="ml">мл</string>
     <string name="mg">мг</string>
     <string name="ml_per_kg">мл/кг</string>
+    <string name="mg_per_ml_format">%1$s мг/мл</string>
 </resources>

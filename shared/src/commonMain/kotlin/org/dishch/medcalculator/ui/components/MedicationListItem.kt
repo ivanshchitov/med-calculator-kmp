@@ -19,6 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.medication_info_description
+import medcalculator.shared.generated.resources.mg_per_ml_format
 import org.dishch.medcalculator.domain.Medication
 import org.dishch.medcalculator.ui.theme.AppColors
 import org.jetbrains.compose.resources.stringResource
@@ -74,7 +75,7 @@ fun MedicationListItem(
         )
 
         Text(
-            text = "${medication.dosage} мг/мл",
+            text = stringResource(Res.string.mg_per_ml_format, medication.dosage),
             style = MaterialTheme.typography.bodyMedium,
             color = AppColors.TextSecondary,
             modifier = Modifier.padding(horizontal = 8.dp)

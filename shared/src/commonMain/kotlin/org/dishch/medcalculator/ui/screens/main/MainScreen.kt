@@ -22,6 +22,7 @@ import org.dishch.medcalculator.domain.Medication
 import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.calculate
 import medcalculator.shared.generated.resources.dosage_calculation
+import medcalculator.shared.generated.resources.mg_per_ml_format
 import org.dishch.medcalculator.domain.CalculationResults
 import org.dishch.medcalculator.ui.components.cards.AgeCard
 import org.dishch.medcalculator.ui.components.cards.MedicationCard
@@ -134,7 +135,7 @@ fun MainScreen(
 
             MedicationCard(
                 medicationName = selectedMedication.name,
-                medicationDose = "${selectedMedication.dosage} мг/мл",
+                medicationDose = stringResource(Res.string.mg_per_ml_format, selectedMedication.dosage),
                 onClick = {
                     focusManager.clearFocus()
                     onChooseMedication()

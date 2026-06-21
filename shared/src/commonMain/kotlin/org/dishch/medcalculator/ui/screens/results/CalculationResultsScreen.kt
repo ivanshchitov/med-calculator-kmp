@@ -114,7 +114,7 @@ fun CalculationResultsScreen(
                     icon = Icons.Outlined.Medication,
                     label = stringResource(Res.string.medication),
                     value = result.medication.name,
-                    supportingText = "${result.medication.dosage} мг/мл"
+                    supportingText = stringResource(Res.string.mg_per_ml_format, result.medication.dosage)
                 )
             }
 
