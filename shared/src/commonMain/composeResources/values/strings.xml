@@ -36,4 +36,5 @@
     <string name="ml">ml</string>
     <string name="mg">mg</string>
     <string name="ml_per_kg">ml/kg</string>
+    <string name="mg_per_ml_format">%1$s mg/ml</string>
 </resources>
