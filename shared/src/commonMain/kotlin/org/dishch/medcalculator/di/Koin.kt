@@ -2,6 +2,7 @@ package org.dishch.medcalculator.di
 
 import org.dishch.medcalculator.data.local.AppDatabase
 import org.dishch.medcalculator.data.local.getRoomDatabase
+import org.dishch.medcalculator.data.local.initializeDatabase
 import org.dishch.medcalculator.data.repository.MedicationRepositoryImpl
 import org.dishch.medcalculator.domain.MedicationRepository
 import org.dishch.medcalculator.ui.screens.choose.ChooseMedicationViewModel
@@ -12,6 +13,8 @@ import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.bind
 import org.koin.dsl.module
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 
 fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
     startKoin {
@@ -22,6 +25,11 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
             viewModelModule,
             platformModule()
         )
+    }.koin.let { koin ->
+        val database = koin.get<AppDatabase>()
+        MainScope().launch {
+            initializeDatabase(database)
+        }
     }
 
 val databaseModule = module {
