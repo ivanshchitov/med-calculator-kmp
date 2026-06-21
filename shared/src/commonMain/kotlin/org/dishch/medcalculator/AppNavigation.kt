@@ -6,10 +6,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import kotlinx.serialization.Serializable
 import org.dishch.medcalculator.domain.CalculationResults
-import org.dishch.medcalculator.domain.MedicationUi
-import org.dishch.medcalculator.ui.screens.CalculationResultsScreen
-import org.dishch.medcalculator.ui.screens.ChooseMedicationScreen
-import org.dishch.medcalculator.ui.screens.MainScreen
+import org.dishch.medcalculator.domain.Medication
+import org.dishch.medcalculator.ui.screens.results.CalculationResultsScreen
+import org.dishch.medcalculator.ui.screens.choose.ChooseMedicationScreen
+import org.dishch.medcalculator.ui.screens.main.MainScreen
 import androidx.navigation.toRoute
 import org.dishch.medcalculator.domain.CalculationResultType
 import kotlin.reflect.typeOf
@@ -29,7 +29,7 @@ data class CalculationResultsRoute(
 fun AppNavigation() {
     val navController = rememberNavController()
     var selectedMedication by remember {
-        mutableStateOf(MedicationUi("Парацетамол", "120 мг/мл"))
+        mutableStateOf(Medication(0, "Парацетамол", 120, 0, 0))
     }
 
     NavHost(

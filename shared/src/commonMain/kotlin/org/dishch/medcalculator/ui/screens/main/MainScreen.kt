@@ -1,4 +1,4 @@
-package org.dishch.medcalculator.ui.screens
+package org.dishch.medcalculator.ui.screens.main
 
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
@@ -18,7 +18,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.dishch.medcalculator.domain.AgeUnit
-import org.dishch.medcalculator.domain.MedicationUi
+import org.dishch.medcalculator.domain.Medication
 import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.calculate
 import medcalculator.shared.generated.resources.dosage_calculation
@@ -34,7 +34,7 @@ import org.jetbrains.compose.resources.stringResource
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
-    selectedMedication: MedicationUi,
+    selectedMedication: Medication,
     onChooseMedication: () -> Unit,
     onCalculate: (CalculationResults) -> Unit
 ) {
@@ -134,7 +134,7 @@ fun MainScreen(
 
             MedicationCard(
                 medicationName = selectedMedication.name,
-                medicationDose = selectedMedication.dose,
+                medicationDose = "${selectedMedication.dosage} мг/мл",
                 onClick = {
                     focusManager.clearFocus()
                     onChooseMedication()
@@ -153,7 +153,7 @@ fun MainScreen(
 fun MainScreenPreview() {
     MedCalculatorAppTheme {
         MainScreen(
-            selectedMedication = MedicationUi("Парацетамол", "120 мг/мл"),
+            selectedMedication = Medication(0, "Парацетамол", 120, 0, 0),
             onChooseMedication = {},
             onCalculate = {}
         )

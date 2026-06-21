@@ -15,7 +15,7 @@ data class CalculationResults(
     val weight: Double,
     val age: Int,
     val ageUnit: AgeUnit,
-    val medication: MedicationUi,
+    val medication: Medication,
     val dosageMg: Int,
     val volumeMl: Double,
     val isMaxDailyDoseExceeded: Boolean

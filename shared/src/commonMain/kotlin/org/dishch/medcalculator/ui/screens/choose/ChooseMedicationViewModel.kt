@@ -1,0 +1,37 @@
+package org.dishch.medcalculator.ui.screens.choose
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
+import org.dishch.medcalculator.domain.Medication
+import org.dishch.medcalculator.domain.MedicationRepository
+
+class ChooseMedicationViewModel(
+    private val medicationRepository: MedicationRepository
+) : ViewModel() {
+
+    private val _searchQuery = MutableStateFlow("")
+    val searchQuery: StateFlow<String> = _searchQuery
+
+    val medications: StateFlow<List<Medication>> = medicationRepository.getAllMedications()
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+
+    val filteredMedications: StateFlow<List<Medication>> = combine(
+        medications,
+        _searchQuery
+    ) { medications, query ->
+        if (query.isBlank()) {
+            medications
+        } else {
+            medications.filter { it.name.contains(query, ignoreCase = true) }
+        }
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+
+    fun onSearchQueryChange(query: String) {
+        _searchQuery.value = query
+    }
+}

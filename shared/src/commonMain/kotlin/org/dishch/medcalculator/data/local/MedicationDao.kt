@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MedicationDao {
-    @Query("SELECT * FROM medications")
+    @Query("SELECT * FROM medications ORDER BY name ASC")
     fun getAllMedications(): Flow<List<MedicationEntity>>
 
     @Query("SELECT * FROM medications WHERE id = :id")
