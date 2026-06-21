@@ -24,11 +24,7 @@ class ChooseMedicationViewModel(
         medications,
         _searchQuery
     ) { medications, query ->
-        if (query.isBlank()) {
-            medications
-        } else {
-            medications.filter { it.name.contains(query, ignoreCase = true) }
-        }
+            medications.filter { it.name.startsWith(query, ignoreCase = true) }
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
     fun onSearchQueryChange(query: String) {

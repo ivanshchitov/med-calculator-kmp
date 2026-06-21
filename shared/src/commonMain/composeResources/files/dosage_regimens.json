@@ -1,50 +1,56 @@
 [
   {
     "id": 1,
-    "from_age": 0,
-    "to_age": 204, // 17 years 
-    "min_dose_per_kg": 0.01,
-    "max_dose_per_kg": 0.01,
-    "med_id": 1 // Atropin
+    "fromAge": 0,
+    "toAge": 204,
+    "minDosePerKg": 0.01,
+    "maxDosePerKg": 0.01,
+    "medId": 1,
+    "comment": "Atropin"
   },
     {
     "id": 2,
-    "from_age": 0,
-    "to_age": 12,
-    "min_dose_per_kg": 2,
-    "max_dose_per_kg": 3,
-    "med_id": 2 // Prednisolone
+    "fromAge": 0,
+    "toAge": 12,
+    "minDosePerKg": 2,
+    "maxDosePerKg": 3,
+    "medId": 2,
+    "comment": "Prednisolone"
   },
   {
     "id": 3,
-    "from_age": 13,
-    "to_age": 168, // 14 years
-    "min_dose_per_kg": 1,
-    "max_dose_per_kg": 2,
-    "med_id": 2 // Prednisolone
+    "fromAge": 13,
+    "toAge": 168,
+    "minDosePerKg": 1,
+    "maxDosePerKg": 2,
+    "medId": 2,
+    "comment": "Prednisolone"
   },
   {
     "id": 4,
-    "from_age": 0,
-    "to_age": 204, // 17 years
-    "min_dose_per_kg": 0.02776,
-    "max_dose_per_kg": 0.16665,
-    "med_id": 3 // Dexamethasone
+    "fromAge": 0,
+    "toAge": 204,
+    "minDosePerKg": 0.02776,
+    "maxDosePerKg": 0.16665,
+    "medId": 3,
+    "comment": "Dexamethasone"
   },
   {
     "id": 5,
-    "from_age": 0,
-    "to_age": 204, // 17 years
-    "min_dose_per_kg": 2,
-    "max_dose_per_kg": 3,
-    "med_id": 4 // Euphylline
+    "fromAge": 0,
+    "toAge": 204,
+    "minDosePerKg": 2,
+    "maxDosePerKg": 3,
+    "medId": 4,
+    "comment": "Euphylline"
   },
   {
     "id": 5,
-    "from_age": 192, // 16 years
-    "to_age": 204, // 17 years
-    "min_dose_per_kg": 10,
-    "max_dose_per_kg": 30,
-    "med_id": 5 // Ketorol
-  },
+    "fromAge": 192,
+    "toAge": 204,
+    "minDosePerKg": 10,
+    "maxDosePerKg": 30,
+    "medId": 5,
+    "comment": "Euphylline"
+  }
 ]

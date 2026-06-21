@@ -1,37 +1,37 @@
 [
   {
-    "id": 1, // Atropin
+    "id": 1,
     "name": "Атропин",
-    "dosage_mg_per_ml": 1,
-    "max_single_dose_mg": 1,
-    "min_age_months": 0
+    "dosageMgPerMl": 1,
+    "maxSingleDoseMg": 1,
+    "minAgeMonths": 0
   },
   {
-    "id": 2, // Prednisolone 
+    "id": 2,
     "name": "Преднизолон",
-    "dosage_mg_per_ml": 30,
-    "max_single_dose_mg": 400,
-    "min_age_months": 0
+    "dosageMgPerMl": 30,
+    "maxSingleDoseMg": 400,
+    "minAgeMonths": 0
   },
   {
-    "id": 3, // Dexamethasone
+    "id": 3,
     "name": "Дексаметазон",
-    "dosage_mg_per_ml": 4,
-    "max_single_dose_mg": 80,
-    "min_age_months": 0
+    "dosageMgPerMl": 4,
+    "maxSingleDoseMg": 80,
+    "minAgeMonths": 0
   },
   {
-    "id": 4, // Euphylline
+    "id": 4,
     "name": "Эуфиллин",
-    "dosage_mg_per_ml": 24,
-    "max_single_dose_mg": 250,
-    "min_age_months": 0
+    "dosageMgPerMl": 24,
+    "maxSingleDoseMg": 250,
+    "minAgeMonths": 0
   },
   {
-    "id": 5, // Ketorol
+    "id": 5,
     "name": "Кеторол",
-    "dosage_mg_per_ml": 30,
-    "max_single_dose_mg": 30,
-    "min_age_months": 192 // 16 years
+    "dosageMgPerMl": 30,
+    "maxSingleDoseMg": 30,
+    "minAgeMonths": 192
   }
 ]
