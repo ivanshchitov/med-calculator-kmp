@@ -14,7 +14,7 @@ import androidx.compose.material.icons.outlined.Opacity
 import androidx.compose.material.icons.outlined.Scale
 import androidx.compose.material.icons.outlined.Vaccines
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -40,6 +40,9 @@ fun CalculationResultsScreen(
     onNewCalculation: () -> Unit = {},
     onBack: () -> Unit = {}
 ) {
+
+    var isActionHandled by remember { mutableStateOf(false) }
+
     Scaffold(
         containerColor = AppColors.Background,
         topBar = {
@@ -51,7 +54,12 @@ fun CalculationResultsScreen(
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = onBack) {
+                    IconButton(onClick = {
+                        if (!isActionHandled) {
+                            isActionHandled = true
+                            onBack()
+                        }
+                    }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
                     }
                 },
@@ -67,7 +75,12 @@ fun CalculationResultsScreen(
                     .padding(bottom = AppDimens.ScreenPadding)
             ) {
                 OutlinedButton(
-                    onClick = onNewCalculation,
+                    onClick = {
+                        if (!isActionHandled) {
+                            isActionHandled = true
+                            onNewCalculation()
+                        }
+                    },
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(56.dp),

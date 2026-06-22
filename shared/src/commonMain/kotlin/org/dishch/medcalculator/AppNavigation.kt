@@ -51,10 +51,14 @@ fun AppNavigation() {
             ChooseMedicationScreen(
                 onMedicationSelected = { medication ->
                     selectedMedication = medication
-                    navController.popBackStack()
+                    if (navController.currentDestination?.route?.contains("ChooseMedicationRoute") == true) {
+                        navController.popBackStack()
+                    }
                 },
                 onBack = {
-                    navController.popBackStack()
+                    if (navController.currentDestination?.route?.contains("ChooseMedicationRoute") == true) {
+                        navController.popBackStack()
+                    }
                 }
             )
         }
@@ -65,10 +69,14 @@ fun AppNavigation() {
             CalculationResultsScreen(
                 result = route.result,
                 onNewCalculation = {
-                    navController.popBackStack()
+                    if (navController.currentDestination?.route?.contains("CalculationResultsRoute") == true) {
+                        navController.popBackStack()
+                    }
                 },
                 onBack = {
-                    navController.popBackStack()
+                    if (navController.currentDestination?.route?.contains("CalculationResultsRoute") == true) {
+                        navController.popBackStack()
+                    }
                 }
             )
         }

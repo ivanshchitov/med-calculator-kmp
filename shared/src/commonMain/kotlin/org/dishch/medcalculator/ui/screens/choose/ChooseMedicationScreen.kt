@@ -11,6 +11,8 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.pointer.pointerInput
@@ -43,6 +45,8 @@ fun ChooseMedicationScreen(
 
     val focusManager = LocalFocusManager.current
 
+    var isActionHandled by remember { mutableStateOf(false) }
+
     Scaffold(
         modifier = Modifier.pointerInput(Unit) {
             detectTapGestures(onTap = {
@@ -58,7 +62,12 @@ fun ChooseMedicationScreen(
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = onBack) {
+                    IconButton(onClick = {
+                        if (!isActionHandled) {
+                            isActionHandled = true
+                            onBack()
+                        }
+                    }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = null
@@ -108,7 +117,12 @@ fun ChooseMedicationScreen(
                     itemsIndexed(filteredMedications) { index, medication ->
                         MedicationListItem(
                             medication = medication,
-                            onClick = { onMedicationSelected(medication) },
+                            onClick = {
+                                if (!isActionHandled) {
+                                    isActionHandled = true
+                                    onMedicationSelected(medication)
+                                }
+                            },
                             onInfoClick = {
                                 // TODO: Show an information about the medication
                             }
