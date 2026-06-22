@@ -1,5 +1,8 @@
 package org.dishch.medcalculator
 
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.*
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -34,7 +37,11 @@ fun AppNavigation() {
 
     NavHost(
         navController = navController,
-        startDestination = MainRoute
+        startDestination = MainRoute,
+        enterTransition = { fadeIn(animationSpec = tween(200)) },
+        exitTransition = { fadeOut(animationSpec = tween(200)) },
+        popEnterTransition = { fadeIn(animationSpec = tween(200)) },
+        popExitTransition = { fadeOut(animationSpec = tween(200)) }
     ) {
         composable<MainRoute> {
             MainScreen(
