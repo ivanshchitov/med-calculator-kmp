@@ -12,7 +12,6 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.pointer.pointerInput
@@ -42,10 +41,9 @@ fun ChooseMedicationScreen(
 ) {
     val searchQuery by viewModel.searchQuery.collectAsStateWithLifecycle()
     val filteredMedications by viewModel.filteredMedications.collectAsStateWithLifecycle()
+    val isActionHandled by viewModel.isActionHandled.collectAsStateWithLifecycle()
 
     val focusManager = LocalFocusManager.current
-
-    var isActionHandled by remember { mutableStateOf(false) }
 
     Scaffold(
         modifier = Modifier.pointerInput(Unit) {
@@ -64,7 +62,7 @@ fun ChooseMedicationScreen(
                 navigationIcon = {
                     IconButton(onClick = {
                         if (!isActionHandled) {
-                            isActionHandled = true
+                            viewModel.markActionHandled()
                             onBack()
                         }
                     }) {
@@ -119,7 +117,7 @@ fun ChooseMedicationScreen(
                             medication = medication,
                             onClick = {
                                 if (!isActionHandled) {
-                                    isActionHandled = true
+                                    viewModel.markActionHandled()
                                     onMedicationSelected(medication)
                                 }
                             },

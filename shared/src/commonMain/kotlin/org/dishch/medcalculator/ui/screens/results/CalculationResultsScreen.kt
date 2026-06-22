@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.*
 import org.dishch.medcalculator.domain.AgeUnit
@@ -32,16 +33,19 @@ import org.dishch.medcalculator.ui.theme.AppDimens
 import org.dishch.medcalculator.ui.theme.MedCalculatorAppTheme
 import org.jetbrains.compose.resources.pluralStringResource
 import org.jetbrains.compose.resources.stringResource
+import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.annotation.KoinExperimentalAPI
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, KoinExperimentalAPI::class)
 @Composable
 fun CalculationResultsScreen(
     result: CalculationResults,
     onNewCalculation: () -> Unit = {},
-    onBack: () -> Unit = {}
+    onBack: () -> Unit = {},
+    viewModel: CalculationResultsViewModel = koinViewModel()
 ) {
 
-    var isActionHandled by remember { mutableStateOf(false) }
+    val isActionHandled by viewModel.isActionHandled.collectAsStateWithLifecycle()
 
     Scaffold(
         containerColor = AppColors.Background,
@@ -56,7 +60,7 @@ fun CalculationResultsScreen(
                 navigationIcon = {
                     IconButton(onClick = {
                         if (!isActionHandled) {
-                            isActionHandled = true
+                            viewModel.markActionHandled()
                             onBack()
                         }
                     }) {
@@ -77,7 +81,7 @@ fun CalculationResultsScreen(
                 OutlinedButton(
                     onClick = {
                         if (!isActionHandled) {
-                            isActionHandled = true
+                            viewModel.markActionHandled()
                             onNewCalculation()
                         }
                     },

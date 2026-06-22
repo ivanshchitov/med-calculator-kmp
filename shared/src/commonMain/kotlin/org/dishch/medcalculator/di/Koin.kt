@@ -6,6 +6,8 @@ import org.dishch.medcalculator.data.local.initializeDatabase
 import org.dishch.medcalculator.data.repository.MedicationRepositoryImpl
 import org.dishch.medcalculator.domain.MedicationRepository
 import org.dishch.medcalculator.ui.screens.choose.ChooseMedicationViewModel
+import org.dishch.medcalculator.ui.screens.main.MainViewModel
+import org.dishch.medcalculator.ui.screens.results.CalculationResultsViewModel
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.factoryOf
@@ -44,6 +46,8 @@ val repositoryModule = module {
 
 val viewModelModule = module {
     factoryOf(::ChooseMedicationViewModel)
+    factoryOf(::MainViewModel)
+    factoryOf(::CalculationResultsViewModel)
 }
 
 expect fun platformModule(): Module

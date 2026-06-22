@@ -17,7 +17,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import org.dishch.medcalculator.domain.AgeUnit
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.dishch.medcalculator.domain.Medication
 import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.calculate
@@ -31,19 +31,21 @@ import org.dishch.medcalculator.ui.components.cards.WeightCard
 import org.dishch.medcalculator.ui.theme.AppDimens
 import org.dishch.medcalculator.ui.theme.MedCalculatorAppTheme
 import org.jetbrains.compose.resources.stringResource
+import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.annotation.KoinExperimentalAPI
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, KoinExperimentalAPI::class)
 @Composable
 fun MainScreen(
     selectedMedication: Medication,
     onChooseMedication: () -> Unit,
-    onCalculate: (CalculationResults) -> Unit
+    onCalculate: (CalculationResults) -> Unit,
+    viewModel: MainViewModel = koinViewModel()
 ) {
 
-    // Stub values
-    var weight by remember { mutableStateOf("12.5") }
-    var age by remember { mutableStateOf("3") }
-    var ageUnit by remember { mutableStateOf(AgeUnit.YEARS) }
+    val weight by viewModel.weight.collectAsStateWithLifecycle()
+    val age by viewModel.age.collectAsStateWithLifecycle()
+    val ageUnit by viewModel.ageUnit.collectAsStateWithLifecycle()
 
     val focusManager = LocalFocusManager.current
 
@@ -106,12 +108,8 @@ fun MainScreen(
             AgeCard(
                 age = age,
                 unit = ageUnit,
-                onAgeChanged = {
-                    age = it
-                },
-                onUnitChanged = {
-                    ageUnit = it
-                },
+                onAgeChanged = viewModel::onAgeChanged,
+                onUnitChanged = viewModel::onAgeUnitChanged,
                 imeAction = ImeAction.Next,
                 keyboardActions = KeyboardActions(
                     onNext = {
@@ -122,9 +120,7 @@ fun MainScreen(
 
             WeightCard(
                 weight = weight,
-                onWeightChanged = {
-                    weight = it
-                },
+                onWeightChanged = viewModel::onWeightChanged,
                 imeAction = ImeAction.Done,
                 keyboardActions = KeyboardActions(
                     onDone = {
@@ -153,6 +149,7 @@ fun MainScreen(
 @Preview
 fun MainScreenPreview() {
     MedCalculatorAppTheme {
+        // NOTE: Preview might need to be adjusted or use a MockViewModel
         MainScreen(
             selectedMedication = Medication(0, "Парацетамол", 120.0, 0.0, 0),
             onChooseMedication = {},
