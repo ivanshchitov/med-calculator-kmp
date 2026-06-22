@@ -94,6 +94,7 @@ fun ChooseMedicationScreen(
                     .padding(vertical = 16.dp),
                 placeholder = { Text(stringResource(Res.string.search)) },
                 leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
+                singleLine = true,
                 shape = RoundedCornerShape(AppDimens.CardCorner),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedContainerColor = AppColors.Surface,
