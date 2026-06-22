@@ -21,8 +21,10 @@ import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.medication_info_description
 import medcalculator.shared.generated.resources.mg_per_ml_format
 import org.dishch.medcalculator.domain.Medication
+import org.dishch.medcalculator.domain.formattedDosage
 import org.dishch.medcalculator.ui.theme.AppColors
 import org.jetbrains.compose.resources.stringResource
+import kotlin.math.roundToInt
 
 @Composable
 fun MedicationListItem(
@@ -75,7 +77,7 @@ fun MedicationListItem(
         )
 
         Text(
-            text = stringResource(Res.string.mg_per_ml_format, medication.dosage),
+            text = stringResource(Res.string.mg_per_ml_format, medication.formattedDosage),
             style = MaterialTheme.typography.bodyMedium,
             color = AppColors.TextSecondary,
             modifier = Modifier.padding(horizontal = 8.dp)

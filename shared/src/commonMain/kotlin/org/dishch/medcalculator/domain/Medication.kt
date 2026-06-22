@@ -10,3 +10,10 @@ data class Medication(
     val maxSingleDose: Double,
     val ageLimit: Int
 )
+
+val Medication.formattedDosage: String
+    get() = if (dosage % 1.0 == 0.0) {
+        dosage.toInt().toString()
+    } else {
+        dosage.toString()
+    }

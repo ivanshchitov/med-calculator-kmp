@@ -25,6 +25,7 @@ import medcalculator.shared.generated.resources.*
 import org.dishch.medcalculator.domain.AgeUnit
 import org.dishch.medcalculator.domain.CalculationResults
 import org.dishch.medcalculator.domain.Medication
+import org.dishch.medcalculator.domain.formattedDosage
 import org.dishch.medcalculator.ui.components.ResultRow
 import org.dishch.medcalculator.ui.components.cards.MaxDoseCard
 import org.dishch.medcalculator.ui.components.cards.ResultCard
@@ -131,7 +132,7 @@ fun CalculationResultsScreen(
                     icon = Icons.Outlined.Medication,
                     label = stringResource(Res.string.medication),
                     value = result.medication.name,
-                    supportingText = stringResource(Res.string.mg_per_ml_format, result.medication.dosage)
+                    supportingText = stringResource(Res.string.mg_per_ml_format, result.medication.formattedDosage)
                 )
             }
 
