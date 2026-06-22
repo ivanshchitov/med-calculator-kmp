@@ -154,7 +154,7 @@ fun MainScreen(
 fun MainScreenPreview() {
     MedCalculatorAppTheme {
         MainScreen(
-            selectedMedication = Medication(0, "Парацетамол", 120, 0, 0),
+            selectedMedication = Medication(0, "Парацетамол", 120.0, 0.0, 0),
             onChooseMedication = {},
             onCalculate = {}
         )

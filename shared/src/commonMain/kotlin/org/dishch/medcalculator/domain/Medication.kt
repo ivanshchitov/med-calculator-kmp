@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 data class Medication(
     val id: Long,
     val name: String,
-    val dosage: Int,
-    val maxSingleDose: Int,
+    val dosage: Double,
+    val maxSingleDose: Double,
     val ageLimit: Int
 )

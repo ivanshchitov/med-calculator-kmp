@@ -177,7 +177,7 @@ fun CalculationResultsScreenPreview() {
                 weight = 12.5,
                 age = 3,
                 ageUnit = AgeUnit.YEARS,
-                medication = Medication(0, "Парацетамол", 120, 0, 0),
+                medication = Medication(0, "Парацетамол", 120.0, 0.0, 0),
                 dosageMg = 150,
                 volumeMl = 6.25,
                 isMaxDailyDoseExceeded = false
@@ -195,7 +195,7 @@ fun CalculationResultsScreenExceededPreview() {
                 weight = 12.5,
                 age = 3,
                 ageUnit = AgeUnit.YEARS,
-                medication = Medication(0, "Парацетамол", 120, 0, 0),
+                medication = Medication(0, "Парацетамол", 120.0, 0.0, 0),
                 dosageMg = 1200,
                 volumeMl = 50.0,
                 isMaxDailyDoseExceeded = true
