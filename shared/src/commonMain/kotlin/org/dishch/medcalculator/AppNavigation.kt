@@ -29,7 +29,7 @@ data class CalculationResultsRoute(
 fun AppNavigation() {
     val navController = rememberNavController()
     var selectedMedication by remember {
-        mutableStateOf(Medication(0, "Парацетамол", 120, 0, 0))
+        mutableStateOf(Medication(0, "Парацетамол", 120.0, 0.0, 0))
     }
 
     NavHost(

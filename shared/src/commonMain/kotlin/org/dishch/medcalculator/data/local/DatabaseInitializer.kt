@@ -14,8 +14,8 @@ import kotlinx.coroutines.withContext
 data class MedicationJson(
     val id: Long,
     val name: String,
-    val dosageMgPerMl: Int,
-    val maxSingleDoseMg: Int,
+    val dosageMgPerMl: Double,
+    val maxSingleDoseMg: Double,
     val minAgeMonths: Int = 0
 ) {
     fun toEntity() = MedicationEntity(

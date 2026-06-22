@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class MedicationEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     @ColumnInfo(name = "name") val name: String,
-    @ColumnInfo(name = "dosage") val dosage: Int,
-    @ColumnInfo(name = "max_single_dose") val maxSingleDose: Int,
+    @ColumnInfo(name = "dosage") val dosage: Double,
+    @ColumnInfo(name = "max_single_dose") val maxSingleDose: Double,
     @ColumnInfo(name = "age_limit", defaultValue = "0") val ageLimit: Int = 0
 )

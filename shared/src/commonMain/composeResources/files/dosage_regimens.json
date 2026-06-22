@@ -45,12 +45,309 @@
     "comment": "Euphylline"
   },
   {
-    "id": 5,
+    "id": 6,
     "fromAge": 192,
     "toAge": 204,
     "minDosePerKg": 10,
     "maxDosePerKg": 30,
     "medId": 5,
-    "comment": "Euphylline"
+    "comment": "Ketorol"
+  },
+  {
+    "id": 7,
+    "fromAge": 0,
+    "toAge": 12,
+    "minDosePerKg": 0.01,
+    "maxDosePerKg": 0.03,
+    "medId": 6,
+    "comment": "Adrenalinum"
+  },
+  {
+    "id": 8,
+    "fromAge": 12,
+    "toAge": 216,
+    "minDosePerKg": 0.01,
+    "maxDosePerKg": 0.03,
+    "medId": 6,
+    "comment": "Adrenalinum"
+  },
+  {
+    "id": 9,
+    "fromAge": 0,
+    "toAge": 12,
+    "minDosePerKg": 2,
+    "maxDosePerKg": 20,
+    "medId": 7,
+    "comment": "Dopaminum"
+  },
+  {
+    "id": 10,
+    "fromAge": 12,
+    "toAge": 216,
+    "minDosePerKg": 2,
+    "maxDosePerKg": 20,
+    "medId": 7,
+    "comment": "Dopaminum"
+  },
+  {
+    "id": 11,
+    "fromAge": 0,
+    "toAge": 216,
+    "minDosePerKg": 0.05,
+    "maxDosePerKg": 0.5,
+    "medId": 8,
+    "comment": "Norepinephrinum"
+  },
+  {
+    "id": 12,
+    "fromAge": 0,
+    "toAge": 12,
+    "minDosePerKg": 0.1,
+    "maxDosePerKg": 0.3,
+    "medId": 9,
+    "comment": "Chloropyraminum"
+  },
+  {
+    "id": 13,
+    "fromAge": 12,
+    "toAge": 216,
+    "minDosePerKg": 0.1,
+    "maxDosePerKg": 0.3,
+    "medId": 9,
+    "comment": "Chloropyraminum"
+  },
+  {
+    "id": 14,
+    "fromAge": 0,
+    "toAge": 12,
+    "minDosePerKg": 25,
+    "maxDosePerKg": 50,
+    "medId": 10,
+    "comment": "Magnesii sulfas"
+  },
+  {
+    "id": 15,
+    "fromAge": 12,
+    "toAge": 216,
+    "minDosePerKg": 25,
+    "maxDosePerKg": 50,
+    "medId": 10,
+    "comment": "Magnesii sulfas"
+  },
+  {
+    "id": 16,
+    "fromAge": 0,
+    "toAge": 216,
+    "minDosePerKg": 1,
+    "maxDosePerKg": 2,
+    "medId": 11,
+    "comment": "Furosemidum"
+  },
+  {
+    "id": 17,
+    "fromAge": 0,
+    "toAge": 216,
+    "minDosePerKg": 0.01,
+    "maxDosePerKg": 0.05,
+    "medId": 12,
+    "comment": "Metoprololum"
+  },
+  {
+    "id": 18,
+    "fromAge": 216,
+    "toAge": 216,
+    "minDosePerKg": 1,
+    "maxDosePerKg": 2,
+    "medId": 13,
+    "comment": "Propafenonum"
+  },
+  {
+    "id": 19,
+    "fromAge": 0,
+    "toAge": 216,
+    "minDosePerKg": 5,
+    "maxDosePerKg": 10,
+    "medId": 14,
+    "comment": "Amiodaronum"
+  },
+  {
+    "id": 20,
+    "fromAge": 216,
+    "toAge": 216,
+    "minDosePerKg": 10,
+    "maxDosePerKg": 20,
+    "medId": 15,
+    "comment": "Spazmoten: Metamizol natrii + Pitophenonum + Fenpiverinii bromidum"
+  },
+  {
+    "id": 21,
+    "fromAge": 12,
+    "toAge": 216,
+    "minDosePerKg": 0.05,
+    "maxDosePerKg": 0.1,
+    "medId": 16,
+    "comment": "Platyphyllinum"
+  },
+  {
+    "id": 22,
+    "fromAge": 36,
+    "toAge": 216,
+    "minDosePerKg": 0.1,
+    "maxDosePerKg": 0.3,
+    "medId": 17,
+    "comment": "Drotaverinum"
+  },
+  {
+    "id": 23,
+    "fromAge": 6,
+    "toAge": 216,
+    "minDosePerKg": 0.5,
+    "maxDosePerKg": 1,
+    "medId": 18,
+    "comment": "Papaverinum"
+  },
+  {
+    "id": 24,
+    "fromAge": 0,
+    "toAge": 3,
+    "minDosePerKg": 10,
+    "maxDosePerKg": 15,
+    "medId": 19,
+    "comment": "Paracetamolum"
+  },
+  {
+    "id": 25,
+    "fromAge": 3,
+    "toAge": 216,
+    "minDosePerKg": 15,
+    "maxDosePerKg": 20,
+    "medId": 19,
+    "comment": "Paracetamolum"
+  },
+  {
+    "id": 26,
+    "fromAge": 3,
+    "toAge": 216,
+    "minDosePerKg": 5,
+    "maxDosePerKg": 10,
+    "medId": 20,
+    "comment": "Analgin: Metamizol natrii"
+  },
+  {
+    "id": 27,
+    "fromAge": 216,
+    "toAge": 216,
+    "minDosePerKg": 0,
+    "maxDosePerKg": 0,
+    "medId": 21,
+    "comment": "Phenazepamum"
+  },
+  {
+    "id": 28,
+    "fromAge": 12,
+    "toAge": 216,
+    "minDosePerKg": 1,
+    "maxDosePerKg": 2,
+    "medId": 22,
+    "comment": "Tramadolum"
+  },
+  {
+    "id": 29,
+    "fromAge": 0,
+    "toAge": 3,
+    "minDosePerKg": 0.05,
+    "maxDosePerKg": 0.1,
+    "medId": 23,
+    "comment": "Morphinum"
+  },
+  {
+    "id": 30,
+    "fromAge": 3,
+    "toAge": 216,
+    "minDosePerKg": 0.1,
+    "maxDosePerKg": 0.2,
+    "medId": 23,
+    "comment": "Morphinum"
+  },
+  {
+    "id": 31,
+    "fromAge": 0,
+    "toAge": 12,
+    "minDosePerKg": 0.001,
+    "maxDosePerKg": 0.002,
+    "medId": 24,
+    "comment": "Fentanylum"
+  },
+  {
+    "id": 32,
+    "fromAge": 12,
+    "toAge": 216,
+    "minDosePerKg": 0.001,
+    "maxDosePerKg": 0.003,
+    "medId": 24,
+    "comment": "Fentanylum"
+  },
+  {
+    "id": 33,
+    "fromAge": 12,
+    "toAge": 216,
+    "minDosePerKg": 0.5,
+    "maxDosePerKg": 1,
+    "medId": 25,
+    "comment": "Promedolum"
+  },
+  {
+    "id": 34,
+    "fromAge": 0,
+    "toAge": 216,
+    "minDosePerKg": 0.01,
+    "maxDosePerKg": 0.02,
+    "medId": 26,
+    "comment": "Naloxonum"
+  },
+  {
+    "id": 35,
+    "fromAge": 12,
+    "toAge": 36,
+    "minDosePerKg": 0.05,
+    "maxDosePerKg": 0.1,
+    "medId": 27,
+    "comment": "Metoclopramidum"
+  },
+  {
+    "id": 36,
+    "fromAge": 36,
+    "toAge": 216,
+    "minDosePerKg": 0.1,
+    "maxDosePerKg": 0.2,
+    "medId": 27,
+    "comment": "Metoclopramidum"
+  },
+  {
+    "id": 37,
+    "fromAge": 0,
+    "toAge": 216,
+    "minDosePerKg": 10,
+    "maxDosePerKg": 15,
+    "medId": 28,
+    "comment": "Acidum tranexamicum"
+  },
+  {
+    "id": 38,
+    "fromAge": 0,
+    "toAge": 216,
+    "minDosePerKg": 10,
+    "maxDosePerKg": 15,
+    "medId": 29,
+    "comment": "Etamsylatum"
+  },
+  {
+    "id": 39,
+    "fromAge": 0,
+    "toAge": 216,
+    "minDosePerKg": 1,
+    "maxDosePerKg": 2,
+    "medId": 30,
+    "comment": "Lidocainum"
   }
 ]
