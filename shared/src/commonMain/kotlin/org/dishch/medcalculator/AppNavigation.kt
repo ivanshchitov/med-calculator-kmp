@@ -57,10 +57,10 @@ fun AppNavigation() {
             ChooseMedicationScreen(
                 onMedicationSelected = { medication ->
                     mainViewModel.onMedicationChanged(medication)
-                    navController.popBackStack()
+                    navController.navigateUp()
                 },
                 onBack = {
-                    navController.popBackStack()
+                    navController.navigateUp()
                 }
             )
         }
@@ -71,7 +71,7 @@ fun AppNavigation() {
             CalculationResultsScreen(
                 result = route.result,
                 onBack = {
-                    navController.popBackStack()
+                    navController.navigateUp()
                 }
             )
         }

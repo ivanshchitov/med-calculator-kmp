@@ -1,5 +1,6 @@
 package org.dishch.medcalculator.ui.screens.choose
 
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
@@ -11,11 +12,10 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.stateIn
 import org.dishch.medcalculator.domain.Medication
 import org.dishch.medcalculator.domain.MedicationRepository
-import org.dishch.medcalculator.ui.screens.base.HandledActionViewModel
 
 class ChooseMedicationViewModel(
     private val medicationRepository: MedicationRepository
-) : HandledActionViewModel() {
+) : ViewModel() {
 
     private val _searchQuery = MutableStateFlow("")
     val searchQuery: StateFlow<String> = _searchQuery

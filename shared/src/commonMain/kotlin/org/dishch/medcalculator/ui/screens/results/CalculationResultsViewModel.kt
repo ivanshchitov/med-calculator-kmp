@@ -1,5 +1,5 @@
 package org.dishch.medcalculator.ui.screens.results
 
-import org.dishch.medcalculator.ui.screens.base.HandledActionViewModel
+import androidx.lifecycle.ViewModel
 
-class CalculationResultsViewModel : HandledActionViewModel()
+class CalculationResultsViewModel : ViewModel()

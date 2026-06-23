@@ -41,7 +41,6 @@ fun ChooseMedicationScreen(
 ) {
     val searchQuery by viewModel.searchQuery.collectAsStateWithLifecycle()
     val filteredMedications by viewModel.filteredMedications.collectAsStateWithLifecycle()
-    val isActionHandled by viewModel.isActionHandled.collectAsStateWithLifecycle()
 
     val focusManager = LocalFocusManager.current
 
@@ -60,12 +59,7 @@ fun ChooseMedicationScreen(
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = {
-                        if (!isActionHandled) {
-                            viewModel.markActionHandled()
-                            onBack()
-                        }
-                    }) {
+                    IconButton(onClick = onBack) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = null
@@ -116,12 +110,7 @@ fun ChooseMedicationScreen(
                     itemsIndexed(filteredMedications) { index, medication ->
                         MedicationListItem(
                             medication = medication,
-                            onClick = {
-                                if (!isActionHandled) {
-                                    viewModel.markActionHandled()
-                                    onMedicationSelected(medication)
-                                }
-                            },
+                            onClick = { onMedicationSelected(medication) },
                             onInfoClick = {
                                 // TODO: Show an information about the medication
                             }

@@ -45,8 +45,6 @@ fun CalculationResultsScreen(
     viewModel: CalculationResultsViewModel = koinViewModel()
 ) {
 
-    val isActionHandled by viewModel.isActionHandled.collectAsStateWithLifecycle()
-
     Scaffold(
         containerColor = AppColors.Background,
         topBar = {
@@ -58,12 +56,7 @@ fun CalculationResultsScreen(
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = {
-                        if (!isActionHandled) {
-                            viewModel.markActionHandled()
-                            onBack()
-                        }
-                    }) {
+                    IconButton(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
                     }
                 },
@@ -79,12 +72,7 @@ fun CalculationResultsScreen(
                     .padding(bottom = AppDimens.ScreenPadding)
             ) {
                 OutlinedButton(
-                    onClick = {
-                        if (!isActionHandled) {
-                            viewModel.markActionHandled()
-                            onBack()
-                        }
-                    },
+                    onClick = onBack,
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(56.dp),
