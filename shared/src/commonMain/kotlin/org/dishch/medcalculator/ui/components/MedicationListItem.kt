@@ -24,14 +24,13 @@ import org.dishch.medcalculator.domain.Medication
 import org.dishch.medcalculator.domain.formattedDosage
 import org.dishch.medcalculator.ui.theme.AppColors
 import org.jetbrains.compose.resources.stringResource
-import kotlin.math.roundToInt
 
 @Composable
 fun MedicationListItem(
     medication: Medication,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    onInfoClick: (() -> Unit)
+    onInfoClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     val avatarColor = remember(medication.name) {
         val colors = listOf(

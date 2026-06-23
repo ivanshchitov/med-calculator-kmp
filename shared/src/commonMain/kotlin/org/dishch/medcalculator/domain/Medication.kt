@@ -17,3 +17,10 @@ val Medication.formattedDosage: String
     } else {
         dosage.toString()
     }
+
+val Medication.formattedMaxSingleDose: String
+    get() = if (dosage % 1.0 == 0.0) {
+        dosage.toInt().toString()
+    } else {
+        dosage.toString()
+    }
