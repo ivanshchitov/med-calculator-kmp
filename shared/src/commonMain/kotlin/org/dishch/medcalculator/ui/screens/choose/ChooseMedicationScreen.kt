@@ -11,7 +11,6 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.pointer.pointerInput
@@ -25,6 +24,7 @@ import medcalculator.shared.generated.resources.choose_medication
 import medcalculator.shared.generated.resources.search
 import org.dishch.medcalculator.domain.Medication
 import org.dishch.medcalculator.ui.components.MedicationListItem
+import org.dishch.medcalculator.ui.components.cards.MedicationInfoBottomSheet
 import org.dishch.medcalculator.ui.theme.AppColors
 import org.dishch.medcalculator.ui.theme.AppDimens
 import org.dishch.medcalculator.ui.theme.MedCalculatorAppTheme
@@ -41,8 +41,19 @@ fun ChooseMedicationScreen(
 ) {
     val searchQuery by viewModel.searchQuery.collectAsStateWithLifecycle()
     val filteredMedications by viewModel.filteredMedications.collectAsStateWithLifecycle()
+    val showInfo by viewModel.showInfo.collectAsStateWithLifecycle()
+    val selectedMedication by viewModel.selectedMedication.collectAsStateWithLifecycle()
+    val regimens by viewModel.regimens.collectAsStateWithLifecycle()
 
     val focusManager = LocalFocusManager.current
+
+    if (showInfo && selectedMedication != null) {
+        MedicationInfoBottomSheet(
+            medication = selectedMedication!!,
+            regimens = regimens,
+            onDismiss = viewModel::onDismissInfo
+        )
+    }
 
     Scaffold(
         modifier = Modifier.pointerInput(Unit) {
@@ -111,9 +122,7 @@ fun ChooseMedicationScreen(
                         MedicationListItem(
                             medication = medication,
                             onClick = { onMedicationSelected(medication) },
-                            onInfoClick = {
-                                // TODO: Show an information about the medication
-                            }
+                            onInfoClick = { viewModel.onInfoClick(medication) }
                         )
                         if (index < filteredMedications.lastIndex) {
                             HorizontalDivider(
