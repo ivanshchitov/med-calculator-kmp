@@ -41,7 +41,6 @@ import org.koin.core.annotation.KoinExperimentalAPI
 @Composable
 fun CalculationResultsScreen(
     result: CalculationResults,
-    onNewCalculation: () -> Unit = {},
     onBack: () -> Unit = {},
     viewModel: CalculationResultsViewModel = koinViewModel()
 ) {
@@ -83,7 +82,7 @@ fun CalculationResultsScreen(
                     onClick = {
                         if (!isActionHandled) {
                             viewModel.markActionHandled()
-                            onNewCalculation()
+                            onBack()
                         }
                     },
                     modifier = Modifier

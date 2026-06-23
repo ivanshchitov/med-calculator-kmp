@@ -58,14 +58,10 @@ fun AppNavigation() {
             ChooseMedicationScreen(
                 onMedicationSelected = { medication ->
                     selectedMedication = medication
-                    if (navController.currentDestination?.route?.contains("ChooseMedicationRoute") == true) {
-                        navController.popBackStack()
-                    }
+                    navController.popBackStack()
                 },
                 onBack = {
-                    if (navController.currentDestination?.route?.contains("ChooseMedicationRoute") == true) {
-                        navController.popBackStack()
-                    }
+                    navController.popBackStack()
                 }
             )
         }
@@ -75,15 +71,8 @@ fun AppNavigation() {
             val route = backStackEntry.toRoute<CalculationResultsRoute>()
             CalculationResultsScreen(
                 result = route.result,
-                onNewCalculation = {
-                    if (navController.currentDestination?.route?.contains("CalculationResultsRoute") == true) {
-                        navController.popBackStack()
-                    }
-                },
                 onBack = {
-                    if (navController.currentDestination?.route?.contains("CalculationResultsRoute") == true) {
-                        navController.popBackStack()
-                    }
+                    navController.popBackStack()
                 }
             )
         }
