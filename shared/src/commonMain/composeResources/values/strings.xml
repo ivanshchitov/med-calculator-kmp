@@ -37,4 +37,28 @@
     <string name="mg">mg</string>
     <string name="ml_per_kg">ml/kg</string>
     <string name="mg_per_ml_format">%1$s mg/ml</string>
+    <string name="mg_format">%1$s mg</string>
+    <string name="age_limit">Age limit</string>
+    <string name="max_single_dose">Max single dose</string>
+    <string name="dosage_label">Dosage: %1$s mg/ml</string>
+    <string name="dosage_regimen">Dosage regimen</string>
+    <string name="dosage_per_kg_format">%1$s mg/kg</string>
+    <plurals name="age_limit_months_plurals">
+        <item quantity="one">from %1$d month</item>
+        <item quantity="other">from %1$d months</item>
+    </plurals>
+    <plurals name="age_limit_years_plurals">
+        <item quantity="one">from %1$d year</item>
+        <item quantity="other">from %1$d years</item>
+    </plurals>
+    <plurals name="age_range_months">
+        <item quantity="one">%1$d month</item>
+        <item quantity="other">%1$d months</item>
+    </plurals>
+    <plurals name="age_range_years">
+        <item quantity="one">%1$d year</item>
+        <item quantity="other">%1$d years</item>
+    </plurals>
+    <string name="age_range_format">%1$s – %2$s</string>
+    <string name="from_0_years">From 0 years</string>
 </resources>
