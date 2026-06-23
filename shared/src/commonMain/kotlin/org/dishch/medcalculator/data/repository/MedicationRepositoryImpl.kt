@@ -11,19 +11,20 @@ class MedicationRepositoryImpl(
     private val medicationDao: MedicationDao
 ) : MedicationRepository {
 
-    override fun getAllMedications(): Flow<List<Medication>> {
-        return medicationDao.getAllMedications().map { entities ->
+    override fun getAllMedications(): Flow<List<Medication>> =
+        medicationDao.getAllMedications().map { entities ->
             entities.map { it.toDomain() }
         }
-    }
 
-    private fun MedicationEntity.toDomain(): Medication {
-        return Medication(
+    override suspend fun getMedicationById(id: Long): Medication? =
+        medicationDao.getMedicationById(id)?.toDomain()
+
+    private fun MedicationEntity.toDomain(): Medication =
+        Medication(
             id = id,
             name = name,
             dosage = dosage,
             maxSingleDose = maxSingleDose,
             ageLimit = ageLimit
         )
-    }
 }

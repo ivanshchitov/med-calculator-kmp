@@ -1,38 +1,54 @@
 package org.dishch.medcalculator.ui.screens.main
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import org.dishch.medcalculator.domain.AgeUnit
 import org.dishch.medcalculator.domain.Medication
+import org.dishch.medcalculator.domain.MedicationRepository
 
-class MainViewModel : ViewModel() {
+data class MainUiState(
+    val weight: String = "12.5",
+    val age: String = "3",
+    val ageUnit: AgeUnit = AgeUnit.YEARS,
+    val selectedMedication: Medication? = null
+)
 
-    private val _weight = MutableStateFlow("12.5")
-    val weight: StateFlow<String> = _weight
+class MainViewModel(
+    private val medicationRepository: MedicationRepository
+) : ViewModel() {
 
-    private val _age = MutableStateFlow("3")
-    val age: StateFlow<String> = _age
+    private val _uiState = MutableStateFlow(MainUiState())
+    val uiState: StateFlow<MainUiState> = _uiState.asStateFlow()
 
-    private val _ageUnit = MutableStateFlow(AgeUnit.YEARS)
-    val ageUnit: StateFlow<AgeUnit> = _ageUnit
+    init {
+        loadDefaultMedication()
+    }
 
-    private val _selectedMedication = MutableStateFlow(Medication(0, "Парацетамол", 120.0, 0.0, 0))
-    val selectedMedication: StateFlow<Medication> = _selectedMedication
+    private fun loadDefaultMedication() {
+        viewModelScope.launch {
+            val medication = medicationRepository.getMedicationById(1)
+            _uiState.update { it.copy(selectedMedication = medication) }
+        }
+    }
 
     fun onWeightChanged(newWeight: String) {
-        _weight.value = newWeight
+        _uiState.update { it.copy(weight = newWeight) }
     }
 
     fun onAgeChanged(newAge: String) {
-        _age.value = newAge
+        _uiState.update { it.copy(age = newAge) }
     }
 
     fun onAgeUnitChanged(newUnit: AgeUnit) {
-        _ageUnit.value = newUnit
+        _uiState.update { it.copy(ageUnit = newUnit) }
     }
 
     fun onMedicationChanged(medication: Medication) {
-        _selectedMedication.value = medication
+        _uiState.update { it.copy(selectedMedication = medication) }
     }
 }

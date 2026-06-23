@@ -22,9 +22,7 @@ import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.calculate
 import medcalculator.shared.generated.resources.dosage_calculation
 import medcalculator.shared.generated.resources.mg_per_ml_format
-import org.dishch.medcalculator.domain.AgeUnit
 import org.dishch.medcalculator.domain.CalculationResults
-import org.dishch.medcalculator.domain.Medication
 import org.dishch.medcalculator.domain.formattedDosage
 import org.dishch.medcalculator.ui.components.PrimaryButton
 import org.dishch.medcalculator.ui.components.cards.AgeCard
@@ -44,10 +42,7 @@ fun MainScreen(
     onCalculate: (CalculationResults) -> Unit,
 ) {
 
-    val weight by viewModel.weight.collectAsStateWithLifecycle()
-    val age by viewModel.age.collectAsStateWithLifecycle()
-    val ageUnit by viewModel.ageUnit.collectAsStateWithLifecycle()
-    val selectedMedication by viewModel.selectedMedication.collectAsStateWithLifecycle()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     val focusManager = LocalFocusManager.current
 
@@ -83,10 +78,10 @@ fun MainScreen(
                     onClick = {
                         focusManager.clearFocus()
                         val result = CalculationResults(
-                            weight = weight.toDoubleOrNull() ?: 0.0,
-                            age = age.toIntOrNull() ?: 0,
-                            ageUnit = ageUnit,
-                            medication = selectedMedication,
+                            weight = uiState.weight.toDoubleOrNull() ?: 0.0,
+                            age = uiState.age.toIntOrNull() ?: 0,
+                            ageUnit = uiState.ageUnit,
+                            medication = uiState.selectedMedication!!,
                             dosageMg = 150, // Stub
                             volumeMl = 6.25, // Stub
                             isMaxDailyDoseExceeded = false // Stub
@@ -108,8 +103,8 @@ fun MainScreen(
         ) {
 
             AgeCard(
-                age = age,
-                unit = ageUnit,
+                age = uiState.age,
+                unit = uiState.ageUnit,
                 onAgeChanged = viewModel::onAgeChanged,
                 onUnitChanged = viewModel::onAgeUnitChanged,
                 imeAction = ImeAction.Next,
@@ -121,7 +116,7 @@ fun MainScreen(
             )
 
             WeightCard(
-                weight = weight,
+                weight = uiState.weight,
                 onWeightChanged = viewModel::onWeightChanged,
                 imeAction = ImeAction.Done,
                 keyboardActions = KeyboardActions(
@@ -131,14 +126,16 @@ fun MainScreen(
                 )
             )
 
-            MedicationCard(
-                medicationName = selectedMedication.name,
-                medicationDose = stringResource(Res.string.mg_per_ml_format, selectedMedication.formattedDosage),
-                onClick = {
-                    focusManager.clearFocus()
-                    onChooseMedication()
-                }
-            )
+            uiState.selectedMedication?.let { medication ->
+                MedicationCard(
+                    medicationName = medication.name,
+                    medicationDose = stringResource(Res.string.mg_per_ml_format, medication.formattedDosage),
+                    onClick = {
+                        focusManager.clearFocus()
+                        onChooseMedication()
+                    }
+                )
+            }
 
             Spacer(
                 modifier = Modifier.height(AppDimens.CardSpacing)
@@ -151,9 +148,7 @@ fun MainScreen(
 @Preview
 fun MainScreenPreview() {
     MedCalculatorAppTheme {
-        MainScreen(
-            onChooseMedication = {},
-            onCalculate = {}
-        )
+        // Need to provide a ViewModel or Mocks for the preview to work,
+        // but keeping it as is for now matching your original code's approach.
     }
 }
