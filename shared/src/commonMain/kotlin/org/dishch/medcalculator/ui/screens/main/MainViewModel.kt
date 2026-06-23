@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import org.dishch.medcalculator.domain.AgeUnit
+import org.dishch.medcalculator.domain.Medication
 
 class MainViewModel : ViewModel() {
 
@@ -16,6 +17,9 @@ class MainViewModel : ViewModel() {
     private val _ageUnit = MutableStateFlow(AgeUnit.YEARS)
     val ageUnit: StateFlow<AgeUnit> = _ageUnit
 
+    private val _selectedMedication = MutableStateFlow(Medication(0, "Парацетамол", 120.0, 0.0, 0))
+    val selectedMedication: StateFlow<Medication> = _selectedMedication
+
     fun onWeightChanged(newWeight: String) {
         _weight.value = newWeight
     }
@@ -26,5 +30,9 @@ class MainViewModel : ViewModel() {
 
     fun onAgeUnitChanged(newUnit: AgeUnit) {
         _ageUnit.value = newUnit
+    }
+
+    fun onMedicationChanged(medication: Medication) {
+        _selectedMedication.value = medication
     }
 }

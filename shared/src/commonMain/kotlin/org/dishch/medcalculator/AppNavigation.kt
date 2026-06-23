@@ -9,12 +9,13 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import kotlinx.serialization.Serializable
 import org.dishch.medcalculator.domain.CalculationResults
-import org.dishch.medcalculator.domain.Medication
 import org.dishch.medcalculator.ui.screens.results.CalculationResultsScreen
 import org.dishch.medcalculator.ui.screens.choose.ChooseMedicationScreen
 import org.dishch.medcalculator.ui.screens.main.MainScreen
 import androidx.navigation.toRoute
 import org.dishch.medcalculator.domain.CalculationResultType
+import org.koin.compose.viewmodel.koinViewModel
+import org.dishch.medcalculator.ui.screens.main.MainViewModel
 import kotlin.reflect.typeOf
 
 @Serializable
@@ -31,9 +32,7 @@ data class CalculationResultsRoute(
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
-    var selectedMedication by remember {
-        mutableStateOf(Medication(0, "Парацетамол", 120.0, 0.0, 0))
-    }
+    val mainViewModel: MainViewModel = koinViewModel()
 
     NavHost(
         navController = navController,
@@ -45,19 +44,19 @@ fun AppNavigation() {
     ) {
         composable<MainRoute> {
             MainScreen(
-                selectedMedication = selectedMedication,
                 onChooseMedication = {
                     navController.navigate(ChooseMedicationRoute)
                 },
                 onCalculate = { result ->
                     navController.navigate(CalculationResultsRoute(result))
-                }
+                },
+                viewModel = mainViewModel
             )
         }
         composable<ChooseMedicationRoute> {
             ChooseMedicationScreen(
                 onMedicationSelected = { medication ->
-                    selectedMedication = medication
+                    mainViewModel.onMedicationChanged(medication)
                     navController.popBackStack()
                 },
                 onBack = {

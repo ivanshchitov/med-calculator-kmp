@@ -18,16 +18,17 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import org.dishch.medcalculator.domain.Medication
 import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.calculate
 import medcalculator.shared.generated.resources.dosage_calculation
 import medcalculator.shared.generated.resources.mg_per_ml_format
+import org.dishch.medcalculator.domain.AgeUnit
 import org.dishch.medcalculator.domain.CalculationResults
+import org.dishch.medcalculator.domain.Medication
 import org.dishch.medcalculator.domain.formattedDosage
+import org.dishch.medcalculator.ui.components.PrimaryButton
 import org.dishch.medcalculator.ui.components.cards.AgeCard
 import org.dishch.medcalculator.ui.components.cards.MedicationCard
-import org.dishch.medcalculator.ui.components.PrimaryButton
 import org.dishch.medcalculator.ui.components.cards.WeightCard
 import org.dishch.medcalculator.ui.theme.AppDimens
 import org.dishch.medcalculator.ui.theme.MedCalculatorAppTheme
@@ -38,15 +39,15 @@ import org.koin.core.annotation.KoinExperimentalAPI
 @OptIn(ExperimentalMaterial3Api::class, KoinExperimentalAPI::class)
 @Composable
 fun MainScreen(
-    selectedMedication: Medication,
+    viewModel: MainViewModel = koinViewModel(),
     onChooseMedication: () -> Unit,
     onCalculate: (CalculationResults) -> Unit,
-    viewModel: MainViewModel = koinViewModel()
 ) {
 
     val weight by viewModel.weight.collectAsStateWithLifecycle()
     val age by viewModel.age.collectAsStateWithLifecycle()
     val ageUnit by viewModel.ageUnit.collectAsStateWithLifecycle()
+    val selectedMedication by viewModel.selectedMedication.collectAsStateWithLifecycle()
 
     val focusManager = LocalFocusManager.current
 
@@ -150,9 +151,7 @@ fun MainScreen(
 @Preview
 fun MainScreenPreview() {
     MedCalculatorAppTheme {
-        // NOTE: Preview might need to be adjusted or use a MockViewModel
         MainScreen(
-            selectedMedication = Medication(0, "Парацетамол", 120.0, 0.0, 0),
             onChooseMedication = {},
             onCalculate = {}
         )
