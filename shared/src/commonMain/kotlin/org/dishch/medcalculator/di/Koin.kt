@@ -1,6 +1,8 @@
 package org.dishch.medcalculator.di
 
 import org.dishch.medcalculator.data.local.AppDatabase
+import org.dishch.medcalculator.data.local.DosageRegimenDao
+import org.dishch.medcalculator.data.local.MedicationDao
 import org.dishch.medcalculator.data.local.getRoomDatabase
 import org.dishch.medcalculator.data.local.initializeDatabase
 import org.dishch.medcalculator.data.repository.MedicationRepositoryImpl
@@ -11,7 +13,6 @@ import org.dishch.medcalculator.ui.screens.results.CalculationResultsViewModel
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.factoryOf
-import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.bind
 import org.koin.dsl.module
@@ -41,7 +42,12 @@ val databaseModule = module {
 }
 
 val repositoryModule = module {
-    singleOf(::MedicationRepositoryImpl) bind MedicationRepository::class
+    single {
+        MedicationRepositoryImpl(
+            medicationDao = get<MedicationDao>(),
+            dosageRegimenDao = get<DosageRegimenDao>()
+        )
+    } bind MedicationRepository::class
 }
 
 val viewModelModule = module {
