@@ -23,6 +23,10 @@ import org.dishch.medcalculator.domain.Medication
 import org.dishch.medcalculator.domain.formattedDosage
 import org.dishch.medcalculator.domain.formattedMaxSingleDose
 import org.dishch.medcalculator.ui.theme.AppColors
+import org.jetbrains.compose.resources.pluralStringResource
+import org.jetbrains.compose.resources.stringResource
+import medcalculator.shared.generated.resources.*
+import org.dishch.medcalculator.domain.formattedDoseRange
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -45,8 +49,8 @@ fun MedicationInfoBottomSheet(
             Spacer(modifier = Modifier.height(16.dp))
 
             InfoBlockWithIcon(
-                title = "Возраст применения",
-                value = "от ${medication.ageLimit} месяцев",
+                title = stringResource(Res.string.age_limit),
+                value = getAgeLimitDisplay(medication),
                 icon = Icons.Outlined.ChildFriendly,
                 iconBackground = Color(0xFFE8EAF6),
                 iconColor = AppColors.Primary
@@ -55,8 +59,8 @@ fun MedicationInfoBottomSheet(
             Spacer(modifier = Modifier.height(8.dp))
 
             InfoBlockWithIcon(
-                title = "Максимальная разовая доза",
-                value = "${medication.formattedMaxSingleDose} мг",
+                title = stringResource(Res.string.max_single_dose),
+                value = stringResource(Res.string.mg_format, medication.formattedMaxSingleDose),
                 icon = Icons.Outlined.WarningAmber,
                 iconBackground = Color(0xFFFFF4E5),
                 iconColor = AppColors.Warning
@@ -90,7 +94,7 @@ private fun MedicationHeader(medication: Medication) {
                 fontWeight = FontWeight.Bold
             )
             Text(
-                "Концентрация ${medication.formattedDosage} мг/мл",
+                stringResource(Res.string.dosage_label, medication.formattedDosage),
                 style = MaterialTheme.typography.bodyMedium,
                 color = AppColors.TextSecondary
             )
@@ -114,7 +118,7 @@ private fun RegimensSection(regimens: List<DosageRegimen>) {
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    "Правила дозирования",
+                    stringResource(Res.string.dosage_regimen),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
                     color = AppColors.Primary
@@ -148,14 +152,15 @@ private fun RegimenItem(regimen: DosageRegimen) {
             Spacer(modifier = Modifier.width(12.dp))
             Column {
                 Text(
-                    "${regimen.fromAge}-${regimen.toAge} лет",
-                    fontWeight = FontWeight.Bold,
+                    getAgeRangeDisplay(regimen.fromAge, regimen.toAge),
+                    style = MaterialTheme.typography.bodyMedium,
                     color = AppColors.TextPrimary
                 )
                 Text(
-                    "${regimen.minDosePerKg}-${regimen.maxDosePerKg} мг/кг",
+                    stringResource(Res.string.dosage_per_kg_format, regimen.formattedDoseRange),
                     style = MaterialTheme.typography.bodyMedium,
-                    color = AppColors.TextSecondary
+                    fontWeight = FontWeight.Bold,
+                    color = AppColors.TextPrimary
                 )
             }
         }
@@ -200,4 +205,60 @@ fun InfoBlockWithIcon(
             }
         }
     }
+}
+
+
+@Composable
+private fun getAgeLimitDisplay(medication: Medication): String {
+    return if (medication.ageLimit == 0 || medication.ageLimit >= 12) {
+        val years = medication.ageLimit / 12
+        pluralStringResource(Res.plurals.age_limit_years_plurals, years, years)
+    } else {
+        pluralStringResource(Res.plurals.age_limit_months_plurals, medication.ageLimit, medication.ageLimit)
+    }
+}
+
+@Composable
+private fun getAgeRangeDisplay(fromMonths: Int, toMonths: Int): String {
+    // 1. if max = 18 years (216 months), return "From [min] [years/months]"
+    if (toMonths == 216) {
+        return if (fromMonths == 0 || fromMonths >= 12) {
+            val years = fromMonths / 12
+            pluralStringResource(Res.plurals.age_limit_years_plurals, years, years)
+        } else {
+            pluralStringResource(Res.plurals.age_limit_months_plurals, fromMonths, fromMonths)
+        }
+    }
+
+    // 2. if min = max, return from [value] months or years
+    if (fromMonths == toMonths) {
+        return if (fromMonths >= 12) {
+            val years = fromMonths / 12
+            pluralStringResource(Res.plurals.age_range_years, years, years)
+        } else {
+            pluralStringResource(Res.plurals.age_range_months, fromMonths, fromMonths)
+        }
+    }
+
+    // 3. if min and max both less than 1 year, return in format "[min]-[max]" months
+    if (toMonths < 12) {
+        val from = pluralStringResource(Res.plurals.age_range_months, fromMonths, fromMonths)
+        val to = pluralStringResource(Res.plurals.age_range_months, toMonths, toMonths)
+        return stringResource(Res.string.age_range_format, from, to)
+    }
+
+    // 4. if min and max both more or equal 1 year, return in format "[min]-[max] years"
+    if (fromMonths >= 12) {
+        val fromYears = fromMonths / 12
+        val toYears = toMonths / 12
+        val from = pluralStringResource(Res.plurals.age_range_years, fromYears, fromYears)
+        val to = pluralStringResource(Res.plurals.age_range_years, toYears, toYears)
+        return stringResource(Res.string.age_range_format, from, to)
+    }
+
+    // 5. if min is months and max is years, return "[min] months - [max] years"
+    val from = pluralStringResource(Res.plurals.age_range_months, fromMonths, fromMonths)
+    val toYears = toMonths / 12
+    val to = pluralStringResource(Res.plurals.age_range_years, toYears, toYears)
+    return stringResource(Res.string.age_range_format, from, to)
 }

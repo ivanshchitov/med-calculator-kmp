@@ -37,8 +37,40 @@
     <string name="not_exceeded">Не превышена</string>
     <string name="exceeded">Превышена</string>
     <string name="new_calculation">Новый расчет</string>
-    <string name="ml">мл</string>
-    <string name="mg">мг</string>
+    <string name="ml">мл.</string>
+    <string name="mg">мг.</string>
     <string name="ml_per_kg">мл/кг</string>
     <string name="mg_per_ml_format">%1$s мг/мл</string>
+    <string name="mg_format">%1$s мг.</string>
+    <string name="age_limit">Ограничение по возрасту</string>
+    <string name="max_single_dose">Максимальная разовая доза</string>
+    <string name="dosage_label">Дозировка: %1$s мг/мл</string>
+    <string name="dosage_regimen">Режим дозирования</string>
+    <string name="dosage_per_kg_format">%1$s мг/кг</string>
+    <plurals name="age_limit_months_plurals">
+        <item quantity="one">от %1$d месяца</item>
+        <item quantity="few">от %1$d месяцев</item>
+        <item quantity="many">от %1$d месяцев</item>
+        <item quantity="other">от %1$d месяца</item>
+    </plurals>
+    <plurals name="age_limit_years_plurals">
+        <item quantity="one">от %1$d года</item>
+        <item quantity="few">от %1$d лет</item>
+        <item quantity="many">от %1$d лет</item>
+        <item quantity="other">от %1$d лет</item>
+    </plurals>
+    <plurals name="age_range_months">
+        <item quantity="one">%1$d месяц</item>
+        <item quantity="few">%1$d месяца</item>
+        <item quantity="many">%1$d месяцев</item>
+        <item quantity="other">%1$d месяца</item>
+    </plurals>
+    <plurals name="age_range_years">
+        <item quantity="one">%1$d год</item>
+        <item quantity="few">%1$d года</item>
+        <item quantity="many">%1$d лет</item>
+        <item quantity="other">%1$d года</item>
+    </plurals>
+    <string name="age_range_format">%1$s – %2$s</string>
+    <string name="from_0_years">От 0 лет</string>
 </resources>

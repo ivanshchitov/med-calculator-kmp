@@ -86,7 +86,7 @@
   {
     "id": 13,
     "name": "Пропанорм",
-    "dosageMgPerMl": 35,
+    "dosageMgPerMl": 3.5,
     "maxSingleDoseMg": 70,
     "minAgeMonths": 216
   },
