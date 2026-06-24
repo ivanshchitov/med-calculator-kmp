@@ -65,15 +65,16 @@ fun MedicationInfoBottomSheet(
                 iconColor = AppColors.Primary
             )
 
-            Spacer(modifier = Modifier.height(8.dp))
-
-            InfoBlockWithIcon(
-                title = stringResource(Res.string.max_single_dose),
-                value = stringResource(Res.string.mg_format, medication.formattedMaxSingleDose),
-                icon = Icons.Outlined.WarningAmber,
-                iconBackground = Color(0xFFFFF4E5),
-                iconColor = AppColors.Warning
-            )
+            // Hidden temporarily, maybe
+            // Spacer(modifier = Modifier.height(8.dp))
+            //
+            // InfoBlockWithIcon(
+            //     title = stringResource(Res.string.max_single_dose),
+            //     value = stringResource(Res.string.mg_format, medication.formattedMaxSingleDose),
+            //     icon = Icons.Outlined.WarningAmber,
+            //     iconBackground = Color(0xFFFFF4E5),
+            //     iconColor = AppColors.Warning
+            // )
 
             Spacer(modifier = Modifier.height(8.dp))
 

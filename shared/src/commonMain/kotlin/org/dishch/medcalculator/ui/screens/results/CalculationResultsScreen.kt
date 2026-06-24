@@ -149,7 +149,8 @@ fun CalculationResultsScreen(
                 )
             }
 
-            MaxDoseCard(isExceeded = result.isMaxDailyDoseExceeded)
+            // Hidden temporarily, maybe
+            // MaxDoseCard(isExceeded = result.isMaxDailyDoseExceeded)
 
             Spacer(modifier = Modifier.height(16.dp))
         }
