@@ -82,8 +82,10 @@ fun MainScreen(
                             age = uiState.age.toIntOrNull() ?: 0,
                             ageUnit = uiState.ageUnit,
                             medication = uiState.selectedMedication!!,
-                            dosageMg = 150, // Stub
-                            volumeMl = 6.25, // Stub
+                            minDoseMg = 150.0, // Stub
+                            maxDoseMg = 160.0, // Stub
+                            minVolMl = 6.25, // Stub
+                            maxVolMl = 7.55, // Stub
                             isMaxDailyDoseExceeded = false // Stub
                         )
                         onCalculate(result)
