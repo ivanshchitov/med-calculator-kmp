@@ -11,7 +11,7 @@
     {
     "id": 2,
     "fromAge": 0,
-    "toAge": 12,
+    "toAge": 11,
     "minDosePerKg": 2,
     "maxDosePerKg": 3,
     "medId": 2,
@@ -19,7 +19,7 @@
   },
   {
     "id": 3,
-    "fromAge": 13,
+    "fromAge": 12,
     "toAge": 168,
     "minDosePerKg": 1,
     "maxDosePerKg": 2,
