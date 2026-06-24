@@ -51,14 +51,13 @@
         <item quantity="one">from %1$d year</item>
         <item quantity="other">from %1$d years</item>
     </plurals>
-    <plurals name="age_range_months">
+    <plurals name="age_months">
         <item quantity="one">%1$d month</item>
         <item quantity="other">%1$d months</item>
     </plurals>
-    <plurals name="age_range_years">
+    <plurals name="age_years">
         <item quantity="one">%1$d year</item>
         <item quantity="other">%1$d years</item>
     </plurals>
     <string name="age_range_format">%1$s – %2$s</string>
-    <string name="from_0_years">From 0 years</string>
 </resources>

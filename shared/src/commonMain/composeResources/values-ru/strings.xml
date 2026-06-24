@@ -59,18 +59,17 @@
         <item quantity="many">от %1$d лет</item>
         <item quantity="other">от %1$d лет</item>
     </plurals>
-    <plurals name="age_range_months">
+    <plurals name="age_months">
         <item quantity="one">%1$d месяц</item>
         <item quantity="few">%1$d месяца</item>
         <item quantity="many">%1$d месяцев</item>
         <item quantity="other">%1$d месяца</item>
     </plurals>
-    <plurals name="age_range_years">
+    <plurals name="age_years">
         <item quantity="one">%1$d год</item>
         <item quantity="few">%1$d года</item>
         <item quantity="many">%1$d лет</item>
         <item quantity="other">%1$d года</item>
     </plurals>
     <string name="age_range_format">%1$s – %2$s</string>
-    <string name="from_0_years">От 0 лет</string>
 </resources>
