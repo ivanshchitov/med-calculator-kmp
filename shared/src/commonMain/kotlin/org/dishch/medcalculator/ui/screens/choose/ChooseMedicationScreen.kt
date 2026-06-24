@@ -19,6 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import kotlinx.coroutines.yield
 import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.choose_medication
 import medcalculator.shared.generated.resources.search
@@ -46,15 +47,16 @@ fun ChooseMedicationScreen(
     val selectedMedicationColor by viewModel.selectedMedicationColor.collectAsStateWithLifecycle()
     val regimens by viewModel.regimens.collectAsStateWithLifecycle()
 
+    val sheetState = rememberModalBottomSheetState()
+
     val focusManager = LocalFocusManager.current
 
-    if (showInfo && selectedMedication != null) {
-        MedicationInfoBottomSheet(
-            medication = selectedMedication!!,
-            avatarColor = selectedMedicationColor,
-            regimens = regimens,
-            onDismiss = viewModel::onDismissInfo
-        )
+    // Synchronize internal animation finish to state disposal
+    LaunchedEffect(sheetState.targetValue) {
+        if (sheetState.targetValue == SheetValue.Hidden) {
+            yield()
+            viewModel.onDismissInfo()
+        }
     }
 
     Scaffold(
@@ -86,6 +88,20 @@ fun ChooseMedicationScreen(
         },
         containerColor = MaterialTheme.colorScheme.background
     ) { padding ->
+
+        if (showInfo) {
+            MedicationInfoBottomSheet(
+                medication = selectedMedication!!,
+                avatarColor = selectedMedicationColor,
+                regimens = regimens,
+                sheetState = sheetState,
+                onDismiss = {
+                    focusManager.clearFocus()
+                    viewModel.onDismissInfo()
+                }
+            )
+        }
+
         Column(
             modifier = Modifier
                 .padding(padding)
@@ -125,6 +141,7 @@ fun ChooseMedicationScreen(
                             medication = medication,
                             onClick = { onMedicationSelected(medication) },
                             onInfoClick = { color ->
+                                focusManager.clearFocus()
                                 viewModel.onInfoClick(medication, color)
                             }
                         )
