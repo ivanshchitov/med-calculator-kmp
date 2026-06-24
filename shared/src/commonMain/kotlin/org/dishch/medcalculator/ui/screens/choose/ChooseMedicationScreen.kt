@@ -43,6 +43,7 @@ fun ChooseMedicationScreen(
     val filteredMedications by viewModel.filteredMedications.collectAsStateWithLifecycle()
     val showInfo by viewModel.showInfo.collectAsStateWithLifecycle()
     val selectedMedication by viewModel.selectedMedication.collectAsStateWithLifecycle()
+    val selectedMedicationColor by viewModel.selectedMedicationColor.collectAsStateWithLifecycle()
     val regimens by viewModel.regimens.collectAsStateWithLifecycle()
 
     val focusManager = LocalFocusManager.current
@@ -50,6 +51,7 @@ fun ChooseMedicationScreen(
     if (showInfo && selectedMedication != null) {
         MedicationInfoBottomSheet(
             medication = selectedMedication!!,
+            avatarColor = selectedMedicationColor,
             regimens = regimens,
             onDismiss = viewModel::onDismissInfo
         )
@@ -122,7 +124,9 @@ fun ChooseMedicationScreen(
                         MedicationListItem(
                             medication = medication,
                             onClick = { onMedicationSelected(medication) },
-                            onInfoClick = { viewModel.onInfoClick(medication) }
+                            onInfoClick = { color ->
+                                viewModel.onInfoClick(medication, color)
+                            }
                         )
                         if (index < filteredMedications.lastIndex) {
                             HorizontalDivider(
