@@ -8,6 +8,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.Assignment
 import androidx.compose.material.icons.outlined.ChildFriendly
+import androidx.compose.material.icons.outlined.Face2
+import androidx.compose.material.icons.outlined.Face3
+import androidx.compose.material.icons.outlined.Face6
+import androidx.compose.material.icons.outlined.NoAdultContent
 import androidx.compose.material.icons.outlined.WarningAmber
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -28,6 +32,7 @@ import org.dishch.medcalculator.domain.formattedAgeRange
 import org.dishch.medcalculator.domain.formattedDoseRange
 import org.dishch.medcalculator.domain.toAge
 import org.dishch.medcalculator.domain.formattedAgeLimit
+import org.dishch.medcalculator.domain.fromYears
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -53,7 +58,7 @@ fun MedicationInfoBottomSheet(
             InfoBlockWithIcon(
                 title = stringResource(Res.string.age_limit),
                 value = medication.ageLimit.toAge().formattedAgeLimit,
-                icon = Icons.Outlined.ChildFriendly,
+                icon = Icons.Outlined.NoAdultContent,
                 iconBackground = Color(0xFFE8EAF6),
                 iconColor = AppColors.Primary
             )
@@ -155,7 +160,20 @@ private fun RegimenItem(regimen: DosageRegimen) {
                 shape = RoundedCornerShape(12.dp),
                 color = Color(0xFFC8E6C9),
                 modifier = Modifier.size(40.dp)
-            ) {}
+            ) {
+                Box(contentAlignment = Alignment.Center) {
+                    Icon(
+                        when {
+                            regimen.fromYears < 1 -> Icons.Outlined.ChildFriendly // Infant
+                            regimen.fromYears < 12 -> Icons.Outlined.Face3        // Child
+                            regimen.fromYears < 18 -> Icons.Outlined.Face2        // Teen
+                            else -> Icons.Outlined.Face6                        // Senior
+                        },
+                        contentDescription = null,
+                        tint = AppColors.Success
+                    )
+                }
+            }
             Spacer(modifier = Modifier.width(12.dp))
             Column {
                 Text(
