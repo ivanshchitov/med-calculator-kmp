@@ -1,5 +1,6 @@
 package org.dishch.medcalculator.ui.screens.choose
 
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
@@ -27,6 +28,9 @@ class ChooseMedicationViewModel(
     private val _selectedMedication = MutableStateFlow<Medication?>(null)
     val selectedMedication: StateFlow<Medication?> = _selectedMedication.asStateFlow()
 
+    private val _selectedMedicationColor = MutableStateFlow<Color>(Color.Transparent)
+    val selectedMedicationColor: StateFlow<Color> = _selectedMedicationColor.asStateFlow()
+
     private val _regimens = MutableStateFlow<List<DosageRegimen>>(emptyList())
     val regimens: StateFlow<List<DosageRegimen>> = _regimens.asStateFlow()
 
@@ -49,9 +53,10 @@ class ChooseMedicationViewModel(
         _searchQuery.value = query
     }
 
-    fun onInfoClick(medication: Medication) {
+    fun onInfoClick(medication: Medication, color: Color) {
         viewModelScope.launch {
             _selectedMedication.value = medication
+            _selectedMedicationColor.value = color
             _regimens.value = medicationRepository.getRegimensForMedication(medication.id).first()
             _showInfo.value = true
         }

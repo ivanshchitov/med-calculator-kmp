@@ -8,7 +8,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.Assignment
 import androidx.compose.material.icons.outlined.ChildFriendly
-import androidx.compose.material.icons.outlined.Medication
 import androidx.compose.material.icons.outlined.WarningAmber
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -35,6 +34,7 @@ import org.dishch.medcalculator.domain.formattedAgeLimit
 fun MedicationInfoBottomSheet(
     medication: Medication,
     regimens: List<DosageRegimen>,
+    avatarColor: Color,
     onDismiss: () -> Unit
 ) {
     ModalBottomSheet(
@@ -46,7 +46,7 @@ fun MedicationInfoBottomSheet(
                 .padding(16.dp)
                 .navigationBarsPadding()
         ) {
-            MedicationHeader(medication)
+            MedicationHeader(medication, avatarColor)
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -78,15 +78,20 @@ fun MedicationInfoBottomSheet(
 }
 
 @Composable
-private fun MedicationHeader(medication: Medication) {
+private fun MedicationHeader(medication: Medication, avatarColor: Color) {
     Row(verticalAlignment = Alignment.CenterVertically) {
+        // Avatar
         Box(
             modifier = Modifier
                 .size(64.dp)
-                .background(Color(0xFFE8EAF6), CircleShape),
+                .background(avatarColor, CircleShape),
             contentAlignment = Alignment.Center
         ) {
-            Icon(Icons.Outlined.Medication, contentDescription = null, tint = AppColors.Primary)
+            Text(
+                text = medication.name.firstOrNull()?.uppercase() ?: "",
+                style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
+                color = Color.White
+            )
         }
         Spacer(modifier = Modifier.width(16.dp))
         Column {

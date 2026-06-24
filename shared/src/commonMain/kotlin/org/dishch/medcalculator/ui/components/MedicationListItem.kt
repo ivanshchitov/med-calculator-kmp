@@ -29,7 +29,7 @@ import org.jetbrains.compose.resources.stringResource
 fun MedicationListItem(
     medication: Medication,
     onClick: () -> Unit,
-    onInfoClick: () -> Unit,
+    onInfoClick: (Color) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val avatarColor = remember(medication.name) {
@@ -83,7 +83,9 @@ fun MedicationListItem(
         )
 
         IconButton(
-            onClick = onInfoClick,
+            onClick = {
+                onInfoClick(avatarColor)
+            },
             modifier = Modifier.size(24.dp)
         ) {
             Icon(
