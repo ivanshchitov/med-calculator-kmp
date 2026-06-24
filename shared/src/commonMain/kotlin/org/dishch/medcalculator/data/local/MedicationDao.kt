@@ -18,5 +18,5 @@ interface MedicationDao {
     fun getAllMedications(): Flow<List<MedicationEntity>>
 
     @Query("SELECT * FROM medications WHERE id = :id")
-    suspend fun getMedicationById(id: Long): MedicationEntity?
+    fun getMedicationById(id: Long): Flow<MedicationEntity?>
 }

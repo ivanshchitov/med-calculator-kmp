@@ -26,13 +26,10 @@ class MainViewModel(
     val uiState: StateFlow<MainUiState> = _uiState.asStateFlow()
 
     init {
-        loadDefaultMedication()
-    }
-
-    private fun loadDefaultMedication() {
         viewModelScope.launch {
-            val medication = medicationRepository.getMedicationById(1)
-            _uiState.update { it.copy(selectedMedication = medication) }
+            medicationRepository.getMedicationById(1).collect { medication ->
+                _uiState.update { it.copy(selectedMedication = medication) }
+            }
         }
     }
 

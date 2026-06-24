@@ -20,8 +20,8 @@ class MedicationRepositoryImpl(
             entities.map { it.toDomain() }
         }
 
-    override suspend fun getMedicationById(id: Long): Medication? =
-        medicationDao.getMedicationById(id)?.toDomain()
+    override fun getMedicationById(id: Long): Flow<Medication?> =
+        medicationDao.getMedicationById(id).map { it?.toDomain() }
 
     override fun getRegimensForMedication(medicationId: Long): Flow<List<DosageRegimen>> =
         dosageRegimenDao.getRegimensForMedication(medicationId).map { entities ->
