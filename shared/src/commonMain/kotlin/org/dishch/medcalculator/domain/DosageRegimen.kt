@@ -15,7 +15,7 @@ data class DosageRegimen(
     val medicationId: Long
 )
 
-val DosageRegimen.fromYears: Int
+val DosageRegimen.fromAgeInYears: Int
     get() = fromAge.toAge().quantity
 
 val DosageRegimen.formattedMinDose: String

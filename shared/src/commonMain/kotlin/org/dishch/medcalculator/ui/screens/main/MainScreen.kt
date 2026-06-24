@@ -77,18 +77,9 @@ fun MainScreen(
                     icon = Icons.Filled.Calculate,
                     onClick = {
                         focusManager.clearFocus()
-                        val result = CalculationResults(
-                            weight = uiState.weight.toDoubleOrNull() ?: 0.0,
-                            age = uiState.age.toIntOrNull() ?: 0,
-                            ageUnit = uiState.ageUnit,
-                            medication = uiState.selectedMedication!!,
-                            minDoseMg = 150.0, // Stub
-                            maxDoseMg = 160.0, // Stub
-                            minVolMl = 6.25, // Stub
-                            maxVolMl = 7.55, // Stub
-                            isMaxDailyDoseExceeded = false // Stub
-                        )
-                        onCalculate(result)
+                        viewModel.calculate()?.let { result ->
+                            onCalculate(result)
+                        }
                     }
                 )
             }

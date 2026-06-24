@@ -32,7 +32,7 @@ import org.dishch.medcalculator.domain.formattedAgeRange
 import org.dishch.medcalculator.domain.formattedDoseRange
 import org.dishch.medcalculator.domain.toAge
 import org.dishch.medcalculator.domain.formattedAgeLimit
-import org.dishch.medcalculator.domain.fromYears
+import org.dishch.medcalculator.domain.fromAgeInYears
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -166,9 +166,9 @@ private fun RegimenItem(regimen: DosageRegimen) {
                 Box(contentAlignment = Alignment.Center) {
                     Icon(
                         when {
-                            regimen.fromYears < 1 -> Icons.Outlined.ChildFriendly // Infant
-                            regimen.fromYears < 12 -> Icons.Outlined.Face3        // Child
-                            regimen.fromYears < 18 -> Icons.Outlined.Face2        // Teen
+                            regimen.fromAgeInYears < 1 -> Icons.Outlined.ChildFriendly // Infant
+                            regimen.fromAgeInYears < 12 -> Icons.Outlined.Face3        // Child
+                            regimen.fromAgeInYears < 18 -> Icons.Outlined.Face2        // Teen
                             else -> Icons.Outlined.Face6                        // Senior
                         },
                         contentDescription = null,
