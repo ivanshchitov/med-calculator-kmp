@@ -40,10 +40,12 @@ fun MedicationInfoBottomSheet(
     medication: Medication,
     regimens: List<DosageRegimen>,
     avatarColor: Color,
+    sheetState: SheetState,
     onDismiss: () -> Unit
 ) {
     ModalBottomSheet(
         onDismissRequest = onDismiss,
+        sheetState = sheetState,
         containerColor = MaterialTheme.colorScheme.background
     ) {
         Column(
