@@ -6,6 +6,7 @@ import org.dishch.medcalculator.data.local.MedicationDao
 import org.dishch.medcalculator.data.local.getRoomDatabase
 import org.dishch.medcalculator.data.local.initializeDatabase
 import org.dishch.medcalculator.data.repository.MedicationRepositoryImpl
+import org.dishch.medcalculator.domain.calculation.CalculationUseCase
 import org.dishch.medcalculator.domain.MedicationRepository
 import org.dishch.medcalculator.ui.screens.choose.ChooseMedicationViewModel
 import org.dishch.medcalculator.ui.screens.main.MainViewModel
@@ -25,6 +26,7 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
         modules(
             databaseModule,
             repositoryModule,
+            useCaseModule,
             viewModelModule,
             platformModule()
         )
@@ -48,6 +50,10 @@ val repositoryModule = module {
             dosageRegimenDao = get<DosageRegimenDao>()
         )
     } bind MedicationRepository::class
+}
+
+val useCaseModule = module {
+    factoryOf(::CalculationUseCase)
 }
 
 val viewModelModule = module {

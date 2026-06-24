@@ -25,10 +25,18 @@ data class CalculationResults(
 )
 
 val CalculationResults.formattedDoseRange: String
-    get() = "${minDoseMg.formatAsDecimal()}-${maxDoseMg.formatAsDecimal()}"
+    get() = if (minDoseMg == maxDoseMg) {
+        minDoseMg.formatAsDecimal()
+    } else {
+        "${minDoseMg.formatAsDecimal()}-${maxDoseMg.formatAsDecimal()}"
+    }
 
 val CalculationResults.formattedVolumeRange: String
-    get() = "${minVolMl.formatAsDecimal()}-${maxVolMl.formatAsDecimal()}"
+    get() = if (minVolMl == maxVolMl) {
+        minVolMl.formatAsDecimal()
+    } else {
+        "${minVolMl.formatAsDecimal()}-${maxVolMl.formatAsDecimal()}"
+    }
 
 @OptIn(ExperimentalEncodingApi::class)
 val CalculationResultType = object : NavType<CalculationResults>(isNullableAllowed = false) {

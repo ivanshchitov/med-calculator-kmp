@@ -1,4 +1,12 @@
 package org.dishch.medcalculator
 
-fun Double.formatAsDecimal() =
-    if (this % 1.0 == 0.0) this.toInt().toString() else this.toString()
+import kotlin.math.roundToInt
+
+fun Double.formatAsDecimal(): String {
+    val rounded = (this * 100).roundToInt() / 100.0
+    return if (rounded % 1.0 == 0.0) {
+        rounded.toLong().toString()
+    } else {
+        rounded.toString()
+    }
+}
