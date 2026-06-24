@@ -57,7 +57,7 @@ fun MedicationListItem(
         modifier = modifier
             .fillMaxWidth()
             .clickable(onClick = onClick)
-            .padding(16.dp),
+            .padding(start = 16.dp, end = 4.dp, top = 12.dp, bottom = 12.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         // Avatar
@@ -94,7 +94,7 @@ fun MedicationListItem(
             onClick = {
                 onInfoClick(avatarColor)
             },
-            modifier = Modifier.size(24.dp)
+            modifier = Modifier.size(48.dp)
         ) {
             Icon(
                 imageVector = Icons.Outlined.Info,
