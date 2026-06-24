@@ -26,6 +26,8 @@ import org.dishch.medcalculator.domain.AgeUnit
 import org.dishch.medcalculator.domain.CalculationResults
 import org.dishch.medcalculator.domain.Medication
 import org.dishch.medcalculator.domain.formattedDosage
+import org.dishch.medcalculator.domain.formattedDoseRange
+import org.dishch.medcalculator.domain.formattedVolumeRange
 import org.dishch.medcalculator.ui.components.ResultRow
 import org.dishch.medcalculator.ui.components.cards.MaxDoseCard
 import org.dishch.medcalculator.ui.components.cards.ResultCard
@@ -129,7 +131,7 @@ fun CalculationResultsScreen(
                 ResultRow(
                     icon = Icons.Outlined.Vaccines,
                     label = stringResource(Res.string.medication_dosage),
-                    value = "${result.minDoseMg}-${result.maxDoseMg}",
+                    value = result.formattedDoseRange,
                     unit = stringResource(Res.string.mg),
                     iconColor = AppColors.Success,
                     iconContainerColor = AppColors.SuccessContainer,
@@ -139,7 +141,7 @@ fun CalculationResultsScreen(
                 ResultRow(
                     icon = Icons.Outlined.Opacity,
                     label = stringResource(Res.string.medication_volume),
-                    value = "${result.minVolMl}-${result.maxVolMl}",
+                    value = result.formattedVolumeRange,
                     unit = stringResource(Res.string.ml),
                     iconColor = AppColors.Success,
                     iconContainerColor = AppColors.SuccessContainer,

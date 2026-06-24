@@ -3,7 +3,7 @@ package org.dishch.medcalculator.domain
 import androidx.compose.runtime.Composable
 import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.age_range_format
-import org.dishch.medcalculator.formattedDouble
+import org.dishch.medcalculator.formatAsDecimal
 import org.jetbrains.compose.resources.stringResource
 
 data class DosageRegimen(
@@ -19,10 +19,10 @@ val DosageRegimen.fromYears: Int
     get() = fromAge.toAge().quantity
 
 val DosageRegimen.formattedMinDose: String
-    get() = formattedDouble(minDosePerKg)
+    get() = minDosePerKg.formatAsDecimal()
 
 val DosageRegimen.formattedMaxDose: String
-    get() = formattedDouble(maxDosePerKg)
+    get() = maxDosePerKg.formatAsDecimal()
 
 val DosageRegimen.formattedDoseRange: String
     get() = "$formattedMinDose-$formattedMaxDose"
