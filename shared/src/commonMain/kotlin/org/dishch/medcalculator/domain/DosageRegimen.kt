@@ -1,5 +1,7 @@
 package org.dishch.medcalculator.domain
 
+import org.dishch.medcalculator.formattedDouble
+
 data class DosageRegimen(
     val id: Long,
     val fromAge: Int,
@@ -10,18 +12,10 @@ data class DosageRegimen(
 )
 
 val DosageRegimen.formattedMinDose: String
-    get() = if (minDosePerKg % 1.0 == 0.0) {
-        minDosePerKg.toInt().toString()
-    } else {
-        minDosePerKg.toString()
-    }
+    get() = formattedDouble(minDosePerKg)
 
 val DosageRegimen.formattedMaxDose: String
-    get() = if (maxDosePerKg % 1.0 == 0.0) {
-        maxDosePerKg.toInt().toString()
-    } else {
-        maxDosePerKg.toString()
-    }
+    get() = formattedDouble(maxDosePerKg)
 
 val DosageRegimen.formattedDoseRange: String
     get() = "$formattedMinDose-$formattedMaxDose"
