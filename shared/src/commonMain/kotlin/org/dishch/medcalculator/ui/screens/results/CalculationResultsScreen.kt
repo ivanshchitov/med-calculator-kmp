@@ -129,7 +129,7 @@ fun CalculationResultsScreen(
                 ResultRow(
                     icon = Icons.Outlined.Vaccines,
                     label = stringResource(Res.string.medication_dosage),
-                    value = result.dosageMg.toString(),
+                    value = "${result.minDoseMg}-${result.maxDoseMg}",
                     unit = stringResource(Res.string.mg),
                     iconColor = AppColors.Success,
                     iconContainerColor = AppColors.SuccessContainer,
@@ -139,7 +139,7 @@ fun CalculationResultsScreen(
                 ResultRow(
                     icon = Icons.Outlined.Opacity,
                     label = stringResource(Res.string.medication_volume),
-                    value = result.volumeMl.toString(),
+                    value = "${result.minVolMl}-${result.maxVolMl}",
                     unit = stringResource(Res.string.ml),
                     iconColor = AppColors.Success,
                     iconContainerColor = AppColors.SuccessContainer,
@@ -183,8 +183,10 @@ fun CalculationResultsScreenPreview() {
                 age = 3,
                 ageUnit = AgeUnit.YEARS,
                 medication = Medication(0, "Парацетамол", 120.0, 0.0, 0),
-                dosageMg = 150,
-                volumeMl = 6.25,
+                minDoseMg = 150.0,
+                maxDoseMg = 160.0,
+                minVolMl = 6.25,
+                maxVolMl = 7.55,
                 isMaxDailyDoseExceeded = false
             )
         )
@@ -201,8 +203,10 @@ fun CalculationResultsScreenExceededPreview() {
                 age = 3,
                 ageUnit = AgeUnit.YEARS,
                 medication = Medication(0, "Парацетамол", 120.0, 0.0, 0),
-                dosageMg = 1200,
-                volumeMl = 50.0,
+                minDoseMg = 1200.0,
+                maxDoseMg = 1300.0,
+                minVolMl = 50.0,
+                maxVolMl = 60.0,
                 isMaxDailyDoseExceeded = true
             )
         )
