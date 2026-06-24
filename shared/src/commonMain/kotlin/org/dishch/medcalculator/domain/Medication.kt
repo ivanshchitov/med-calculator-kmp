@@ -1,7 +1,7 @@
 package org.dishch.medcalculator.domain
 
 import kotlinx.serialization.Serializable
-import org.dishch.medcalculator.formattedDouble
+import org.dishch.medcalculator.formatAsDecimal
 
 @Serializable
 data class Medication(
@@ -13,7 +13,7 @@ data class Medication(
 )
 
 val Medication.formattedDosage: String
-    get() = formattedDouble(dosage)
+    get() = dosage.formatAsDecimal()
 
 val Medication.formattedMaxSingleDose: String
-    get() = formattedDouble(maxSingleDose)
+    get() = maxSingleDose.formatAsDecimal()

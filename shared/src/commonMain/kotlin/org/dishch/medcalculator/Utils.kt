@@ -1,4 +1,4 @@
 package org.dishch.medcalculator
 
-fun formattedDouble(value: Double) =
-    if (value % 1.0 == 0.0) value.toInt().toString() else value.toString()
+fun Double.formatAsDecimal() =
+    if (this % 1.0 == 0.0) this.toInt().toString() else this.toString()

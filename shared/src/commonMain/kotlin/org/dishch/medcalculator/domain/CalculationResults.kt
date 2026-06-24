@@ -9,6 +9,7 @@ import kotlin.io.encoding.ExperimentalEncodingApi
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import org.dishch.medcalculator.formatAsDecimal
 
 @Serializable
 data class CalculationResults(
@@ -22,6 +23,12 @@ data class CalculationResults(
     val maxVolMl: Double,
     val isMaxDailyDoseExceeded: Boolean
 )
+
+val CalculationResults.formattedDoseRange: String
+    get() = "${minDoseMg.formatAsDecimal()}-${maxDoseMg.formatAsDecimal()}"
+
+val CalculationResults.formattedVolumeRange: String
+    get() = "${minVolMl.formatAsDecimal()}-${maxVolMl.formatAsDecimal()}"
 
 @OptIn(ExperimentalEncodingApi::class)
 val CalculationResultType = object : NavType<CalculationResults>(isNullableAllowed = false) {
