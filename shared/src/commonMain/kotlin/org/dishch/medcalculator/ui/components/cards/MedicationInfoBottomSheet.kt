@@ -26,7 +26,11 @@ import org.dishch.medcalculator.ui.theme.AppColors
 import org.jetbrains.compose.resources.pluralStringResource
 import org.jetbrains.compose.resources.stringResource
 import medcalculator.shared.generated.resources.*
+import org.dishch.medcalculator.domain.AgeLimit
+import org.dishch.medcalculator.domain.ageLimitData
 import org.dishch.medcalculator.domain.formattedDoseRange
+import org.dishch.medcalculator.domain.toDisplayString
+import org.jetbrains.compose.resources.getPluralString
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -50,7 +54,7 @@ fun MedicationInfoBottomSheet(
 
             InfoBlockWithIcon(
                 title = stringResource(Res.string.age_limit),
-                value = getAgeLimitDisplay(medication),
+                value = medication.ageLimitData.toDisplayString(),
                 icon = Icons.Outlined.ChildFriendly,
                 iconBackground = Color(0xFFE8EAF6),
                 iconColor = AppColors.Primary
@@ -204,17 +208,6 @@ fun InfoBlockWithIcon(
                 )
             }
         }
-    }
-}
-
-
-@Composable
-private fun getAgeLimitDisplay(medication: Medication): String {
-    return if (medication.ageLimit == 0 || medication.ageLimit >= 12) {
-        val years = medication.ageLimit / 12
-        pluralStringResource(Res.plurals.age_limit_years_plurals, years, years)
-    } else {
-        pluralStringResource(Res.plurals.age_limit_months_plurals, medication.ageLimit, medication.ageLimit)
     }
 }
 
