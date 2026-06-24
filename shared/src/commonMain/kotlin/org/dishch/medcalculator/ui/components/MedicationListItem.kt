@@ -40,9 +40,17 @@ fun MedicationListItem(
             Color(0xFF90CAF9), // Blue
             Color(0xFFEF9A9A), // Red
             Color(0xFF80CBC4), // Teal
-            Color(0xFFFFCC80)  // Orange
+            Color(0xFFFFCC80), // Orange
+            Color(0xFFCE93D8), // Soft Purple
+            Color(0xFF81D4FA), // Sky Blue
+            Color(0xFFE6EE9C), // Lime
+            Color(0xFFF48FB1), // Pink
+            Color(0xFFB0BEC5), // Blue Grey
+            Color(0xFF9575CD), // Deep Purple
+            Color(0xFF4DB6AC), // Deep Teal
+            Color(0xFFFFB74D)  // Deep Orange
         )
-        colors[medication.name.length % colors.size]
+        colors[(medication.name.hashCode() and Int.MAX_VALUE) % colors.size]
     }
 
     Row(
