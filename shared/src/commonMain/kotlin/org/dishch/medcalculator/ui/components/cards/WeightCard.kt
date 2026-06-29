@@ -11,6 +11,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import medcalculator.shared.generated.resources.*
+import org.dishch.medcalculator.isWeightValid
 import org.dishch.medcalculator.ui.components.InputTextField
 import org.dishch.medcalculator.ui.theme.MedCalculatorAppTheme
 import org.jetbrains.compose.resources.stringResource
@@ -23,7 +24,7 @@ fun WeightCard(
     keyboardActions: KeyboardActions = KeyboardActions.Default
 ) {
     val weightDouble = weight.toDoubleOrNull()
-    val isError = weightDouble == null || weightDouble !in 1.0..100.0
+    val isError = !isWeightValid(weightDouble)
 
     AppCard(
         title = stringResource(Res.string.patient_weight),

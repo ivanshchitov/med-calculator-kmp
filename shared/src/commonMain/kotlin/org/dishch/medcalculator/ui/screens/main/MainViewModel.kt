@@ -1,11 +1,16 @@
 package org.dishch.medcalculator.ui.screens.main
 
+import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.dishch.medcalculator.data.PreferenceManager
@@ -15,6 +20,8 @@ import org.dishch.medcalculator.domain.CalculationResults
 import org.dishch.medcalculator.domain.DosageRegimen
 import org.dishch.medcalculator.domain.Medication
 import org.dishch.medcalculator.domain.MedicationRepository
+import org.dishch.medcalculator.isAgeValid
+import org.dishch.medcalculator.isWeightValid
 
 data class MainUiState(
     val weight: String = "12.5",
@@ -32,6 +39,12 @@ class MainViewModel(
 
     private val _uiState = MutableStateFlow(MainUiState())
     val uiState: StateFlow<MainUiState> = _uiState.asStateFlow()
+
+    val isCalculationEnabled: StateFlow<Boolean> = _uiState.map { state ->
+        isWeightValid(state.weight.toDoubleOrNull())
+                && isAgeValid(state.age.toIntOrNull(), state.ageUnit)
+                && state.selectedMedication != null
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), true)
 
     init {
         viewModelScope.launch {

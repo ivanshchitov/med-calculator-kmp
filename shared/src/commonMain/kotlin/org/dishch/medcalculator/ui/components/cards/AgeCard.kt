@@ -7,6 +7,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.ImeAction
@@ -14,6 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.dishch.medcalculator.domain.AgeUnit
 import medcalculator.shared.generated.resources.*
+import org.dishch.medcalculator.isAgeValid
 import org.dishch.medcalculator.ui.components.InputTextField
 import org.dishch.medcalculator.ui.theme.AppDimens
 import org.dishch.medcalculator.ui.theme.MedCalculatorAppTheme
@@ -31,10 +33,7 @@ fun AgeCard(
     keyboardActions: KeyboardActions = KeyboardActions.Default
 ) {
     val ageInt = age.toIntOrNull()
-    val isError = when (unit) {
-        AgeUnit.MONTHS -> ageInt == null || ageInt !in 1..11
-        AgeUnit.YEARS -> ageInt == null || ageInt !in 1..17
-    }
+    val isError = !isAgeValid(ageInt, unit)
 
     AppCard(
         title = stringResource(Res.string.patient_age),

@@ -15,7 +15,6 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import medcalculator.shared.generated.resources.Res
@@ -29,7 +28,6 @@ import org.dishch.medcalculator.ui.components.cards.AgeCard
 import org.dishch.medcalculator.ui.components.cards.MedicationCard
 import org.dishch.medcalculator.ui.components.cards.WeightCard
 import org.dishch.medcalculator.ui.theme.AppDimens
-import org.dishch.medcalculator.ui.theme.MedCalculatorAppTheme
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.annotation.KoinExperimentalAPI
@@ -43,6 +41,7 @@ fun MainScreen(
 ) {
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val isCalculationEnabled by viewModel.isCalculationEnabled.collectAsStateWithLifecycle()
 
     val focusManager = LocalFocusManager.current
 
@@ -75,6 +74,7 @@ fun MainScreen(
                 PrimaryButton(
                     text = stringResource(Res.string.calculate),
                     icon = Icons.Filled.Calculate,
+                    enabled = isCalculationEnabled,
                     onClick = {
                         focusManager.clearFocus()
                         viewModel.calculate()?.let { result ->

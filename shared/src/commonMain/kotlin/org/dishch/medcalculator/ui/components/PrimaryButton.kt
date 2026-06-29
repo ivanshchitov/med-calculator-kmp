@@ -25,11 +25,13 @@ import org.dishch.medcalculator.ui.theme.MedCalculatorAppTheme
 fun PrimaryButton(
     text: String,
     icon: ImageVector,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    enabled: Boolean = true
 ) {
     Button(
         shape = RoundedCornerShape(AppDimens.ButtonCorner),
         onClick = onClick,
+        enabled = enabled,
         modifier = Modifier
             .fillMaxWidth()
             .height(56.dp)
