@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.dishch.medcalculator.data.PreferenceManager
 import org.dishch.medcalculator.domain.AgeUnit
 import org.dishch.medcalculator.domain.calculation.CalculationUseCase
 import org.dishch.medcalculator.domain.CalculationResults
@@ -25,7 +26,8 @@ data class MainUiState(
 
 class MainViewModel(
     private val medicationRepository: MedicationRepository,
-    private val calculationUseCase: CalculationUseCase
+    private val calculationUseCase: CalculationUseCase,
+    private val preferenceManager: PreferenceManager
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(MainUiState())
@@ -33,8 +35,25 @@ class MainViewModel(
 
     init {
         viewModelScope.launch {
-            medicationRepository.getMedicationById(1).collect { medication ->
-                _uiState.update { it.copy(selectedMedication = medication) }
+            preferenceManager.weight.collectLatest { weight ->
+                _uiState.update { it.copy(weight = weight.toString()) }
+            }
+        }
+        viewModelScope.launch {
+            preferenceManager.age.collectLatest { age ->
+                _uiState.update { it.copy(age = age.toString()) }
+            }
+        }
+        viewModelScope.launch {
+            preferenceManager.ageUnit.collectLatest { ageUnit ->
+                _uiState.update { it.copy(ageUnit = ageUnit) }
+            }
+        }
+        viewModelScope.launch {
+            preferenceManager.medicationId.collectLatest { id ->
+                medicationRepository.getMedicationById(id).collect { medication ->
+                    _uiState.update { it.copy(selectedMedication = medication) }
+                }
             }
         }
 
@@ -51,9 +70,20 @@ class MainViewModel(
 
     fun calculate(): CalculationResults? {
         val state = _uiState.value
+        val weight = state.weight.toDoubleOrNull() ?: 0.0
+        val age = state.age.toIntOrNull() ?: 0
+        
+        viewModelScope.launch {
+            preferenceManager.save(
+                weight = weight,
+                age = age,
+                ageUnit = state.ageUnit,
+                medicationId = state.selectedMedication?.id ?: 1
+            )
+        }
         return calculationUseCase(
-            weight = state.weight,
-            age = state.age,
+            weight = weight,
+            age = age,
             ageUnit = state.ageUnit,
             selectedMedication = state.selectedMedication,
             dosageRegimens = state.dosageRegimens

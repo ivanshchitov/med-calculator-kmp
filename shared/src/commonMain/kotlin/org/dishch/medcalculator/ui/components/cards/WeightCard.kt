@@ -33,7 +33,7 @@ fun WeightCard(
             value = weight,
             onValueChange = { value: String ->
                 // Restriction: only decimal numbers with up to one digit after the dot
-                if (value.isEmpty() || value.matches(Regex("""^\d*\.?\d{0,1}$""")) && value.length <= 4) {
+                if (value.isEmpty() || (value.matches(Regex("""^\d*\.?\d{0,1}$""")) && value.length <= 4)) {
                     onWeightChanged(value)
                 }
             },

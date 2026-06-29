@@ -19,12 +19,16 @@ import org.koin.dsl.bind
 import org.koin.dsl.module
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
+import org.dishch.medcalculator.data.PreferenceManager
+import org.dishch.medcalculator.data.createDataStore
 
 fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
     startKoin {
         appDeclaration()
         modules(
             databaseModule,
+            dataStoreModule,
+            preferenceModule,
             repositoryModule,
             useCaseModule,
             viewModelModule,
@@ -60,6 +64,14 @@ val viewModelModule = module {
     factoryOf(::ChooseMedicationViewModel)
     factoryOf(::MainViewModel)
     factoryOf(::CalculationResultsViewModel)
+}
+
+val dataStoreModule = module {
+    single { createDataStore() }
+}
+
+val preferenceModule = module {
+    single { PreferenceManager(get()) }
 }
 
 expect fun platformModule(): Module

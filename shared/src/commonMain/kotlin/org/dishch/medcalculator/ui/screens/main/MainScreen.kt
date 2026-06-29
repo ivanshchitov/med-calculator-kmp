@@ -136,12 +136,3 @@ fun MainScreen(
         }
     }
 }
-
-@Composable
-@Preview
-fun MainScreenPreview() {
-    MedCalculatorAppTheme {
-        // Need to provide a ViewModel or Mocks for the preview to work,
-        // but keeping it as is for now matching your original code's approach.
-    }
-}
