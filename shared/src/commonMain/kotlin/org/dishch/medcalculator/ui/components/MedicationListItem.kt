@@ -16,13 +16,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.medication_info_description
 import medcalculator.shared.generated.resources.mg_per_ml_format
 import org.dishch.medcalculator.domain.Medication
 import org.dishch.medcalculator.domain.formattedDosage
 import org.dishch.medcalculator.ui.theme.AppColors
+import org.dishch.medcalculator.ui.theme.AppDimens
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -57,13 +57,18 @@ fun MedicationListItem(
         modifier = modifier
             .fillMaxWidth()
             .clickable(onClick = onClick)
-            .padding(start = 16.dp, end = 4.dp, top = 12.dp, bottom = 12.dp),
+            .padding(
+                start = AppDimens.ScreenPadding,
+                end = AppDimens.SpacingExtraSmall,
+                top = AppDimens.SpacingMediumSmall,
+                bottom = AppDimens.SpacingMediumSmall
+            ),
         verticalAlignment = Alignment.CenterVertically
     ) {
         // Avatar
         Box(
             modifier = Modifier
-                .size(40.dp)
+                .size(AppDimens.ResultIconContainerSize)
                 .background(avatarColor, CircleShape),
             contentAlignment = Alignment.Center
         ) {
@@ -74,7 +79,7 @@ fun MedicationListItem(
             )
         }
 
-        Spacer(modifier = Modifier.width(16.dp))
+        Spacer(modifier = Modifier.width(AppDimens.ResultSpacing))
 
         Text(
             text = medication.name,
@@ -87,14 +92,14 @@ fun MedicationListItem(
             text = stringResource(Res.string.mg_per_ml_format, medication.formattedDosage),
             style = MaterialTheme.typography.bodyMedium,
             color = AppColors.TextSecondary,
-            modifier = Modifier.padding(horizontal = 8.dp)
+            modifier = Modifier.padding(horizontal = AppDimens.SpacingSmall)
         )
 
         IconButton(
             onClick = {
                 onInfoClick(avatarColor)
             },
-            modifier = Modifier.size(48.dp)
+            modifier = Modifier.size(AppDimens.ButtonHeight)
         ) {
             Icon(
                 imageVector = Icons.Outlined.Info,

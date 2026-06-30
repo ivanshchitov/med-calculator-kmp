@@ -29,7 +29,6 @@ import org.dishch.medcalculator.domain.formattedDosage
 import org.dishch.medcalculator.domain.formattedDoseRange
 import org.dishch.medcalculator.domain.formattedVolumeRange
 import org.dishch.medcalculator.ui.components.ResultRow
-import org.dishch.medcalculator.ui.components.cards.MaxDoseCard
 import org.dishch.medcalculator.ui.components.cards.ResultCard
 import org.dishch.medcalculator.ui.theme.AppColors
 import org.dishch.medcalculator.ui.theme.AppDimens
@@ -77,13 +76,13 @@ fun CalculationResultsScreen(
                     onClick = onBack,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(56.dp),
+                        .height(AppDimens.ButtonHeight),
                     shape = RoundedCornerShape(AppDimens.ButtonCorner),
-                    border = BorderStroke(2.dp, AppColors.Primary),
+                    border = BorderStroke(AppDimens.CardBorderWidth, AppColors.Primary),
                     colors = ButtonDefaults.outlinedButtonColors(contentColor = AppColors.Primary)
                 ) {
                     Icon(Icons.Default.Refresh, contentDescription = null)
-                    Spacer(Modifier.width(8.dp))
+                    Spacer(Modifier.width(AppDimens.SpacingSmall))
                     Text(
                         text = stringResource(Res.string.new_calculation),
                         style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold)
@@ -98,7 +97,7 @@ fun CalculationResultsScreen(
                 .padding(horizontal = AppDimens.ScreenPadding)
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            verticalArrangement = Arrangement.spacedBy(AppDimens.CardSpacing)
         ) {
             SectionTitle(stringResource(Res.string.input_data))
 
@@ -152,7 +151,7 @@ fun CalculationResultsScreen(
             // Hidden temporarily, maybe
             // MaxDoseCard(isExceeded = result.isMaxDailyDoseExceeded)
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(AppDimens.CardSpacing))
         }
     }
 }
@@ -163,14 +162,14 @@ private fun SectionTitle(title: String) {
         text = title,
         style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
         color = AppColors.Primary,
-        modifier = Modifier.padding(top = 8.dp)
+        modifier = Modifier.padding(top = AppDimens.SpacingSmall)
     )
 }
 
 @Composable
 private fun ItemDivider() {
     HorizontalDivider(
-        modifier = Modifier.padding(horizontal = 16.dp),
+        modifier = Modifier.padding(horizontal = AppDimens.CardPadding),
         thickness = 1.dp,
         color = AppColors.Border
     )

@@ -17,7 +17,6 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.yield
 import medcalculator.shared.generated.resources.Res
@@ -106,15 +105,15 @@ fun ChooseMedicationScreen(
             modifier = Modifier
                 .padding(padding)
                 .fillMaxSize()
-                .padding(horizontal = 16.dp)
-                .padding(bottom = 16.dp)
+                .padding(horizontal = AppDimens.ScreenPadding)
+                .padding(bottom = AppDimens.ScreenPadding)
         ) {
             OutlinedTextField(
                 value = searchQuery,
                 onValueChange = viewModel::onSearchQueryChange,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 16.dp),
+                    .padding(vertical = AppDimens.CardSpacing),
                 placeholder = { Text(stringResource(Res.string.search)) },
                 leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
                 singleLine = true,
@@ -132,7 +131,7 @@ fun ChooseMedicationScreen(
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(AppDimens.CardCorner)),
                 color = AppColors.Surface,
-                border = BorderStroke(2.dp, AppColors.Border),
+                border = BorderStroke(AppDimens.CardBorderWidth, AppColors.Border),
                 shape = RoundedCornerShape(AppDimens.CardCorner)
             ) {
                 LazyColumn {
@@ -147,8 +146,8 @@ fun ChooseMedicationScreen(
                         )
                         if (index < filteredMedications.lastIndex) {
                             HorizontalDivider(
-                                modifier = Modifier.padding(horizontal = 16.dp),
-                                thickness = 1.dp,
+                                modifier = Modifier.padding(horizontal = AppDimens.ScreenPadding),
+                                thickness = AppDimens.CardBorderWidth / 2,
                                 color = AppColors.Border
                             )
                         }
@@ -156,7 +155,7 @@ fun ChooseMedicationScreen(
                 }
             }
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(AppDimens.CardSpacing))
         }
     }
 }

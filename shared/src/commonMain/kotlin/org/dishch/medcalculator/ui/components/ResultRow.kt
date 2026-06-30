@@ -19,8 +19,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import org.dishch.medcalculator.ui.theme.AppColors
+import org.dishch.medcalculator.ui.theme.AppDimens
 
 @Composable
 fun ResultRow(
@@ -37,12 +37,12 @@ fun ResultRow(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(16.dp),
+            .padding(AppDimens.ResultRowPadding),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Surface(
-            modifier = Modifier.size(40.dp),
-            shape = RoundedCornerShape(8.dp),
+            modifier = Modifier.size(AppDimens.ResultIconContainerSize),
+            shape = RoundedCornerShape(AppDimens.ResultIconCorner),
             color = iconContainerColor
         ) {
             Box(contentAlignment = Alignment.Center) {
@@ -50,12 +50,12 @@ fun ResultRow(
                     imageVector = icon,
                     contentDescription = null,
                     tint = iconColor,
-                    modifier = Modifier.size(24.dp)
+                    modifier = Modifier.size(AppDimens.IconSize)
                 )
             }
         }
 
-        Spacer(modifier = Modifier.width(16.dp))
+        Spacer(modifier = Modifier.width(AppDimens.ResultSpacing))
 
         Text(
             text = label,
@@ -72,7 +72,7 @@ fun ResultRow(
                     color = valueColor
                 )
                 if (unit != null) {
-                    Spacer(modifier = Modifier.width(4.dp))
+                    Spacer(modifier = Modifier.width(AppDimens.SpacingExtraSmall))
                     Text(
                         text = unit,
                         style = MaterialTheme.typography.bodyMedium,

@@ -14,7 +14,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.unit.sp
+import org.dishch.medcalculator.ui.theme.AppColors
+import org.dishch.medcalculator.ui.theme.AppDimens
 
 @Composable
 fun InputTextField(
@@ -33,14 +34,14 @@ fun InputTextField(
         onValueChange = onValueChange,
         modifier = modifier.fillMaxWidth(),
         textStyle = TextStyle(
-            fontSize = 32.sp,
+            fontSize = AppDimens.InputTextSize,
             fontWeight = FontWeight.Bold
         ),
         suffix = {
             Text(
                 text = suffix,
                 style = MaterialTheme.typography.bodyLarge,
-                color = if (isError) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurfaceVariant
+                color = if (isError) MaterialTheme.colorScheme.error else AppColors.TextSecondary
             )
         },
         supportingText = {
@@ -52,7 +53,7 @@ fun InputTextField(
             unfocusedContainerColor = Color.Transparent,
             disabledContainerColor = Color.Transparent,
             focusedIndicatorColor = MaterialTheme.colorScheme.primary,
-            unfocusedIndicatorColor = MaterialTheme.colorScheme.outlineVariant,
+            unfocusedIndicatorColor = AppColors.Border,
         ),
         keyboardOptions = KeyboardOptions(
             keyboardType = keyboardType,

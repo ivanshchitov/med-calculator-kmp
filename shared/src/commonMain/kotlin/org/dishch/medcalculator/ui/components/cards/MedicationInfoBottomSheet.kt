@@ -12,7 +12,6 @@ import androidx.compose.material.icons.outlined.Face2
 import androidx.compose.material.icons.outlined.Face3
 import androidx.compose.material.icons.outlined.Face6
 import androidx.compose.material.icons.outlined.NoAdultContent
-import androidx.compose.material.icons.outlined.WarningAmber
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -24,7 +23,6 @@ import androidx.compose.ui.unit.dp
 import org.dishch.medcalculator.domain.DosageRegimen
 import org.dishch.medcalculator.domain.Medication
 import org.dishch.medcalculator.domain.formattedDosage
-import org.dishch.medcalculator.domain.formattedMaxSingleDose
 import org.dishch.medcalculator.ui.theme.AppColors
 import org.jetbrains.compose.resources.stringResource
 import medcalculator.shared.generated.resources.*
@@ -33,6 +31,7 @@ import org.dishch.medcalculator.domain.formattedDoseRange
 import org.dishch.medcalculator.domain.toAge
 import org.dishch.medcalculator.domain.formattedAgeLimit
 import org.dishch.medcalculator.domain.fromAgeInYears
+import org.dishch.medcalculator.ui.theme.AppDimens
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -50,12 +49,12 @@ fun MedicationInfoBottomSheet(
     ) {
         Column(
             modifier = Modifier
-                .padding(16.dp)
+                .padding(AppDimens.ScreenPadding)
                 .navigationBarsPadding()
         ) {
             MedicationHeader(medication, avatarColor)
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(AppDimens.CardSpacing))
 
             InfoBlockWithIcon(
                 title = stringResource(Res.string.age_limit),
@@ -76,11 +75,11 @@ fun MedicationInfoBottomSheet(
             //     iconColor = AppColors.Warning
             // )
 
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(AppDimens.SpacingSmall))
 
             RegimensSection(regimens)
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(AppDimens.ScreenPadding))
         }
     }
 }
@@ -91,7 +90,7 @@ private fun MedicationHeader(medication: Medication, avatarColor: Color) {
         // Avatar
         Box(
             modifier = Modifier
-                .size(64.dp)
+                .size(AppDimens.IconContainerSize)
                 .background(avatarColor, CircleShape),
             contentAlignment = Alignment.Center
         ) {
@@ -101,7 +100,7 @@ private fun MedicationHeader(medication: Medication, avatarColor: Color) {
                 color = Color.White
             )
         }
-        Spacer(modifier = Modifier.width(16.dp))
+        Spacer(modifier = Modifier.width(AppDimens.CardSpacing))
         Column {
             Text(
                 medication.name,
@@ -120,18 +119,18 @@ private fun MedicationHeader(medication: Medication, avatarColor: Color) {
 @Composable
 private fun RegimensSection(regimens: List<DosageRegimen>) {
     Surface(
-        shape = RoundedCornerShape(16.dp),
-        border = BorderStroke(1.dp, AppColors.Border),
+        shape = RoundedCornerShape(AppDimens.CardCorner),
+        border = BorderStroke(AppDimens.SubCardBorderWidth, AppColors.Border),
         color = AppColors.Surface
     ) {
-        Column(modifier = Modifier.padding(16.dp).fillMaxWidth()) {
+        Column(modifier = Modifier.padding(AppDimens.CardPadding).fillMaxWidth()) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(
                     Icons.AutoMirrored.Outlined.Assignment,
                     contentDescription = null,
                     tint = AppColors.Success
                 )
-                Spacer(modifier = Modifier.width(8.dp))
+                Spacer(modifier = Modifier.width(AppDimens.SpacingSmall))
                 Text(
                     stringResource(Res.string.dosage_regimen),
                     style = MaterialTheme.typography.titleMedium,
@@ -139,10 +138,10 @@ private fun RegimensSection(regimens: List<DosageRegimen>) {
                     color = AppColors.Primary
                 )
             }
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(AppDimens.SpacingSmall))
             regimens.forEach { regimen ->
                 RegimenItem(regimen)
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(AppDimens.SpacingSmall))
             }
         }
     }
@@ -151,18 +150,18 @@ private fun RegimensSection(regimens: List<DosageRegimen>) {
 @Composable
 private fun RegimenItem(regimen: DosageRegimen) {
     Surface(
-        shape = RoundedCornerShape(16.dp),
-        border = BorderStroke(1.dp, AppColors.Border),
+        shape = RoundedCornerShape(AppDimens.CardCorner),
+        border = BorderStroke(AppDimens.SubCardBorderWidth, AppColors.Border),
         color = AppColors.Surface
     ) {
         Row(
-            modifier = Modifier.padding(12.dp).fillMaxWidth(),
+            modifier = Modifier.padding(AppDimens.SpacingMediumSmall).fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Surface(
-                shape = RoundedCornerShape(12.dp),
+                shape = RoundedCornerShape(AppDimens.ResultIconCorner * 1.5f),
                 color = Color(0xFFC8E6C9),
-                modifier = Modifier.size(40.dp)
+                modifier = Modifier.size(AppDimens.ResultIconContainerSize)
             ) {
                 Box(contentAlignment = Alignment.Center) {
                     Icon(
@@ -177,7 +176,7 @@ private fun RegimenItem(regimen: DosageRegimen) {
                     )
                 }
             }
-            Spacer(modifier = Modifier.width(12.dp))
+            Spacer(modifier = Modifier.width(AppDimens.SpacingMediumSmall))
             Column {
                 Text(
                     regimen.formattedAgeRange,
@@ -204,24 +203,24 @@ private fun InfoBlockWithIcon(
     iconBackground: Color
 ) {
     Surface(
-        shape = RoundedCornerShape(16.dp),
-        border = BorderStroke(1.dp, AppColors.Border),
+        shape = RoundedCornerShape(AppDimens.CardCorner),
+        border = BorderStroke(AppDimens.SubCardBorderWidth, AppColors.Border),
         color = AppColors.Surface
     ) {
         Row(
-            modifier = Modifier.padding(16.dp).fillMaxWidth(),
+            modifier = Modifier.padding(AppDimens.CardPadding).fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Surface(
-                modifier = Modifier.size(48.dp),
-                shape = RoundedCornerShape(12.dp),
+                modifier = Modifier.size(AppDimens.IconContainerSize - AppDimens.CardSpacing),
+                shape = RoundedCornerShape(AppDimens.ResultIconCorner * 1.5f),
                 color = iconBackground
             ) {
                 Box(contentAlignment = Alignment.Center) {
                     Icon(icon, contentDescription = null, tint = iconColor)
                 }
             }
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.width(AppDimens.CardSpacing))
             Column {
                 Text(
                     title,

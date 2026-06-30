@@ -22,7 +22,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -53,13 +52,13 @@ fun AppCard(
             containerColor = AppColors.Surface,
             disabledContainerColor = AppColors.Surface
         ),
-        border = BorderStroke(2.dp, AppColors.Border),
+        border = BorderStroke(AppDimens.CardBorderWidth, AppColors.Border),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 0.dp
         )
     ) {
         Box(
-            modifier = Modifier.padding(20.dp)
+            modifier = Modifier.padding(AppDimens.CardPadding)
         ) {
             Row(
                 verticalAlignment = verticalAlignment,
@@ -67,7 +66,7 @@ fun AppCard(
             ) {
                 // Icon container
                 Surface(
-                    modifier = Modifier.size(64.dp),
+                    modifier = Modifier.size(AppDimens.IconContainerSize),
                     shape = cardShape,
                     color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.1f)
                 ) {
@@ -76,18 +75,18 @@ fun AppCard(
                             imageVector = icon,
                             contentDescription = null,
                             tint = MaterialTheme.colorScheme.primary,
-                            modifier = Modifier.size(32.dp)
+                            modifier = Modifier.size(AppDimens.IconLargeSize)
                         )
                     }
                 }
 
-                Spacer(modifier = Modifier.width(16.dp))
+                Spacer(modifier = Modifier.width(AppDimens.CardSpacing))
 
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
                         text = title,
                         style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
-                        color = Color.Black
+                        color = AppColors.TextPrimary
                     )
                     content()
                 }
@@ -96,7 +95,7 @@ fun AppCard(
                     Icon(
                         imageVector = it,
                         contentDescription = null,
-                        tint = Color.Gray,
+                        tint = AppColors.TextSecondary,
                         modifier = Modifier.align(Alignment.CenterVertically)
                     )
                 }

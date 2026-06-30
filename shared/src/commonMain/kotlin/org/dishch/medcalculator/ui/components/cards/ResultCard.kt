@@ -22,7 +22,7 @@ fun ResultCard(
         modifier = modifier.fillMaxWidth(),
         shape = RoundedCornerShape(AppDimens.CardCorner),
         colors = CardDefaults.cardColors(containerColor = AppColors.Surface),
-        border = BorderStroke(2.dp, AppColors.Border),
+        border = BorderStroke(AppDimens.CardBorderWidth, AppColors.Border),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {
         Column(content = content)
