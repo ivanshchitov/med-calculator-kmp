@@ -1,6 +1,6 @@
 package org.dishch.medcalculator.data.local
 
-import androidx.room.Transaction
+import MedCalculator.shared.AppConfig
 import androidx.room.useWriterConnection
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.Serializable
@@ -8,7 +8,11 @@ import org.jetbrains.compose.resources.ExperimentalResourceApi
 import medcalculator.shared.generated.resources.Res
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
+import org.dishch.medcalculator.data.PreferenceManager
+import org.dishch.medcalculator.getPlatform
+import org.koin.core.logger.Logger
 
 @Serializable
 data class MedicationJson(
@@ -47,36 +51,27 @@ data class DosageRegimenJson(
 
 private val json = Json { ignoreUnknownKeys = true }
 
-suspend fun initializeDatabase(database: AppDatabase): Result<Unit> = withContext(Dispatchers.IO) {
-    runCatching {
+suspend fun initializeDatabase(
+    database: AppDatabase,
+    preferenceManager: PreferenceManager
+): Result<Unit> = runCatching {
+    val currentVersion = AppConfig.VERSION_CODE
+    val storedVersion = preferenceManager.currentStoredVersion.first()
+
+    if (storedVersion >= currentVersion)
+        return@runCatching
+
+    withContext(Dispatchers.IO) {
         val medications = loadJsonResource<List<MedicationJson>>("files/medications.json")
         val dosageRegimens = loadJsonResource<List<DosageRegimenJson>>("files/dosage_regimens.json")
-
         database.useWriterConnection {
-            clearAndInsertNewData(
-                database.getMedicationDao(),
-                database.getDosageRegimenDao(),
-                medications,
-                dosageRegimens
+            database.replaceMedicationData(
+                medications.map { it.toEntity() },
+                dosageRegimens.map { it.toEntity() }
             )
         }
-    }.onFailure { e ->
-        println("Failed to initialize database: ${e.message}")
+        preferenceManager.updateCurrentStoredVersion(currentVersion)
     }
-}
-
-@Transaction
-private suspend fun clearAndInsertNewData(
-    medDao: MedicationDao,
-    regimenDao: DosageRegimenDao,
-    medications: List<MedicationJson>,
-    dosageRegimens: List<DosageRegimenJson>) {
-    // Clear database
-    regimenDao.deleteAll()
-    medDao.deleteAll()
-    // Insert data
-    medDao.insertAll(medications.map { it.toEntity() })
-    regimenDao.insertAll(dosageRegimens.map { it.toEntity() })
 }
 
 // Helper to reduce boilerplate code

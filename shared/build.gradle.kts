@@ -8,6 +8,14 @@ plugins {
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.room)
+    alias(libs.plugins.buildconfig)
+}
+
+buildConfig {
+    className("AppConfig")
+    useKotlinOutput()
+    buildConfigField("VERSION_CODE", libs.versions.version.code.get().toLong())
+    buildConfigField("VERSION_NAME", libs.versions.version.name.get())
 }
 
 kotlin {

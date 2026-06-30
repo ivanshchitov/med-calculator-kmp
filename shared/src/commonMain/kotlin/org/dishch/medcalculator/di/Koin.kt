@@ -36,8 +36,9 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
         )
     }.koin.let { koin ->
         val database = koin.get<AppDatabase>()
+        val preferenceManager = koin.get<PreferenceManager>()
         MainScope().launch {
-            initializeDatabase(database)
+            initializeDatabase(database, preferenceManager)
         }
     }
 

@@ -4,6 +4,7 @@ import androidx.room.ConstructedBy
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.RoomDatabaseConstructor
+import androidx.room.Transaction
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
@@ -19,6 +20,17 @@ import kotlinx.coroutines.IO
 abstract class AppDatabase : RoomDatabase() {
     abstract fun getMedicationDao(): MedicationDao
     abstract fun getDosageRegimenDao(): DosageRegimenDao
+
+    @Transaction
+    suspend fun replaceMedicationData(
+        medications: List<MedicationEntity>,
+        regimens: List<DosageRegimenEntity>
+    ) {
+        getMedicationDao().deleteAll()
+        getDosageRegimenDao().deleteAll()
+        getMedicationDao().insertAll(medications)
+        getDosageRegimenDao().insertAll(regimens)
+    }
 }
 
 // The Room compiler generates the `actual` implementations.
