@@ -67,8 +67,7 @@ fun AppCard(
                 // Icon container
                 Surface(
                     modifier = Modifier.size(AppDimens.IconContainerSize),
-                    shape = cardShape,
-                    color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.1f)
+                    shape = cardShape
                 ) {
                     Box(contentAlignment = Alignment.Center) {
                         Icon(
