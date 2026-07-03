@@ -15,6 +15,8 @@ import org.dishch.medcalculator.ui.InputValidator
 import org.dishch.medcalculator.ui.components.AppSegmentedButton
 import org.dishch.medcalculator.ui.components.AppSegmentedButtonRow
 import org.dishch.medcalculator.ui.components.InputTextField
+import org.dishch.medcalculator.ui.helpers.supportingText
+import org.dishch.medcalculator.ui.helpers.suffix
 import org.dishch.medcalculator.ui.theme.AppDimens
 import org.dishch.medcalculator.ui.theme.MedCalculatorAppTheme
 import org.jetbrains.compose.resources.pluralStringResource

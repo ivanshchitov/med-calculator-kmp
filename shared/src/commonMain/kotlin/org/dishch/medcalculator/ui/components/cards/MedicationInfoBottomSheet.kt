@@ -23,15 +23,15 @@ import androidx.compose.ui.text.font.FontWeight
 import org.dishch.medcalculator.domain.DosageRegimen
 import org.dishch.medcalculator.domain.Medication
 import org.dishch.medcalculator.domain.formattedDosage
+import org.dishch.medcalculator.ui.helpers.formattedAgeLimit
+import org.dishch.medcalculator.ui.helpers.formattedAgeRange
+import org.dishch.medcalculator.ui.helpers.formattedDoseRange
+import org.dishch.medcalculator.ui.helpers.fromAgeInYears
 import org.dishch.medcalculator.ui.theme.AppColors
 import org.jetbrains.compose.resources.stringResource
 import medcalculator.shared.generated.resources.*
-import org.dishch.medcalculator.domain.formattedAgeRange
-import org.dishch.medcalculator.domain.formattedDoseRange
-import org.dishch.medcalculator.domain.toAge
-import org.dishch.medcalculator.domain.formattedAgeLimit
 import org.dishch.medcalculator.domain.formattedMaxSingleDose
-import org.dishch.medcalculator.domain.fromAgeInYears
+import org.dishch.medcalculator.domain.toAge
 import org.dishch.medcalculator.ui.theme.AppDimens
 import org.dishch.medcalculator.ui.theme.AppDimens.SpacingSmall
 

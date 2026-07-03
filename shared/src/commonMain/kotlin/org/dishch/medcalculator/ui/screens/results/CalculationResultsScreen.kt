@@ -9,7 +9,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.CalendarMonth
-import androidx.compose.material.icons.outlined.MedicalServices
 import androidx.compose.material.icons.outlined.Medication
 import androidx.compose.material.icons.outlined.Opacity
 import androidx.compose.material.icons.outlined.Scale
@@ -32,6 +31,7 @@ import org.dishch.medcalculator.ui.components.ResultRow
 import org.dishch.medcalculator.ui.components.cards.CalculationWarningCard
 import org.dishch.medcalculator.ui.components.cards.MaxDoseCard
 import org.dishch.medcalculator.ui.components.cards.ResultCard
+import org.dishch.medcalculator.ui.helpers.suffix
 import org.dishch.medcalculator.ui.theme.AppColors
 import org.dishch.medcalculator.ui.theme.AppDimens
 import org.dishch.medcalculator.ui.theme.MedCalculatorAppTheme
