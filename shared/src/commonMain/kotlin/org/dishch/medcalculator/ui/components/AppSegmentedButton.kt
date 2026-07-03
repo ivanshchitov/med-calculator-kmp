@@ -6,6 +6,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import org.dishch.medcalculator.ui.theme.AppColors
 import org.dishch.medcalculator.ui.theme.AppDimens
 
@@ -17,6 +18,7 @@ fun AppSegmentedButtonRow(
 ) {
     SingleChoiceSegmentedButtonRow(
         modifier = modifier.fillMaxWidth(),
+        space = AppDimens.CornerMediumSmall,
         content = content
     )
 }
@@ -26,9 +28,7 @@ fun AppSegmentedButtonRow(
 fun SingleChoiceSegmentedButtonRowScope.AppSegmentedButton(
     selected: Boolean,
     onClick: () -> Unit,
-    label: String,
-    index: Int,
-    count: Int
+    label: String
 ) {
     val colors = SegmentedButtonDefaults.colors(
         activeContainerColor = MaterialTheme.colorScheme.primary,
@@ -44,14 +44,11 @@ fun SingleChoiceSegmentedButtonRowScope.AppSegmentedButton(
     SegmentedButton(
         selected = selected,
         onClick = onClick,
-        shape = SegmentedButtonDefaults.itemShape(
-            index = index,
-            count = count,
-            baseShape = baseShape
-        ),
+        shape = baseShape,
         colors = colors,
         border = border,
         icon = {},
-        label = { Text(label) }
+        label = { Text(label) },
+        modifier = Modifier.weight(1f)
     )
 }

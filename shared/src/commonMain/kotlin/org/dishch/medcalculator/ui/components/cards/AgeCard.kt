@@ -55,16 +55,12 @@ fun AgeCard(
             AppSegmentedButton(
                 selected = unit == AgeUnit.MONTHS,
                 onClick = { onUnitChanged(AgeUnit.MONTHS) },
-                label = stringResource(Res.string.months_full),
-                index = 0,
-                count = 2
+                label = stringResource(Res.string.months_full)
             )
             AppSegmentedButton(
                 selected = unit == AgeUnit.YEARS,
                 onClick = { onUnitChanged(AgeUnit.YEARS) },
-                label = stringResource(Res.string.years_full),
-                index = 1,
-                count = 2
+                label = stringResource(Res.string.years_full)
             )
         }
     }
