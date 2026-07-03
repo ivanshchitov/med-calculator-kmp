@@ -14,9 +14,9 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import org.dishch.medcalculator.domain.DosageRegimen
-import org.dishch.medcalculator.domain.Medication
-import org.dishch.medcalculator.domain.MedicationRepository
+import org.dishch.medcalculator.domain.model.DosageRegimen
+import org.dishch.medcalculator.domain.model.Medication
+import org.dishch.medcalculator.domain.repository.MedicationRepository
 
 class ChooseMedicationViewModel(
     private val medicationRepository: MedicationRepository

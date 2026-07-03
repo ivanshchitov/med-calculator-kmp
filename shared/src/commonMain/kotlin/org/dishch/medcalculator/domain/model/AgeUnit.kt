@@ -1,4 +1,4 @@
-package org.dishch.medcalculator.domain
+package org.dishch.medcalculator.domain.model
 
 import kotlinx.serialization.Serializable
 

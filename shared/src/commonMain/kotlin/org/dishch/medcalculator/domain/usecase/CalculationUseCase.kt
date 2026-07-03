@@ -1,9 +1,9 @@
-package org.dishch.medcalculator.domain.calculation
+package org.dishch.medcalculator.domain.usecase
 
-import org.dishch.medcalculator.domain.AgeUnit
-import org.dishch.medcalculator.domain.CalculationResults
-import org.dishch.medcalculator.domain.DosageRegimen
-import org.dishch.medcalculator.domain.Medication
+import org.dishch.medcalculator.domain.model.AgeUnit
+import org.dishch.medcalculator.domain.model.CalculationResults
+import org.dishch.medcalculator.domain.model.DosageRegimen
+import org.dishch.medcalculator.domain.model.Medication
 
 class CalculationUseCase {
 

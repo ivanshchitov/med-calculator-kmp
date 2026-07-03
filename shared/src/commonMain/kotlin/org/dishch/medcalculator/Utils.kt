@@ -1,6 +1,5 @@
 package org.dishch.medcalculator
 
-import org.dishch.medcalculator.domain.AgeUnit
 import kotlin.math.roundToInt
 
 fun Double.formatAsDecimal(): String {

@@ -22,7 +22,7 @@ import kotlinx.coroutines.yield
 import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.choose_medication
 import medcalculator.shared.generated.resources.search
-import org.dishch.medcalculator.domain.Medication
+import org.dishch.medcalculator.domain.model.Medication
 import org.dishch.medcalculator.ui.components.MedicationListItem
 import org.dishch.medcalculator.ui.components.cards.MedicationInfoBottomSheet
 import org.dishch.medcalculator.ui.theme.AppColors

@@ -1,4 +1,4 @@
-package org.dishch.medcalculator.domain
+package org.dishch.medcalculator.domain.model
 
 data class DosageRegimen(
     val id: Long,

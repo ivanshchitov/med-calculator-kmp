@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import medcalculator.shared.generated.resources.*
-import org.dishch.medcalculator.domain.AgeUnit
+import org.dishch.medcalculator.domain.model.AgeUnit
 import org.dishch.medcalculator.ui.InputValidator
 import org.dishch.medcalculator.ui.components.AppSegmentedButton
 import org.dishch.medcalculator.ui.components.AppSegmentedButtonRow

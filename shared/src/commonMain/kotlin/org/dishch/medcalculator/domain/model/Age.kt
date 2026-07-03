@@ -1,4 +1,4 @@
-package org.dishch.medcalculator.domain
+package org.dishch.medcalculator.domain.model
 
 private const val MONTHS_IN_YEAR = 12
 const val ADULT_AGE_MONTHS = 216

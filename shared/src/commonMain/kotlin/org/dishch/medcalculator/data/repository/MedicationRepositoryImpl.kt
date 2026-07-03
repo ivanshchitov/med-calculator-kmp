@@ -6,9 +6,9 @@ import org.dishch.medcalculator.data.local.DosageRegimenDao
 import org.dishch.medcalculator.data.local.DosageRegimenEntity
 import org.dishch.medcalculator.data.local.MedicationDao
 import org.dishch.medcalculator.data.local.MedicationEntity
-import org.dishch.medcalculator.domain.DosageRegimen
-import org.dishch.medcalculator.domain.Medication
-import org.dishch.medcalculator.domain.MedicationRepository
+import org.dishch.medcalculator.domain.model.DosageRegimen
+import org.dishch.medcalculator.domain.model.Medication
+import org.dishch.medcalculator.domain.repository.MedicationRepository
 
 class MedicationRepositoryImpl(
     private val medicationDao: MedicationDao,

@@ -1,6 +1,7 @@
-package org.dishch.medcalculator.domain
+package org.dishch.medcalculator.domain.usecase
 
 import org.dishch.medcalculator.data.PreferenceManager
+import org.dishch.medcalculator.domain.model.AgeUnit
 
 class SaveStateUseCase(
     private val preferenceManager: PreferenceManager

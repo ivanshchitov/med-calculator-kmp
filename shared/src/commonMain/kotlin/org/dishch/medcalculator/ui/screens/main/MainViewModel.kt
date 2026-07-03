@@ -1,9 +1,7 @@
 package org.dishch.medcalculator.ui.screens.main
 
-import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -14,13 +12,13 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.dishch.medcalculator.data.PreferenceManager
-import org.dishch.medcalculator.domain.AgeUnit
-import org.dishch.medcalculator.domain.SaveStateUseCase
-import org.dishch.medcalculator.domain.calculation.CalculationUseCase
-import org.dishch.medcalculator.domain.CalculationResults
-import org.dishch.medcalculator.domain.DosageRegimen
-import org.dishch.medcalculator.domain.Medication
-import org.dishch.medcalculator.domain.MedicationRepository
+import org.dishch.medcalculator.domain.model.AgeUnit
+import org.dishch.medcalculator.domain.usecase.SaveStateUseCase
+import org.dishch.medcalculator.domain.usecase.CalculationUseCase
+import org.dishch.medcalculator.domain.model.CalculationResults
+import org.dishch.medcalculator.domain.model.DosageRegimen
+import org.dishch.medcalculator.domain.model.Medication
+import org.dishch.medcalculator.domain.repository.MedicationRepository
 import org.dishch.medcalculator.ui.InputValidator
 
 data class MainUiState(
