@@ -27,6 +27,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import org.dishch.medcalculator.ui.theme.AppColors
 import org.dishch.medcalculator.ui.theme.AppDimens
+import org.dishch.medcalculator.ui.theme.conditional
 
 @Composable
 fun AppCard(
@@ -100,18 +101,5 @@ fun AppCard(
                 }
             }
         }
-    }
-}
-
-/**
- * Extension to make a modifier conditional.
- * If the condition is true, the modifier will be applied, otherwise it won't.
- * This is useful to add (or not) the onClickListener to a card.
- */
-fun Modifier.conditional(condition: Boolean, modifier: Modifier.() -> Modifier): Modifier {
-    return if (condition) {
-        then(modifier(Modifier))
-    } else {
-        this
     }
 }
