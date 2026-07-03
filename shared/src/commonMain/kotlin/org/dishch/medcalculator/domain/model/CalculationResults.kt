@@ -1,4 +1,4 @@
-package org.dishch.medcalculator.domain
+package org.dishch.medcalculator.domain.model
 
 import androidx.navigation.NavType
 import androidx.savedstate.SavedState

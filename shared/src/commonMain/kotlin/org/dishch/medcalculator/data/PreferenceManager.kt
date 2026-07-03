@@ -3,7 +3,7 @@ package org.dishch.medcalculator.data
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
 import kotlinx.coroutines.flow.map
-import org.dishch.medcalculator.domain.AgeUnit
+import org.dishch.medcalculator.domain.model.AgeUnit
 
 class PreferenceManager(private val dataStore: DataStore<Preferences>) {
 

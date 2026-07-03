@@ -8,12 +8,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import kotlinx.serialization.Serializable
-import org.dishch.medcalculator.domain.CalculationResults
+import org.dishch.medcalculator.domain.model.CalculationResults
 import org.dishch.medcalculator.ui.screens.results.CalculationResultsScreen
 import org.dishch.medcalculator.ui.screens.choose.ChooseMedicationScreen
 import org.dishch.medcalculator.ui.screens.main.MainScreen
 import androidx.navigation.toRoute
-import org.dishch.medcalculator.domain.CalculationResultType
+import org.dishch.medcalculator.domain.model.CalculationResultType
 import org.koin.compose.viewmodel.koinViewModel
 import org.dishch.medcalculator.ui.screens.main.MainViewModel
 import kotlin.reflect.typeOf

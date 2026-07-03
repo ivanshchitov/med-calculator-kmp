@@ -19,8 +19,8 @@ import androidx.compose.ui.text.font.FontWeight
 import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.medication_info_description
 import medcalculator.shared.generated.resources.mg_per_ml_format
-import org.dishch.medcalculator.domain.Medication
-import org.dishch.medcalculator.domain.formattedDosage
+import org.dishch.medcalculator.domain.model.Medication
+import org.dishch.medcalculator.domain.model.formattedDosage
 import org.dishch.medcalculator.ui.theme.AppColors
 import org.dishch.medcalculator.ui.theme.AppColors.AvatarColors
 import org.dishch.medcalculator.ui.theme.AppDimens

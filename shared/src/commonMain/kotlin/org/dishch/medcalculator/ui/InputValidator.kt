@@ -1,6 +1,6 @@
 package org.dishch.medcalculator.ui
 
-import org.dishch.medcalculator.domain.AgeUnit
+import org.dishch.medcalculator.domain.model.AgeUnit
 
 object InputValidator {
 

@@ -11,11 +11,11 @@ import medcalculator.shared.generated.resources.age_supporting_years
 import medcalculator.shared.generated.resources.age_years
 import medcalculator.shared.generated.resources.months_suffix
 import medcalculator.shared.generated.resources.years_suffix
-import org.dishch.medcalculator.domain.ADULT_AGE_MONTHS
-import org.dishch.medcalculator.domain.Age
-import org.dishch.medcalculator.domain.AgeUnit
-import org.dishch.medcalculator.domain.DosageRegimen
-import org.dishch.medcalculator.domain.toAge
+import org.dishch.medcalculator.domain.model.ADULT_AGE_MONTHS
+import org.dishch.medcalculator.domain.model.Age
+import org.dishch.medcalculator.domain.model.AgeUnit
+import org.dishch.medcalculator.domain.model.DosageRegimen
+import org.dishch.medcalculator.domain.model.toAge
 import org.dishch.medcalculator.formatAsDecimal
 import org.jetbrains.compose.resources.PluralStringResource
 import org.jetbrains.compose.resources.StringResource
