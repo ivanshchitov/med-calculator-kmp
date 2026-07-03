@@ -39,7 +39,7 @@ fun AppCard(
     content: @Composable ColumnScope.() -> Unit
 ) {
 
-    val cardShape = RoundedCornerShape(AppDimens.CardCorner)
+    val cardShape = RoundedCornerShape(AppDimens.CornerMediumSmall)
 
     Card(
         modifier = modifier
@@ -58,7 +58,7 @@ fun AppCard(
         )
     ) {
         Box(
-            modifier = Modifier.padding(AppDimens.CardPadding)
+            modifier = Modifier.padding(AppDimens.SpacingLargeMedium)
         ) {
             Row(
                 verticalAlignment = verticalAlignment,
@@ -80,7 +80,7 @@ fun AppCard(
                     }
                 }
 
-                Spacer(modifier = Modifier.width(AppDimens.CardSpacing))
+                Spacer(modifier = Modifier.width(AppDimens.SpacingMedium))
 
                 Column(modifier = Modifier.weight(1f)) {
                     Text(

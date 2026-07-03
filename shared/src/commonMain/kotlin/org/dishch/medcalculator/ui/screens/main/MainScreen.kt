@@ -67,8 +67,8 @@ fun MainScreen(
         bottomBar = {
             Box(
                 modifier = Modifier
-                    .padding(AppDimens.ScreenPadding)
-                    .padding(bottom = AppDimens.ScreenPadding)
+                    .padding(AppDimens.SpacingMedium)
+                    .padding(bottom = AppDimens.SpacingMedium)
             ) {
                 PrimaryButton(
                     text = stringResource(Res.string.calculate),
@@ -88,10 +88,10 @@ fun MainScreen(
         Column(
             modifier = Modifier
                 .padding(padding)
-                .padding(AppDimens.ScreenPadding)
+                .padding(AppDimens.SpacingMedium)
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(AppDimens.CardSpacing)
+            verticalArrangement = Arrangement.spacedBy(AppDimens.SpacingMedium)
         ) {
 
             AgeCard(
@@ -130,7 +130,7 @@ fun MainScreen(
             }
 
             Spacer(
-                modifier = Modifier.height(AppDimens.CardSpacing)
+                modifier = Modifier.height(AppDimens.SpacingMedium)
             )
         }
     }

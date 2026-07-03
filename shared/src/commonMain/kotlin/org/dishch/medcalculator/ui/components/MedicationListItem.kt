@@ -58,7 +58,7 @@ fun MedicationListItem(
             .fillMaxWidth()
             .clickable(onClick = onClick)
             .padding(
-                start = AppDimens.ScreenPadding,
+                start = AppDimens.SpacingMedium,
                 end = AppDimens.SpacingExtraSmall,
                 top = AppDimens.SpacingMediumSmall,
                 bottom = AppDimens.SpacingMediumSmall
@@ -79,7 +79,7 @@ fun MedicationListItem(
             )
         }
 
-        Spacer(modifier = Modifier.width(AppDimens.ResultSpacing))
+        Spacer(modifier = Modifier.width(AppDimens.SpacingMedium))
 
         Text(
             text = medication.name,

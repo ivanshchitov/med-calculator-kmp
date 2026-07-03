@@ -52,7 +52,7 @@ fun AgeCard(
             keyboardActions = keyboardActions
         )
 
-        Spacer(modifier = Modifier.height(AppDimens.CardSpacing))
+        Spacer(modifier = Modifier.height(AppDimens.SpacingMedium))
 
         SingleChoiceSegmentedButtonRow(
             modifier = Modifier.fillMaxWidth()
@@ -66,7 +66,7 @@ fun AgeCard(
                 inactiveBorderColor = Color.Transparent
             )
             val border = SegmentedButtonDefaults.borderStroke(Color.Transparent)
-            val baseShape = RoundedCornerShape(AppDimens.ButtonCorner)
+            val baseShape = RoundedCornerShape(AppDimens.CornerMediumSmall)
 
             SegmentedButton(
                 selected = unit == AgeUnit.MONTHS,

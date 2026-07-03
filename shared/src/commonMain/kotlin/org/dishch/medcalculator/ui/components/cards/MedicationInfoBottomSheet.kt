@@ -19,7 +19,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import org.dishch.medcalculator.domain.DosageRegimen
 import org.dishch.medcalculator.domain.Medication
 import org.dishch.medcalculator.domain.formattedDosage
@@ -49,12 +48,12 @@ fun MedicationInfoBottomSheet(
     ) {
         Column(
             modifier = Modifier
-                .padding(AppDimens.ScreenPadding)
+                .padding(AppDimens.SpacingMedium)
                 .navigationBarsPadding()
         ) {
             MedicationHeader(medication, avatarColor)
 
-            Spacer(modifier = Modifier.height(AppDimens.CardSpacing))
+            Spacer(modifier = Modifier.height(AppDimens.SpacingMedium))
 
             InfoBlockWithIcon(
                 title = stringResource(Res.string.age_limit),
@@ -79,7 +78,7 @@ fun MedicationInfoBottomSheet(
 
             RegimensSection(regimens)
 
-            Spacer(modifier = Modifier.height(AppDimens.ScreenPadding))
+            Spacer(modifier = Modifier.height(AppDimens.SpacingMedium))
         }
     }
 }
@@ -100,7 +99,7 @@ private fun MedicationHeader(medication: Medication, avatarColor: Color) {
                 color = Color.White
             )
         }
-        Spacer(modifier = Modifier.width(AppDimens.CardSpacing))
+        Spacer(modifier = Modifier.width(AppDimens.SpacingMedium))
         Column {
             Text(
                 medication.name,
@@ -119,11 +118,11 @@ private fun MedicationHeader(medication: Medication, avatarColor: Color) {
 @Composable
 private fun RegimensSection(regimens: List<DosageRegimen>) {
     Surface(
-        shape = RoundedCornerShape(AppDimens.CardCorner),
+        shape = RoundedCornerShape(AppDimens.CornerMediumSmall),
         border = BorderStroke(AppDimens.SubCardBorderWidth, AppColors.Border),
         color = AppColors.Surface
     ) {
-        Column(modifier = Modifier.padding(AppDimens.CardPadding).fillMaxWidth()) {
+        Column(modifier = Modifier.padding(AppDimens.SpacingLargeMedium).fillMaxWidth()) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(
                     Icons.AutoMirrored.Outlined.Assignment,
@@ -150,7 +149,7 @@ private fun RegimensSection(regimens: List<DosageRegimen>) {
 @Composable
 private fun RegimenItem(regimen: DosageRegimen) {
     Surface(
-        shape = RoundedCornerShape(AppDimens.CardCorner),
+        shape = RoundedCornerShape(AppDimens.CornerMediumSmall),
         border = BorderStroke(AppDimens.SubCardBorderWidth, AppColors.Border),
         color = AppColors.Surface
     ) {
@@ -159,7 +158,7 @@ private fun RegimenItem(regimen: DosageRegimen) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Surface(
-                shape = RoundedCornerShape(AppDimens.ResultIconCorner * 1.5f),
+                shape = RoundedCornerShape(AppDimens.CornerSmall * 1.5f),
                 color = Color(0xFFC8E6C9),
                 modifier = Modifier.size(AppDimens.ResultIconContainerSize)
             ) {
@@ -203,24 +202,24 @@ private fun InfoBlockWithIcon(
     iconBackground: Color
 ) {
     Surface(
-        shape = RoundedCornerShape(AppDimens.CardCorner),
+        shape = RoundedCornerShape(AppDimens.CornerMediumSmall),
         border = BorderStroke(AppDimens.SubCardBorderWidth, AppColors.Border),
         color = AppColors.Surface
     ) {
         Row(
-            modifier = Modifier.padding(AppDimens.CardPadding).fillMaxWidth(),
+            modifier = Modifier.padding(AppDimens.SpacingLargeMedium).fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Surface(
-                modifier = Modifier.size(AppDimens.IconContainerSize - AppDimens.CardSpacing),
-                shape = RoundedCornerShape(AppDimens.ResultIconCorner * 1.5f),
+                modifier = Modifier.size(AppDimens.IconContainerSize - AppDimens.SpacingMedium),
+                shape = RoundedCornerShape(AppDimens.CornerSmall * 1.5f),
                 color = iconBackground
             ) {
                 Box(contentAlignment = Alignment.Center) {
                     Icon(icon, contentDescription = null, tint = iconColor)
                 }
             }
-            Spacer(modifier = Modifier.width(AppDimens.CardSpacing))
+            Spacer(modifier = Modifier.width(AppDimens.SpacingMedium))
             Column {
                 Text(
                     title,

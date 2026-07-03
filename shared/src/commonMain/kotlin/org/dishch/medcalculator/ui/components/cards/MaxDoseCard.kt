@@ -29,13 +29,13 @@ fun MaxDoseCard(isExceeded: Boolean, modifier: Modifier = Modifier) {
 
     Card(
         modifier = modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(AppDimens.CardCorner),
+        shape = RoundedCornerShape(AppDimens.CornerMediumSmall),
         colors = CardDefaults.cardColors(containerColor = backgroundColor),
         border = BorderStroke(AppDimens.CardBorderWidth, AppColors.Border),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {
         Row(
-            modifier = Modifier.padding(AppDimens.ResultRowPadding),
+            modifier = Modifier.padding(AppDimens.SpacingMedium),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
@@ -44,7 +44,7 @@ fun MaxDoseCard(isExceeded: Boolean, modifier: Modifier = Modifier) {
                 tint = iconColor,
                 modifier = Modifier.size(AppDimens.IconSize)
             )
-            Spacer(modifier = Modifier.width(AppDimens.ResultSpacing))
+            Spacer(modifier = Modifier.width(AppDimens.SpacingMedium))
             Column {
                 Text(
                     text = stringResource(Res.string.max_daily_dose),

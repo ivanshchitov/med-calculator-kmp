@@ -37,12 +37,12 @@ fun ResultRow(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(AppDimens.ResultRowPadding),
+            .padding(AppDimens.SpacingMedium),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Surface(
             modifier = Modifier.size(AppDimens.ResultIconContainerSize),
-            shape = RoundedCornerShape(AppDimens.ResultIconCorner),
+            shape = RoundedCornerShape(AppDimens.CornerSmall),
             color = iconContainerColor
         ) {
             Box(contentAlignment = Alignment.Center) {
@@ -55,7 +55,7 @@ fun ResultRow(
             }
         }
 
-        Spacer(modifier = Modifier.width(AppDimens.ResultSpacing))
+        Spacer(modifier = Modifier.width(AppDimens.SpacingMedium))
 
         Text(
             text = label,

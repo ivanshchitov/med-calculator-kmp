@@ -28,7 +28,7 @@ fun PrimaryButton(
     enabled: Boolean = true
 ) {
     Button(
-        shape = RoundedCornerShape(AppDimens.ButtonCorner),
+        shape = RoundedCornerShape(AppDimens.CornerMediumSmall),
         onClick = onClick,
         enabled = enabled,
         modifier = Modifier

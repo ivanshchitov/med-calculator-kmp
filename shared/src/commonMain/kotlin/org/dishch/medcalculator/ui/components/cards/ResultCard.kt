@@ -20,7 +20,7 @@ fun ResultCard(
 ) {
     Card(
         modifier = modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(AppDimens.CardCorner),
+        shape = RoundedCornerShape(AppDimens.CornerMediumSmall),
         colors = CardDefaults.cardColors(containerColor = AppColors.Surface),
         border = BorderStroke(AppDimens.CardBorderWidth, AppColors.Border),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)

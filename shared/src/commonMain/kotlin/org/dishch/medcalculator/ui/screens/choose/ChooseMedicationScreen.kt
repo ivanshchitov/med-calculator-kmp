@@ -105,19 +105,19 @@ fun ChooseMedicationScreen(
             modifier = Modifier
                 .padding(padding)
                 .fillMaxSize()
-                .padding(horizontal = AppDimens.ScreenPadding)
-                .padding(bottom = AppDimens.ScreenPadding)
+                .padding(horizontal = AppDimens.SpacingMedium)
+                .padding(bottom = AppDimens.SpacingMedium)
         ) {
             OutlinedTextField(
                 value = searchQuery,
                 onValueChange = viewModel::onSearchQueryChange,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = AppDimens.CardSpacing),
+                    .padding(vertical = AppDimens.SpacingMedium),
                 placeholder = { Text(stringResource(Res.string.search)) },
                 leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
                 singleLine = true,
-                shape = RoundedCornerShape(AppDimens.CardCorner),
+                shape = RoundedCornerShape(AppDimens.CornerMediumSmall),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedContainerColor = AppColors.Surface,
                     unfocusedContainerColor = AppColors.Surface,
@@ -129,10 +129,10 @@ fun ChooseMedicationScreen(
             Surface(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clip(RoundedCornerShape(AppDimens.CardCorner)),
+                    .clip(RoundedCornerShape(AppDimens.CornerMediumSmall)),
                 color = AppColors.Surface,
                 border = BorderStroke(AppDimens.CardBorderWidth, AppColors.Border),
-                shape = RoundedCornerShape(AppDimens.CardCorner)
+                shape = RoundedCornerShape(AppDimens.CornerMediumSmall)
             ) {
                 LazyColumn {
                     itemsIndexed(filteredMedications) { index, medication ->
@@ -146,7 +146,7 @@ fun ChooseMedicationScreen(
                         )
                         if (index < filteredMedications.lastIndex) {
                             HorizontalDivider(
-                                modifier = Modifier.padding(horizontal = AppDimens.ScreenPadding),
+                                modifier = Modifier.padding(horizontal = AppDimens.SpacingMedium),
                                 thickness = AppDimens.CardBorderWidth / 2,
                                 color = AppColors.Border
                             )
@@ -155,7 +155,7 @@ fun ChooseMedicationScreen(
                 }
             }
 
-            Spacer(modifier = Modifier.height(AppDimens.CardSpacing))
+            Spacer(modifier = Modifier.height(AppDimens.SpacingMedium))
         }
     }
 }
