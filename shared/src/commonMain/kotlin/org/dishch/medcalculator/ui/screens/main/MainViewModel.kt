@@ -20,8 +20,7 @@ import org.dishch.medcalculator.domain.CalculationResults
 import org.dishch.medcalculator.domain.DosageRegimen
 import org.dishch.medcalculator.domain.Medication
 import org.dishch.medcalculator.domain.MedicationRepository
-import org.dishch.medcalculator.isAgeValid
-import org.dishch.medcalculator.isWeightValid
+import org.dishch.medcalculator.ui.InputValidator
 
 data class MainUiState(
     val weight: String = "12.5",
@@ -41,8 +40,8 @@ class MainViewModel(
     val uiState: StateFlow<MainUiState> = _uiState.asStateFlow()
 
     val isCalculationEnabled: StateFlow<Boolean> = _uiState.map { state ->
-        isWeightValid(state.weight.toDoubleOrNull())
-                && isAgeValid(state.age.toIntOrNull(), state.ageUnit)
+        InputValidator.validateWeight(state.weight)
+                && InputValidator.validateAge(state.age, state.ageUnit)
                 && state.selectedMedication != null
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), true)
 
