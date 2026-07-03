@@ -59,4 +59,5 @@
         <item quantity="other">%1$d years</item>
     </plurals>
     <string name="age_range_format">%1$s – %2$s</string>
+    <string name="calculation_warning">This information is for advisory purposes only. All prescriptions should be made only by the attending physician or paramedic.</string>
 </resources>

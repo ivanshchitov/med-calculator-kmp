@@ -4,7 +4,8 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Warning
+import androidx.compose.material.icons.outlined.Warning
+import androidx.compose.material.icons.outlined.WarningAmber
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,7 +23,7 @@ import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun MaxDoseCard(isExceeded: Boolean, modifier: Modifier = Modifier) {
-    val backgroundColor = if (isExceeded) AppColors.WarningContainer else AppColors.Surface
+    val iconContainerColor = if (isExceeded) AppColors.WarningContainer else AppColors.SuccessContainer
     val iconColor = if (isExceeded) AppColors.Warning else AppColors.Success
     val textColor = if (isExceeded) Color.Red else AppColors.Success
     val message = if (isExceeded) stringResource(Res.string.exceeded) else stringResource(Res.string.not_exceeded)
@@ -30,7 +31,7 @@ fun MaxDoseCard(isExceeded: Boolean, modifier: Modifier = Modifier) {
     Card(
         modifier = modifier.fillMaxWidth(),
         shape = RoundedCornerShape(AppDimens.CornerMediumSmall),
-        colors = CardDefaults.cardColors(containerColor = backgroundColor),
+        colors = CardDefaults.cardColors(containerColor = AppColors.Surface),
         border = BorderStroke(AppDimens.CardBorderWidth, AppColors.Border),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {
@@ -38,12 +39,20 @@ fun MaxDoseCard(isExceeded: Boolean, modifier: Modifier = Modifier) {
             modifier = Modifier.padding(AppDimens.SpacingMedium),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Icon(
-                imageVector = Icons.Default.Warning,
-                contentDescription = null,
-                tint = iconColor,
-                modifier = Modifier.size(AppDimens.IconSize)
-            )
+            Surface(
+                modifier = Modifier.size(AppDimens.ResultIconContainerSize),
+                shape = RoundedCornerShape(AppDimens.CornerSmall),
+                color = iconContainerColor
+            ) {
+                Box(contentAlignment = Alignment.Center) {
+                    Icon(
+                        imageVector = Icons.Outlined.WarningAmber,
+                        contentDescription = null,
+                        tint = iconColor,
+                        modifier = Modifier.size(AppDimens.IconSize)
+                    )
+                }
+            }
             Spacer(modifier = Modifier.width(AppDimens.SpacingMedium))
             Column {
                 Text(

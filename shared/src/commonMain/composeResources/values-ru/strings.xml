@@ -71,4 +71,5 @@
         <item quantity="other">%1$d года</item>
     </plurals>
     <string name="age_range_format">%1$s – %2$s</string>
+    <string name="calculation_warning">Информация носит исключительно рекомендательный характер. Все назначения должны производиться только лечащим врачом или фельдшером.</string>
 </resources>

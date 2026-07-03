@@ -9,6 +9,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.CalendarMonth
+import androidx.compose.material.icons.outlined.MedicalServices
 import androidx.compose.material.icons.outlined.Medication
 import androidx.compose.material.icons.outlined.Opacity
 import androidx.compose.material.icons.outlined.Scale
@@ -28,6 +29,7 @@ import org.dishch.medcalculator.domain.formattedDosage
 import org.dishch.medcalculator.domain.formattedDoseRange
 import org.dishch.medcalculator.domain.formattedVolumeRange
 import org.dishch.medcalculator.ui.components.ResultRow
+import org.dishch.medcalculator.ui.components.cards.CalculationWarningCard
 import org.dishch.medcalculator.ui.components.cards.MaxDoseCard
 import org.dishch.medcalculator.ui.components.cards.ResultCard
 import org.dishch.medcalculator.ui.theme.AppColors
@@ -149,6 +151,8 @@ fun CalculationResultsScreen(
             }
 
             MaxDoseCard(isExceeded = result.isMaxDailyDoseExceeded)
+
+            CalculationWarningCard()
 
             Spacer(modifier = Modifier.height(AppDimens.SpacingMedium))
         }
