@@ -4,13 +4,12 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Warning
+import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.WarningAmber
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import medcalculator.shared.generated.resources.Res
@@ -24,8 +23,9 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun MaxDoseCard(isExceeded: Boolean, modifier: Modifier = Modifier) {
     val iconContainerColor = if (isExceeded) AppColors.WarningContainer else AppColors.SuccessContainer
-    val iconColor = if (isExceeded) AppColors.Warning else AppColors.Success
-    val textColor = if (isExceeded) Color.Red else AppColors.Success
+    val iconColor = if (isExceeded) MaterialTheme.colorScheme.error else AppColors.Success
+    val icon = if (isExceeded) Icons.Outlined.WarningAmber else Icons.Outlined.CheckCircle
+    val textColor = if (isExceeded) MaterialTheme.colorScheme.error else AppColors.Success
     val message = if (isExceeded) stringResource(Res.string.exceeded) else stringResource(Res.string.not_exceeded)
 
     Card(
@@ -46,7 +46,7 @@ fun MaxDoseCard(isExceeded: Boolean, modifier: Modifier = Modifier) {
             ) {
                 Box(contentAlignment = Alignment.Center) {
                     Icon(
-                        imageVector = Icons.Outlined.WarningAmber,
+                        imageVector = icon,
                         contentDescription = null,
                         tint = iconColor,
                         modifier = Modifier.size(AppDimens.IconSize)
