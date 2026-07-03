@@ -28,6 +28,7 @@ import org.dishch.medcalculator.domain.formattedDosage
 import org.dishch.medcalculator.domain.formattedDoseRange
 import org.dishch.medcalculator.domain.formattedVolumeRange
 import org.dishch.medcalculator.ui.components.ResultRow
+import org.dishch.medcalculator.ui.components.cards.MaxDoseCard
 import org.dishch.medcalculator.ui.components.cards.ResultCard
 import org.dishch.medcalculator.ui.theme.AppColors
 import org.dishch.medcalculator.ui.theme.AppDimens
@@ -147,8 +148,7 @@ fun CalculationResultsScreen(
                 )
             }
 
-            // Hidden temporarily, maybe
-            // MaxDoseCard(isExceeded = result.isMaxDailyDoseExceeded)
+            MaxDoseCard(isExceeded = result.isMaxDailyDoseExceeded)
 
             Spacer(modifier = Modifier.height(AppDimens.SpacingMedium))
         }

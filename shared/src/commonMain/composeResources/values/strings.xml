@@ -29,7 +29,6 @@
     <string name="medication">Medication</string>
     <string name="medication_dosage">Medication dose</string>
     <string name="medication_volume">Medication volume</string>
-    <string name="max_daily_dose">Max daily dose</string>
     <string name="not_exceeded">Not exceeded</string>
     <string name="exceeded">Exceeded</string>
     <string name="new_calculation">New calculation</string>

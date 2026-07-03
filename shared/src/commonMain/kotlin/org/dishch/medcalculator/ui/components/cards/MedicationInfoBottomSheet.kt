@@ -12,6 +12,7 @@ import androidx.compose.material.icons.outlined.Face2
 import androidx.compose.material.icons.outlined.Face3
 import androidx.compose.material.icons.outlined.Face6
 import androidx.compose.material.icons.outlined.NoAdultContent
+import androidx.compose.material.icons.outlined.WarningAmber
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,8 +30,10 @@ import org.dishch.medcalculator.domain.formattedAgeRange
 import org.dishch.medcalculator.domain.formattedDoseRange
 import org.dishch.medcalculator.domain.toAge
 import org.dishch.medcalculator.domain.formattedAgeLimit
+import org.dishch.medcalculator.domain.formattedMaxSingleDose
 import org.dishch.medcalculator.domain.fromAgeInYears
 import org.dishch.medcalculator.ui.theme.AppDimens
+import org.dishch.medcalculator.ui.theme.AppDimens.SpacingSmall
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -63,16 +66,15 @@ fun MedicationInfoBottomSheet(
                 iconColor = AppColors.Primary
             )
 
-            // Hidden temporarily, maybe
-            // Spacer(modifier = Modifier.height(8.dp))
-            //
-            // InfoBlockWithIcon(
-            //     title = stringResource(Res.string.max_single_dose),
-            //     value = stringResource(Res.string.mg_format, medication.formattedMaxSingleDose),
-            //     icon = Icons.Outlined.WarningAmber,
-            //     iconBackground = Color(0xFFFFF4E5),
-            //     iconColor = AppColors.Warning
-            // )
+             Spacer(modifier = Modifier.height(SpacingSmall))
+
+             InfoBlockWithIcon(
+                 title = stringResource(Res.string.max_single_dose),
+                 value = stringResource(Res.string.mg_format, medication.formattedMaxSingleDose),
+                 icon = Icons.Outlined.WarningAmber,
+                 iconBackground = AppColors.WarningContainer,
+                 iconColor = AppColors.Warning
+             )
 
             Spacer(modifier = Modifier.height(AppDimens.SpacingSmall))
 

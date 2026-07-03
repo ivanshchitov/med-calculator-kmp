@@ -14,7 +14,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.exceeded
-import medcalculator.shared.generated.resources.max_daily_dose
+import medcalculator.shared.generated.resources.max_single_dose
 import medcalculator.shared.generated.resources.not_exceeded
 import org.dishch.medcalculator.ui.theme.AppColors
 import org.dishch.medcalculator.ui.theme.AppDimens
@@ -22,8 +22,8 @@ import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun MaxDoseCard(isExceeded: Boolean, modifier: Modifier = Modifier) {
-    val backgroundColor = if (isExceeded) Color(0xFFFFEBEE) else AppColors.WarningContainer
-    val iconColor = if (isExceeded) Color.Red else AppColors.Warning
+    val backgroundColor = if (isExceeded) AppColors.WarningContainer else AppColors.Surface
+    val iconColor = if (isExceeded) AppColors.Warning else AppColors.Success
     val textColor = if (isExceeded) Color.Red else AppColors.Success
     val message = if (isExceeded) stringResource(Res.string.exceeded) else stringResource(Res.string.not_exceeded)
 
@@ -47,7 +47,7 @@ fun MaxDoseCard(isExceeded: Boolean, modifier: Modifier = Modifier) {
             Spacer(modifier = Modifier.width(AppDimens.SpacingMedium))
             Column {
                 Text(
-                    text = stringResource(Res.string.max_daily_dose),
+                    text = stringResource(Res.string.max_single_dose),
                     style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
                     color = AppColors.TextPrimary
                 )

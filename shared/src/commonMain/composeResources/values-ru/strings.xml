@@ -33,7 +33,6 @@
     <string name="medication">Препарат</string>
     <string name="medication_dosage">Доза препарата</string>
     <string name="medication_volume">Объем препарата</string>
-    <string name="max_daily_dose">Максимальная суточная доза</string>
     <string name="not_exceeded">Не превышена</string>
     <string name="exceeded">Превышена</string>
     <string name="new_calculation">Новый расчет</string>
