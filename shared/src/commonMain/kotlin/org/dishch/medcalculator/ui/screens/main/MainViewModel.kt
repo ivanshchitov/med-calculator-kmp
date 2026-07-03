@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.dishch.medcalculator.data.PreferenceManager
 import org.dishch.medcalculator.domain.AgeUnit
+import org.dishch.medcalculator.domain.SaveStateUseCase
 import org.dishch.medcalculator.domain.calculation.CalculationUseCase
 import org.dishch.medcalculator.domain.CalculationResults
 import org.dishch.medcalculator.domain.DosageRegimen
@@ -33,6 +34,7 @@ data class MainUiState(
 class MainViewModel(
     private val medicationRepository: MedicationRepository,
     private val calculationUseCase: CalculationUseCase,
+    private val saveStateUseCase: SaveStateUseCase,
     private val preferenceManager: PreferenceManager
 ) : ViewModel() {
 
@@ -85,21 +87,27 @@ class MainViewModel(
         val weight = state.weight.toDoubleOrNull() ?: 0.0
         val age = state.age.toIntOrNull() ?: 0
         
-        viewModelScope.launch {
-            preferenceManager.save(
-                weight = weight,
-                age = age,
-                ageUnit = state.ageUnit,
-                medicationId = state.selectedMedication?.id ?: 1
-            )
-        }
-        return calculationUseCase(
+        val result = calculationUseCase(
             weight = weight,
             age = age,
             ageUnit = state.ageUnit,
             selectedMedication = state.selectedMedication,
             dosageRegimens = state.dosageRegimens
         )
+        
+        // Save state after calculation
+        viewModelScope.launch {
+            result?.let {
+                saveStateUseCase(
+                    weight = weight,
+                    age = age,
+                    ageUnit = state.ageUnit,
+                    medicationId = state.selectedMedication?.id ?: 1
+                )
+            }
+        }
+        
+        return result
     }
 
     fun onWeightChanged(newWeight: String) {
@@ -116,5 +124,14 @@ class MainViewModel(
 
     fun onMedicationChanged(medication: Medication) {
         _uiState.update { it.copy(selectedMedication = medication) }
+        // Save medication selection immediately
+        viewModelScope.launch {
+            saveStateUseCase(
+                weight = _uiState.value.weight.toDoubleOrNull() ?: 0.0,
+                age = _uiState.value.age.toIntOrNull() ?: 0,
+                ageUnit = _uiState.value.ageUnit,
+                medicationId = medication.id
+            )
+        }
     }
 }

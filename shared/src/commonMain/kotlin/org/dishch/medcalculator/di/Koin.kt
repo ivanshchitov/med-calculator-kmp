@@ -6,6 +6,7 @@ import org.dishch.medcalculator.data.local.MedicationDao
 import org.dishch.medcalculator.data.local.getRoomDatabase
 import org.dishch.medcalculator.data.local.initializeDatabase
 import org.dishch.medcalculator.data.repository.MedicationRepositoryImpl
+import org.dishch.medcalculator.domain.SaveStateUseCase
 import org.dishch.medcalculator.domain.calculation.CalculationUseCase
 import org.dishch.medcalculator.domain.MedicationRepository
 import org.dishch.medcalculator.ui.screens.choose.ChooseMedicationViewModel
@@ -59,6 +60,7 @@ val repositoryModule = module {
 
 val useCaseModule = module {
     factoryOf(::CalculationUseCase)
+    factoryOf(::SaveStateUseCase)
 }
 
 val viewModelModule = module {
