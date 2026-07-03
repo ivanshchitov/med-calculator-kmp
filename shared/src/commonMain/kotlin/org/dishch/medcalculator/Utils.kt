@@ -11,12 +11,3 @@ fun Double.formatAsDecimal(): String {
         rounded.toString()
     }
 }
-
-fun isAgeValid(age: Int?, ageUnit: AgeUnit) =
-    when (ageUnit) {
-        AgeUnit.MONTHS -> age != null && age in 1..11
-        AgeUnit.YEARS -> age != null && age in 1..17
-    }
-
-fun isWeightValid(weight: Double?) =
-    weight != null && weight in 1.0..100.0

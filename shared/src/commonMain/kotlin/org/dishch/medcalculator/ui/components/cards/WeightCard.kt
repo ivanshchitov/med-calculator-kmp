@@ -11,7 +11,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import medcalculator.shared.generated.resources.*
-import org.dishch.medcalculator.isWeightValid
+import org.dishch.medcalculator.ui.InputValidator
 import org.dishch.medcalculator.ui.components.InputTextField
 import org.dishch.medcalculator.ui.theme.MedCalculatorAppTheme
 import org.jetbrains.compose.resources.stringResource
@@ -23,8 +23,7 @@ fun WeightCard(
     imeAction: ImeAction = ImeAction.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default
 ) {
-    val weightDouble = weight.toDoubleOrNull()
-    val isError = !isWeightValid(weightDouble)
+    val isError = !InputValidator.validateWeight(weight)
 
     AppCard(
         title = stringResource(Res.string.patient_weight),
@@ -33,8 +32,7 @@ fun WeightCard(
         InputTextField(
             value = weight,
             onValueChange = { value: String ->
-                // Restriction: only decimal numbers with up to one digit after the dot
-                if (value.isEmpty() || (value.matches(Regex("""^\d*\.?\d{0,1}$""")) && value.length <= 4)) {
+                if (InputValidator.isWeightInputValid(value)) {
                     onWeightChanged(value)
                 }
             },
