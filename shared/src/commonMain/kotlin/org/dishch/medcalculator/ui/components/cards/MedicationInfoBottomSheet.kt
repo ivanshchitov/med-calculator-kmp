@@ -59,7 +59,7 @@ fun MedicationInfoBottomSheet(
                 title = stringResource(Res.string.age_limit),
                 value = medication.ageLimit.toAge().formattedAgeLimit,
                 icon = Icons.Outlined.NoAdultContent,
-                iconBackground = Color(0xFFE8EAF6),
+                iconBackground = AppColors.InfoContainer,
                 iconColor = AppColors.Primary
             )
 
@@ -159,7 +159,7 @@ private fun RegimenItem(regimen: DosageRegimen) {
         ) {
             Surface(
                 shape = RoundedCornerShape(AppDimens.CornerSmall * 1.5f),
-                color = Color(0xFFC8E6C9),
+                color = AppColors.SuccessContainer,
                 modifier = Modifier.size(AppDimens.ResultIconContainerSize)
             ) {
                 Box(contentAlignment = Alignment.Center) {
