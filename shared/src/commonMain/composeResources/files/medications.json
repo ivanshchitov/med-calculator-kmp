@@ -11,7 +11,7 @@
     "name": "Преднизолон",
     "dosageMgPerMl": 30,
     "maxSingleDoseMg": 400,
-    "minAgeMonths": 0
+    "minAgeMonths": 2
   },
   {
     "id": 3,
@@ -25,188 +25,97 @@
     "name": "Эуфиллин",
     "dosageMgPerMl": 24,
     "maxSingleDoseMg": 250,
-    "minAgeMonths": 0
+    "minAgeMonths": 168
   },
   {
     "id": 5,
-    "name": "Кеторол",
-    "dosageMgPerMl": 30,
-    "maxSingleDoseMg": 30,
-    "minAgeMonths": 192
-  },
-  {
-    "id": 6,
     "name": "Адреналин",
     "dosageMgPerMl": 1,
     "maxSingleDoseMg": 1,
     "minAgeMonths": 0
   },
   {
-    "id": 7,
-    "name": "Допамин",
-    "dosageMgPerMl": 5,
-    "maxSingleDoseMg": 20,
-    "minAgeMonths": 0
-  },
-  {
-    "id": 8,
-    "name": "Норадреналин",
-    "dosageMgPerMl": 2,
-    "maxSingleDoseMg": 2,
-    "minAgeMonths": 0
-  },
-  {
-    "id": 9,
-    "name": "Хлоропирамин",
-    "dosageMgPerMl": 20,
-    "maxSingleDoseMg": 40,
-    "minAgeMonths": 0
-  },
-  {
-    "id": 10,
+    "id": 6,
     "name": "Магния сульфат",
     "dosageMgPerMl": 250,
     "maxSingleDoseMg": 2000,
     "minAgeMonths": 0
   },
   {
-    "id": 11,
+    "id": 7,
     "name": "Фуросемид",
     "dosageMgPerMl": 10,
-    "maxSingleDoseMg": 40,
+    "maxSingleDoseMg": 20,
     "minAgeMonths": 0
   },
   {
-    "id": 12,
-    "name": "Метопролол",
-    "dosageMgPerMl": 1,
-    "maxSingleDoseMg": 15,
-    "minAgeMonths": 0
-  },
-  {
-    "id": 13,
-    "name": "Пропанорм",
-    "dosageMgPerMl": 3.5,
-    "maxSingleDoseMg": 70,
-    "minAgeMonths": 216
-  },
-  {
-    "id": 14,
-    "name": "Амиодарон",
-    "dosageMgPerMl": 50,
-    "maxSingleDoseMg": 300,
-    "minAgeMonths": 0
-  },
-  {
-    "id": 15,
-    "name": "Спазматен",
-    "dosageMgPerMl": 500,
-    "maxSingleDoseMg": 1000,
-    "minAgeMonths": 216
-  },
-  {
-    "id": 16,
+    "id": 8,
     "name": "Платифиллин",
     "dosageMgPerMl": 2,
     "maxSingleDoseMg": 10,
     "minAgeMonths": 12
   },
   {
-    "id": 17,
+    "id": 9,
     "name": "Дротаверин",
     "dosageMgPerMl": 20,
     "maxSingleDoseMg": 40,
     "minAgeMonths": 36
   },
   {
-    "id": 18,
-    "name": "Папаверин",
-    "dosageMgPerMl": 20,
-    "maxSingleDoseMg": 40,
-    "minAgeMonths": 6
-  },
-  {
-    "id": 19,
+    "id": 10,
     "name": "Парацетамол",
     "dosageMgPerMl": 10,
-    "maxSingleDoseMg": 1000,
-    "minAgeMonths": 0
-  },
-  {
-    "id": 20,
-    "name": "Анальгин",
-    "dosageMgPerMl": 500,
     "maxSingleDoseMg": 1000,
     "minAgeMonths": 3
   },
   {
-    "id": 21,
-    "name": "Феназепам",
-    "dosageMgPerMl": 1,
-    "maxSingleDoseMg": 1,
-    "minAgeMonths": 216
-  },
-  {
-    "id": 22,
-    "name": "Трамадол",
-    "dosageMgPerMl": 50,
-    "maxSingleDoseMg": 100,
-    "minAgeMonths": 12
-  },
-  {
-    "id": 23,
+    "id": 11,
     "name": "Морфин",
     "dosageMgPerMl": 10,
     "maxSingleDoseMg": 20,
     "minAgeMonths": 0
   },
   {
-    "id": 24,
+    "id": 12,
     "name": "Фентанил",
     "dosageMgPerMl": 0.05,
     "maxSingleDoseMg": 0.1,
-    "minAgeMonths": 0
-  },
-  {
-    "id": 25,
-    "name": "Промедол",
-    "dosageMgPerMl": 20,
-    "maxSingleDoseMg": 40,
     "minAgeMonths": 12
   },
   {
-    "id": 26,
+    "id": 13,
+    "name": "Промедол",
+    "dosageMgPerMl": 20,
+    "maxSingleDoseMg": 40,
+    "minAgeMonths": 24
+  },
+  {
+    "id": 14,
     "name": "Налоксон",
     "dosageMgPerMl": 0.4,
     "maxSingleDoseMg": 2,
     "minAgeMonths": 0
   },
   {
-    "id": 27,
+    "id": 15,
     "name": "Метоклопрамид",
     "dosageMgPerMl": 5,
     "maxSingleDoseMg": 10,
-    "minAgeMonths": 12
+    "minAgeMonths": 24
   },
   {
-    "id": 28,
+    "id": 16,
     "name": "Транексамовая кислота",
     "dosageMgPerMl": 50,
     "maxSingleDoseMg": 1000,
-    "minAgeMonths": 0
+    "minAgeMonths": 12
   },
   {
-    "id": 29,
-    "name": "Этамзилат",
-    "dosageMgPerMl": 125,
-    "maxSingleDoseMg": 500,
-    "minAgeMonths": 0
-  },
-  {
-    "id": 30,
-    "name": "Лидокаин",
-    "dosageMgPerMl": 20,
-    "maxSingleDoseMg": 100,
-    "minAgeMonths": 0
+    "id": 17,
+    "name": "Сибазон",
+    "dosageMgPerMl": 5,
+    "maxSingleDoseMg": 10,
+    "minAgeMonths": 1
   }
 ]
