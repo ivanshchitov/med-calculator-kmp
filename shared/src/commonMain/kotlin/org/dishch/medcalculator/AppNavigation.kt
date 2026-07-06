@@ -8,26 +8,20 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import kotlinx.serialization.Serializable
-import org.dishch.medcalculator.domain.model.CalculationResults
+import org.dishch.medcalculator.ui.screens.results.CalculationResultsRoute
+import org.dishch.medcalculator.ui.screens.results.CalculationResultSerializer
 import org.dishch.medcalculator.ui.screens.results.CalculationResultsScreen
 import org.dishch.medcalculator.ui.screens.choose.ChooseMedicationScreen
 import org.dishch.medcalculator.ui.screens.main.MainScreen
 import androidx.navigation.toRoute
-import org.dishch.medcalculator.domain.model.CalculationResultType
 import org.koin.compose.viewmodel.koinViewModel
 import org.dishch.medcalculator.ui.screens.main.MainViewModel
-import kotlin.reflect.typeOf
 
 @Serializable
 object MainRoute
 
 @Serializable
 object ChooseMedicationRoute
-
-@Serializable
-data class CalculationResultsRoute(
-    val result: CalculationResults
-)
 
 @Composable
 fun AppNavigation() {
@@ -48,7 +42,8 @@ fun AppNavigation() {
                     navController.navigate(ChooseMedicationRoute)
                 },
                 onCalculate = { result ->
-                    navController.navigate(CalculationResultsRoute(result))
+                    val serialized = CalculationResultSerializer.serialize(result)
+                    navController.navigate(CalculationResultsRoute(serialized))
                 },
                 viewModel = mainViewModel
             )
@@ -64,12 +59,11 @@ fun AppNavigation() {
                 }
             )
         }
-        composable<CalculationResultsRoute>(
-            typeMap = mapOf(typeOf<CalculationResults>() to CalculationResultType)
-        ) { backStackEntry ->
+        composable<CalculationResultsRoute> { backStackEntry ->
             val route = backStackEntry.toRoute<CalculationResultsRoute>()
+            val result = CalculationResultSerializer.deserialize(route.serializedResult)
             CalculationResultsScreen(
-                result = route.result,
+                result = result,
                 onBack = {
                     navController.navigateUp()
                 }
