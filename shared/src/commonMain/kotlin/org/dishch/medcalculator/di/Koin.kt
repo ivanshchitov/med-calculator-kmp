@@ -22,6 +22,8 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import org.dishch.medcalculator.data.PreferenceManager
 import org.dishch.medcalculator.data.createDataStore
+import org.dishch.medcalculator.domain.usecase.ValidateInputUseCase
+import org.dishch.medcalculator.domain.usecase.ValidationErrorMessagesUseCase
 
 fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
     startKoin {
@@ -61,6 +63,8 @@ val repositoryModule = module {
 val useCaseModule = module {
     factoryOf(::CalculationUseCase)
     factoryOf(::SaveStateUseCase)
+    factoryOf(::ValidateInputUseCase)
+    factoryOf(::ValidationErrorMessagesUseCase)
 }
 
 val viewModelModule = module {

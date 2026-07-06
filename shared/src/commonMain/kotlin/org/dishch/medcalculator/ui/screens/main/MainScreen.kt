@@ -97,6 +97,7 @@ fun MainScreen(
             AgeCard(
                 age = uiState.age,
                 unit = uiState.ageUnit,
+                supportingText = uiState.ageSupportingText?.let { stringResource(it) },
                 onAgeChanged = viewModel::onAgeChanged,
                 onUnitChanged = viewModel::onAgeUnitChanged,
                 imeAction = ImeAction.Next,
@@ -109,6 +110,7 @@ fun MainScreen(
 
             WeightCard(
                 weight = uiState.weight,
+                supportingText = uiState.weightSupportingText?.let { stringResource(it) },
                 onWeightChanged = viewModel::onWeightChanged,
                 imeAction = ImeAction.Done,
                 keyboardActions = KeyboardActions(

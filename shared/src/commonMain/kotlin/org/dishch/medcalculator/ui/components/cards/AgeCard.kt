@@ -11,7 +11,6 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import medcalculator.shared.generated.resources.*
 import org.dishch.medcalculator.domain.model.AgeUnit
-import org.dishch.medcalculator.ui.InputValidator
 import org.dishch.medcalculator.ui.components.AppSegmentedButton
 import org.dishch.medcalculator.ui.components.AppSegmentedButtonRow
 import org.dishch.medcalculator.ui.components.InputTextField
@@ -26,12 +25,13 @@ import org.jetbrains.compose.resources.stringResource
 fun AgeCard(
     age: String,
     unit: AgeUnit,
+    supportingText: String? = null,
     onAgeChanged: (String) -> Unit,
     onUnitChanged: (AgeUnit) -> Unit,
     imeAction: ImeAction = ImeAction.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default
 ) {
-    val isError = !InputValidator.validateAge(age, unit)
+    val isError = supportingText != null
 
     AppCard(
         title = stringResource(Res.string.patient_age),
@@ -39,16 +39,13 @@ fun AgeCard(
     ) {
         InputTextField(
             value = age,
-            onValueChange = { value: String ->
-                if (InputValidator.isAgeInputValid(value)) {
-                    onAgeChanged(value)
-                }
-            },
+            onValueChange = onAgeChanged,
             suffix = pluralStringResource(unit.suffix, age.toIntOrNull() ?: 0),
             isError = isError,
             supportingText = if (isError) stringResource(unit.supportingText) else "",
             imeAction = imeAction,
-            keyboardActions = keyboardActions
+            keyboardActions = keyboardActions,
+            maxIntegerDigits = 2
         )
 
         Spacer(modifier = Modifier.height(AppDimens.SpacingMedium))

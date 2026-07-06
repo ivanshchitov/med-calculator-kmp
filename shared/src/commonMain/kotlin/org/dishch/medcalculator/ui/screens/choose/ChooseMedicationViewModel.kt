@@ -41,13 +41,11 @@ class ChooseMedicationViewModel(
         .flowOn(Dispatchers.IO)
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
-    val filteredMedications: StateFlow<List<Medication>> = combine(
-        medications,
-        _searchQuery
-    ) { medications, query ->
-            medications.filter { it.name.startsWith(query, ignoreCase = true) }
-    }.flowOn(Dispatchers.IO)
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+    val filteredMedications: StateFlow<List<Medication>> = _searchQuery.combine(
+        medications
+    ) { query, medications ->
+        medications.filter { it.name.startsWith(query, ignoreCase = true) }
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
     fun onSearchQueryChange(query: String) {
         _searchQuery.value = query
