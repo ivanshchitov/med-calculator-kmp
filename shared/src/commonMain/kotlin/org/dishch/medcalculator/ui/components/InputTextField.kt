@@ -27,11 +27,20 @@ fun InputTextField(
     supportingText: String = "",
     keyboardType: KeyboardType = KeyboardType.Number,
     imeAction: ImeAction = ImeAction.Default,
-    keyboardActions: KeyboardActions = KeyboardActions.Default
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    maxIntegerDigits: Int? = null,
+    maxFractionDigits: Int? = null
 ) {
     TextField(
         value = value,
-        onValueChange = onValueChange,
+        onValueChange = { newValue ->
+            val processedValue = processInput(
+                newValue = newValue,
+                maxIntegerDigits = maxIntegerDigits,
+                maxFractionDigits = maxFractionDigits,
+            )
+            onValueChange(processedValue)
+        },
         modifier = modifier.fillMaxWidth(),
         textStyle = TextStyle(
             fontSize = AppDimens.InputTextSize,
@@ -62,4 +71,58 @@ fun InputTextField(
         keyboardActions = keyboardActions,
         singleLine = true
     )
+}
+
+private fun processInput(
+    newValue: String,
+    maxIntegerDigits: Int?,
+    maxFractionDigits: Int?
+): String {
+    if (newValue.isEmpty()) return ""
+
+    val allowDecimal = (maxFractionDigits ?: 0) > 0
+
+    // Keep only digits and decimal point
+    var value = buildString {
+        newValue.forEach {
+            when {
+                it.isDigit() -> append(it)
+                allowDecimal && (it == '.' || it == ',') -> append('.')
+            }
+        }
+    }
+
+    if (!allowDecimal) {
+        value = value.filter(Char::isDigit)
+        return maxIntegerDigits?.let { value.take(it) } ?: value
+    }
+
+    // Keep only the first dot
+    val firstDot = value.indexOf('.')
+    if (firstDot >= 0) {
+        value = buildString {
+            append(value.substring(0, firstDot + 1))
+            append(value.substring(firstDot + 1).replace(".", ""))
+        }
+    }
+
+    val parts = value.split('.', limit = 2)
+    var integerPart = parts.getOrElse(0) { "" }
+    var decimalPart = parts.getOrElse(1) { "" }
+
+    // Restricting the number of characters before the decimal point
+    maxIntegerDigits?.let {
+        integerPart = integerPart.take(it)
+    }
+
+    // Resstrict the number of decimal digits
+    maxFractionDigits?.let {
+        decimalPart = decimalPart.take(it)
+    }
+
+    return when {
+        firstDot == -1 -> integerPart
+        decimalPart.isEmpty() -> "$integerPart."
+        else -> "$integerPart.$decimalPart"
+    }
 }

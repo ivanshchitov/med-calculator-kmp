@@ -14,10 +14,25 @@ class CalculationUseCase {
         selectedMedication: Medication?,
         dosageRegimens: List<DosageRegimen>
     ): CalculationResults? {
-        val medication = selectedMedication ?: return null
+        return validateInputAndCalculate(
+            weight = weight,
+            age = age,
+            ageUnit = ageUnit,
+            medication = selectedMedication,
+            dosageRegimens = dosageRegimens
+        )
+    }
 
-        if (medication.dosage <= 0.0)
-            return null
+    private fun validateInputAndCalculate(
+        weight: Double,
+        age: Int,
+        ageUnit: AgeUnit,
+        medication: Medication?,
+        dosageRegimens: List<DosageRegimen>
+    ): CalculationResults? {
+        if (medication == null) return null
+        if (medication.dosage <= 0.0) return null
+        if (dosageRegimens.isEmpty()) return null
 
         val ageInMonths = if (ageUnit == AgeUnit.YEARS) age * 12 else age
         val regimen = dosageRegimens.find { ageInMonths in it.fromAge..it.toAge }

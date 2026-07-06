@@ -15,24 +15,30 @@ import org.dishch.medcalculator.data.PreferenceManager
 import org.dishch.medcalculator.domain.model.AgeUnit
 import org.dishch.medcalculator.domain.usecase.SaveStateUseCase
 import org.dishch.medcalculator.domain.usecase.CalculationUseCase
+import org.dishch.medcalculator.domain.usecase.ValidateInputUseCase
+import org.dishch.medcalculator.domain.usecase.ValidationErrorMessagesUseCase
 import org.dishch.medcalculator.domain.model.CalculationResults
 import org.dishch.medcalculator.domain.model.DosageRegimen
 import org.dishch.medcalculator.domain.model.Medication
 import org.dishch.medcalculator.domain.repository.MedicationRepository
-import org.dishch.medcalculator.ui.InputValidator
+import org.jetbrains.compose.resources.StringResource
 
 data class MainUiState(
     val weight: String = "12.5",
     val age: String = "3",
     val ageUnit: AgeUnit = AgeUnit.YEARS,
     val selectedMedication: Medication? = null,
-    val dosageRegimens: List<DosageRegimen> = emptyList()
+    val dosageRegimens: List<DosageRegimen> = emptyList(),
+    val weightSupportingText: StringResource? = null,
+    val ageSupportingText: StringResource? = null
 )
 
 class MainViewModel(
     private val medicationRepository: MedicationRepository,
     private val calculationUseCase: CalculationUseCase,
     private val saveStateUseCase: SaveStateUseCase,
+    private val validateInputUseCase: ValidateInputUseCase,
+    private val validationErrorMessagesUseCase: ValidationErrorMessagesUseCase,
     private val preferenceManager: PreferenceManager
 ) : ViewModel() {
 
@@ -40,9 +46,12 @@ class MainViewModel(
     val uiState: StateFlow<MainUiState> = _uiState.asStateFlow()
 
     val isCalculationEnabled: StateFlow<Boolean> = _uiState.map { state ->
-        InputValidator.validateWeight(state.weight)
-                && InputValidator.validateAge(state.age, state.ageUnit)
-                && state.selectedMedication != null
+        val validationState = validateInputUseCase(
+            weightString = state.weight,
+            ageString = state.age,
+            ageUnit = state.ageUnit
+        )
+        validationState.isValid && state.selectedMedication != null
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), true)
 
     init {
@@ -78,12 +87,33 @@ class MainViewModel(
                 }
             }
         }
+
+        // Validate input on state changes
+        viewModelScope.launch {
+            _uiState.collect { state ->
+                val validationState = validateInputUseCase(
+                    weightString = state.weight,
+                    ageString = state.age,
+                    ageUnit = state.ageUnit
+                )
+                val errorMessages = validationErrorMessagesUseCase(
+                    validationState = validationState,
+                    ageUnit = state.ageUnit
+                )
+                _uiState.update {
+                    it.copy(
+                        weightSupportingText = errorMessages.weightSupportingText,
+                        ageSupportingText = errorMessages.ageSupportingText
+                    )
+                }
+            }
+        }
     }
 
     fun calculate(): CalculationResults? {
         val state = _uiState.value
-        val weight = state.weight.toDoubleOrNull() ?: 0.0
-        val age = state.age.toIntOrNull() ?: 0
+        val weight = state.weight.toDoubleOrNull() ?: return null
+        val age = state.age.toIntOrNull() ?: return null
         
         val result = calculationUseCase(
             weight = weight,
@@ -122,14 +152,5 @@ class MainViewModel(
 
     fun onMedicationChanged(medication: Medication) {
         _uiState.update { it.copy(selectedMedication = medication) }
-        // Save medication selection immediately
-        viewModelScope.launch {
-            saveStateUseCase(
-                weight = _uiState.value.weight.toDoubleOrNull() ?: 0.0,
-                age = _uiState.value.age.toIntOrNull() ?: 0,
-                ageUnit = _uiState.value.ageUnit,
-                medicationId = medication.id
-            )
-        }
     }
 }
