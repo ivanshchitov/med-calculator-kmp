@@ -23,7 +23,7 @@ class ChooseMedicationViewModel(
 ) : ViewModel() {
 
     private val _searchQuery = MutableStateFlow("")
-    val searchQuery: StateFlow<String> = _searchQuery
+    val searchQuery: StateFlow<String> = _searchQuery.asStateFlow()
 
     private val _selectedMedication = MutableStateFlow<Medication?>(null)
     val selectedMedication: StateFlow<Medication?> = _selectedMedication.asStateFlow()
