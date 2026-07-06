@@ -37,15 +37,13 @@ import org.dishch.medcalculator.ui.theme.AppDimens
 import org.dishch.medcalculator.ui.theme.MedCalculatorAppTheme
 import org.jetbrains.compose.resources.pluralStringResource
 import org.jetbrains.compose.resources.stringResource
-import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.annotation.KoinExperimentalAPI
 
 @OptIn(ExperimentalMaterial3Api::class, KoinExperimentalAPI::class)
 @Composable
 fun CalculationResultsScreen(
     result: CalculationResults,
-    onBack: () -> Unit = {},
-    viewModel: CalculationResultsViewModel = koinViewModel()
+    onBack: () -> Unit = {}
 ) {
 
     Scaffold(
