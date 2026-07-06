@@ -24,6 +24,7 @@ import org.dishch.medcalculator.data.PreferenceManager
 import org.dishch.medcalculator.data.createDataStore
 import org.dishch.medcalculator.domain.usecase.ValidateInputUseCase
 import org.dishch.medcalculator.domain.usecase.ValidationErrorMessagesUseCase
+import org.koin.core.module.dsl.viewModelOf
 
 fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
     startKoin {
@@ -68,9 +69,9 @@ val useCaseModule = module {
 }
 
 val viewModelModule = module {
-    factoryOf(::ChooseMedicationViewModel)
-    factoryOf(::MainViewModel)
-    factoryOf(::CalculationResultsViewModel)
+    viewModelOf(::ChooseMedicationViewModel)
+    viewModelOf(::MainViewModel)
+    viewModelOf(::CalculationResultsViewModel)
 }
 
 val dataStoreModule = module {
