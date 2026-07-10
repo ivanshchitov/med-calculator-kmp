@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import org.dishch.medcalculator.data.PreferenceManager
 import org.dishch.medcalculator.domain.model.AgeUnit
 import org.dishch.medcalculator.domain.usecase.SaveStateUseCase
 import org.dishch.medcalculator.domain.usecase.CalculationUseCase
@@ -21,6 +20,7 @@ import org.dishch.medcalculator.domain.model.CalculationResults
 import org.dishch.medcalculator.domain.model.DosageRegimen
 import org.dishch.medcalculator.domain.model.Medication
 import org.dishch.medcalculator.domain.repository.MedicationRepository
+import org.dishch.medcalculator.domain.repository.PreferencesRepository
 import org.jetbrains.compose.resources.StringResource
 
 data class MainUiState(
@@ -35,11 +35,11 @@ data class MainUiState(
 
 class MainViewModel(
     private val medicationRepository: MedicationRepository,
+    private val preferencesRepository: PreferencesRepository,
     private val calculationUseCase: CalculationUseCase,
     private val saveStateUseCase: SaveStateUseCase,
     private val validateInputUseCase: ValidateInputUseCase,
-    private val validationErrorMessagesUseCase: ValidationErrorMessagesUseCase,
-    private val preferenceManager: PreferenceManager
+    private val validationErrorMessagesUseCase: ValidationErrorMessagesUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(MainUiState())
@@ -56,22 +56,22 @@ class MainViewModel(
 
     init {
         viewModelScope.launch {
-            preferenceManager.weight.collectLatest { weight ->
+            preferencesRepository.weight.collectLatest { weight ->
                 _uiState.update { it.copy(weight = weight.toString()) }
             }
         }
         viewModelScope.launch {
-            preferenceManager.age.collectLatest { age ->
+            preferencesRepository.age.collectLatest { age ->
                 _uiState.update { it.copy(age = age.toString()) }
             }
         }
         viewModelScope.launch {
-            preferenceManager.ageUnit.collectLatest { ageUnit ->
+            preferencesRepository.ageUnit.collectLatest { ageUnit ->
                 _uiState.update { it.copy(ageUnit = ageUnit) }
             }
         }
         viewModelScope.launch {
-            preferenceManager.medicationId.collectLatest { id ->
+            preferencesRepository.medicationId.collectLatest { id ->
                 medicationRepository.getMedicationById(id).collect { medication ->
                     _uiState.update { it.copy(selectedMedication = medication) }
                 }
