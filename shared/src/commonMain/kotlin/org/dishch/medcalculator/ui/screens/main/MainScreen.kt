@@ -1,5 +1,6 @@
 package org.dishch.medcalculator.ui.screens.main
 
+import androidx.activity.result.launch
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -16,6 +17,7 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import kotlinx.coroutines.launch
 import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.calculate
 import medcalculator.shared.generated.resources.dosage_calculation
@@ -39,6 +41,7 @@ fun MainScreen(
     onCalculate: (CalculationResults) -> Unit,
 ) {
 
+    val scope = rememberCoroutineScope()
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val isCalculationEnabled by viewModel.isCalculationEnabled.collectAsStateWithLifecycle()
 
@@ -76,8 +79,10 @@ fun MainScreen(
                     enabled = isCalculationEnabled,
                     onClick = {
                         focusManager.clearFocus()
-                        viewModel.calculate()?.let { result ->
-                            onCalculate(result)
+                        scope.launch {
+                            viewModel.calculate()?.let { result ->
+                                onCalculate(result)
+                            }
                         }
                     }
                 )

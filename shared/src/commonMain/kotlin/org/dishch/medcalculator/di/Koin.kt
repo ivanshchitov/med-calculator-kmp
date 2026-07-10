@@ -9,6 +9,7 @@ import org.dishch.medcalculator.data.repository.MedicationRepositoryImpl
 import org.dishch.medcalculator.data.repository.PreferencesRepositoryImpl
 import org.dishch.medcalculator.domain.usecase.SaveStateUseCase
 import org.dishch.medcalculator.domain.usecase.CalculationUseCase
+import org.dishch.medcalculator.domain.usecase.CalculateAndSaveUseCase
 import org.dishch.medcalculator.domain.repository.MedicationRepository
 import org.dishch.medcalculator.domain.repository.PreferencesRepository
 import org.dishch.medcalculator.ui.screens.choose.ChooseMedicationViewModel
@@ -66,6 +67,7 @@ val repositoryModule = module {
 val useCaseModule = module {
     factoryOf(::CalculationUseCase)
     factoryOf(::SaveStateUseCase)
+    factoryOf(::CalculateAndSaveUseCase)
     factoryOf(::ValidateInputUseCase)
     factoryOf(::ValidationErrorMessagesUseCase)
 }

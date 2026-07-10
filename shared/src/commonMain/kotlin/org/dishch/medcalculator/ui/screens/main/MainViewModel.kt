@@ -12,8 +12,7 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.dishch.medcalculator.domain.model.AgeUnit
-import org.dishch.medcalculator.domain.usecase.SaveStateUseCase
-import org.dishch.medcalculator.domain.usecase.CalculationUseCase
+import org.dishch.medcalculator.domain.usecase.CalculateAndSaveUseCase
 import org.dishch.medcalculator.domain.usecase.ValidateInputUseCase
 import org.dishch.medcalculator.domain.usecase.ValidationErrorMessagesUseCase
 import org.dishch.medcalculator.domain.model.CalculationResults
@@ -36,8 +35,7 @@ data class MainUiState(
 class MainViewModel(
     private val medicationRepository: MedicationRepository,
     private val preferencesRepository: PreferencesRepository,
-    private val calculationUseCase: CalculationUseCase,
-    private val saveStateUseCase: SaveStateUseCase,
+    private val calculateAndSaveUseCase: CalculateAndSaveUseCase,
     private val validateInputUseCase: ValidateInputUseCase,
     private val validationErrorMessagesUseCase: ValidationErrorMessagesUseCase
 ) : ViewModel() {
@@ -110,32 +108,18 @@ class MainViewModel(
         }
     }
 
-    fun calculate(): CalculationResults? {
+    suspend fun calculate(): CalculationResults? {
         val state = _uiState.value
         val weight = state.weight.toDoubleOrNull() ?: return null
         val age = state.age.toIntOrNull() ?: return null
         
-        val result = calculationUseCase(
+        return calculateAndSaveUseCase(
             weight = weight,
             age = age,
             ageUnit = state.ageUnit,
-            selectedMedication = state.selectedMedication,
+            medication = state.selectedMedication,
             dosageRegimens = state.dosageRegimens
         )
-        
-        // Save state after calculation
-        viewModelScope.launch {
-            result?.let {
-                saveStateUseCase(
-                    weight = weight,
-                    age = age,
-                    ageUnit = state.ageUnit,
-                    medicationId = state.selectedMedication?.id ?: 1
-                )
-            }
-        }
-        
-        return result
     }
 
     fun onWeightChanged(newWeight: String) {
