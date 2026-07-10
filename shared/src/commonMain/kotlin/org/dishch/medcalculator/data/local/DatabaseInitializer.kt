@@ -70,6 +70,17 @@ suspend fun initializeDatabase(
                 dosageRegimens.map { it.toEntity() }
             )
         }
+        
+        // Load full data
+        val fullDataJson = loadJsonResource<FullDataJson>("files/medications_full.json")
+        val (fullMedications, fullRegimens) = DataImportConverter.convert(fullDataJson)
+        database.useWriterConnection {
+            database.replaceMedicationFullData(
+                fullMedications,
+                fullRegimens
+            )
+        }
+
         preferenceManager.updateCurrentStoredVersion(currentVersion)
     }
 }
