@@ -1,6 +1,5 @@
 package org.dishch.medcalculator.ui.screens.main
 
-import androidx.activity.result.launch
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
