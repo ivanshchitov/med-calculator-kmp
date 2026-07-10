@@ -1,10 +1,10 @@
 package org.dishch.medcalculator.domain.usecase
 
-import org.dishch.medcalculator.data.PreferenceManager
 import org.dishch.medcalculator.domain.model.AgeUnit
+import org.dishch.medcalculator.domain.repository.PreferencesRepository
 
 class SaveStateUseCase(
-    private val preferenceManager: PreferenceManager
+    private val preferencesRepository: PreferencesRepository
 ) {
 
     suspend operator fun invoke(
@@ -13,11 +13,6 @@ class SaveStateUseCase(
         ageUnit: AgeUnit,
         medicationId: Long
     ) {
-        preferenceManager.save(
-            weight = weight,
-            age = age,
-            ageUnit = ageUnit,
-            medicationId = medicationId
-        )
+        preferencesRepository.update(weight, age, ageUnit, medicationId)
     }
 }

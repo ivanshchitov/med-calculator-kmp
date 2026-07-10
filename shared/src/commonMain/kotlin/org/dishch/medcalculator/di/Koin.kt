@@ -6,9 +6,11 @@ import org.dishch.medcalculator.data.local.MedicationDao
 import org.dishch.medcalculator.data.local.getRoomDatabase
 import org.dishch.medcalculator.data.local.initializeDatabase
 import org.dishch.medcalculator.data.repository.MedicationRepositoryImpl
+import org.dishch.medcalculator.data.repository.PreferencesRepositoryImpl
 import org.dishch.medcalculator.domain.usecase.SaveStateUseCase
 import org.dishch.medcalculator.domain.usecase.CalculationUseCase
 import org.dishch.medcalculator.domain.repository.MedicationRepository
+import org.dishch.medcalculator.domain.repository.PreferencesRepository
 import org.dishch.medcalculator.ui.screens.choose.ChooseMedicationViewModel
 import org.dishch.medcalculator.ui.screens.main.MainViewModel
 import org.koin.core.context.startKoin
@@ -56,6 +58,9 @@ val repositoryModule = module {
             dosageRegimenDao = get<DosageRegimenDao>()
         )
     } bind MedicationRepository::class
+    single {
+        PreferencesRepositoryImpl(get())
+    } bind PreferencesRepository::class
 }
 
 val useCaseModule = module {
