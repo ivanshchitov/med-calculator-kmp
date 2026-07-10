@@ -6,8 +6,15 @@ import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import okio.Path.Companion.toPath
 
-lateinit var appContext: Context
+fun dataStorePath(context: Context): String =
+    context.filesDir.resolve(dataStoreFileName).absolutePath
 
-actual fun createDataStore(): DataStore<Preferences> = PreferenceDataStoreFactory.createWithPath(
-    produceFile = { appContext.filesDir.resolve(dataStoreFileName).absolutePath.toPath() }
-)
+fun createDataStore(context: Context): DataStore<Preferences> = 
+    PreferenceDataStoreFactory.createWithPath(
+        produceFile = { dataStorePath(context).toPath() }
+    )
+
+// Keep the expect/actual structure as requested, 
+// though it's technically not needed if we inject via Koin
+actual fun dataStorePath(): String =
+    throw UnsupportedOperationException("Use dataStorePath(context: Context)")

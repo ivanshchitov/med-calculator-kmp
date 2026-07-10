@@ -20,7 +20,6 @@ import org.koin.dsl.module
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import org.dishch.medcalculator.data.PreferenceManager
-import org.dishch.medcalculator.data.createDataStore
 import org.dishch.medcalculator.domain.usecase.ValidateInputUseCase
 import org.dishch.medcalculator.domain.usecase.ValidationErrorMessagesUseCase
 import org.koin.core.module.dsl.viewModelOf
@@ -30,7 +29,6 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
         appDeclaration()
         modules(
             databaseModule,
-            dataStoreModule,
             preferenceModule,
             repositoryModule,
             useCaseModule,
@@ -70,10 +68,6 @@ val useCaseModule = module {
 val viewModelModule = module {
     viewModelOf(::ChooseMedicationViewModel)
     viewModelOf(::MainViewModel)
-}
-
-val dataStoreModule = module {
-    single { createDataStore() }
 }
 
 val preferenceModule = module {
