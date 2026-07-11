@@ -7,7 +7,6 @@ import org.dishch.medcalculator.data.local.MedicationFullDao
 import org.dishch.medcalculator.data.local.getRoomDatabase
 import org.dishch.medcalculator.data.local.initializeDatabase
 import org.dishch.medcalculator.data.repository.MedicationFullRepositoryImpl
-import org.dishch.medcalculator.data.repository.MedicationRepositoryImpl
 import org.dishch.medcalculator.data.repository.PreferencesRepositoryImpl
 import org.dishch.medcalculator.domain.usecase.SaveStateUseCase
 import org.dishch.medcalculator.domain.usecase.CalculationUseCase
@@ -15,7 +14,6 @@ import org.dishch.medcalculator.domain.usecase.CalculateAndSaveUseCase
 import org.dishch.medcalculator.domain.usecase.GetDosageRegimensUseCase
 import org.dishch.medcalculator.domain.usecase.GetMedicationsUseCase
 import org.dishch.medcalculator.domain.repository.MedicationFullRepository
-import org.dishch.medcalculator.domain.repository.MedicationRepository
 import org.dishch.medcalculator.domain.repository.PreferencesRepository
 import org.dishch.medcalculator.ui.screens.choose.ChooseMedicationViewModel
 import org.dishch.medcalculator.ui.screens.main.MainViewModel
@@ -60,12 +58,6 @@ val databaseModule = module {
 }
 
 val repositoryModule = module {
-    single {
-        MedicationRepositoryImpl(
-            medicationDao = get<MedicationDao>(),
-            dosageRegimenDao = get<DosageRegimenDao>()
-        )
-    } bind MedicationRepository::class
     single {
         MedicationFullRepositoryImpl(
             dao = get<MedicationFullDao>()
