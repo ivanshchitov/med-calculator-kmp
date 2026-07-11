@@ -28,9 +28,9 @@ class MedicationRepositoryImpl(
             entities.map { it.toDomain() }
         }
 
-    private fun MedicationEntity.toDomain(): Medication =
+    fun MedicationEntity.toDomain(): Medication =
         Medication(
-            id = id,
+            id = id.toString(),
             name = name,
             dosage = dosage,
             maxSingleDose = maxSingleDose,
@@ -44,6 +44,6 @@ class MedicationRepositoryImpl(
             toAge = toAge,
             minDosePerKg = minDosePerKg,
             maxDosePerKg = maxDosePerKg,
-            medicationId = medicationId
+            medicationId = medicationId.toString()
         )
 }

@@ -3,6 +3,7 @@ package org.dishch.medcalculator.data.local
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import org.dishch.medcalculator.domain.model.Medication
 
 @Entity(tableName = "medications_full")
 data class MedicationFullEntity(
@@ -13,3 +14,12 @@ data class MedicationFullEntity(
     @ColumnInfo(name = "min_age_months") val minAgeMonths: Int,
     @ColumnInfo(name = "max_single_dose_mg") val maxSingleDoseMg: Double?
 )
+
+fun MedicationFullEntity.toDomain(): Medication =
+    Medication(
+        id = id,
+        name = nameRu,
+        dosage = dosageMgPerMl,
+        maxSingleDose = maxSingleDoseMg ?: 0.0,
+        ageLimit = minAgeMonths
+    )
