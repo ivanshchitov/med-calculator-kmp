@@ -50,7 +50,7 @@ class CalculationUseCase {
             maxDoseMg = maxDoseMg,
             minVolMl = minDoseMg / medication.dosage,
             maxVolMl = maxDoseMg / medication.dosage,
-            isMaxDailyDoseExceeded = maxDoseMg > medication.maxSingleDose
+            isMaxDailyDoseExceeded = maxDoseMg > (medication.maxSingleDose ?: 0.0)
         )
     }
 }

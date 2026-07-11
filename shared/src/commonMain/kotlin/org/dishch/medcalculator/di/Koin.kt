@@ -24,6 +24,8 @@ import org.koin.dsl.module
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import org.dishch.medcalculator.data.PreferenceManager
+import org.dishch.medcalculator.data.repository.LocaleRepositoryImpl
+import org.dishch.medcalculator.domain.repository.LocaleRepository
 import org.dishch.medcalculator.domain.usecase.GetMedicationByIdUseCase
 import org.dishch.medcalculator.domain.usecase.ValidateInputUseCase
 import org.dishch.medcalculator.domain.usecase.ValidationErrorMessagesUseCase
@@ -54,9 +56,11 @@ val databaseModule = module {
 }
 
 val repositoryModule = module {
+    single<LocaleRepository> { LocaleRepositoryImpl() }
     single {
         MedicationRepositoryImpl(
-            dao = get<MedicationDao>()
+            dao = get<MedicationDao>(),
+            localeRepository = get<LocaleRepository>()
         )
     } bind MedicationRepository::class
     single {

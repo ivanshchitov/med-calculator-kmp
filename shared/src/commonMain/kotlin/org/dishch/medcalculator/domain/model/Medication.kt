@@ -8,7 +8,7 @@ data class Medication(
     val id: String,
     val name: String,
     val dosage: Double,
-    val maxSingleDose: Double,
+    val maxSingleDose: Double?,
     val ageLimit: Int
 )
 
@@ -16,4 +16,4 @@ val Medication.formattedDosage: String
     get() = dosage.formatAsDecimal()
 
 val Medication.formattedMaxSingleDose: String
-    get() = maxSingleDose.formatAsDecimal()
+    get() = maxSingleDose?.formatAsDecimal() ?: ""
