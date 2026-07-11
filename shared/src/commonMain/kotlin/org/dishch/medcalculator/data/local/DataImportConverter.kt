@@ -2,9 +2,9 @@ package org.dishch.medcalculator.data.local
 
 object DataImportConverter {
 
-    fun convert(json: FullDataJson): Pair<List<MedicationFullEntity>, List<DosageRegimenFullEntity>> {
+    fun convert(json: MedicationsDataJson): Pair<List<MedicationEntity>, List<DosageRegimenEntity>> {
         val medications = json.medications.map { medication ->
-            MedicationFullEntity(
+            MedicationEntity(
                 id = medication.id,
                 nameRu = medication.nameRu,
                 nameLatin = medication.nameLatin,
@@ -17,7 +17,7 @@ object DataImportConverter {
         val regimens = json.medications.flatMap { medication ->
             medication.dosageRegimens.flatMap { regimen ->
                 regimen.rules.map { rule ->
-                    DosageRegimenFullEntity(
+                    DosageRegimenEntity(
                         medicationId = medication.id,
                         route = regimen.route,
                         fromMonths = rule.fromMonths,

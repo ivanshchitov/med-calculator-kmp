@@ -3,9 +3,9 @@ package org.dishch.medcalculator.domain.usecase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.dishch.medcalculator.domain.model.DosageRegimen
-import org.dishch.medcalculator.domain.repository.MedicationFullRepository
+import org.dishch.medcalculator.domain.repository.MedicationRepository
 
-class GetDosageRegimensUseCase(private val repository: MedicationFullRepository) {
+class GetDosageRegimensUseCase(private val repository: MedicationRepository) {
     operator fun invoke(medicationId: String): Flow<List<DosageRegimen>> {
         return repository.getRegimensByMedicationId(medicationId).map { entities ->
             entities.map { entity ->

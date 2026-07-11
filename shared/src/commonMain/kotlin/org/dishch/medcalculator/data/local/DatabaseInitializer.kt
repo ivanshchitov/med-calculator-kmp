@@ -24,12 +24,12 @@ suspend fun initializeDatabase(
         return@runCatching
 
     withContext(Dispatchers.IO) {
-        val fullDataJson = loadJsonResource("files/medications_full.json")
-        val (fullMedications, fullRegimens) = DataImportConverter.convert(fullDataJson)
+        val dataJson = loadJsonResource("files/medications.json")
+        val (medications, dosageRegimens) = DataImportConverter.convert(dataJson)
         database.useWriterConnection {
-            database.replaceMedicationFullData(
-                fullMedications,
-                fullRegimens
+            database.replaceMedicationData(
+                medications,
+                dosageRegimens
             )
         }
 
@@ -39,5 +39,5 @@ suspend fun initializeDatabase(
 
 // Helper to reduce boilerplate code
 @OptIn(ExperimentalResourceApi::class)
-private suspend inline fun loadJsonResource(path: String): FullDataJson =
+private suspend inline fun loadJsonResource(path: String): MedicationsDataJson =
     json.decodeFromString(Res.readBytes(path).decodeToString())

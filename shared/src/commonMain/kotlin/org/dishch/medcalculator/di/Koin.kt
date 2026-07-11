@@ -1,17 +1,17 @@
 package org.dishch.medcalculator.di
 
 import org.dishch.medcalculator.data.local.AppDatabase
-import org.dishch.medcalculator.data.local.MedicationFullDao
+import org.dishch.medcalculator.data.local.MedicationDao
 import org.dishch.medcalculator.data.local.getRoomDatabase
 import org.dishch.medcalculator.data.local.initializeDatabase
-import org.dishch.medcalculator.data.repository.MedicationFullRepositoryImpl
+import org.dishch.medcalculator.data.repository.MedicationRepositoryImpl
 import org.dishch.medcalculator.data.repository.PreferencesRepositoryImpl
 import org.dishch.medcalculator.domain.usecase.SaveStateUseCase
 import org.dishch.medcalculator.domain.usecase.CalculationUseCase
 import org.dishch.medcalculator.domain.usecase.CalculateAndSaveUseCase
 import org.dishch.medcalculator.domain.usecase.GetDosageRegimensUseCase
 import org.dishch.medcalculator.domain.usecase.GetMedicationsUseCase
-import org.dishch.medcalculator.domain.repository.MedicationFullRepository
+import org.dishch.medcalculator.domain.repository.MedicationRepository
 import org.dishch.medcalculator.domain.repository.PreferencesRepository
 import org.dishch.medcalculator.ui.screens.choose.ChooseMedicationViewModel
 import org.dishch.medcalculator.ui.screens.main.MainViewModel
@@ -50,15 +50,15 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
 
 val databaseModule = module {
     single { getRoomDatabase(get()) }
-    single { get<AppDatabase>().getMedicationFullDao() }
+    single { get<AppDatabase>().getMedicationDao() }
 }
 
 val repositoryModule = module {
     single {
-        MedicationFullRepositoryImpl(
-            dao = get<MedicationFullDao>()
+        MedicationRepositoryImpl(
+            dao = get<MedicationDao>()
         )
-    } bind MedicationFullRepository::class
+    } bind MedicationRepository::class
     single {
         PreferencesRepositoryImpl(get())
     } bind PreferencesRepository::class
