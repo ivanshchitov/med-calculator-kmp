@@ -6,6 +6,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import kotlinx.coroutines.flow.Flow
+import org.dishch.medcalculator.domain.model.Medication
 
 @Dao
 interface MedicationFullDao {
@@ -32,9 +33,12 @@ interface MedicationFullDao {
         insertDosageRegimens(regimens)
     }
 
+    @Query("SELECT * FROM medications_full WHERE id = :medicationId")
+    fun getMedicationById(medicationId: String): Flow<MedicationFullEntity?>
+
     @Query("SELECT * FROM medications_full")
     fun getAllMedications(): Flow<List<MedicationFullEntity>>
 
     @Query("SELECT * FROM dosage_regimens_full WHERE medication_id = :medicationId")
-    fun getRegimensByMedicationId(medicationId: Long): Flow<List<DosageRegimenFullEntity>>
+    fun getRegimensByMedicationId(medicationId: String): Flow<List<DosageRegimenFullEntity>>
 }

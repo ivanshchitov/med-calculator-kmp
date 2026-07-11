@@ -16,7 +16,7 @@ class CalculationUseCaseTest {
     @Test
     fun testSuccessfulCalculation() {
         val medication = Medication(
-            id = 1,
+            id = "1",
             name = "Test Med",
             dosage = 10.0,
             maxSingleDose = 500.0,
@@ -30,7 +30,7 @@ class CalculationUseCaseTest {
                 toAge = 216,
                 minDosePerKg = 10.0,
                 maxDosePerKg = 15.0,
-                medicationId = 1
+                medicationId = "1"
             )
         )
 
@@ -70,7 +70,7 @@ class CalculationUseCaseTest {
     @Test
     fun testInvalidMedicationDosage() {
         val medication = Medication(
-            id = 1,
+            id = "1",
             name = "Test Med",
             dosage = 0.0,
             maxSingleDose = 500.0,
@@ -91,7 +91,7 @@ class CalculationUseCaseTest {
     @Test
     fun testNoDosageRegimens() {
         val medication = Medication(
-            id = 1,
+            id = "1",
             name = "Test Med",
             dosage = 10.0,
             maxSingleDose = 500.0,
@@ -112,7 +112,7 @@ class CalculationUseCaseTest {
     @Test
     fun testNoMatchingRegimen() {
         val medication = Medication(
-            id = 1,
+            id = "1",
             name = "Test Med",
             dosage = 10.0,
             maxSingleDose = 500.0,
@@ -126,7 +126,7 @@ class CalculationUseCaseTest {
                 toAge = 200,
                 minDosePerKg = 10.0,
                 maxDosePerKg = 15.0,
-                medicationId = 1
+                medicationId = "1"
             )
         )
 
@@ -144,7 +144,7 @@ class CalculationUseCaseTest {
     @Test
     fun testMaxDoseExceeded() {
         val medication = Medication(
-            id = 1,
+            id = "1",
             name = "Test Med",
             dosage = 10.0,
             maxSingleDose = 100.0,
@@ -158,7 +158,7 @@ class CalculationUseCaseTest {
                 toAge = 216,
                 minDosePerKg = 10.0,
                 maxDosePerKg = 15.0,
-                medicationId = 1
+                medicationId = "1"
             )
         )
 
@@ -177,7 +177,7 @@ class CalculationUseCaseTest {
     @Test
     fun testCalculationWithMonths() {
         val medication = Medication(
-            id = 1,
+            id = "1",
             name = "Test Med",
             dosage = 10.0,
             maxSingleDose = 500.0,
@@ -191,7 +191,7 @@ class CalculationUseCaseTest {
                 toAge = 11,
                 minDosePerKg = 10.0,
                 maxDosePerKg = 15.0,
-                medicationId = 1
+                medicationId = 1.toString()
             )
         )
 
@@ -211,7 +211,7 @@ class CalculationUseCaseTest {
     @Test
     fun testMedicationWithZeroDosage() {
         val medication = Medication(
-            id = 1,
+            id = "1",
             name = "Test Med",
             dosage = 0.0,
             maxSingleDose = 500.0,

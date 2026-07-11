@@ -7,7 +7,7 @@ interface PreferencesRepository {
     val weight: Flow<Double>
     val age: Flow<Int>
     val ageUnit: Flow<AgeUnit>
-    val medicationId: Flow<Long>
+    val medicationId: Flow<String>
 
-    suspend fun update(weight: Double, age: Int, ageUnit: AgeUnit, medId: Long)
+    suspend fun update(weight: Double, age: Int, ageUnit: AgeUnit, medId: String)
 }

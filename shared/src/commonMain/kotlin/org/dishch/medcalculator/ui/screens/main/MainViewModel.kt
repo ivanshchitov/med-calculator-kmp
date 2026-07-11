@@ -13,13 +13,14 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.dishch.medcalculator.domain.model.AgeUnit
 import org.dishch.medcalculator.domain.usecase.CalculateAndSaveUseCase
+import org.dishch.medcalculator.domain.usecase.GetDosageRegimensUseCase
 import org.dishch.medcalculator.domain.usecase.ValidateInputUseCase
 import org.dishch.medcalculator.domain.usecase.ValidationErrorMessagesUseCase
 import org.dishch.medcalculator.domain.model.CalculationResults
 import org.dishch.medcalculator.domain.model.DosageRegimen
 import org.dishch.medcalculator.domain.model.Medication
-import org.dishch.medcalculator.domain.repository.MedicationRepository
 import org.dishch.medcalculator.domain.repository.PreferencesRepository
+import org.dishch.medcalculator.domain.usecase.GetMedicationByIdUseCase
 import org.jetbrains.compose.resources.StringResource
 
 data class MainUiState(
@@ -33,11 +34,12 @@ data class MainUiState(
 )
 
 class MainViewModel(
-    private val medicationRepository: MedicationRepository,
     private val preferencesRepository: PreferencesRepository,
     private val calculateAndSaveUseCase: CalculateAndSaveUseCase,
     private val validateInputUseCase: ValidateInputUseCase,
-    private val validationErrorMessagesUseCase: ValidationErrorMessagesUseCase
+    private val validationErrorMessagesUseCase: ValidationErrorMessagesUseCase,
+    private val getMedicationByIdUseCase: GetMedicationByIdUseCase,
+    private val getDosageRegimensUseCase: GetDosageRegimensUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(MainUiState())
@@ -70,7 +72,7 @@ class MainViewModel(
         }
         viewModelScope.launch {
             preferencesRepository.medicationId.collectLatest { id ->
-                medicationRepository.getMedicationById(id).collect { medication ->
+                getMedicationByIdUseCase(id).collect { medication ->
                     _uiState.update { it.copy(selectedMedication = medication) }
                 }
             }
@@ -79,7 +81,7 @@ class MainViewModel(
         viewModelScope.launch {
             _uiState.collectLatest { state ->
                 state.selectedMedication?.let { medication ->
-                    medicationRepository.getRegimensForMedication(medication.id).collect { regimens ->
+                    getDosageRegimensUseCase(medication.id).collect { regimens ->
                         _uiState.update { it.copy(dosageRegimens = regimens) }
                     }
                 }

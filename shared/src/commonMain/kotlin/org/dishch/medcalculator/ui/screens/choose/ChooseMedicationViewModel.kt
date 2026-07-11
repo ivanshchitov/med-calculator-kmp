@@ -16,10 +16,12 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import org.dishch.medcalculator.domain.model.DosageRegimen
 import org.dishch.medcalculator.domain.model.Medication
-import org.dishch.medcalculator.domain.repository.MedicationRepository
+import org.dishch.medcalculator.domain.usecase.GetDosageRegimensUseCase
+import org.dishch.medcalculator.domain.usecase.GetMedicationsUseCase
 
 class ChooseMedicationViewModel(
-    private val medicationRepository: MedicationRepository
+    private val getMedicationsUseCase: GetMedicationsUseCase,
+    private val getDosageRegimensUseCase: GetDosageRegimensUseCase
 ) : ViewModel() {
 
     private val _searchQuery = MutableStateFlow("")
@@ -37,7 +39,7 @@ class ChooseMedicationViewModel(
     private val _showInfo = MutableStateFlow(false)
     val showInfo: StateFlow<Boolean> = _showInfo.asStateFlow()
 
-    val medications: StateFlow<List<Medication>> = medicationRepository.getAllMedications()
+    val medications: StateFlow<List<Medication>> = getMedicationsUseCase()
         .flowOn(Dispatchers.IO)
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
@@ -55,7 +57,7 @@ class ChooseMedicationViewModel(
         viewModelScope.launch {
             _selectedMedication.value = medication
             _selectedMedicationColor.value = color
-            _regimens.value = medicationRepository.getRegimensForMedication(medication.id).first()
+            _regimens.value = getDosageRegimensUseCase(medication.id).first()
             _showInfo.value = true
         }
     }

@@ -12,13 +12,13 @@ class PreferencesRepositoryImpl(
     override val weight: Flow<Double> = preferenceManager.weight
     override val age: Flow<Int> = preferenceManager.age
     override val ageUnit: Flow<AgeUnit> = preferenceManager.ageUnit
-    override val medicationId: Flow<Long> = preferenceManager.medicationId
+    override val medicationId: Flow<String> = preferenceManager.medicationId
 
     override suspend fun update(
         weight: Double,
         age: Int,
         ageUnit: AgeUnit,
-        medId: Long
+        medId: String
     ) {
         preferenceManager.updatePreferences(weight, age, ageUnit, medId)
     }

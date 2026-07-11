@@ -5,7 +5,7 @@ import org.dishch.medcalculator.formatAsDecimal
 
 @Serializable
 data class Medication(
-    val id: Long,
+    val id: String,
     val name: String,
     val dosage: Double,
     val maxSingleDose: Double,

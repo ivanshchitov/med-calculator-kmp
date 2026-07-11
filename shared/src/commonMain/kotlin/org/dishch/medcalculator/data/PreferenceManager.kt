@@ -11,13 +11,13 @@ class PreferenceManager(private val dataStore: DataStore<Preferences>) {
         val KEY_WEIGHT = doublePreferencesKey("weight")
         val KEY_AGE = intPreferencesKey("age")
         val KEY_AGE_UNIT = stringPreferencesKey("age_unit")
-        val KEY_MEDICATION_ID = longPreferencesKey("medication_id")
+        val KEY_MEDICATION_ID = stringPreferencesKey("medication_id")
         val KEY_VERSION_CODE = longPreferencesKey("version_code")
 
         const val DEFAULT_WEIGHT = 12.5
         const val DEFAULT_AGE = 3
         val DEFAULT_AGE_UNIT = AgeUnit.YEARS
-        const val DEFAULT_MEDICATION_ID = 1L
+        const val DEFAULT_MEDICATION_ID = "adrenalin"
     }
 
     val weight = dataStore.data.map { it[KEY_WEIGHT] ?: DEFAULT_WEIGHT }
@@ -30,7 +30,7 @@ class PreferenceManager(private val dataStore: DataStore<Preferences>) {
     val medicationId = dataStore.data.map { it[KEY_MEDICATION_ID] ?: DEFAULT_MEDICATION_ID }
     val currentStoredVersion = dataStore.data.map { it[KEY_VERSION_CODE] ?: 0 }
 
-    suspend fun updatePreferences(weight: Double, age: Int, ageUnit: AgeUnit, medicationId: Long) {
+    suspend fun updatePreferences(weight: Double, age: Int, ageUnit: AgeUnit, medicationId: String) {
         dataStore.edit { preferences ->
             preferences[KEY_WEIGHT] = weight
             preferences[KEY_AGE] = age

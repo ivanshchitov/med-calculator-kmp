@@ -6,5 +6,5 @@ data class DosageRegimen(
     val toAge: Int,
     val minDosePerKg: Double,
     val maxDosePerKg: Double,
-    val medicationId: Long
+    val medicationId: String
 )

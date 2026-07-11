@@ -11,7 +11,7 @@ class SaveStateUseCase(
         weight: Double,
         age: Int,
         ageUnit: AgeUnit,
-        medicationId: Long
+        medicationId: String
     ) {
         preferencesRepository.update(weight, age, ageUnit, medicationId)
     }

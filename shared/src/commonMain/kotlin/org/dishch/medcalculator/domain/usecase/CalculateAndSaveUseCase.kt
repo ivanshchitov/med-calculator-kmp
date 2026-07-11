@@ -18,7 +18,7 @@ class CalculateAndSaveUseCase(
     ): CalculationResults? {
         val result = calculationUseCase(weight, age, ageUnit, medication, dosageRegimens)
         if (result != null) {
-            saveStateUseCase(weight, age, ageUnit, medication?.id ?: 1L)
+            saveStateUseCase(weight, age, ageUnit, medication?.id.toString())
         }
         return result
     }
