@@ -11,8 +11,6 @@ import kotlinx.coroutines.IO
 
 @Database(
     entities = [
-        MedicationEntity::class,
-        DosageRegimenEntity::class,
         MedicationFullEntity::class,
         DosageRegimenFullEntity::class
     ],
@@ -20,20 +18,7 @@ import kotlinx.coroutines.IO
 )
 @ConstructedBy(AppDatabaseConstructor::class)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun getMedicationDao(): MedicationDao
-    abstract fun getDosageRegimenDao(): DosageRegimenDao
     abstract fun getMedicationFullDao(): MedicationFullDao
-
-    @Transaction
-    suspend fun replaceMedicationData(
-        medications: List<MedicationEntity>,
-        regimens: List<DosageRegimenEntity>
-    ) {
-        getMedicationDao().deleteAll()
-        getDosageRegimenDao().deleteAll()
-        getMedicationDao().insertAll(medications)
-        getDosageRegimenDao().insertAll(regimens)
-    }
 
     @Transaction
     suspend fun replaceMedicationFullData(
