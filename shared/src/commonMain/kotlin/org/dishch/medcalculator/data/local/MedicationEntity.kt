@@ -15,11 +15,15 @@ data class MedicationEntity(
     @ColumnInfo(name = "max_single_dose_mg") val maxSingleDoseMg: Double?
 )
 
-fun MedicationEntity.toDomain(): Medication =
+fun MedicationEntity.toDomain(languageCode: String): Medication =
     Medication(
         id = id,
-        name = nameRu,
+        name = if (languageCode.lowercase() == "ru") {
+            nameRu
+        } else {
+            nameLatin
+        },
         dosage = dosageMgPerMl,
-        maxSingleDose = maxSingleDoseMg ?: 0.0,
+        maxSingleDose = maxSingleDoseMg,
         ageLimit = minAgeMonths
     )
