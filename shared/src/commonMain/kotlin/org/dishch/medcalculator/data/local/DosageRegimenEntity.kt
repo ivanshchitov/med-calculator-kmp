@@ -7,10 +7,10 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 
 @Entity(
-    tableName = "dosage_regimens_full",
+    tableName = "dosage_regimens",
     foreignKeys = [
         ForeignKey(
-            entity = MedicationFullEntity::class,
+            entity = MedicationEntity::class,
             parentColumns = ["id"],
             childColumns = ["medication_id"],
             onDelete = ForeignKey.CASCADE
@@ -18,7 +18,7 @@ import androidx.room.PrimaryKey
     ],
     indices = [Index(value = ["medication_id"])]
 )
-data class DosageRegimenFullEntity(
+data class DosageRegimenEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     @ColumnInfo(name = "medication_id") val medicationId: String,
     @ColumnInfo(name = "route") val route: String,

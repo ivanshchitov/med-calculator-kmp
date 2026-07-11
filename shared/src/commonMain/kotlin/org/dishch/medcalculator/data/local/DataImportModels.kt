@@ -3,18 +3,18 @@ package org.dishch.medcalculator.data.local
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class MedicationFullJson(
+data class MedicationJson(
     val id: String,
     val nameRu: String,
     val nameLatin: String,
     val dosageMgPerMl: Double,
     val minAgeMonths: Int,
     val maxSingleDoseMg: Double?,
-    val dosageRegimens: List<RegimenJson>
+    val dosageRegimens: List<DosageRegimenJson>
 )
 
 @Serializable
-data class RegimenJson(
+data class DosageRegimenJson(
     val route: String,
     val rules: List<RuleJson>
 )
@@ -33,6 +33,6 @@ data class RuleJson(
 )
 
 @Serializable
-data class FullDataJson(
-    val medications: List<MedicationFullJson>
+data class MedicationsDataJson(
+    val medications: List<MedicationJson>
 )

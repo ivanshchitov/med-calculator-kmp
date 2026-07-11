@@ -4,9 +4,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.dishch.medcalculator.data.local.toDomain
 import org.dishch.medcalculator.domain.model.Medication
-import org.dishch.medcalculator.domain.repository.MedicationFullRepository
+import org.dishch.medcalculator.domain.repository.MedicationRepository
 
-class GetMedicationByIdUseCase(private val repository: MedicationFullRepository) {
+class GetMedicationByIdUseCase(private val repository: MedicationRepository) {
 
     operator fun invoke(medicationId: String): Flow<Medication?> =
         repository.getMedicationById(medicationId).map { it?.toDomain() }
