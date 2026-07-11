@@ -2,123 +2,8 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "b604b2649b88c994509cfde7b2ec8cfd",
+    "identityHash": "19406f64c9bd4420946b5bd5036b6da2",
     "entities": [
-      {
-        "tableName": "medications",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `dosage` REAL NOT NULL, `max_single_dose` REAL NOT NULL, `age_limit` INTEGER NOT NULL DEFAULT 0)",
-        "fields": [
-          {
-            "fieldPath": "id",
-            "columnName": "id",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "name",
-            "columnName": "name",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "dosage",
-            "columnName": "dosage",
-            "affinity": "REAL",
-            "notNull": true
-          },
-          {
-            "fieldPath": "maxSingleDose",
-            "columnName": "max_single_dose",
-            "affinity": "REAL",
-            "notNull": true
-          },
-          {
-            "fieldPath": "ageLimit",
-            "columnName": "age_limit",
-            "affinity": "INTEGER",
-            "notNull": true,
-            "defaultValue": "0"
-          }
-        ],
-        "primaryKey": {
-          "autoGenerate": true,
-          "columnNames": [
-            "id"
-          ]
-        }
-      },
-      {
-        "tableName": "dosage_regimens",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `from_age` INTEGER NOT NULL, `to_age` INTEGER NOT NULL, `min_dose_per_kg` REAL NOT NULL, `max_dose_per_kg` REAL NOT NULL, `medication_id` INTEGER NOT NULL, FOREIGN KEY(`medication_id`) REFERENCES `medications`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
-        "fields": [
-          {
-            "fieldPath": "id",
-            "columnName": "id",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "fromAge",
-            "columnName": "from_age",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "toAge",
-            "columnName": "to_age",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "minDosePerKg",
-            "columnName": "min_dose_per_kg",
-            "affinity": "REAL",
-            "notNull": true
-          },
-          {
-            "fieldPath": "maxDosePerKg",
-            "columnName": "max_dose_per_kg",
-            "affinity": "REAL",
-            "notNull": true
-          },
-          {
-            "fieldPath": "medicationId",
-            "columnName": "medication_id",
-            "affinity": "INTEGER",
-            "notNull": true
-          }
-        ],
-        "primaryKey": {
-          "autoGenerate": true,
-          "columnNames": [
-            "id"
-          ]
-        },
-        "indices": [
-          {
-            "name": "index_dosage_regimens_medication_id",
-            "unique": false,
-            "columnNames": [
-              "medication_id"
-            ],
-            "orders": [],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_dosage_regimens_medication_id` ON `${TABLE_NAME}` (`medication_id`)"
-          }
-        ],
-        "foreignKeys": [
-          {
-            "table": "medications",
-            "onDelete": "CASCADE",
-            "onUpdate": "NO ACTION",
-            "columns": [
-              "medication_id"
-            ],
-            "referencedColumns": [
-              "id"
-            ]
-          }
-        ]
-      },
       {
         "tableName": "medications_full",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `name_ru` TEXT NOT NULL, `name_latin` TEXT NOT NULL, `dosage_mg_per_ml` REAL NOT NULL, `min_age_months` INTEGER NOT NULL, `max_single_dose_mg` REAL, PRIMARY KEY(`id`))",
@@ -271,7 +156,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b604b2649b88c994509cfde7b2ec8cfd')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '19406f64c9bd4420946b5bd5036b6da2')"
     ]
   }
 }

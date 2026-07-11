@@ -1,8 +1,6 @@
 package org.dishch.medcalculator.di
 
 import org.dishch.medcalculator.data.local.AppDatabase
-import org.dishch.medcalculator.data.local.DosageRegimenDao
-import org.dishch.medcalculator.data.local.MedicationDao
 import org.dishch.medcalculator.data.local.MedicationFullDao
 import org.dishch.medcalculator.data.local.getRoomDatabase
 import org.dishch.medcalculator.data.local.initializeDatabase
@@ -52,8 +50,6 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
 
 val databaseModule = module {
     single { getRoomDatabase(get()) }
-    single { get<AppDatabase>().getMedicationDao() }
-    single { get<AppDatabase>().getDosageRegimenDao() }
     single { get<AppDatabase>().getMedicationFullDao() }
 }
 
