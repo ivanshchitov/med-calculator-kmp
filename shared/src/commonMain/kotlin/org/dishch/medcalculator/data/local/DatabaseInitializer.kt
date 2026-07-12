@@ -10,6 +10,7 @@ import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 import org.dishch.medcalculator.data.PreferenceManager
+import kotlin.Unit
 
 private val json = Json { ignoreUnknownKeys = true }
 
