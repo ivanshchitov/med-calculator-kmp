@@ -42,13 +42,13 @@ private val Age.pluralRes: PluralStringResource
 // DosageRegimen formatting helpers
 
 val DosageRegimen.fromAgeInYears: Int
-    get() = fromAge.toAge().quantity
+    get() = fromMonths.toAge().quantity
 
 val DosageRegimen.formattedMinDose: String
-    get() = minDosePerKg.formatAsDecimal()
+    get() = minDose?.formatAsDecimal() ?: ""
 
 val DosageRegimen.formattedMaxDose: String
-    get() = maxDosePerKg.formatAsDecimal()
+    get() = maxDose?.formatAsDecimal() ?: ""
 
 val DosageRegimen.formattedDoseRange: String
     get() = "$formattedMinDose-$formattedMaxDose"
@@ -56,15 +56,15 @@ val DosageRegimen.formattedDoseRange: String
 val DosageRegimen.formattedAgeRange: String
     @Composable
     get() = when {
-        toAge >= ADULT_AGE_MONTHS -> fromAge.toAge().formattedAgeLimit
+        toMonths >= ADULT_AGE_MONTHS -> fromMonths.toAge().formattedAgeLimit
         else -> {
-            var startAgeString = fromAge.toAge().quantity.toString()
-            if (fromAge.toAge().isYears != toAge.toAge().isYears) {
-                startAgeString = fromAge.toAge().toPluralsString()
+            var startAgeString = fromMonths.toAge().quantity.toString()
+            if (fromMonths.toAge().isYears != toMonths.toAge().isYears) {
+                startAgeString = fromMonths.toAge().toPluralsString()
             }
             stringResource(Res.string.age_range_format,
                 startAgeString,
-                toAge.toAge().toPluralsString()
+                toMonths.toAge().toPluralsString()
             )
         }
     }
