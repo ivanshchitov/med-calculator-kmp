@@ -7,8 +7,8 @@ import kotlin.test.assertNull
 import org.dishch.medcalculator.domain.model.AgeUnit
 import org.dishch.medcalculator.domain.model.DosageRegimen
 import org.dishch.medcalculator.domain.model.Medication
-import org.dishch.medcalculator.data.local.Route
-import org.dishch.medcalculator.data.local.Unit
+import org.dishch.medcalculator.domain.model.Route
+import org.dishch.medcalculator.domain.model.Unit
 
 class CalculationUseCaseTest {
 

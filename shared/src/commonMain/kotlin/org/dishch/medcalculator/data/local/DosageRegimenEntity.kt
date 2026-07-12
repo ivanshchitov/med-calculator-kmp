@@ -47,7 +47,7 @@ fun DosageRegimenEntity.toDomain(): DosageRegimen =
         minDose = doseMin,
         maxDose = doseMax,
         maxDoseMg = maxDoseMg,
-        route = route,
-        unit = unit,
+        route = route.toDomain(),
+        unit = unit.toDomain(),
         medicationId = medicationId,
     )
