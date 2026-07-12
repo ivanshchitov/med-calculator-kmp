@@ -52,14 +52,13 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
 
 val databaseModule = module {
     single { getRoomDatabase(get()) }
-    single { get<AppDatabase>().getMedicationDao() }
 }
 
 val repositoryModule = module {
     single<LocaleRepository> { LocaleRepositoryImpl() }
     single {
         MedicationRepositoryImpl(
-            dao = get<MedicationDao>(),
+            dao = get<AppDatabase>().getMedicationDao(),
             localeRepository = get<LocaleRepository>()
         )
     } bind MedicationRepository::class
