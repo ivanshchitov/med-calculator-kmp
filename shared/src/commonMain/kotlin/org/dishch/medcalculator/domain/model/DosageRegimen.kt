@@ -1,7 +1,8 @@
 package org.dishch.medcalculator.domain.model
 
-import org.dishch.medcalculator.data.local.Route
-import org.dishch.medcalculator.data.local.Unit
+enum class Route { IV, IM, SC }
+enum class Unit { MG, MG_PER_KG }
+
 
 data class DosageRegimen(
     val id: Long,
