@@ -35,11 +35,11 @@ class CalculationUseCase {
         if (dosageRegimens.isEmpty()) return null
 
         val ageInMonths = if (ageUnit == AgeUnit.YEARS) age * 12 else age
-        val regimen = dosageRegimens.find { ageInMonths in it.fromAge..it.toAge }
+        val regimen = dosageRegimens.find { ageInMonths in it.fromMonths..it.toMonths }
             ?: return null
 
-        val minDoseMg = weight * regimen.minDosePerKg
-        val maxDoseMg = weight * regimen.maxDosePerKg
+        val minDoseMg = weight * (regimen.minDose ?: 0.0)
+        val maxDoseMg = weight * (regimen.maxDose ?: 0.0)
 
         return CalculationResults(
             weight = weight,

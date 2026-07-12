@@ -5,6 +5,9 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import org.dishch.medcalculator.domain.model.DosageRegimen
+import org.dishch.medcalculator.domain.model.Route
+import org.dishch.medcalculator.domain.model.Unit
 
 @Entity(
     tableName = "dosage_regimens",
@@ -32,3 +35,18 @@ data class DosageRegimenEntity(
     @ColumnInfo(name = "max_dose_mg") val maxDoseMg: Double?,
     @ColumnInfo(name = "note") val note: String?
 )
+
+fun DosageRegimenEntity.toDomain(): DosageRegimen =
+    DosageRegimen(
+        id = id,
+        fromMonths = fromMonths,
+        toMonths = toMonths,
+        fromKg = fromKg,
+        toKg = toKg,
+        minDose = doseMin,
+        maxDose = doseMax,
+        maxDoseMg = maxDoseMg,
+        route = Route.valueOf(route),
+        unit = Unit.valueOf(unit),
+        medicationId = medicationId,
+    )

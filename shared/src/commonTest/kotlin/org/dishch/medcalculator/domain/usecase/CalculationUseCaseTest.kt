@@ -4,7 +4,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
-import kotlin.test.assertTrue
 import org.dishch.medcalculator.domain.model.AgeUnit
 import org.dishch.medcalculator.domain.model.DosageRegimen
 import org.dishch.medcalculator.domain.model.Medication
@@ -26,10 +25,10 @@ class CalculationUseCaseTest {
         val regimens = listOf(
             DosageRegimen(
                 id = 1,
-                fromAge = 0,
-                toAge = 216,
-                minDosePerKg = 10.0,
-                maxDosePerKg = 15.0,
+                fromMonths = 0,
+                toMonths = 216,
+                minDose = 10.0,
+                maxDose = 15.0,
                 medicationId = "1"
             )
         )
@@ -122,10 +121,10 @@ class CalculationUseCaseTest {
         val regimens = listOf(
             DosageRegimen(
                 id = 1,
-                fromAge = 100,
-                toAge = 200,
-                minDosePerKg = 10.0,
-                maxDosePerKg = 15.0,
+                fromMonths = 100,
+                toMonths = 200,
+                minDose = 10.0,
+                maxDose = 15.0,
                 medicationId = "1"
             )
         )
@@ -154,10 +153,10 @@ class CalculationUseCaseTest {
         val regimens = listOf(
             DosageRegimen(
                 id = 1,
-                fromAge = 0,
-                toAge = 216,
-                minDosePerKg = 10.0,
-                maxDosePerKg = 15.0,
+                fromMonths = 0,
+                toMonths = 216,
+                minDose = 10.0,
+                maxDose = 15.0,
                 medicationId = "1"
             )
         )
@@ -187,10 +186,10 @@ class CalculationUseCaseTest {
         val regimens = listOf(
             DosageRegimen(
                 id = 1,
-                fromAge = 0,
-                toAge = 11,
-                minDosePerKg = 10.0,
-                maxDosePerKg = 15.0,
+                fromMonths = 0,
+                toMonths = 11,
+                minDose = 10.0,
+                maxDose = 15.0,
                 medicationId = 1.toString()
             )
         )
