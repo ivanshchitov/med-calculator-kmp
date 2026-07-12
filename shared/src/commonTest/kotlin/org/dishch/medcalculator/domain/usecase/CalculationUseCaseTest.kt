@@ -7,6 +7,8 @@ import kotlin.test.assertNull
 import org.dishch.medcalculator.domain.model.AgeUnit
 import org.dishch.medcalculator.domain.model.DosageRegimen
 import org.dishch.medcalculator.domain.model.Medication
+import org.dishch.medcalculator.data.local.Route
+import org.dishch.medcalculator.data.local.Unit
 
 class CalculationUseCaseTest {
 
@@ -27,8 +29,13 @@ class CalculationUseCaseTest {
                 id = 1,
                 fromMonths = 0,
                 toMonths = 216,
+                fromKg = null,
+                toKg = null,
                 minDose = 10.0,
                 maxDose = 15.0,
+                maxDoseMg = null,
+                route = Route.IV,
+                unit = Unit.MG_PER_KG,
                 medicationId = "1"
             )
         )
@@ -123,8 +130,13 @@ class CalculationUseCaseTest {
                 id = 1,
                 fromMonths = 100,
                 toMonths = 200,
+                fromKg = null,
+                toKg = null,
                 minDose = 10.0,
                 maxDose = 15.0,
+                maxDoseMg = null,
+                route = Route.IV,
+                unit = Unit.MG_PER_KG,
                 medicationId = "1"
             )
         )
@@ -155,8 +167,13 @@ class CalculationUseCaseTest {
                 id = 1,
                 fromMonths = 0,
                 toMonths = 216,
+                fromKg = null,
+                toKg = null,
                 minDose = 10.0,
                 maxDose = 15.0,
+                maxDoseMg = null,
+                route = Route.IV,
+                unit = Unit.MG_PER_KG,
                 medicationId = "1"
             )
         )
@@ -188,9 +205,14 @@ class CalculationUseCaseTest {
                 id = 1,
                 fromMonths = 0,
                 toMonths = 11,
+                fromKg = null,
+                toKg = null,
                 minDose = 10.0,
                 maxDose = 15.0,
-                medicationId = 1.toString()
+                maxDoseMg = null,
+                route = Route.IV,
+                unit = Unit.MG_PER_KG,
+                medicationId = "1"
             )
         )
 

@@ -4,6 +4,7 @@ import androidx.room.ConstructedBy
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.RoomDatabaseConstructor
+import androidx.room.TypeConverters
 import androidx.room.Transaction
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import kotlinx.coroutines.Dispatchers
@@ -14,8 +15,9 @@ import kotlinx.coroutines.IO
         MedicationEntity::class,
         DosageRegimenEntity::class
     ],
-    version = 2
+    version = 1
 )
+@TypeConverters(RouteTypeConverter::class, UnitTypeConverter::class)
 @ConstructedBy(AppDatabaseConstructor::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun getMedicationDao(): MedicationDao

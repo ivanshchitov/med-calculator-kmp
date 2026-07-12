@@ -6,8 +6,9 @@ import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import org.dishch.medcalculator.domain.model.DosageRegimen
-import org.dishch.medcalculator.domain.model.Route
-import org.dishch.medcalculator.domain.model.Unit
+
+enum class Route { IV, IM, SC }
+enum class Unit { MG, MG_PER_KG }
 
 @Entity(
     tableName = "dosage_regimens",
@@ -24,14 +25,14 @@ import org.dishch.medcalculator.domain.model.Unit
 data class DosageRegimenEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     @ColumnInfo(name = "medication_id") val medicationId: String,
-    @ColumnInfo(name = "route") val route: String,
+    @ColumnInfo(name = "route") val route: Route,
     @ColumnInfo(name = "from_months") val fromMonths: Int,
     @ColumnInfo(name = "to_months") val toMonths: Int,
     @ColumnInfo(name = "from_kg") val fromKg: Double?,
     @ColumnInfo(name = "to_kg") val toKg: Double?,
     @ColumnInfo(name = "dose_min") val doseMin: Double?,
     @ColumnInfo(name = "dose_max") val doseMax: Double?,
-    @ColumnInfo(name = "unit") val unit: String,
+    @ColumnInfo(name = "unit") val unit: Unit,
     @ColumnInfo(name = "max_dose_mg") val maxDoseMg: Double?,
     @ColumnInfo(name = "note") val note: String?
 )
@@ -46,7 +47,7 @@ fun DosageRegimenEntity.toDomain(): DosageRegimen =
         minDose = doseMin,
         maxDose = doseMax,
         maxDoseMg = maxDoseMg,
-        route = Route.valueOf(route),
-        unit = Unit.valueOf(unit),
+        route = route,
+        unit = unit,
         medicationId = medicationId,
     )

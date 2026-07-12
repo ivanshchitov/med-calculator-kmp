@@ -1,15 +1,7 @@
 package org.dishch.medcalculator.domain.model
 
-enum class Route(name: String) {
-    IV("IV"),
-    IM("IM"),
-    SC("SC");
-}
-
-enum class Unit(unit: String) {
-    MG("MG"),
-    MG_PER_KG("MG_PER_KG")
-}
+import org.dishch.medcalculator.data.local.Route
+import org.dishch.medcalculator.data.local.Unit
 
 data class DosageRegimen(
     val id: Long,

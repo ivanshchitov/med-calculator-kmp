@@ -19,14 +19,14 @@ object DataImportConverter {
                 regimen.rules.map { rule ->
                     DosageRegimenEntity(
                         medicationId = medication.id,
-                        route = regimen.route,
+                        route = Route.valueOf(regimen.route),
                         fromMonths = rule.fromMonths,
                         toMonths = rule.toMonths,
                         fromKg = rule.fromKg,
                         toKg = rule.toKg,
                         doseMin = rule.doseMin,
                         doseMax = rule.doseMax,
-                        unit = rule.unit,
+                        unit = Unit.valueOf(rule.unit),
                         maxDoseMg = rule.maxDoseMg,
                         note = rule.note
                     )
