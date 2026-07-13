@@ -61,7 +61,10 @@ val DosageRegimen.formattedMaxDose: String
     get() = maxDose?.formatAsDecimal() ?: ""
 
 val DosageRegimen.formattedDoseRange: String
-    get() = "$formattedMinDose-$formattedMaxDose"
+    get() = if (minDose == maxDose)
+        formattedMinDose
+    else
+        "$formattedMinDose-$formattedMaxDose"
 
 val DosageRegimen.formattedAgeRange: String
     @Composable
