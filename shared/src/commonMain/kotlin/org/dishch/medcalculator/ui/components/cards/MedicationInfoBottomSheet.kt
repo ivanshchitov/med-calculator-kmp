@@ -1,5 +1,6 @@
 package org.dishch.medcalculator.ui.components.cards
 
+import androidx.collection.forEach
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -14,13 +15,15 @@ import androidx.compose.material.icons.outlined.Face6
 import androidx.compose.material.icons.outlined.NoAdultContent
 import androidx.compose.material.icons.outlined.WarningAmber
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import org.dishch.medcalculator.domain.model.DosageRegimen
+import org.dishch.medcalculator.domain.model.Route
 import org.dishch.medcalculator.domain.model.Medication
 import org.dishch.medcalculator.domain.model.formattedDosage
 import org.dishch.medcalculator.ui.helpers.formattedAgeLimit
@@ -32,6 +35,8 @@ import org.jetbrains.compose.resources.stringResource
 import medcalculator.shared.generated.resources.*
 import org.dishch.medcalculator.domain.model.formattedMaxSingleDose
 import org.dishch.medcalculator.domain.model.toAge
+import org.dishch.medcalculator.ui.components.AppSegmentedButton
+import org.dishch.medcalculator.ui.components.AppSegmentedButtonRow
 import org.dishch.medcalculator.ui.theme.AppDimens
 import org.dishch.medcalculator.ui.theme.AppDimens.SpacingSmall
 
@@ -78,7 +83,37 @@ fun MedicationInfoBottomSheet(
 
             Spacer(modifier = Modifier.height(AppDimens.SpacingSmall))
 
-            RegimensSection(regimens)
+
+            val uniqueRoutes = regimens.map { it.route }.filterNotNull().distinct()
+            val selectedRoute = rememberSaveable { mutableStateOf(uniqueRoutes.firstOrNull()) }
+
+            val routeResources = mapOf(
+                Route.IV to Res.string.route_iv,
+                Route.IM to Res.string.route_im,
+                Route.SC to Res.string.route_sc
+            )
+
+            if (uniqueRoutes.isNotEmpty()) {
+                AppSegmentedButtonRow {
+                    uniqueRoutes.forEach { route ->
+                        val labelRes = routeResources[route] ?: return@forEach
+
+                        AppSegmentedButton(
+                            selected = selectedRoute.value == route,
+                            onClick = { selectedRoute.value = route },
+                            label = stringResource(labelRes)
+                        )
+                    }
+                }
+            }
+
+            val filteredRegimens by remember(regimens, selectedRoute.value) {
+                derivedStateOf {
+                    selectedRoute.value?.let { route -> regimens.filter { it.route == route } } ?: regimens
+                }
+            }
+
+            RegimensSection(filteredRegimens)
 
             Spacer(modifier = Modifier.height(AppDimens.SpacingMedium))
         }
