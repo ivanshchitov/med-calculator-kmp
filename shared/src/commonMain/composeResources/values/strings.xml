@@ -44,7 +44,7 @@
     <string name="route_iv">IV</string>
     <string name="route_im">IM</string>
     <string name="route_sc">SC</string>
-    <string name="dosage_per_kg_format">%1$s mg/kg</string>
+    <string name="mg_per_kg_format">%1$s mg/kg</string>
     <plurals name="age_limit_months_plurals">
         <item quantity="one">from %1$d month</item>
         <item quantity="other">from %1$d months</item>

@@ -221,7 +221,13 @@ private fun RegimenItem(regimen: DosageRegimen) {
                     color = AppColors.TextPrimary
                 )
                 Text(
-                    stringResource(Res.string.dosage_per_kg_format, regimen.formattedDoseRange),
+                    stringResource(
+                        if (regimen.unit == org.dishch.medcalculator.domain.model.Unit.MG_PER_KG)
+                            Res.string.mg_per_kg_format
+                        else
+                            Res.string.mg_format,
+                        regimen.formattedDoseRange
+                    ),
                     style = MaterialTheme.typography.bodyMedium,
                     fontWeight = FontWeight.Bold,
                     color = AppColors.TextPrimary
