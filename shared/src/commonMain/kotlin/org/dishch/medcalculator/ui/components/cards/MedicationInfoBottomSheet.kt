@@ -25,14 +25,13 @@ import org.dishch.medcalculator.domain.model.Medication
 import org.dishch.medcalculator.domain.model.formattedDosage
 import org.dishch.medcalculator.ui.helpers.formattedAgeLimit
 import org.dishch.medcalculator.ui.helpers.formattedAgeRange
-import org.dishch.medcalculator.ui.helpers.formattedDoseRange
 import org.dishch.medcalculator.ui.theme.AppColors
 import org.jetbrains.compose.resources.stringResource
 import medcalculator.shared.generated.resources.*
 import org.dishch.medcalculator.domain.model.formattedMaxSingleDose
 import org.dishch.medcalculator.domain.model.toAge
+import org.dishch.medcalculator.ui.helpers.doseDisplayString
 import org.dishch.medcalculator.ui.helpers.icon
-import org.dishch.medcalculator.ui.helpers.unitStringFormat
 import org.dishch.medcalculator.ui.theme.AppDimens
 import org.dishch.medcalculator.ui.theme.AppDimens.SpacingSmall
 
@@ -204,10 +203,7 @@ private fun RegimenItem(regimen: DosageRegimen) {
                     color = AppColors.TextPrimary
                 )
                 Text(
-                    stringResource(
-                        regimen.unitStringFormat,
-                        regimen.formattedDoseRange
-                    ),
+                    text = regimen.doseDisplayString,
                     style = MaterialTheme.typography.bodyMedium,
                     fontWeight = FontWeight.Bold,
                     color = AppColors.TextPrimary

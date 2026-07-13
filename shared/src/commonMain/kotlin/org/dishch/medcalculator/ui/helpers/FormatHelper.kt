@@ -15,6 +15,7 @@ import medcalculator.shared.generated.resources.age_range_format
 import medcalculator.shared.generated.resources.age_supporting_months
 import medcalculator.shared.generated.resources.age_supporting_years
 import medcalculator.shared.generated.resources.age_years
+import medcalculator.shared.generated.resources.contraindicated
 import medcalculator.shared.generated.resources.mg_format
 import medcalculator.shared.generated.resources.mg_per_kg_format
 import medcalculator.shared.generated.resources.months_suffix
@@ -83,6 +84,13 @@ val DosageRegimen.unitStringFormat: StringResource
         Res.string.mg_per_kg_format
     else
         Res.string.mg_format
+
+val DosageRegimen.doseDisplayString: String
+    @Composable
+    get() =  if (minDose == null || maxDose == null)
+        stringResource(Res.string.contraindicated)
+    else
+        stringResource(unitStringFormat, formattedDoseRange)
 
 val DosageRegimen.icon: ImageVector
     get() = when {
