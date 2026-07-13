@@ -31,7 +31,9 @@ import medcalculator.shared.generated.resources.*
 import org.dishch.medcalculator.domain.model.formattedMaxSingleDose
 import org.dishch.medcalculator.domain.model.toAge
 import org.dishch.medcalculator.ui.helpers.doseDisplayString
+import org.dishch.medcalculator.ui.helpers.formattedWeightRange
 import org.dishch.medcalculator.ui.helpers.icon
+import org.dishch.medcalculator.ui.helpers.isWeightRangeValid
 import org.dishch.medcalculator.ui.theme.AppDimens
 import org.dishch.medcalculator.ui.theme.AppDimens.SpacingSmall
 
@@ -197,11 +199,25 @@ private fun RegimenItem(regimen: DosageRegimen) {
             }
             Spacer(modifier = Modifier.width(AppDimens.SpacingMediumSmall))
             Column {
-                Text(
-                    regimen.formattedAgeRange,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = AppColors.TextPrimary
-                )
+                Row(modifier = Modifier.height(IntrinsicSize.Min)) {
+                    Text(
+                        regimen.formattedAgeRange,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = AppColors.TextPrimary
+                    )
+                    if (regimen.isWeightRangeValid()) {
+                        VerticalDivider(
+                            modifier = Modifier.fillMaxHeight().padding(AppDimens.SpacingExtraSmall),
+                            thickness = AppDimens.SubCardBorderWidth,
+                            color = Color.Gray
+                        )
+                        Text(
+                            regimen.formattedWeightRange,
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = AppColors.TextPrimary
+                        )
+                    }
+                }
                 Text(
                     text = regimen.doseDisplayString,
                     style = MaterialTheme.typography.bodyMedium,

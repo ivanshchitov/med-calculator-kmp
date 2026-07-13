@@ -19,6 +19,7 @@ import medcalculator.shared.generated.resources.contraindicated
 import medcalculator.shared.generated.resources.mg_format
 import medcalculator.shared.generated.resources.mg_per_kg_format
 import medcalculator.shared.generated.resources.months_suffix
+import medcalculator.shared.generated.resources.weight_range_format
 import medcalculator.shared.generated.resources.years_suffix
 import org.dishch.medcalculator.domain.model.ADULT_AGE_MONTHS
 import org.dishch.medcalculator.domain.model.Age
@@ -82,6 +83,16 @@ val DosageRegimen.formattedAgeRange: String
         }
     }
 
+val DosageRegimen.formattedWeightRange: String
+    @Composable
+    get() = if (isWeightRangeValid()) {
+        stringResource(
+            Res.string.weight_range_format,
+            fromKg?.formatAsDecimal() ?: "",
+            toKg?.formatAsDecimal() ?: ""
+        )
+    } else ""
+
 val DosageRegimen.unitStringFormat: StringResource
     get() = if (dosageUnit == DosageUnit.MG_PER_KG)
         Res.string.mg_per_kg_format
@@ -102,6 +113,8 @@ val DosageRegimen.icon: ImageVector
         fromAgeInYears < 18 -> Icons.Outlined.Face2        // Teen
         else -> Icons.Outlined.Face6                        // Senior
     }
+
+fun DosageRegimen.isWeightRangeValid(): Boolean = fromKg != null && toKg != null
 
 // AgeUnit formatting helpers
 
