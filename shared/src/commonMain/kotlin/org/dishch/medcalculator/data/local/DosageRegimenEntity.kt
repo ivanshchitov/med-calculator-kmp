@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 import org.dishch.medcalculator.domain.model.DosageRegimen
 
 enum class Route { IV, IM, SC }
-enum class Unit { MG, MG_PER_KG }
+enum class DosageUnit { MG, MG_PER_KG }
 
 @Entity(
     tableName = "dosage_regimens",
@@ -32,7 +32,7 @@ data class DosageRegimenEntity(
     @ColumnInfo(name = "to_kg") val toKg: Double?,
     @ColumnInfo(name = "dose_min") val doseMin: Double?,
     @ColumnInfo(name = "dose_max") val doseMax: Double?,
-    @ColumnInfo(name = "unit") val unit: Unit,
+    @ColumnInfo(name = "unit") val dosageUnit: DosageUnit,
     @ColumnInfo(name = "max_dose_mg") val maxDoseMg: Double?,
     @ColumnInfo(name = "note") val note: String?
 )
@@ -48,6 +48,6 @@ fun DosageRegimenEntity.toDomain(): DosageRegimen =
         maxDose = doseMax,
         maxDoseMg = maxDoseMg,
         route = route.toDomain(),
-        unit = unit.toDomain(),
+        dosageUnit = dosageUnit.toDomain(),
         medicationId = medicationId,
     )

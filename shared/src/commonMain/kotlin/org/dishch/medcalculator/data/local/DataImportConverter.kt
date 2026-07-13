@@ -26,7 +26,7 @@ object DataImportConverter {
                         toKg = rule.toKg,
                         doseMin = rule.doseMin,
                         doseMax = rule.doseMax,
-                        unit = Unit.valueOf(rule.unit),
+                        dosageUnit = DosageUnit.valueOf(rule.unit),
                         maxDoseMg = rule.maxDoseMg,
                         note = rule.note
                     )

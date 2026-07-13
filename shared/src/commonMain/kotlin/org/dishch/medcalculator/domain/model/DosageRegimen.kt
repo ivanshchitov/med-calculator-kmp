@@ -1,7 +1,7 @@
 package org.dishch.medcalculator.domain.model
 
 enum class Route { IV, IM, SC }
-enum class Unit { MG, MG_PER_KG }
+enum class DosageUnit { MG, MG_PER_KG }
 
 
 data class DosageRegimen(
@@ -14,6 +14,6 @@ data class DosageRegimen(
     val maxDose: Double?,
     val maxDoseMg: Double?,
     val route: Route,
-    val unit: Unit,
+    val dosageUnit: DosageUnit,
     val medicationId: String
 )
