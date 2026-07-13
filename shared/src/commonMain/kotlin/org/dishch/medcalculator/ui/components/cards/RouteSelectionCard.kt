@@ -15,6 +15,8 @@ import androidx.compose.ui.unit.dp
 import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.administration_routes
 import org.dishch.medcalculator.domain.model.Route
+import org.dishch.medcalculator.ui.components.AppSegmentedButton
+import org.dishch.medcalculator.ui.components.AppSegmentedButtonRow
 import org.dishch.medcalculator.ui.theme.AppColors
 import org.dishch.medcalculator.ui.theme.AppDimens
 import org.jetbrains.compose.resources.stringResource
@@ -62,25 +64,15 @@ fun RouteSelectionCard(
             )
 
             // Segmented buttons
-            SingleChoiceSegmentedButtonRow(
-                modifier = Modifier.wrapContentWidth()
+            AppSegmentedButtonRow(
+                modifier = Modifier.wrapContentWidth(),
+                space = AppDimens.CornerSmall
             ) {
                 routes.forEach { route ->
-                    val isSelected = selectedRoute == route
-
-                    SegmentedButton(
-                        selected = isSelected,
+                    AppSegmentedButton(
+                        selected = selectedRoute == route,
                         onClick = { onRouteSelected(route) },
-                        shape = RoundedCornerShape(AppDimens.CornerMediumSmall),
-                        colors = SegmentedButtonDefaults.colors(
-                            activeContainerColor = route.colors.container,
-                            activeContentColor = route.colors.content,
-                            inactiveContainerColor = Color.Transparent,
-                            inactiveContentColor = AppColors.TextSecondary
-                        ),
-                        border = BorderStroke(0.dp, Color.Transparent),
-                        label = { Text(stringResource(route.stringRes)) },
-                        icon = {},
+                        label = stringResource(route.stringRes),
                         modifier = Modifier.width(48.dp)
                     )
                 }

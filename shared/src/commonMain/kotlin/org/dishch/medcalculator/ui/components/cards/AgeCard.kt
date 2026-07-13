@@ -48,9 +48,9 @@ fun AgeCard(
             maxIntegerDigits = 2
         )
 
-        Spacer(modifier = Modifier.height(AppDimens.SpacingMedium))
-
-        AppSegmentedButtonRow {
+        AppSegmentedButtonRow(
+            modifier = Modifier.fillMaxWidth()
+        ) {
             AppSegmentedButton(
                 selected = unit == AgeUnit.MONTHS,
                 onClick = { onUnitChanged(AgeUnit.MONTHS) },

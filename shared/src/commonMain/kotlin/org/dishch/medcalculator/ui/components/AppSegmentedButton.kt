@@ -1,12 +1,11 @@
 package org.dishch.medcalculator.ui.components
 
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.Dp
 import org.dishch.medcalculator.ui.theme.AppColors
 import org.dishch.medcalculator.ui.theme.AppDimens
 
@@ -14,11 +13,12 @@ import org.dishch.medcalculator.ui.theme.AppDimens
 @Composable
 fun AppSegmentedButtonRow(
     modifier: Modifier = Modifier,
+    space: Dp = AppDimens.CornerMediumSmall,
     content: @Composable SingleChoiceSegmentedButtonRowScope.() -> Unit
 ) {
     SingleChoiceSegmentedButtonRow(
-        modifier = modifier.fillMaxWidth(),
-        space = AppDimens.CornerMediumSmall,
+        modifier = modifier,
+        space = space,
         content = content
     )
 }
@@ -26,6 +26,7 @@ fun AppSegmentedButtonRow(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SingleChoiceSegmentedButtonRowScope.AppSegmentedButton(
+    modifier: Modifier = Modifier,
     selected: Boolean,
     onClick: () -> Unit,
     label: String
@@ -49,6 +50,6 @@ fun SingleChoiceSegmentedButtonRowScope.AppSegmentedButton(
         border = border,
         icon = {},
         label = { Text(label) },
-        modifier = Modifier.weight(1f)
+        modifier = modifier.weight(1f)
     )
 }
