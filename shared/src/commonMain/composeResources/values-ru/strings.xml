@@ -48,7 +48,7 @@
     <string name="route_iv">в/в</string>
     <string name="route_im">в/м</string>
     <string name="route_sc">п/к</string>
-    <string name="dosage_per_kg_format">%1$s мг/кг</string>
+    <string name="mg_per_kg_format">%1$s мг/кг</string>
     <plurals name="age_limit_months_plurals">
         <item quantity="one">от %1$d месяца</item>
         <item quantity="few">от %1$d месяцев</item>
