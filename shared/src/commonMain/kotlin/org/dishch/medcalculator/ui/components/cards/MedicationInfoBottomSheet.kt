@@ -10,10 +10,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.Assignment
-import androidx.compose.material.icons.outlined.ChildFriendly
-import androidx.compose.material.icons.outlined.Face2
-import androidx.compose.material.icons.outlined.Face3
-import androidx.compose.material.icons.outlined.Face6
 import androidx.compose.material.icons.outlined.NoAdultContent
 import androidx.compose.material.icons.outlined.WarningAmber
 import androidx.compose.material3.*
@@ -30,13 +26,13 @@ import org.dishch.medcalculator.domain.model.formattedDosage
 import org.dishch.medcalculator.ui.helpers.formattedAgeLimit
 import org.dishch.medcalculator.ui.helpers.formattedAgeRange
 import org.dishch.medcalculator.ui.helpers.formattedDoseRange
-import org.dishch.medcalculator.ui.helpers.fromAgeInYears
 import org.dishch.medcalculator.ui.theme.AppColors
 import org.jetbrains.compose.resources.stringResource
 import medcalculator.shared.generated.resources.*
-import org.dishch.medcalculator.domain.model.DosageUnit
 import org.dishch.medcalculator.domain.model.formattedMaxSingleDose
 import org.dishch.medcalculator.domain.model.toAge
+import org.dishch.medcalculator.ui.helpers.icon
+import org.dishch.medcalculator.ui.helpers.unitStringFormat
 import org.dishch.medcalculator.ui.theme.AppDimens
 import org.dishch.medcalculator.ui.theme.AppDimens.SpacingSmall
 
@@ -194,12 +190,7 @@ private fun RegimenItem(regimen: DosageRegimen) {
             ) {
                 Box(contentAlignment = Alignment.Center) {
                     Icon(
-                        when {
-                            regimen.fromAgeInYears < 1 -> Icons.Outlined.ChildFriendly // Infant
-                            regimen.fromAgeInYears < 12 -> Icons.Outlined.Face3        // Child
-                            regimen.fromAgeInYears < 18 -> Icons.Outlined.Face2        // Teen
-                            else -> Icons.Outlined.Face6                        // Senior
-                        },
+                        imageVector = regimen.icon,
                         contentDescription = null,
                         tint = AppColors.Success
                     )
@@ -214,10 +205,7 @@ private fun RegimenItem(regimen: DosageRegimen) {
                 )
                 Text(
                     stringResource(
-                        if (regimen.dosageUnit == DosageUnit.MG_PER_KG)
-                            Res.string.mg_per_kg_format
-                        else
-                            Res.string.mg_format,
+                        regimen.unitStringFormat,
                         regimen.formattedDoseRange
                     ),
                     style = MaterialTheme.typography.bodyMedium,
