@@ -41,6 +41,9 @@
     <string name="max_single_dose">Max single dose</string>
     <string name="dosage_label">Dosage: %1$s mg/ml</string>
     <string name="dosage_regimen">Dosage regimen</string>
+    <string name="route_iv">IV</string>
+    <string name="route_im">IM</string>
+    <string name="route_sc">SC</string>
     <string name="dosage_per_kg_format">%1$s mg/kg</string>
     <plurals name="age_limit_months_plurals">
         <item quantity="one">from %1$d month</item>
