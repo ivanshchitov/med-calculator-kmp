@@ -73,16 +73,17 @@ fun MedicationInfoBottomSheet(
 
              Spacer(modifier = Modifier.height(SpacingSmall))
 
-             InfoBlockWithIcon(
-                 title = stringResource(Res.string.max_single_dose),
-                 value = stringResource(Res.string.mg_format, medication.formattedMaxSingleDose),
-                 icon = Icons.Outlined.WarningAmber,
-                 iconBackground = AppColors.WarningContainer,
-                 iconColor = AppColors.Warning
-             )
+             if (medication.maxSingleDose != null) {
+                 InfoBlockWithIcon(
+                     title = stringResource(Res.string.max_single_dose),
+                     value = stringResource(Res.string.mg_format, medication.formattedMaxSingleDose),
+                     icon = Icons.Outlined.WarningAmber,
+                     iconBackground = AppColors.WarningContainer,
+                     iconColor = AppColors.Warning
+                 )
 
-            Spacer(modifier = Modifier.height(AppDimens.SpacingSmall))
-
+                 Spacer(modifier = Modifier.height(AppDimens.SpacingSmall))
+             }
 
             val uniqueRoutes = regimens.map { it.route }.filterNotNull().distinct()
             val selectedRoute = rememberSaveable { mutableStateOf(uniqueRoutes.firstOrNull()) }
