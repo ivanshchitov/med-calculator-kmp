@@ -1,6 +1,12 @@
 package org.dishch.medcalculator.ui.helpers
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.ChildFriendly
+import androidx.compose.material.icons.outlined.Face2
+import androidx.compose.material.icons.outlined.Face3
+import androidx.compose.material.icons.outlined.Face6
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.vector.ImageVector
 import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.age_limit_months_plurals
 import medcalculator.shared.generated.resources.age_limit_years_plurals
@@ -9,12 +15,15 @@ import medcalculator.shared.generated.resources.age_range_format
 import medcalculator.shared.generated.resources.age_supporting_months
 import medcalculator.shared.generated.resources.age_supporting_years
 import medcalculator.shared.generated.resources.age_years
+import medcalculator.shared.generated.resources.mg_format
+import medcalculator.shared.generated.resources.mg_per_kg_format
 import medcalculator.shared.generated.resources.months_suffix
 import medcalculator.shared.generated.resources.years_suffix
 import org.dishch.medcalculator.domain.model.ADULT_AGE_MONTHS
 import org.dishch.medcalculator.domain.model.Age
 import org.dishch.medcalculator.domain.model.AgeUnit
 import org.dishch.medcalculator.domain.model.DosageRegimen
+import org.dishch.medcalculator.domain.model.DosageUnit
 import org.dishch.medcalculator.domain.model.toAge
 import org.dishch.medcalculator.formatAsDecimal
 import org.jetbrains.compose.resources.PluralStringResource
@@ -39,7 +48,7 @@ fun Age.toPluralsString(): String =
 private val Age.pluralRes: PluralStringResource
     get() = if (isYears) Res.plurals.age_years else Res.plurals.age_months
 
-// DosageRegimen formatting helpers
+// DosageRegimen extensions
 
 val DosageRegimen.fromAgeInYears: Int
     get() = fromMonths.toAge().quantity
@@ -67,6 +76,20 @@ val DosageRegimen.formattedAgeRange: String
                 toMonths.toAge().toPluralsString()
             )
         }
+    }
+
+val DosageRegimen.unitStringFormat: StringResource
+    get() = if (dosageUnit == DosageUnit.MG_PER_KG)
+        Res.string.mg_per_kg_format
+    else
+        Res.string.mg_format
+
+val DosageRegimen.icon: ImageVector
+    get() = when {
+        fromAgeInYears < 1 -> Icons.Outlined.ChildFriendly // Infant
+        fromAgeInYears < 12 -> Icons.Outlined.Face3        // Child
+        fromAgeInYears < 18 -> Icons.Outlined.Face2        // Teen
+        else -> Icons.Outlined.Face6                        // Senior
     }
 
 // AgeUnit formatting helpers
