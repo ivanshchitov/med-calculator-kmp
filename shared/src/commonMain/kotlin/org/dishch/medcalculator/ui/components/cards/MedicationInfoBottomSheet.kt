@@ -23,7 +23,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import org.dishch.medcalculator.domain.model.DosageRegimen
-import org.dishch.medcalculator.domain.model.Route
 import org.dishch.medcalculator.domain.model.Medication
 import org.dishch.medcalculator.domain.model.formattedDosage
 import org.dishch.medcalculator.ui.helpers.formattedAgeLimit
@@ -89,21 +88,13 @@ fun MedicationInfoBottomSheet(
             val uniqueRoutes = regimens.map { it.route }.filterNotNull().distinct()
             val selectedRoute = rememberSaveable { mutableStateOf(uniqueRoutes.firstOrNull()) }
 
-            val routeResources = mapOf(
-                Route.IV to Res.string.route_iv,
-                Route.IM to Res.string.route_im,
-                Route.SC to Res.string.route_sc
-            )
-
             if (uniqueRoutes.isNotEmpty()) {
                 AppSegmentedButtonRow {
                     uniqueRoutes.forEach { route ->
-                        val labelRes = routeResources[route] ?: return@forEach
-
                         AppSegmentedButton(
                             selected = selectedRoute.value == route,
                             onClick = { selectedRoute.value = route },
-                            label = stringResource(labelRes)
+                            label = stringResource(route.stringRes)
                         )
                     }
                 }
