@@ -46,17 +46,9 @@ fun ChooseMedicationScreen(
     val selectedMedicationColor by viewModel.selectedMedicationColor.collectAsStateWithLifecycle()
     val regimens by viewModel.regimens.collectAsStateWithLifecycle()
 
-    val sheetState = rememberModalBottomSheetState()
+    val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 
     val focusManager = LocalFocusManager.current
-
-    // Synchronize internal animation finish to state disposal
-    LaunchedEffect(sheetState.targetValue) {
-        if (sheetState.targetValue == SheetValue.Hidden) {
-            yield()
-            viewModel.onDismissInfo()
-        }
-    }
 
     Scaffold(
         modifier = Modifier.pointerInput(Unit) {
