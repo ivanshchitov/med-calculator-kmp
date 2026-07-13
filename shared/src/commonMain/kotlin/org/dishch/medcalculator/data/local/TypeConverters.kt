@@ -14,8 +14,8 @@ class RouteTypeConverter {
 class UnitTypeConverter {
 
     @TypeConverter
-    fun fromUnit(unit: Unit): String = unit.name
+    fun fromUnit(dosageUnit: DosageUnit): String = dosageUnit.name
 
     @TypeConverter
-    fun toUnit(value: String): Unit = Unit.valueOf(value)
+    fun toUnit(value: String): DosageUnit = DosageUnit.valueOf(value)
 }

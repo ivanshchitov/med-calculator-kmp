@@ -1,7 +1,7 @@
 package org.dishch.medcalculator.data.local
 
 import org.dishch.medcalculator.domain.model.Route as DomainRoute
-import org.dishch.medcalculator.domain.model.Unit as DomainUnit
+import org.dishch.medcalculator.domain.model.DosageUnit as DomainDosageUnit
 
 fun Route.toDomain(): DomainRoute = when (this) {
     Route.IV -> DomainRoute.IV
@@ -15,12 +15,12 @@ fun DomainRoute.toData(): Route = when (this) {
     DomainRoute.SC -> Route.SC
 }
 
-fun Unit.toDomain(): DomainUnit = when (this) {
-    Unit.MG -> DomainUnit.MG
-    Unit.MG_PER_KG -> DomainUnit.MG_PER_KG
+fun DosageUnit.toDomain(): DomainDosageUnit = when (this) {
+    DosageUnit.MG -> DomainDosageUnit.MG
+    DosageUnit.MG_PER_KG -> DomainDosageUnit.MG_PER_KG
 }
 
-fun DomainUnit.toData(): Unit = when (this) {
-    DomainUnit.MG -> Unit.MG
-    DomainUnit.MG_PER_KG -> Unit.MG_PER_KG
+fun DomainDosageUnit.toData(): DosageUnit = when (this) {
+    DomainDosageUnit.MG -> DosageUnit.MG
+    DomainDosageUnit.MG_PER_KG -> DosageUnit.MG_PER_KG
 }

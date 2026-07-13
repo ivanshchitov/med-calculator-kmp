@@ -33,6 +33,7 @@ import org.dishch.medcalculator.ui.helpers.fromAgeInYears
 import org.dishch.medcalculator.ui.theme.AppColors
 import org.jetbrains.compose.resources.stringResource
 import medcalculator.shared.generated.resources.*
+import org.dishch.medcalculator.domain.model.DosageUnit
 import org.dishch.medcalculator.domain.model.formattedMaxSingleDose
 import org.dishch.medcalculator.domain.model.toAge
 import org.dishch.medcalculator.ui.components.AppSegmentedButton
@@ -222,7 +223,7 @@ private fun RegimenItem(regimen: DosageRegimen) {
                 )
                 Text(
                     stringResource(
-                        if (regimen.unit == org.dishch.medcalculator.domain.model.Unit.MG_PER_KG)
+                        if (regimen.dosageUnit == DosageUnit.MG_PER_KG)
                             Res.string.mg_per_kg_format
                         else
                             Res.string.mg_format,

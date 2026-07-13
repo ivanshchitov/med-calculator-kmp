@@ -8,7 +8,7 @@ import org.dishch.medcalculator.domain.model.AgeUnit
 import org.dishch.medcalculator.domain.model.DosageRegimen
 import org.dishch.medcalculator.domain.model.Medication
 import org.dishch.medcalculator.domain.model.Route
-import org.dishch.medcalculator.domain.model.Unit
+import org.dishch.medcalculator.domain.model.DosageUnit
 
 class CalculationUseCaseTest {
 
@@ -35,7 +35,7 @@ class CalculationUseCaseTest {
                 maxDose = 15.0,
                 maxDoseMg = null,
                 route = Route.IV,
-                unit = Unit.MG_PER_KG,
+                dosageUnit = DosageUnit.MG_PER_KG,
                 medicationId = "1"
             )
         )
@@ -136,7 +136,7 @@ class CalculationUseCaseTest {
                 maxDose = 15.0,
                 maxDoseMg = null,
                 route = Route.IV,
-                unit = Unit.MG_PER_KG,
+                dosageUnit = DosageUnit.MG_PER_KG,
                 medicationId = "1"
             )
         )
@@ -173,7 +173,7 @@ class CalculationUseCaseTest {
                 maxDose = 15.0,
                 maxDoseMg = null,
                 route = Route.IV,
-                unit = Unit.MG_PER_KG,
+                dosageUnit = DosageUnit.MG_PER_KG,
                 medicationId = "1"
             )
         )
@@ -211,7 +211,7 @@ class CalculationUseCaseTest {
                 maxDose = 15.0,
                 maxDoseMg = null,
                 route = Route.IV,
-                unit = Unit.MG_PER_KG,
+                dosageUnit = DosageUnit.MG_PER_KG,
                 medicationId = "1"
             )
         )
