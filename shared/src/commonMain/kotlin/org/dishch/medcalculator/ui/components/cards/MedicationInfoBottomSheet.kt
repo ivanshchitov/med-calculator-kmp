@@ -37,8 +37,6 @@ import medcalculator.shared.generated.resources.*
 import org.dishch.medcalculator.domain.model.DosageUnit
 import org.dishch.medcalculator.domain.model.formattedMaxSingleDose
 import org.dishch.medcalculator.domain.model.toAge
-import org.dishch.medcalculator.ui.components.AppSegmentedButton
-import org.dishch.medcalculator.ui.components.AppSegmentedButtonRow
 import org.dishch.medcalculator.ui.theme.AppDimens
 import org.dishch.medcalculator.ui.theme.AppDimens.SpacingSmall
 
@@ -89,23 +87,22 @@ fun MedicationInfoBottomSheet(
              }
 
             val uniqueRoutes = regimens.map { it.route }.filterNotNull().distinct()
-            val selectedRoute = rememberSaveable { mutableStateOf(uniqueRoutes.firstOrNull()) }
+            var selectedRoute by rememberSaveable { mutableStateOf(uniqueRoutes.firstOrNull()) }
 
-            if (uniqueRoutes.isNotEmpty()) {
-                AppSegmentedButtonRow {
-                    uniqueRoutes.forEach { route ->
-                        AppSegmentedButton(
-                            selected = selectedRoute.value == route,
-                            onClick = { selectedRoute.value = route },
-                            label = stringResource(route.stringRes)
-                        )
+            if (uniqueRoutes.isNotEmpty() && selectedRoute != null) {
+                RouteSelectionCard(
+                    routes = uniqueRoutes.map { it },
+                    selectedRoute = selectedRoute!!,
+                    onRouteSelected = { route ->
+                        selectedRoute = uniqueRoutes.find { it == route }
                     }
-                }
+                )
+                Spacer(modifier = Modifier.height(AppDimens.SpacingSmall))
             }
 
-            val filteredRegimens by remember(regimens, selectedRoute.value) {
+            val filteredRegimens by remember(regimens, selectedRoute) {
                 derivedStateOf {
-                    selectedRoute.value?.let { route -> regimens.filter { it.route == route } } ?: regimens
+                    selectedRoute?.let { route -> regimens.filter { it.route == route } } ?: regimens
                 }
             }
 
@@ -191,7 +188,7 @@ private fun RegimenItem(regimen: DosageRegimen) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Surface(
-                shape = RoundedCornerShape(AppDimens.CornerSmall * 1.5f),
+                shape = RoundedCornerShape(AppDimens.CornerMediumSmall),
                 color = AppColors.SuccessContainer,
                 modifier = Modifier.size(AppDimens.ResultIconContainerSize)
             ) {
@@ -246,12 +243,12 @@ private fun InfoBlockWithIcon(
         color = AppColors.Surface
     ) {
         Row(
-            modifier = Modifier.padding(AppDimens.SpacingLargeMedium).fillMaxWidth(),
+            modifier = Modifier.padding(AppDimens.SpacingMediumSmall).fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Surface(
                 modifier = Modifier.size(AppDimens.IconContainerSize - AppDimens.SpacingMedium),
-                shape = RoundedCornerShape(AppDimens.CornerSmall * 1.5f),
+                shape = RoundedCornerShape(AppDimens.CornerMediumSmall),
                 color = iconBackground
             ) {
                 Box(contentAlignment = Alignment.Center) {
