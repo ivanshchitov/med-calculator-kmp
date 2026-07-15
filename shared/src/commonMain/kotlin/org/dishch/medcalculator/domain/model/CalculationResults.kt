@@ -8,7 +8,18 @@ data class CalculationResults(
     val weight: Double,
     val age: Int,
     val ageUnit: AgeUnit,
-    val medication: Medication,
+    val medication: MedicationInfo,
+    val resultsByRoute: Map<Route, RouteCalculationResults>
+)
+
+@Serializable
+data class MedicationInfo(
+    val name: String,
+    val formattedDosage: String
+)
+
+@Serializable
+data class RouteCalculationResults(
     val minDoseMg: Double,
     val maxDoseMg: Double,
     val minVolMl: Double,
@@ -16,14 +27,14 @@ data class CalculationResults(
     val isMaxDailyDoseExceeded: Boolean
 )
 
-val CalculationResults.formattedDoseRange: String
+val RouteCalculationResults.formattedDoseRange: String
     get() = if (minDoseMg == maxDoseMg) {
         minDoseMg.formatAsDecimal()
     } else {
         "${minDoseMg.formatAsDecimal()}-${maxDoseMg.formatAsDecimal()}"
     }
 
-val CalculationResults.formattedVolumeRange: String
+val RouteCalculationResults.formattedVolumeRange: String
     get() = if (minVolMl == maxVolMl) {
         minVolMl.formatAsDecimal()
     } else {
