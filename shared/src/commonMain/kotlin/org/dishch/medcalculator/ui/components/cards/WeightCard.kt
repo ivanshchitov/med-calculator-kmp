@@ -34,7 +34,7 @@ fun WeightCard(
             modifier = Modifier.fillMaxWidth(),
             suffix = stringResource(Res.string.kg),
             isError = isError,
-            supportingText = if (isError) stringResource(Res.string.weight_supporting_text) else "",
+            supportingText = if (isError) supportingText else "",
             keyboardType = KeyboardType.Decimal,
             imeAction = imeAction,
             keyboardActions = keyboardActions,

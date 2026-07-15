@@ -1,6 +1,8 @@
 package org.dishch.medcalculator.domain.usecase
 
 import org.dishch.medcalculator.domain.model.AgeUnit
+import org.dishch.medcalculator.ui.helpers.isYears
+import org.dishch.medcalculator.ui.helpers.toAge
 
 data class ValidationState(
     val isValid: Boolean,
@@ -14,10 +16,12 @@ class ValidateInputUseCase {
     operator fun invoke(
         weightString: String,
         ageString: String,
-        ageUnit: AgeUnit?
+        ageUnit: AgeUnit?,
+        minMonths: Int,
+        minWeight: Double?
     ): ValidationState {
-        val weight = parseAndValidateWeight(weightString)
-        val age = parseAndValidateAge(ageString, ageUnit)
+        val weight = parseAndValidateWeight(weightString, minWeight)
+        val age = parseAndValidateAge(ageString, ageUnit, minMonths)
         val isValid = weight != null && age != null
 
         return ValidationState(
@@ -28,17 +32,18 @@ class ValidateInputUseCase {
         )
     }
 
-    private fun parseAndValidateWeight(value: String): Double? {
+    private fun parseAndValidateWeight(value: String, minWeight: Double?): Double? {
         val weight = value.toDoubleOrNull()
-        return if (weight != null && weight in 1.0..100.0) weight else null
+        return if (weight != null && weight in (minWeight?.let { it } ?: 1.0)..100.0) weight else null
     }
 
-    private fun parseAndValidateAge(value: String, ageUnit: AgeUnit?): Int? {
+    private fun parseAndValidateAge(value: String, ageUnit: AgeUnit?, minAge: Int): Int? {
         val age = value.toIntOrNull()
         val isValidAge = when (ageUnit) {
-            AgeUnit.MONTHS -> age != null && age in 1..11
-            AgeUnit.YEARS -> age != null && age in 1..17
-            null -> false
+            AgeUnit.MONTHS -> age != null && age in minAge..11
+            AgeUnit.YEARS if minAge.isYears() -> age != null && age in minAge.toAge()..17
+            AgeUnit.YEARS if !minAge.isYears() -> age != null && age in 1..17
+            else -> false
         }
         return if (isValidAge) age else null
     }

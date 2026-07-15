@@ -21,6 +21,7 @@ import org.dishch.medcalculator.domain.model.DosageRegimen
 import org.dishch.medcalculator.domain.model.Medication
 import org.dishch.medcalculator.domain.repository.PreferencesRepository
 import org.dishch.medcalculator.domain.usecase.GetMedicationByIdUseCase
+import org.dishch.medcalculator.ui.helpers.isYears
 import org.jetbrains.compose.resources.StringResource
 
 data class MainUiState(
@@ -30,7 +31,10 @@ data class MainUiState(
     val selectedMedication: Medication? = null,
     val dosageRegimens: List<DosageRegimen> = emptyList(),
     val weightSupportingText: StringResource? = null,
-    val ageSupportingText: StringResource? = null
+    val ageSupportingText: StringResource? = null,
+    val minMonths: Int = 1,
+    val minWeight: Double? = 1.0,
+    val disableMonths: Boolean = minMonths.isYears()
 )
 
 class MainViewModel(
@@ -49,7 +53,9 @@ class MainViewModel(
         val validationState = validateInputUseCase(
             weightString = state.weight,
             ageString = state.age,
-            ageUnit = state.ageUnit
+            ageUnit = state.ageUnit,
+            minMonths = state.minMonths,
+            minWeight = state.minWeight
         )
         validationState.isValid && state.selectedMedication != null
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), true)
@@ -82,7 +88,14 @@ class MainViewModel(
             _uiState.collectLatest { state ->
                 state.selectedMedication?.let { medication ->
                     getDosageRegimensUseCase(medication.id).collect { regimens ->
-                        _uiState.update { it.copy(dosageRegimens = regimens) }
+                        _uiState.update {
+                            it.copy(
+                                dosageRegimens = regimens,
+                                minMonths = state.selectedMedication.ageLimit,
+                                minWeight = regimens.mapNotNull { it.fromKg }.minOrNull(),
+                                disableMonths = state.selectedMedication.ageLimit.isYears()
+                            )
+                        }
                     }
                 }
             }
@@ -94,7 +107,9 @@ class MainViewModel(
                 val validationState = validateInputUseCase(
                     weightString = state.weight,
                     ageString = state.age,
-                    ageUnit = state.ageUnit
+                    ageUnit = state.ageUnit,
+                    minMonths = state.minMonths,
+                    minWeight = state.minWeight
                 )
                 val errorMessages = validationErrorMessagesUseCase(
                     validationState = validationState,
@@ -102,6 +117,7 @@ class MainViewModel(
                 )
                 _uiState.update {
                     it.copy(
+                        ageUnit = if (state.disableMonths) AgeUnit.YEARS else state.ageUnit,
                         weightSupportingText = errorMessages.weightSupportingText,
                         ageSupportingText = errorMessages.ageSupportingText
                     )
