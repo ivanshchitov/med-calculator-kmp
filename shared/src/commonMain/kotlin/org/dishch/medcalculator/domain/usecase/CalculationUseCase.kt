@@ -64,8 +64,8 @@ class CalculationUseCase {
                 minVolMl = minDoseMg / concentration,
                 maxVolMl = maxDoseMg / concentration,
                 isMaxDailyDoseExceeded =
-                    (regimen.maxDoseMg != null && maxDoseMg > (regimen.maxDoseMg ?: 0.0))
-                            || maxDoseMg > (medication.maxSingleDose ?: 0.0)
+                    (regimen.maxDoseMg != null && maxDoseMg > (regimen.maxDoseMg))
+                            || (medication.maxSingleDose != null && maxDoseMg > medication.maxSingleDose)
             )
         }
 
