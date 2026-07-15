@@ -15,6 +15,8 @@ import androidx.compose.material.icons.outlined.Scale
 import androidx.compose.material.icons.outlined.Vaccines
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -23,14 +25,16 @@ import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.*
 import org.dishch.medcalculator.domain.model.AgeUnit
 import org.dishch.medcalculator.domain.model.CalculationResults
-import org.dishch.medcalculator.domain.model.Medication
-import org.dishch.medcalculator.domain.model.formattedDosage
+import org.dishch.medcalculator.domain.model.MedicationInfo
+import org.dishch.medcalculator.domain.model.Route
+import org.dishch.medcalculator.domain.model.RouteCalculationResults
 import org.dishch.medcalculator.domain.model.formattedDoseRange
 import org.dishch.medcalculator.domain.model.formattedVolumeRange
 import org.dishch.medcalculator.ui.components.ResultRow
 import org.dishch.medcalculator.ui.components.cards.CalculationWarningCard
 import org.dishch.medcalculator.ui.components.cards.MaxDoseCard
 import org.dishch.medcalculator.ui.components.cards.ResultCard
+import org.dishch.medcalculator.ui.components.cards.RouteSelectionCard
 import org.dishch.medcalculator.ui.helpers.suffix
 import org.dishch.medcalculator.ui.theme.AppColors
 import org.dishch.medcalculator.ui.theme.AppDimens
@@ -126,11 +130,27 @@ fun CalculationResultsScreen(
 
             SectionTitle(stringResource(Res.string.calculation_results))
 
+            val resultsByRoute = result.resultsByRoute
+            var selectedRoute by rememberSaveable { mutableStateOf(resultsByRoute.keys.firstOrNull()) }
+            val selectedRouteResults by remember(resultsByRoute, selectedRoute) {
+                derivedStateOf {
+                    selectedRoute?.let { route -> resultsByRoute[route] } ?: null
+                }
+            }
+
+            RouteSelectionCard(
+                routes = resultsByRoute.keys.map { it },
+                selectedRoute = selectedRoute ?: Route.IV,
+                onRouteSelected = { route ->
+                    selectedRoute = resultsByRoute.keys.find { it == route } ?: Route.IV
+                }
+            )
+
             ResultCard {
                 ResultRow(
                     icon = Icons.Outlined.Vaccines,
                     label = stringResource(Res.string.medication_dosage),
-                    value = result.formattedDoseRange,
+                    value = selectedRouteResults?.formattedDoseRange ?: "",
                     unit = stringResource(Res.string.mg),
                     iconColor = AppColors.Success,
                     iconContainerColor = AppColors.SuccessContainer,
@@ -140,7 +160,7 @@ fun CalculationResultsScreen(
                 ResultRow(
                     icon = Icons.Outlined.Opacity,
                     label = stringResource(Res.string.medication_volume),
-                    value = result.formattedVolumeRange,
+                    value = selectedRouteResults?.formattedVolumeRange ?: "",
                     unit = stringResource(Res.string.ml),
                     iconColor = AppColors.Success,
                     iconContainerColor = AppColors.SuccessContainer,
@@ -148,7 +168,7 @@ fun CalculationResultsScreen(
                 )
             }
 
-            MaxDoseCard(isExceeded = result.isMaxDailyDoseExceeded)
+            MaxDoseCard(isExceeded = selectedRouteResults?.isMaxDailyDoseExceeded ?: false)
 
             CalculationWarningCard()
 
@@ -185,12 +205,23 @@ fun CalculationResultsScreenPreview() {
                 weight = 12.5,
                 age = 3,
                 ageUnit = AgeUnit.YEARS,
-                medication = Medication("0", "Парацетамол", 120.0, 0.0, 0),
-                minDoseMg = 150.0,
-                maxDoseMg = 160.0,
-                minVolMl = 6.25,
-                maxVolMl = 7.55,
-                isMaxDailyDoseExceeded = false
+                medication = MedicationInfo("Парацетамол", 120.toString()),
+                resultsByRoute = mapOf(
+                    Route.IV to RouteCalculationResults(
+                        minDoseMg = 150.0,
+                        maxDoseMg = 160.0,
+                        minVolMl = 6.25,
+                        maxVolMl = 7.55,
+                        isMaxDailyDoseExceeded = false
+                    ),
+                    Route.IM to RouteCalculationResults(
+                        minDoseMg = 150.0,
+                        maxDoseMg = 160.0,
+                        minVolMl = 6.25,
+                        maxVolMl = 7.55,
+                        isMaxDailyDoseExceeded = false
+                    ),
+                )
             )
         )
     }
@@ -205,12 +236,23 @@ fun CalculationResultsScreenExceededPreview() {
                 weight = 12.5,
                 age = 3,
                 ageUnit = AgeUnit.YEARS,
-                medication = Medication("0", "Парацетамол", 120.0, 0.0, 0),
-                minDoseMg = 1200.0,
-                maxDoseMg = 1300.0,
-                minVolMl = 50.0,
-                maxVolMl = 60.0,
-                isMaxDailyDoseExceeded = true
+                medication = MedicationInfo("Парацетамол", 120.toString()),
+                resultsByRoute = mapOf(
+                    Route.IV to RouteCalculationResults(
+                        minDoseMg = 1300.0,
+                        maxDoseMg = 1600.0,
+                        minVolMl = 6.25,
+                        maxVolMl = 7.55,
+                        isMaxDailyDoseExceeded = true
+                    ),
+                    Route.IM to RouteCalculationResults(
+                        minDoseMg = 1300.0,
+                        maxDoseMg = 1600.0,
+                        minVolMl = 6.25,
+                        maxVolMl = 7.55,
+                        isMaxDailyDoseExceeded = true
+                    ),
+                )
             )
         )
     }
