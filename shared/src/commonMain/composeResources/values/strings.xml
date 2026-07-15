@@ -18,9 +18,9 @@
     <string name="months_full">Months</string>
     <string name="years_full">Years</string>
     <string name="kg">kg</string>
-    <string name="age_supporting_months">Enter a value from 1 to 11</string>
-    <string name="age_supporting_years">Enter a value from 1 to 17</string>
-    <string name="weight_supporting_text">Enter a value from 1 to 100</string>
+    <string name="age_supporting_months">Enter a value from %1$d to 11</string>
+    <string name="age_supporting_years">Enter a value from %1$d to 17</string>
+    <string name="weight_supporting_text">Enter a value from %1$s to 100</string>
     <string name="choose_medication">Choose medication</string>
     <string name="search">Search</string>
     <string name="medication_info_description">Information about %1$s</string>

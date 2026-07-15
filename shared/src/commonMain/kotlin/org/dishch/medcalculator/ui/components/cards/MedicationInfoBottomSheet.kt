@@ -23,17 +23,16 @@ import androidx.compose.ui.text.font.FontWeight
 import org.dishch.medcalculator.domain.model.DosageRegimen
 import org.dishch.medcalculator.domain.model.Medication
 import org.dishch.medcalculator.domain.model.formattedDosage
-import org.dishch.medcalculator.ui.helpers.formattedAgeLimit
 import org.dishch.medcalculator.ui.helpers.formattedAgeRange
 import org.dishch.medcalculator.ui.theme.AppColors
 import org.jetbrains.compose.resources.stringResource
 import medcalculator.shared.generated.resources.*
 import org.dishch.medcalculator.domain.model.formattedMaxSingleDose
-import org.dishch.medcalculator.domain.model.toAge
 import org.dishch.medcalculator.ui.helpers.doseDisplayString
 import org.dishch.medcalculator.ui.helpers.formattedWeightRange
 import org.dishch.medcalculator.ui.helpers.icon
 import org.dishch.medcalculator.ui.helpers.isWeightRangeValid
+import org.dishch.medcalculator.ui.helpers.toFormattedAgeLimit
 import org.dishch.medcalculator.ui.theme.AppDimens
 import org.dishch.medcalculator.ui.theme.AppDimens.SpacingSmall
 
@@ -63,7 +62,7 @@ fun MedicationInfoBottomSheet(
 
             InfoBlockWithIcon(
                 title = stringResource(Res.string.age_limit),
-                value = medication.ageLimit.toAge().formattedAgeLimit,
+                value = medication.ageLimit.toFormattedAgeLimit(),
                 icon = Icons.Outlined.NoAdultContent,
                 iconBackground = AppColors.InfoContainer,
                 iconColor = AppColors.Primary

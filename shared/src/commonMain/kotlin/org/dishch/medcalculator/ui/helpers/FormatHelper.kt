@@ -21,39 +21,43 @@ import medcalculator.shared.generated.resources.mg_per_kg_format
 import medcalculator.shared.generated.resources.months_suffix
 import medcalculator.shared.generated.resources.weight_range_format
 import medcalculator.shared.generated.resources.years_suffix
-import org.dishch.medcalculator.domain.model.ADULT_AGE_MONTHS
-import org.dishch.medcalculator.domain.model.Age
 import org.dishch.medcalculator.domain.model.AgeUnit
 import org.dishch.medcalculator.domain.model.DosageRegimen
 import org.dishch.medcalculator.domain.model.DosageUnit
-import org.dishch.medcalculator.domain.model.toAge
 import org.dishch.medcalculator.formatAsDecimal
 import org.jetbrains.compose.resources.PluralStringResource
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.pluralStringResource
 import org.jetbrains.compose.resources.stringResource
 
+const val ONE_YEAR_MONTHS = 12
+const val ADULT_AGE_MONTHS = 18 * ONE_YEAR_MONTHS
+
 // Age formatting helpers
 
-val Age.formattedAgeLimit: String
-    @Composable
-    get() = if (isYears || quantity == 0) {
-        pluralStringResource(Res.plurals.age_limit_years_plurals, quantity, quantity)
-    } else {
-        pluralStringResource(Res.plurals.age_limit_months_plurals, quantity, quantity)
-    }
+fun Int.isYears(): Boolean = this >= ONE_YEAR_MONTHS
+fun Int.toAge(): Int = if (isYears()) this / ONE_YEAR_MONTHS else this
 
 @Composable
-fun Age.toPluralsString(): String =
-    pluralStringResource(pluralRes, quantity, quantity)
+fun Int.toFormattedAgeLimit(): String {
+    return if (isYears() || this == 0) {
+        val years = this / ONE_YEAR_MONTHS
+        pluralStringResource(Res.plurals.age_limit_years_plurals, years, years)
+    } else {
+        pluralStringResource(Res.plurals.age_limit_months_plurals, this, this)
+    }
+}
 
-private val Age.pluralRes: PluralStringResource
-    get() = if (isYears) Res.plurals.age_years else Res.plurals.age_months
+@Composable
+fun Int.toAgePluralsString(): String {
+    val pluralsRes = if (isYears()) Res.plurals.age_years else Res.plurals.age_months
+    return pluralStringResource(pluralsRes, this.toAge(), this.toAge())
+}
 
 // DosageRegimen extensions
 
-val DosageRegimen.fromAgeInYears: Int
-    get() = fromMonths.toAge().quantity
+val DosageRegimen.fromMonthsInYears: Int
+    get() = fromMonths.toAge()
 
 val DosageRegimen.formattedMinDose: String
     get() = minDose?.formatAsDecimal() ?: ""
@@ -70,15 +74,15 @@ val DosageRegimen.formattedDoseRange: String
 val DosageRegimen.formattedAgeRange: String
     @Composable
     get() = when {
-        toMonths >= ADULT_AGE_MONTHS -> fromMonths.toAge().formattedAgeLimit
+        toMonths >= ADULT_AGE_MONTHS -> fromMonths.toFormattedAgeLimit()
         else -> {
-            var startAgeString = fromMonths.toAge().quantity.toString()
-            if (fromMonths.toAge().isYears != toMonths.toAge().isYears) {
-                startAgeString = fromMonths.toAge().toPluralsString()
+            var startAgeString = fromMonths.toAge().toString()
+            if (fromMonths.isYears() != toMonths.isYears()) {
+                startAgeString = fromMonths.toAgePluralsString()
             }
             stringResource(Res.string.age_range_format,
                 startAgeString,
-                toMonths.toAge().toPluralsString()
+                toMonths.toAgePluralsString()
             )
         }
     }
@@ -108,9 +112,9 @@ val DosageRegimen.doseDisplayString: String
 
 val DosageRegimen.icon: ImageVector
     get() = when {
-        fromAgeInYears < 1 -> Icons.Outlined.ChildFriendly // Infant
-        fromAgeInYears < 12 -> Icons.Outlined.Face3        // Child
-        fromAgeInYears < 18 -> Icons.Outlined.Face2        // Teen
+        fromMonthsInYears < 1 -> Icons.Outlined.ChildFriendly // Infant
+        fromMonthsInYears < 12 -> Icons.Outlined.Face3        // Child
+        fromMonthsInYears < 18 -> Icons.Outlined.Face2        // Teen
         else -> Icons.Outlined.Face6                        // Senior
     }
 

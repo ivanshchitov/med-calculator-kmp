@@ -28,6 +28,7 @@ fun AppSegmentedButtonRow(
 fun SingleChoiceSegmentedButtonRowScope.AppSegmentedButton(
     modifier: Modifier = Modifier,
     selected: Boolean,
+    enabled: Boolean = true,
     onClick: () -> Unit,
     label: String
 ) {
@@ -43,6 +44,7 @@ fun SingleChoiceSegmentedButtonRowScope.AppSegmentedButton(
     val baseShape = RoundedCornerShape(AppDimens.CornerMediumSmall)
 
     SegmentedButton(
+        enabled = enabled,
         selected = selected,
         onClick = onClick,
         shape = baseShape,

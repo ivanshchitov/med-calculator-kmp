@@ -14,9 +14,7 @@ import org.dishch.medcalculator.domain.model.AgeUnit
 import org.dishch.medcalculator.ui.components.AppSegmentedButton
 import org.dishch.medcalculator.ui.components.AppSegmentedButtonRow
 import org.dishch.medcalculator.ui.components.InputTextField
-import org.dishch.medcalculator.ui.helpers.supportingText
 import org.dishch.medcalculator.ui.helpers.suffix
-import org.dishch.medcalculator.ui.theme.AppDimens
 import org.dishch.medcalculator.ui.theme.MedCalculatorAppTheme
 import org.jetbrains.compose.resources.pluralStringResource
 import org.jetbrains.compose.resources.stringResource
@@ -26,6 +24,7 @@ fun AgeCard(
     age: String,
     unit: AgeUnit,
     supportingText: String? = null,
+    disableMonths: Boolean = false,
     onAgeChanged: (String) -> Unit,
     onUnitChanged: (AgeUnit) -> Unit,
     imeAction: ImeAction = ImeAction.Default,
@@ -42,7 +41,7 @@ fun AgeCard(
             onValueChange = onAgeChanged,
             suffix = pluralStringResource(unit.suffix, age.toIntOrNull() ?: 0),
             isError = isError,
-            supportingText = if (isError) stringResource(unit.supportingText) else "",
+            supportingText = if (isError) supportingText else "",
             imeAction = imeAction,
             keyboardActions = keyboardActions,
             maxIntegerDigits = 2
@@ -52,6 +51,7 @@ fun AgeCard(
             modifier = Modifier.fillMaxWidth()
         ) {
             AppSegmentedButton(
+                enabled = !disableMonths,
                 selected = unit == AgeUnit.MONTHS,
                 onClick = { onUnitChanged(AgeUnit.MONTHS) },
                 label = stringResource(Res.string.months_full)
