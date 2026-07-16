@@ -24,7 +24,8 @@ data class RouteCalculationResults(
     val maxDoseMg: Double,
     val minVolMl: Double,
     val maxVolMl: Double,
-    val isMaxDailyDoseExceeded: Boolean
+    val contraindicated: Boolean,
+    val isMaxDailyDoseExceeded: Boolean,
 )
 
 val RouteCalculationResults.formattedDoseRange: String

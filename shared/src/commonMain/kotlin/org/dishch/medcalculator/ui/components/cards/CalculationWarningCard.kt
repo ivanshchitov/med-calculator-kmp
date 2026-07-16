@@ -41,7 +41,7 @@ fun CalculationWarningCard(modifier: Modifier = Modifier) {
                 }
             }
 
-            Spacer(modifier = Modifier.width(AppDimens.SpacingMedium))
+            Spacer(modifier = Modifier.width(AppDimens.SpacingSmall))
 
             Text(
                 text = stringResource(Res.string.calculation_warning),

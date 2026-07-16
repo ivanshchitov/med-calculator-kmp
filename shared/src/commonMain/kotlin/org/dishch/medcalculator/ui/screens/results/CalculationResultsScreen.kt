@@ -137,8 +137,10 @@ fun CalculationResultsScreen(
                     selectedRoute?.let { route -> resultsByRoute[route] } ?: null
                 }
             }
+            val contraindicated = selectedRouteResults?.let { it.contraindicated } == true
 
             RouteSelectionCard(
+                textStyle = MaterialTheme.typography.bodyLarge,
                 routes = resultsByRoute.keys.map { it },
                 selectedRoute = selectedRoute ?: Route.IV,
                 onRouteSelected = { route ->
@@ -150,21 +152,29 @@ fun CalculationResultsScreen(
                 ResultRow(
                     icon = Icons.Outlined.Vaccines,
                     label = stringResource(Res.string.medication_dosage),
-                    value = selectedRouteResults?.formattedDoseRange ?: "",
-                    unit = stringResource(Res.string.mg),
+                    value = if (contraindicated) {
+                        stringResource(Res.string.contraindicated_short)
+                    } else {
+                        selectedRouteResults?.formattedDoseRange ?: ""
+                    },
+                    unit = if (contraindicated) "" else stringResource(Res.string.mg),
                     iconColor = AppColors.Success,
                     iconContainerColor = AppColors.SuccessContainer,
-                    valueColor = AppColors.Success
+                    valueColor = if (contraindicated)  MaterialTheme.colorScheme.error else AppColors.Success
                 )
                 ItemDivider()
                 ResultRow(
                     icon = Icons.Outlined.Opacity,
                     label = stringResource(Res.string.medication_volume),
-                    value = selectedRouteResults?.formattedVolumeRange ?: "",
-                    unit = stringResource(Res.string.ml),
+                    value = if (contraindicated) {
+                        stringResource(Res.string.contraindicated_short)
+                    } else {
+                        selectedRouteResults?.formattedVolumeRange ?: ""
+                    },
+                    unit = if (contraindicated) "" else stringResource(Res.string.ml),
                     iconColor = AppColors.Success,
                     iconContainerColor = AppColors.SuccessContainer,
-                    valueColor = AppColors.Success
+                    valueColor = if (contraindicated)  MaterialTheme.colorScheme.error else AppColors.Success
                 )
             }
 
@@ -212,6 +222,7 @@ fun CalculationResultsScreenPreview() {
                         maxDoseMg = 160.0,
                         minVolMl = 6.25,
                         maxVolMl = 7.55,
+                        contraindicated = true,
                         isMaxDailyDoseExceeded = false
                     ),
                     Route.IM to RouteCalculationResults(
@@ -219,6 +230,7 @@ fun CalculationResultsScreenPreview() {
                         maxDoseMg = 160.0,
                         minVolMl = 6.25,
                         maxVolMl = 7.55,
+                        contraindicated = true,
                         isMaxDailyDoseExceeded = false
                     ),
                 )
@@ -243,6 +255,7 @@ fun CalculationResultsScreenExceededPreview() {
                         maxDoseMg = 1600.0,
                         minVolMl = 6.25,
                         maxVolMl = 7.55,
+                        contraindicated = true,
                         isMaxDailyDoseExceeded = true
                     ),
                     Route.IM to RouteCalculationResults(
@@ -250,6 +263,7 @@ fun CalculationResultsScreenExceededPreview() {
                         maxDoseMg = 1600.0,
                         minVolMl = 6.25,
                         maxVolMl = 7.55,
+                        contraindicated = true,
                         isMaxDailyDoseExceeded = true
                     ),
                 )

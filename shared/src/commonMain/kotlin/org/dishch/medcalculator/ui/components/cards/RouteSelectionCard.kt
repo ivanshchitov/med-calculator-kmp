@@ -10,6 +10,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import medcalculator.shared.generated.resources.Res
@@ -24,6 +25,7 @@ import org.jetbrains.compose.resources.stringResource
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RouteSelectionCard(
+    textStyle: TextStyle = MaterialTheme.typography.bodyMedium,
     routes: List<Route>,
     selectedRoute: Route,
     onRouteSelected: (Route) -> Unit,
@@ -54,10 +56,10 @@ fun RouteSelectionCard(
                     )
                 }
             }
-            Spacer(modifier = Modifier.width(AppDimens.SpacingMedium))
+            Spacer(modifier = Modifier.width(AppDimens.SpacingSmall))
             Text(
                 text = stringResource(Res.string.administration_routes),
-                style = MaterialTheme.typography.bodyMedium,
+                style = textStyle,
                 fontWeight = FontWeight.Bold,
                 color = AppColors.Primary,
                 modifier = Modifier.weight(1f)

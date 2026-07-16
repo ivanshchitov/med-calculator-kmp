@@ -78,4 +78,5 @@
     <string name="calculation_warning">Информация носит исключительно рекомендательный характер. Все назначения должны производиться только лечащим врачом или фельдшером.</string>
     <string name="administration_routes">Пути введения</string>
     <string name="contraindicated">Противопоказано</string>
+    <string name="contraindicated_short">п/пок.</string>
 </resources>
