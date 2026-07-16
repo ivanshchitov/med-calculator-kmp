@@ -53,7 +53,7 @@ fun MaxDoseCard(isExceeded: Boolean, modifier: Modifier = Modifier) {
                     )
                 }
             }
-            Spacer(modifier = Modifier.width(AppDimens.SpacingMedium))
+            Spacer(modifier = Modifier.width(AppDimens.SpacingSmall))
             Column {
                 Text(
                     text = stringResource(Res.string.max_single_dose),

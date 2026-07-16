@@ -55,7 +55,7 @@ fun ResultRow(
             }
         }
 
-        Spacer(modifier = Modifier.width(AppDimens.SpacingMedium))
+        Spacer(modifier = Modifier.width(AppDimens.SpacingSmall))
 
         Text(
             text = label,
@@ -63,6 +63,8 @@ fun ResultRow(
             color = AppColors.TextPrimary,
             modifier = Modifier.weight(1f)
         )
+
+        Spacer(modifier = Modifier.width(AppDimens.SpacingSmall))
 
         Column(horizontalAlignment = Alignment.End) {
             Row(verticalAlignment = Alignment.Bottom) {

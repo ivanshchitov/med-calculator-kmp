@@ -49,6 +49,7 @@ class CalculationUseCase {
         } ?: return null
 
         val resultsByRoute = regimens.associate { regimen ->
+            val contraindicated = regimen.minDose == null || regimen.maxDose == null
             val minDoseMg = if (regimen.dosageUnit == DosageUnit.MG)
                 regimen.minDose ?: 0.0
             else weight * (regimen.minDose ?: 0.0)
@@ -63,6 +64,7 @@ class CalculationUseCase {
                 maxDoseMg = maxDoseMg,
                 minVolMl = minDoseMg / concentration,
                 maxVolMl = maxDoseMg / concentration,
+                contraindicated = contraindicated,
                 isMaxDailyDoseExceeded =
                     (regimen.maxDoseMg != null && maxDoseMg > (regimen.maxDoseMg))
                             || (medication.maxSingleDose != null && maxDoseMg > medication.maxSingleDose)

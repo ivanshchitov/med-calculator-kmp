@@ -196,7 +196,7 @@ private fun RegimenItem(regimen: DosageRegimen) {
                     )
                 }
             }
-            Spacer(modifier = Modifier.width(AppDimens.SpacingMediumSmall))
+            Spacer(modifier = Modifier.width(SpacingSmall))
             Column {
                 Row(modifier = Modifier.height(IntrinsicSize.Min)) {
                     Text(
@@ -254,7 +254,7 @@ private fun InfoBlockWithIcon(
                     Icon(icon, contentDescription = null, tint = iconColor)
                 }
             }
-            Spacer(modifier = Modifier.width(AppDimens.SpacingMedium))
+            Spacer(modifier = Modifier.width(AppDimens.SpacingSmall))
             Column {
                 Text(
                     title,
