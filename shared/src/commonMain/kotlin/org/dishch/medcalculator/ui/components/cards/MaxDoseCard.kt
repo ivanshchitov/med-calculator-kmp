@@ -57,7 +57,7 @@ fun MaxDoseCard(isExceeded: Boolean, modifier: Modifier = Modifier) {
             Column {
                 Text(
                     text = stringResource(Res.string.max_single_dose),
-                    style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
+                    style = MaterialTheme.typography.bodyLarge,
                     color = AppColors.TextPrimary
                 )
                 Text(

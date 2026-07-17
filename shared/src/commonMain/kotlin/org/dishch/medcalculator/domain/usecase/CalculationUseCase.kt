@@ -5,9 +5,7 @@ import org.dishch.medcalculator.domain.model.CalculationResults
 import org.dishch.medcalculator.domain.model.DosageRegimen
 import org.dishch.medcalculator.domain.model.DosageUnit
 import org.dishch.medcalculator.domain.model.Medication
-import org.dishch.medcalculator.domain.model.MedicationInfo
 import org.dishch.medcalculator.domain.model.RouteCalculationResults
-import org.dishch.medcalculator.domain.model.formattedDosage
 
 class CalculationUseCase {
 
@@ -75,7 +73,8 @@ class CalculationUseCase {
             weight = weight,
             age = age,
             ageUnit = ageUnit,
-            medication = MedicationInfo(medication.name, medication.formattedDosage),
+            medication = medication,
+            dosageRegimens = dosageRegimens,
             resultsByRoute = resultsByRoute
         )
     }

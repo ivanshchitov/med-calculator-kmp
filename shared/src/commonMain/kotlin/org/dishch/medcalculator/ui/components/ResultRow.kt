@@ -1,14 +1,22 @@
 package org.dishch.medcalculator.ui.components
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowUpward
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -19,8 +27,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import org.dishch.medcalculator.ui.theme.AppColors
 import org.dishch.medcalculator.ui.theme.AppDimens
+import org.dishch.medcalculator.ui.theme.MedCalculatorAppTheme
 
 @Composable
 fun ResultRow(
@@ -61,14 +72,18 @@ fun ResultRow(
             text = label,
             style = MaterialTheme.typography.bodyLarge,
             color = AppColors.TextPrimary,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
+            softWrap = true
         )
 
         Spacer(modifier = Modifier.width(AppDimens.SpacingSmall))
 
-        Column(horizontalAlignment = Alignment.End) {
+        Column(horizontalAlignment = Alignment.End,
+            modifier = Modifier.wrapContentWidth()
+        ) {
             Row(verticalAlignment = Alignment.Bottom) {
                 Text(
+                    modifier = Modifier.width(IntrinsicSize.Min),
                     text = value,
                     style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
                     color = valueColor
@@ -76,6 +91,7 @@ fun ResultRow(
                 if (unit != null) {
                     Spacer(modifier = Modifier.width(AppDimens.SpacingExtraSmall))
                     Text(
+                        modifier = Modifier.align(Alignment.CenterVertically),
                         text = unit,
                         style = MaterialTheme.typography.bodyMedium,
                         color = AppColors.TextSecondary
@@ -90,5 +106,18 @@ fun ResultRow(
                 )
             }
         }
+    }
+}
+
+@Composable
+@Preview
+fun ResultRowPreview() {
+    MedCalculatorAppTheme {
+        ResultRow(
+            icon = Icons.Filled.ArrowUpward,
+            label = "Label",
+            value = "10",
+            unit = "kg"
+        )
     }
 }

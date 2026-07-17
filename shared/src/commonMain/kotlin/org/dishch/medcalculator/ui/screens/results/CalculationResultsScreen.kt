@@ -25,14 +25,17 @@ import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.*
 import org.dishch.medcalculator.domain.model.AgeUnit
 import org.dishch.medcalculator.domain.model.CalculationResults
-import org.dishch.medcalculator.domain.model.MedicationInfo
+import org.dishch.medcalculator.domain.model.Medication
 import org.dishch.medcalculator.domain.model.Route
 import org.dishch.medcalculator.domain.model.RouteCalculationResults
+import org.dishch.medcalculator.domain.model.formattedDosage
 import org.dishch.medcalculator.domain.model.formattedDoseRange
 import org.dishch.medcalculator.domain.model.formattedVolumeRange
+import org.dishch.medcalculator.formatAsDecimal
 import org.dishch.medcalculator.ui.components.ResultRow
 import org.dishch.medcalculator.ui.components.cards.CalculationWarningCard
 import org.dishch.medcalculator.ui.components.cards.MaxDoseCard
+import org.dishch.medcalculator.ui.components.cards.MedicationFullInfo
 import org.dishch.medcalculator.ui.components.cards.ResultCard
 import org.dishch.medcalculator.ui.components.cards.RouteSelectionCard
 import org.dishch.medcalculator.ui.helpers.suffix
@@ -116,7 +119,7 @@ fun CalculationResultsScreen(
                 ResultRow(
                     icon = Icons.Outlined.Scale,
                     label = stringResource(Res.string.patient_weight),
-                    value = result.weight.toString(),
+                    value = result.weight.formatAsDecimal(),
                     unit = stringResource(Res.string.kg)
                 )
                 ItemDivider()
@@ -140,7 +143,6 @@ fun CalculationResultsScreen(
             val contraindicated = selectedRouteResults?.let { it.contraindicated } == true
 
             RouteSelectionCard(
-                textStyle = MaterialTheme.typography.bodyLarge,
                 routes = resultsByRoute.keys.map { it },
                 selectedRoute = selectedRoute ?: Route.IV,
                 onRouteSelected = { route ->
@@ -182,9 +184,11 @@ fun CalculationResultsScreen(
                 MaxDoseCard(isExceeded = selectedRouteResults?.isMaxDailyDoseExceeded ?: false)
             }
 
-            CalculationWarningCard()
+            SectionTitle(stringResource(Res.string.medication_info))
 
-            Spacer(modifier = Modifier.height(AppDimens.SpacingMedium))
+            MedicationFullInfo(result.medication, result.dosageRegimens, isForResults = true)
+
+            CalculationWarningCard()
         }
     }
 }
@@ -193,7 +197,7 @@ fun CalculationResultsScreen(
 private fun SectionTitle(title: String) {
     Text(
         text = title,
-        style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
+        style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
         color = AppColors.Primary,
         modifier = Modifier.padding(top = AppDimens.SpacingSmall)
     )
@@ -217,7 +221,8 @@ fun CalculationResultsScreenPreview() {
                 weight = 12.5,
                 age = 3,
                 ageUnit = AgeUnit.YEARS,
-                medication = MedicationInfo("Парацетамол", 120.toString()),
+                medication = Medication("paracetamol", "Парацетамол", 120.0, 10.0, 0),
+                dosageRegimens = listOf(),
                 resultsByRoute = mapOf(
                     Route.IV to RouteCalculationResults(
                         minDoseMg = 150.0,
@@ -250,7 +255,8 @@ fun CalculationResultsScreenExceededPreview() {
                 weight = 12.5,
                 age = 3,
                 ageUnit = AgeUnit.YEARS,
-                medication = MedicationInfo("Парацетамол", 120.toString()),
+                medication = Medication("paracetamol", "Парацетамол", 120.0, 10.0, 0),
+                dosageRegimens = listOf(),
                 resultsByRoute = mapOf(
                     Route.IV to RouteCalculationResults(
                         minDoseMg = 1300.0,
