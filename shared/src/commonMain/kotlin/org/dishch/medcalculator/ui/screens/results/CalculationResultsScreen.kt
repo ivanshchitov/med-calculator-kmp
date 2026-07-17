@@ -178,7 +178,9 @@ fun CalculationResultsScreen(
                 )
             }
 
-            MaxDoseCard(isExceeded = selectedRouteResults?.isMaxDailyDoseExceeded ?: false)
+            if (!contraindicated) {
+                MaxDoseCard(isExceeded = selectedRouteResults?.isMaxDailyDoseExceeded ?: false)
+            }
 
             CalculationWarningCard()
 
