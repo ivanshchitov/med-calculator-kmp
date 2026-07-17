@@ -37,13 +37,4 @@ object AppColors {
         Color(0xFF4DB6AC), // Deep Teal
         Color(0xFFFFB74D)  // Deep Orange
     )
-
-
-    // Routes
-    val RouteIV = Color(0xFF7E57C2)
-    val RouteIVContainer = Color(0xFFF3E5F5)
-    val RouteIM = Color(0xFFE53935)
-    val RouteIMContainer = Color(0xFFFFEBEE)
-    val RouteSC = Color(0xFF00897B)
-    val RouteSCContainer = Color(0xFFE0F2F1)
 }

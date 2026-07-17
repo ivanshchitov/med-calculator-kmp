@@ -8,14 +8,9 @@ data class CalculationResults(
     val weight: Double,
     val age: Int,
     val ageUnit: AgeUnit,
-    val medication: MedicationInfo,
+    val medication: Medication,
+    val dosageRegimens: List<DosageRegimen>,
     val resultsByRoute: Map<Route, RouteCalculationResults>
-)
-
-@Serializable
-data class MedicationInfo(
-    val name: String,
-    val formattedDosage: String
 )
 
 @Serializable

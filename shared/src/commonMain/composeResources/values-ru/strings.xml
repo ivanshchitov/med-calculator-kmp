@@ -79,4 +79,5 @@
     <string name="administration_routes">Пути введения</string>
     <string name="contraindicated">Противопоказано</string>
     <string name="contraindicated_short">п/пок.</string>
+    <string name="medication_info">Информация о препарате</string>
 </resources>

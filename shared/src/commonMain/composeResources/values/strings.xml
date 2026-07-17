@@ -67,4 +67,5 @@
     <string name="administration_routes">Administration Routes</string>
     <string name="contraindicated">Contraindicated</string>
     <string name="contraindicated_short">c/i</string>
+    <string name="medication_info">Medication info</string>
 </resources>
