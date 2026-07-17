@@ -10,8 +10,6 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import org.dishch.medcalculator.ui.theme.AppColors
@@ -42,10 +40,7 @@ fun InputTextField(
             onValueChange(processedValue)
         },
         modifier = modifier.fillMaxWidth(),
-        textStyle = TextStyle(
-            fontSize = AppDimens.InputTextSize,
-            fontWeight = FontWeight.Bold
-        ),
+        textStyle = MaterialTheme.typography.titleLarge.copy(fontSize = AppDimens.InputTextSize),
         suffix = {
             Text(
                 text = suffix,

@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.tooling.preview.Preview
 import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.chosen_medication
+import org.dishch.medcalculator.ui.theme.AppColors
 import org.dishch.medcalculator.ui.theme.MedCalculatorAppTheme
 import org.jetbrains.compose.resources.stringResource
 
@@ -28,12 +29,13 @@ fun MedicationCard(
     ) {
         Text(
             text = medicationName,
-            style = MaterialTheme.typography.titleMedium
+            style = MaterialTheme.typography.titleLarge
         )
 
         Text(
             text = medicationDose,
-            style = MaterialTheme.typography.bodyMedium
+            style = MaterialTheme.typography.bodyMedium,
+            color = AppColors.TextSecondary
         )
     }
 }

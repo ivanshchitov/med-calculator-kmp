@@ -101,6 +101,17 @@ fun MainScreen(
             verticalArrangement = Arrangement.spacedBy(AppDimens.SpacingMedium)
         ) {
 
+            uiState.selectedMedication?.let { medication ->
+                MedicationCard(
+                    medicationName = medication.name,
+                    medicationDose = stringResource(Res.string.mg_per_ml_format, medication.formattedDosage),
+                    onClick = {
+                        focusManager.clearFocus()
+                        onChooseMedication()
+                    }
+                )
+            }
+
             AgeCard(
                 age = uiState.age,
                 unit = uiState.ageUnit,
@@ -130,21 +141,6 @@ fun MainScreen(
                         focusManager.clearFocus()
                     }
                 )
-            )
-
-            uiState.selectedMedication?.let { medication ->
-                MedicationCard(
-                    medicationName = medication.name,
-                    medicationDose = stringResource(Res.string.mg_per_ml_format, medication.formattedDosage),
-                    onClick = {
-                        focusManager.clearFocus()
-                        onChooseMedication()
-                    }
-                )
-            }
-
-            Spacer(
-                modifier = Modifier.height(AppDimens.SpacingMedium)
             )
         }
     }
