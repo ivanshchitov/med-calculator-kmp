@@ -59,7 +59,7 @@ fun AppCard(
         )
     ) {
         Box(
-            modifier = Modifier.padding(AppDimens.SpacingLargeMedium)
+            modifier = Modifier.padding(AppDimens.SpacingMedium)
         ) {
             Row(
                 verticalAlignment = verticalAlignment,
