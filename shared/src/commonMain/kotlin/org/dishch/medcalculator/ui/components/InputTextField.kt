@@ -1,20 +1,28 @@
 package org.dishch.medcalculator.ui.components
 
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.unit.dp
 import org.dishch.medcalculator.ui.theme.AppColors
 import org.dishch.medcalculator.ui.theme.AppDimens
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun InputTextField(
     value: String,
@@ -29,7 +37,10 @@ fun InputTextField(
     maxIntegerDigits: Int? = null,
     maxFractionDigits: Int? = null
 ) {
-    TextField(
+    val interactionSource = remember { MutableInteractionSource() }
+
+    BasicTextField(
+        modifier = modifier.fillMaxWidth(),
         value = value,
         onValueChange = { newValue ->
             val processedValue = processInput(
@@ -39,33 +50,60 @@ fun InputTextField(
             )
             onValueChange(processedValue)
         },
-        modifier = modifier.fillMaxWidth(),
         textStyle = MaterialTheme.typography.titleLarge.copy(fontSize = AppDimens.InputTextSize),
-        suffix = {
-            Text(
-                text = suffix,
-                style = MaterialTheme.typography.bodyLarge,
-                color = if (isError) MaterialTheme.colorScheme.error else AppColors.TextSecondary
-            )
-        },
-        supportingText = {
-            Text(text = supportingText)
-        },
-        isError = isError,
-        colors = TextFieldDefaults.colors(
-            focusedContainerColor = Color.Transparent,
-            unfocusedContainerColor = Color.Transparent,
-            disabledContainerColor = Color.Transparent,
-            focusedIndicatorColor = MaterialTheme.colorScheme.primary,
-            unfocusedIndicatorColor = AppColors.Border,
-        ),
         keyboardOptions = KeyboardOptions(
             keyboardType = keyboardType,
             imeAction = imeAction
         ),
         keyboardActions = keyboardActions,
-        singleLine = true
+        cursorBrush = SolidColor(if (isError) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary),
+        interactionSource = interactionSource,
+        decorationBox = { innerTextField ->
+            TextFieldDefaults.DecorationBox(
+                value = value,
+                innerTextField = innerTextField,
+                enabled = true,
+                singleLine = true,
+                visualTransformation = VisualTransformation.None,
+                suffix = {
+                    Text(
+                        text = suffix,
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = if (isError) MaterialTheme.colorScheme.error else AppColors.TextSecondary
+                    )
+                },
+                supportingText = {
+                    Text(text = supportingText)
+                },
+                isError = isError,
+                interactionSource = interactionSource,
+                // Setup content paddings
+                contentPadding = PaddingValues(
+                    start = 16.dp,
+                    end = 16.dp,
+                    top = 12.dp,
+                    bottom = 4.dp // padding to the underline
+                ),
+                // Setup standard underline like in Material3
+                container = {
+                    TextFieldDefaults.ContainerBox(
+                        enabled = true,
+                        isError = isError,
+                        interactionSource = interactionSource,
+                        colors = TextFieldDefaults.colors(
+                            focusedContainerColor = Color.Transparent,
+                            unfocusedContainerColor = Color.Transparent,
+                            disabledContainerColor = Color.Transparent,
+                            focusedIndicatorColor = MaterialTheme.colorScheme.primary,
+                            unfocusedIndicatorColor = AppColors.Border,
+                            cursorColor = MaterialTheme.colorScheme.primary
+                        )
+                    )
+                }
+            )
+        }
     )
+
 }
 
 private fun processInput(
