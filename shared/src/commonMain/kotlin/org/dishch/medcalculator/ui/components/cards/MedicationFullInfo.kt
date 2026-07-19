@@ -56,10 +56,11 @@ import org.jetbrains.compose.resources.stringResource
 fun MedicationFullInfo(
     medication: Medication,
     regimens: List<DosageRegimen>,
-    isForResults: Boolean = false
+    isForResults: Boolean = false,
+    modifier: Modifier = Modifier.fillMaxWidth()
 ) {
     Column(
-        modifier = Modifier.fillMaxWidth()
+        modifier = modifier
     ) {
         if (isForResults) {
             InfoBlockWithIcon(

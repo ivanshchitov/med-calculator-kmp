@@ -186,7 +186,11 @@ fun CalculationResultsScreen(
 
             SectionTitle(stringResource(Res.string.medication_info))
 
-            MedicationFullInfo(result.medication, result.dosageRegimens, isForResults = true)
+            ResultCard {
+                MedicationFullInfo(result.medication, result.dosageRegimens, isForResults = true,
+                    modifier = Modifier.fillMaxWidth().padding(AppDimens.SpacingMedium),
+                )
+            }
 
             CalculationWarningCard()
         }
