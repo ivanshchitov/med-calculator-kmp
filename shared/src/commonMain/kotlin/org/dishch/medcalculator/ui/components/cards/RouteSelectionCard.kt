@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.administration_routes
@@ -19,6 +20,7 @@ import org.dishch.medcalculator.ui.components.AppSegmentedButton
 import org.dishch.medcalculator.ui.components.AppSegmentedButtonRow
 import org.dishch.medcalculator.ui.theme.AppColors
 import org.dishch.medcalculator.ui.theme.AppDimens
+import org.dishch.medcalculator.ui.theme.MedCalculatorAppTheme
 import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -27,31 +29,34 @@ fun RouteSelectionCard(
     textStyle: TextStyle = MaterialTheme.typography.bodyMedium,
     routes: List<Route>,
     selectedRoute: Route,
+    isSubCard: Boolean = false,
     onRouteSelected: (Route) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Surface(
         modifier = modifier.fillMaxWidth(),
         shape = RoundedCornerShape(AppDimens.CornerMediumSmall),
-        border = BorderStroke(AppDimens.SubCardBorderWidth, AppColors.Border),
-        color = AppColors.Surface
+        border = BorderStroke(if (isSubCard) AppDimens.SubCardBorderWidth else AppDimens.CardBorderWidth, AppColors.Border),
+        color = AppColors.Surface,
+
     ) {
         Row(
             modifier = Modifier
-                .padding(AppDimens.SpacingMediumSmall)
+                .padding(if (isSubCard) AppDimens.SpacingMediumSmall else AppDimens.SpacingMedium)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Surface(
-                modifier = Modifier.size(AppDimens.IconContainerSize - AppDimens.SpacingMedium),
-                shape = RoundedCornerShape(AppDimens.CornerMediumSmall),
+                modifier = Modifier.size(AppDimens.ResultIconContainerSize),
+                shape = RoundedCornerShape(AppDimens.CornerSmall),
                 color = AppColors.InfoContainer
             ) {
                 Box(contentAlignment = Alignment.Center) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Outlined.AltRoute,
                         contentDescription = null,
-                        tint = AppColors.Primary
+                        tint = AppColors.Primary,
+                        modifier = Modifier.size(AppDimens.IconSize)
                     )
                 }
             }
@@ -79,5 +84,18 @@ fun RouteSelectionCard(
                 }
             }
         }
+    }
+}
+
+@Composable
+@Preview
+fun RouteSelectionCardPreview() {
+    MedCalculatorAppTheme {
+        RouteSelectionCard(
+            routes = listOf(Route.IV, Route.IM, Route.SC),
+            selectedRoute = Route.IV,
+            isSubCard = true,
+            onRouteSelected = {}
+        )
     }
 }
