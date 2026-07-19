@@ -86,7 +86,8 @@ fun ResultRow(
                     modifier = Modifier.width(IntrinsicSize.Min),
                     text = value,
                     style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
-                    color = valueColor
+                    color = valueColor,
+                    textAlign = TextAlign.End
                 )
                 if (unit != null) {
                     Spacer(modifier = Modifier.width(AppDimens.SpacingExtraSmall))
@@ -115,9 +116,9 @@ fun ResultRowPreview() {
     MedCalculatorAppTheme {
         ResultRow(
             icon = Icons.Filled.ArrowUpward,
-            label = "Label",
-            value = "10",
-            unit = "kg"
+            label = "Препарат",
+            value = "Транексамовая кислота",
+            unit = ""
         )
     }
 }
