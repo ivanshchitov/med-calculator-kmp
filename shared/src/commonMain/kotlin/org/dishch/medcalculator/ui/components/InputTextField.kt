@@ -15,6 +15,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
@@ -50,7 +51,10 @@ fun InputTextField(
             )
             onValueChange(processedValue)
         },
-        textStyle = MaterialTheme.typography.titleLarge.copy(fontSize = AppDimens.InputTextSize),
+        textStyle = MaterialTheme.typography.titleLarge.copy(
+            fontSize = AppDimens.InputTextSize,
+            fontWeight = FontWeight.Bold
+        ),
         keyboardOptions = KeyboardOptions(
             keyboardType = keyboardType,
             imeAction = imeAction

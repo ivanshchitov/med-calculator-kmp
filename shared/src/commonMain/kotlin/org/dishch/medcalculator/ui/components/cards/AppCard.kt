@@ -89,7 +89,6 @@ fun AppCard(
                         style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
                         color = AppColors.TextPrimary
                     )
-                    Spacer(modifier = Modifier.height(AppDimens.SpacingExtraSmall))
                     content()
                 }
 
