@@ -7,6 +7,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.chosen_medication
@@ -29,7 +30,7 @@ fun MedicationCard(
     ) {
         Text(
             text = medicationName,
-            style = MaterialTheme.typography.titleLarge
+            style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)
         )
 
         Text(
