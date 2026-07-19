@@ -18,6 +18,7 @@ import androidx.compose.material.icons.automirrored.outlined.Assignment
 import androidx.compose.material.icons.outlined.Medication
 import androidx.compose.material.icons.outlined.NoAdultContent
 import androidx.compose.material.icons.outlined.WarningAmber
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -30,6 +31,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.age_limit
 import medcalculator.shared.generated.resources.dosage_regimen
@@ -49,7 +52,9 @@ import org.dishch.medcalculator.ui.helpers.isWeightRangeValid
 import org.dishch.medcalculator.ui.helpers.toFormattedAgeLimit
 import org.dishch.medcalculator.ui.theme.AppColors
 import org.dishch.medcalculator.ui.theme.AppDimens
+import org.dishch.medcalculator.ui.theme.AppDimens.SpacingExtraSmall
 import org.dishch.medcalculator.ui.theme.AppDimens.SpacingSmall
+import org.dishch.medcalculator.ui.theme.MedCalculatorAppTheme
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -100,6 +105,7 @@ fun MedicationFullInfo(
             RouteSelectionCard(
                 routes = uniqueRoutes.map { it },
                 selectedRoute = selectedRoute!!,
+                isSubCard = true,
                 onRouteSelected = { route ->
                     selectedRoute = uniqueRoutes.find { it == route }
                 }
@@ -124,8 +130,13 @@ private fun RegimensSection(regimens: List<DosageRegimen>) {
         border = BorderStroke(AppDimens.SubCardBorderWidth, AppColors.Border),
         color = AppColors.Surface
     ) {
-        Column(modifier = Modifier.padding(AppDimens.SpacingLargeMedium).fillMaxWidth()) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
+        Column(modifier = Modifier.padding(
+            horizontal = AppDimens.SpacingMedium
+        ).fillMaxWidth()) {
+            Row(
+                modifier = Modifier.padding(top = AppDimens.SpacingMedium),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 Icon(
                     Icons.AutoMirrored.Outlined.Assignment,
                     contentDescription = null,
@@ -138,68 +149,73 @@ private fun RegimensSection(regimens: List<DosageRegimen>) {
                     color = AppColors.Success
                 )
             }
-            Spacer(modifier = Modifier.height(SpacingSmall))
+            Spacer(modifier = Modifier.height(SpacingExtraSmall))
             regimens.forEachIndexed { index, regimen ->
                 RegimenItem(regimen)
                 if (index != regimens.lastIndex)
-                    Spacer(modifier = Modifier.height(SpacingSmall))
+                    ItemDivider()
             }
         }
     }
 }
 
 @Composable
+private fun ItemDivider() {
+    HorizontalDivider(
+        thickness = 1.dp,
+        color = AppColors.Border
+    )
+}
+
+@Composable
 private fun RegimenItem(regimen: DosageRegimen) {
-    Surface(
-        shape = RoundedCornerShape(AppDimens.CornerMediumSmall),
-        border = BorderStroke(AppDimens.SubCardBorderWidth, AppColors.Border),
-        color = AppColors.Surface
+    Row(
+        modifier = Modifier.padding(
+            vertical = AppDimens.SpacingMediumSmall,
+            horizontal = AppDimens.SpacingExtraSmall
+        ).fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        Row(
-            modifier = Modifier.padding(AppDimens.SpacingMediumSmall).fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
+        Surface(
+            shape = RoundedCornerShape(AppDimens.CornerSmall),
+            color = AppColors.SuccessContainer,
+            modifier = Modifier.size(AppDimens.ResultIconContainerSize)
         ) {
-            Surface(
-                shape = RoundedCornerShape(AppDimens.CornerMediumSmall),
-                color = AppColors.SuccessContainer,
-                modifier = Modifier.size(AppDimens.ResultIconContainerSize)
-            ) {
-                Box(contentAlignment = Alignment.Center) {
-                    Icon(
-                        imageVector = regimen.icon,
-                        contentDescription = null,
-                        tint = AppColors.Success
-                    )
-                }
+            Box(contentAlignment = Alignment.Center) {
+                Icon(
+                    imageVector = regimen.icon,
+                    contentDescription = null,
+                    tint = AppColors.Success
+                )
             }
-            Spacer(modifier = Modifier.width(SpacingSmall))
-            Column {
-                Row(modifier = Modifier.height(IntrinsicSize.Min)) {
+        }
+        Spacer(modifier = Modifier.width(SpacingSmall))
+        Column {
+            Row(modifier = Modifier.height(IntrinsicSize.Min)) {
+                Text(
+                    regimen.formattedAgeRange,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = AppColors.TextPrimary
+                )
+                if (regimen.isWeightRangeValid()) {
+                    VerticalDivider(
+                        modifier = Modifier.fillMaxHeight().padding(AppDimens.SpacingExtraSmall),
+                        thickness = AppDimens.SubCardBorderWidth,
+                        color = Color.Gray
+                    )
                     Text(
-                        regimen.formattedAgeRange,
+                        regimen.formattedWeightRange,
                         style = MaterialTheme.typography.bodyMedium,
                         color = AppColors.TextPrimary
                     )
-                    if (regimen.isWeightRangeValid()) {
-                        VerticalDivider(
-                            modifier = Modifier.fillMaxHeight().padding(AppDimens.SpacingExtraSmall),
-                            thickness = AppDimens.SubCardBorderWidth,
-                            color = Color.Gray
-                        )
-                        Text(
-                            regimen.formattedWeightRange,
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = AppColors.TextPrimary
-                        )
-                    }
                 }
-                Text(
-                    text = regimen.doseDisplayString,
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.Bold,
-                    color = AppColors.TextPrimary
-                )
             }
+            Text(
+                text = regimen.doseDisplayString,
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Bold,
+                color = AppColors.TextPrimary
+            )
         }
     }
 }
@@ -222,8 +238,8 @@ private fun InfoBlockWithIcon(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Surface(
-                modifier = Modifier.size(AppDimens.IconContainerSize - AppDimens.SpacingMedium),
-                shape = RoundedCornerShape(AppDimens.CornerMediumSmall),
+                modifier = Modifier.size(AppDimens.ResultIconContainerSize),
+                shape = RoundedCornerShape(AppDimens.CornerSmall),
                 color = iconBackground
             ) {
                 Box(contentAlignment = Alignment.Center) {
@@ -245,5 +261,19 @@ private fun InfoBlockWithIcon(
                 )
             }
         }
+    }
+}
+
+@Composable
+@Preview
+fun InfoBlockWithIconPreview() {
+    MedCalculatorAppTheme {
+        InfoBlockWithIcon(
+            title = "Препарат",
+            value = "Спазматен, 500 мг/мл",
+            icon = Icons.Outlined.Medication,
+            iconColor = AppColors.Primary,
+            iconBackground = AppColors.InfoContainer
+        )
     }
 }

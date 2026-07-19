@@ -51,7 +51,7 @@ fun SingleChoiceSegmentedButtonRowScope.AppSegmentedButton(
         colors = colors,
         border = border,
         icon = {},
-        label = { Text(label) },
-        modifier = modifier.weight(1f)
+        label = { Text(label, maxLines = 1) },
+        modifier = modifier
     )
 }
