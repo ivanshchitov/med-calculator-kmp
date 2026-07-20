@@ -10,7 +10,13 @@
     <string name="kg">kg</string>
     <string name="age_supporting_months">Enter a value from %1$d to 11</string>
     <string name="age_supporting_years">Enter a value from %1$d to 17</string>
+    <string name="min_months_supporting_text">Medication is for at least %1$d m/o.</string>
+    <plurals name="min_years_supporting_text">
+        <item quantity="one">Medication is for at least %1$d y/o</item>
+        <item quantity="other">Medication is for at least %1$d y/o</item>
+    </plurals>
     <string name="weight_supporting_text">Enter a value from %1$s to 100</string>
+    <string name="min_weight_supporting_text">Medication is for body weight ≥ %1$s kg</string>
     <string name="choose_medication">Choose medication</string>
     <string name="search">Search</string>
     <string name="medication_info_description">Information about %1$s</string>

@@ -23,13 +23,11 @@ import medcalculator.shared.generated.resources.dosage_calculation
 import medcalculator.shared.generated.resources.mg_per_ml_format
 import org.dishch.medcalculator.domain.model.CalculationResults
 import org.dishch.medcalculator.domain.model.formattedDosage
-import org.dishch.medcalculator.formatAsDecimal
 import org.dishch.medcalculator.ui.components.PrimaryButton
 import org.dishch.medcalculator.ui.components.cards.AgeCard
 import org.dishch.medcalculator.ui.components.cards.MedicationCard
 import org.dishch.medcalculator.ui.components.cards.WeightCard
-import org.dishch.medcalculator.ui.helpers.isYears
-import org.dishch.medcalculator.ui.helpers.toAge
+import org.dishch.medcalculator.ui.helpers.toMessage
 import org.dishch.medcalculator.ui.theme.AppDimens
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
@@ -115,9 +113,7 @@ fun MainScreen(
             AgeCard(
                 age = uiState.age,
                 unit = uiState.ageUnit,
-                supportingText = uiState.ageSupportingText?.let { res ->
-                    stringResource(res, uiState.minMonths.toAge().coerceAtLeast(1))
-                },
+                supportingText = uiState.ageValidationError?.toMessage(),
                 disableMonths = uiState.disableMonths,
                 onAgeChanged = viewModel::onAgeChanged,
                 onUnitChanged = viewModel::onAgeUnitChanged,
@@ -131,9 +127,7 @@ fun MainScreen(
 
             WeightCard(
                 weight = uiState.weight,
-                supportingText = uiState.weightSupportingText?.let { res ->
-                    stringResource(res, (uiState.minWeight ?: 1.0).formatAsDecimal())
-                },
+                supportingText = uiState.weightValidationError?.toMessage(),
                 onWeightChanged = viewModel::onWeightChanged,
                 imeAction = ImeAction.Done,
                 keyboardActions = KeyboardActions(

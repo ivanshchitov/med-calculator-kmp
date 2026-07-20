@@ -15,14 +15,14 @@ import org.dishch.medcalculator.domain.model.AgeUnit
 import org.dishch.medcalculator.domain.usecase.CalculateAndSaveUseCase
 import org.dishch.medcalculator.domain.usecase.GetDosageRegimensUseCase
 import org.dishch.medcalculator.domain.usecase.ValidateInputUseCase
-import org.dishch.medcalculator.domain.usecase.ValidationErrorMessagesUseCase
 import org.dishch.medcalculator.domain.model.CalculationResults
 import org.dishch.medcalculator.domain.model.DosageRegimen
 import org.dishch.medcalculator.domain.model.Medication
 import org.dishch.medcalculator.domain.repository.PreferencesRepository
 import org.dishch.medcalculator.domain.usecase.GetMedicationByIdUseCase
+import org.dishch.medcalculator.domain.usecase.ValidationError
+import org.dishch.medcalculator.domain.usecase.ValidationErrorCode
 import org.dishch.medcalculator.ui.helpers.isYears
-import org.jetbrains.compose.resources.StringResource
 
 data class MainUiState(
     val weight: String = "12.5",
@@ -30,18 +30,17 @@ data class MainUiState(
     val ageUnit: AgeUnit = AgeUnit.YEARS,
     val selectedMedication: Medication? = null,
     val dosageRegimens: List<DosageRegimen> = emptyList(),
-    val weightSupportingText: StringResource? = null,
-    val ageSupportingText: StringResource? = null,
     val minMonths: Int = 1,
     val minWeight: Double? = 1.0,
-    val disableMonths: Boolean = minMonths.isYears()
+    val disableMonths: Boolean = minMonths.isYears(),
+    val ageValidationError: ValidationError? = null,
+    val weightValidationError: ValidationError? = null
 )
 
 class MainViewModel(
     private val preferencesRepository: PreferencesRepository,
     private val calculateAndSaveUseCase: CalculateAndSaveUseCase,
     private val validateInputUseCase: ValidateInputUseCase,
-    private val validationErrorMessagesUseCase: ValidationErrorMessagesUseCase,
     private val getMedicationByIdUseCase: GetMedicationByIdUseCase,
     private val getDosageRegimensUseCase: GetDosageRegimensUseCase
 ) : ViewModel() {
@@ -111,15 +110,18 @@ class MainViewModel(
                     minMonths = state.minMonths,
                     minWeight = state.minWeight
                 )
-                val errorMessages = validationErrorMessagesUseCase(
-                    validationState = validationState,
-                    ageUnit = state.ageUnit
-                )
                 _uiState.update {
                     it.copy(
                         ageUnit = if (state.disableMonths) AgeUnit.YEARS else state.ageUnit,
-                        weightSupportingText = errorMessages.weightSupportingText,
-                        ageSupportingText = errorMessages.ageSupportingText
+                        ageValidationError = validationState.errors.firstOrNull {
+                            it.code is ValidationErrorCode.InvalidAgeFormat ||
+                            it.code is ValidationErrorCode.MonthsTooLow ||
+                            it.code is ValidationErrorCode.YearsTooLow
+                        },
+                        weightValidationError = validationState.errors.firstOrNull {
+                            it.code is ValidationErrorCode.InvalidWeightFormat ||
+                            it.code is ValidationErrorCode.WeightTooLow
+                        }
                     )
                 }
             }

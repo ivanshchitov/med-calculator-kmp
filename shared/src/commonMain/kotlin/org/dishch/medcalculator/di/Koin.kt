@@ -28,7 +28,6 @@ import org.dishch.medcalculator.data.repository.LocaleRepositoryImpl
 import org.dishch.medcalculator.domain.repository.LocaleRepository
 import org.dishch.medcalculator.domain.usecase.GetMedicationByIdUseCase
 import org.dishch.medcalculator.domain.usecase.ValidateInputUseCase
-import org.dishch.medcalculator.domain.usecase.ValidationErrorMessagesUseCase
 import org.koin.core.module.dsl.viewModelOf
 
 fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
@@ -72,7 +71,6 @@ val useCaseModule = module {
     factoryOf(::SaveStateUseCase)
     factoryOf(::CalculateAndSaveUseCase)
     factoryOf(::ValidateInputUseCase)
-    factoryOf(::ValidationErrorMessagesUseCase)
     factoryOf(::GetMedicationsUseCase)
     factoryOf(::GetDosageRegimensUseCase)
     factoryOf(::GetMedicationByIdUseCase)

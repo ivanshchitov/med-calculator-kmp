@@ -25,6 +25,8 @@ import org.dishch.medcalculator.domain.model.AgeUnit
 import org.dishch.medcalculator.domain.model.DosageRegimen
 import org.dishch.medcalculator.domain.model.DosageUnit
 import org.dishch.medcalculator.domain.model.isWeightRangeValid
+import org.dishch.medcalculator.domain.usecase.ValidationError
+import org.dishch.medcalculator.domain.usecase.ValidationMessage
 import org.dishch.medcalculator.formatAsDecimal
 import org.jetbrains.compose.resources.PluralStringResource
 import org.jetbrains.compose.resources.StringResource
@@ -129,3 +131,15 @@ val AgeUnit.supportingText: StringResource
         AgeUnit.MONTHS -> Res.string.age_supporting_months
         AgeUnit.YEARS -> Res.string.age_supporting_years
     }
+
+// ValidationError formatting
+
+@Composable
+fun ValidationMessage.asString(): String =
+    when (this) {
+        is ValidationMessage.Single -> stringResource(resource, arg)
+        is ValidationMessage.Plural -> pluralStringResource(resource, quantity, arg)
+}
+
+@Composable
+fun ValidationError.toMessage(): String = validationMessage.asString()
