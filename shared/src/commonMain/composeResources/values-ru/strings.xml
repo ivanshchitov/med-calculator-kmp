@@ -17,7 +17,7 @@
         <item quantity="many">Препарат разрешён с %1$d лет</item>
         <item quantity="other">Препарат разрешён с %1$d лет</item>
     </plurals>
-    <string name="weight_supporting_text">Введите значение от %1$s до 100</string>
+    <string name="weight_supporting_text">Введите значение от %1$s до 150</string>
     <string name="min_weight_supporting_text">Препарат разрешён с %1$s кг.</string>
     <string name="choose_medication">Выбор препарата</string>
     <string name="search">Поиск</string>

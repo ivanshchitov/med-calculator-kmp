@@ -15,7 +15,7 @@
         <item quantity="one">Medication is for at least %1$d y/o</item>
         <item quantity="other">Medication is for at least %1$d y/o</item>
     </plurals>
-    <string name="weight_supporting_text">Enter a value from %1$s to 100</string>
+    <string name="weight_supporting_text">Enter a value from %1$s to 150</string>
     <string name="min_weight_supporting_text">Medication is for body weight ≥ %1$s kg</string>
     <string name="choose_medication">Choose medication</string>
     <string name="search">Search</string>

@@ -69,7 +69,7 @@ class ValidateInputUseCase {
     private fun validateWeight(weightString: String, minWeight: Double?): List<ValidationError> {
         val weight = weightString.toDoubleOrNull() ?: 0.0
         val isWeightLessThanMin = minWeight != null && weight < minWeight
-        val isWeightInputIncorrect = weightString.isBlank() || weight > 100.0
+        val isWeightInputIncorrect = weightString.isBlank() || weight == 0.0 || weight > 150.0
         if (isWeightLessThanMin) {
             return listOf(ValidationError(
                 ValidationErrorCode.WeightTooLow,
