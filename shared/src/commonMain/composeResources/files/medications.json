@@ -6,24 +6,13 @@
       "nameLatin": "Adrenalinum",
       "dosageMgPerMl": 1,
       "minAgeMonths": 0,
-      "maxSingleDoseMg": 0.3,
+      "maxSingleDoseMg": 1,
       "dosageRegimens": [
         {
           "route": "IV",
           "rules": [
             {
               "fromMonths": 0,
-              "toMonths": 1,
-              "fromKg": null,
-              "toKg": null,
-              "doseMin": 0.01,
-              "doseMax": 0.03,
-              "unit": "MG_PER_KG",
-              "maxDoseMg": null,
-              "note": null
-            },
-            {
-              "fromMonths": 1,
               "toMonths": 216,
               "fromKg": null,
               "toKg": null,
@@ -253,7 +242,7 @@
       "nameLatin": "Atropinum",
       "dosageMgPerMl": 1,
       "minAgeMonths": 0,
-      "maxSingleDoseMg": 1,
+      "maxSingleDoseMg": null,
       "dosageRegimens": [
         {
           "route": "IV",
@@ -264,7 +253,7 @@
               "fromKg": null,
               "toKg": null,
               "doseMin": 0.01,
-              "doseMax": 0.02,
+              "doseMax": 0.01,
               "unit": "MG_PER_KG",
               "maxDoseMg": null,
               "note": null
@@ -289,7 +278,19 @@
         },
         {
           "route": "SC",
-          "rules": []
+          "rules": [
+            {
+              "fromMonths": 0,
+              "toMonths": 216,
+              "fromKg": null,
+              "toKg": null,
+              "doseMin": 0.01,
+              "doseMax": 0.01,
+              "unit": "MG_PER_KG",
+              "maxDoseMg": null,
+              "note": null
+            }
+          ]
         }
       ]
     },
@@ -299,34 +300,11 @@
       "nameLatin": "Dexamethasonum",
       "dosageMgPerMl": 4,
       "minAgeMonths": 0,
-      "maxSingleDoseMg": 50,
+      "maxSingleDoseMg": 12,
       "dosageRegimens": [
         {
           "route": "IV",
-          "rules": [
-            {
-              "fromMonths": 0,
-              "toMonths": 216,
-              "fromKg": 0,
-              "toKg": 34.9,
-              "doseMin": 20,
-              "doseMax": 20,
-              "unit": "MG",
-              "maxDoseMg": null,
-              "note": "масса пациента 0-34 кг"
-            },
-            {
-              "fromMonths": 0,
-              "toMonths": 216,
-              "fromKg": 35,
-              "toKg": 100,
-              "doseMin": 25,
-              "doseMax": 25,
-              "unit": "MG",
-              "maxDoseMg": null,
-              "note": "масса пациента 35-100 кг"
-            }
-          ]
+          "rules": []
         },
         {
           "route": "IM",
@@ -385,12 +363,12 @@
       ]
     },
     {
-      "id": "ketorol",
-      "nameRu": "Кеторол",
+      "id": "ketorolac",
+      "nameRu": "Кеторолак",
       "nameLatin": "Ketorolacum",
       "dosageMgPerMl": 30,
       "minAgeMonths": 192,
-      "maxSingleDoseMg": 60,
+      "maxSingleDoseMg": 30,
       "dosageRegimens": [
         {
           "route": "IV",
@@ -400,7 +378,7 @@
               "toMonths": 216,
               "fromKg": null,
               "toKg": null,
-              "doseMin": 10,
+              "doseMin": 30,
               "doseMax": 30,
               "unit": "MG",
               "maxDoseMg": null,
@@ -416,8 +394,8 @@
               "toMonths": 216,
               "fromKg": null,
               "toKg": null,
-              "doseMin": 10,
-              "doseMax": 60,
+              "doseMin": 30,
+              "doseMax": 30,
               "unit": "MG",
               "maxDoseMg": null,
               "note": null
@@ -470,20 +448,31 @@
       "nameLatin": "Metoclopramidum",
       "dosageMgPerMl": 5,
       "minAgeMonths": 24,
-      "maxSingleDoseMg": 10,
+      "maxSingleDoseMg": null,
       "dosageRegimens": [
         {
           "route": "IV",
           "rules": [
             {
               "fromMonths": 24,
+              "toMonths": 144,
+              "fromKg": null,
+              "toKg": null,
+              "doseMin": 0.1,
+              "doseMax": 0.1,
+              "unit": "MG_PER_KG",
+              "maxDoseMg": 5,
+              "note": null
+            },
+            {
+              "fromMonths": 145,
               "toMonths": 216,
               "fromKg": null,
               "toKg": null,
-              "doseMin": 0.25,
-              "doseMax": 0.25,
+              "doseMin": 0.1,
+              "doseMax": 0.1,
               "unit": "MG_PER_KG",
-              "maxDoseMg": null,
+              "maxDoseMg": 10,
               "note": null
             }
           ]
@@ -493,20 +482,54 @@
           "rules": [
             {
               "fromMonths": 24,
+              "toMonths": 144,
+              "fromKg": null,
+              "toKg": null,
+              "doseMin": 0.1,
+              "doseMax": 0.1,
+              "unit": "MG_PER_KG",
+              "maxDoseMg": 5,
+              "note": null
+            },
+            {
+              "fromMonths": 145,
               "toMonths": 216,
               "fromKg": null,
               "toKg": null,
-              "doseMin": 0.25,
-              "doseMax": 0.25,
+              "doseMin": 0.1,
+              "doseMax": 0.1,
               "unit": "MG_PER_KG",
-              "maxDoseMg": null,
+              "maxDoseMg": 10,
               "note": null
             }
           ]
         },
         {
           "route": "SC",
-          "rules": []
+          "rules": [
+            {
+              "fromMonths": 24,
+              "toMonths": 144,
+              "fromKg": null,
+              "toKg": null,
+              "doseMin": 0.1,
+              "doseMax": 0.1,
+              "unit": "MG_PER_KG",
+              "maxDoseMg": 5,
+              "note": null
+            },
+            {
+              "fromMonths": 145,
+              "toMonths": 216,
+              "fromKg": null,
+              "toKg": null,
+              "doseMin": 0.1,
+              "doseMax": 0.1,
+              "unit": "MG_PER_KG",
+              "maxDoseMg": 10,
+              "note": null
+            }
+          ]
         }
       ]
     },
@@ -573,7 +596,7 @@
               "fromKg": null,
               "toKg": null,
               "doseMin": 0.01,
-              "doseMax": 0.01,
+              "doseMax": 0.02,
               "unit": "MG_PER_KG",
               "maxDoseMg": null,
               "note": null
@@ -589,7 +612,7 @@
               "fromKg": null,
               "toKg": null,
               "doseMin": 0.01,
-              "doseMax": 0.01,
+              "doseMax": 0.02,
               "unit": "MG_PER_KG",
               "maxDoseMg": null,
               "note": null
@@ -709,7 +732,7 @@
       "nameRu": "Платифиллин",
       "nameLatin": "Platyphyllini hydrotartras",
       "dosageMgPerMl": 2,
-      "minAgeMonths": 168,
+      "minAgeMonths": 0,
       "maxSingleDoseMg": 10,
       "dosageRegimens": [
         {
@@ -724,7 +747,51 @@
           "route": "SC",
           "rules": [
             {
-              "fromMonths": 168,
+              "fromMonths": 0,
+              "toMonths": 11,
+              "fromKg": null,
+              "toKg": null,
+              "doseMin": 0.035,
+              "doseMax": 0.035,
+              "unit": "MG_PER_KG",
+              "maxDoseMg": null,
+              "note": null
+            },
+            {
+              "fromMonths": 12,
+              "toMonths": 71,
+              "fromKg": null,
+              "toKg": null,
+              "doseMin": 0.03,
+              "doseMax": 0.03,
+              "unit": "MG_PER_KG",
+              "maxDoseMg": null,
+              "note": null
+            },
+            {
+              "fromMonths": 72,
+              "toMonths": 131,
+              "fromKg": null,
+              "toKg": null,
+              "doseMin": 0.025,
+              "doseMax": 0.025,
+              "unit": "MG_PER_KG",
+              "maxDoseMg": null,
+              "note": null
+            },
+            {
+              "fromMonths": 132,
+              "toMonths": 168,
+              "fromKg": null,
+              "toKg": null,
+              "doseMin": 0.02,
+              "doseMax": 0.02,
+              "unit": "MG_PER_KG",
+              "maxDoseMg": null,
+              "note": null
+            },
+            {
+              "fromMonths": 169,
               "toMonths": 216,
               "fromKg": null,
               "toKg": null,
@@ -744,7 +811,7 @@
       "nameLatin": "Prednisolonum",
       "dosageMgPerMl": 30,
       "minAgeMonths": 2,
-      "maxSingleDoseMg": 200,
+      "maxSingleDoseMg": 120,
       "dosageRegimens": [
         {
           "route": "IV",
@@ -776,8 +843,8 @@
               "toMonths": 216,
               "fromKg": null,
               "toKg": null,
-              "doseMin": 100,
-              "doseMax": 200,
+              "doseMin": 90,
+              "doseMax": 120,
               "unit": "MG",
               "maxDoseMg": null,
               "note": null
@@ -814,8 +881,8 @@
               "toMonths": 216,
               "fromKg": null,
               "toKg": null,
-              "doseMin": 100,
-              "doseMax": 200,
+              "doseMin": 90,
+              "doseMax": 120,
               "unit": "MG",
               "maxDoseMg": null,
               "note": null
@@ -880,7 +947,7 @@
       "nameLatin": "Diazepamum",
       "dosageMgPerMl": 5,
       "minAgeMonths": 1,
-      "maxSingleDoseMg": 10,
+      "maxSingleDoseMg": null,
       "dosageRegimens": [
         {
           "route": "IV",
@@ -890,8 +957,8 @@
               "toMonths": 60,
               "fromKg": null,
               "toKg": null,
-              "doseMin": 0.1,
-              "doseMax": 0.3,
+              "doseMin": 0.2,
+              "doseMax": 0.5,
               "unit": "MG_PER_KG",
               "maxDoseMg": 5,
               "note": null
@@ -901,10 +968,10 @@
               "toMonths": 216,
               "fromKg": null,
               "toKg": null,
-              "doseMin": 5,
-              "doseMax": 10,
-              "unit": "MG",
-              "maxDoseMg": null,
+              "doseMin": 0.2,
+              "doseMax": 0.5,
+              "unit": "MG_PER_KG",
+              "maxDoseMg": 10,
               "note": null
             }
           ]
@@ -928,10 +995,10 @@
               "toMonths": 216,
               "fromKg": null,
               "toKg": null,
-              "doseMin": 5,
-              "doseMax": 10,
-              "unit": "MG",
-              "maxDoseMg": null,
+              "doseMin": 0.5,
+              "doseMax": 0.5,
+              "unit": "MG_PER_KG",
+              "maxDoseMg": 10,
               "note": null
             }
           ]
@@ -1193,18 +1260,18 @@
       "nameRu": "Транексамовая кислота",
       "nameLatin": "Acidum tranexamicum",
       "dosageMgPerMl": 50,
-      "minAgeMonths": 12,
+      "minAgeMonths": 24,
       "maxSingleDoseMg": null,
       "dosageRegimens": [
         {
           "route": "IV",
           "rules": [
             {
-              "fromMonths": 12,
+              "fromMonths": 24,
               "toMonths": 216,
               "fromKg": null,
               "toKg": null,
-              "doseMin": 20,
+              "doseMin": 10,
               "doseMax": 20,
               "unit": "MG_PER_KG",
               "maxDoseMg": null,
@@ -1228,7 +1295,7 @@
       "nameLatin": "Fentanylum",
       "dosageMgPerMl": 0.05,
       "minAgeMonths": 12,
-      "maxSingleDoseMg": 0.1,
+      "maxSingleDoseMg": 0.05,
       "dosageRegimens": [
         {
           "route": "IV",
@@ -1238,8 +1305,8 @@
               "toMonths": 216,
               "fromKg": null,
               "toKg": null,
-              "doseMin": 0.003,
-              "doseMax": 0.005,
+              "doseMin": 0.001,
+              "doseMax": 0.004,
               "unit": "MG_PER_KG",
               "maxDoseMg": null,
               "note": null
@@ -1248,7 +1315,19 @@
         },
         {
           "route": "IM",
-          "rules": []
+          "rules": [
+            {
+              "fromMonths": 12,
+              "toMonths": 216,
+              "fromKg": null,
+              "toKg": null,
+              "doseMin": 0.001,
+              "doseMax": 0.004,
+              "unit": "MG_PER_KG",
+              "maxDoseMg": null,
+              "note": null
+            }
+          ]
         },
         {
           "route": "SC",
@@ -1282,7 +1361,19 @@
         },
         {
           "route": "IM",
-          "rules": []
+          "rules": [
+            {
+              "fromMonths": 0,
+              "toMonths": 216,
+              "fromKg": null,
+              "toKg": null,
+              "doseMin": 1,
+              "doseMax": 1,
+              "unit": "MG_PER_KG",
+              "maxDoseMg": null,
+              "note": null
+            }
+          ]
         },
         {
           "route": "SC",
@@ -1358,6 +1449,40 @@
       ]
     },
     {
+      "id": "ceftriaxonum",
+      "nameRu": "Цефтриаксон (1000 мг)",
+      "nameLatin": "Ceftriaxonum",
+      "dosageMgPerMl": 286,
+      "minAgeMonths": 0,
+      "maxSingleDoseMg": 2000,
+      "dosageRegimens": [
+        {
+          "route": "IV",
+          "rules": []
+        },
+        {
+          "route": "IM",
+          "rules": [
+            {
+              "fromMonths": 0,
+              "toMonths": 216,
+              "fromKg": null,
+              "toKg": null,
+              "doseMin": 50,
+              "doseMax": 50,
+              "unit": "MG_PER_KG",
+              "maxDoseMg": null,
+              "note": null
+            }
+          ]
+        },
+        {
+          "route": "SC",
+          "rules": []
+        }
+      ]
+    },
+    {
       "id": "etamsylat",
       "nameRu": "Этамзилат",
       "nameLatin": "Etamsylatum",
@@ -1373,9 +1498,9 @@
               "toMonths": 216,
               "fromKg": null,
               "toKg": null,
-              "doseMin": 250,
-              "doseMax": 500,
-              "unit": "MG",
+              "doseMin": 12.5,
+              "doseMax": 12.5,
+              "unit": "MG_PER_KG",
               "maxDoseMg": null,
               "note": null
             }
@@ -1389,9 +1514,9 @@
               "toMonths": 216,
               "fromKg": null,
               "toKg": null,
-              "doseMin": 250,
-              "doseMax": 500,
-              "unit": "MG",
+              "doseMin": 12.5,
+              "doseMax": 12.5,
+              "unit": "MG_PER_KG",
               "maxDoseMg": null,
               "note": null
             }
