@@ -1,10 +1,9 @@
 package org.dishch.medcalculator.domain.usecase
 
 import medcalculator.shared.generated.resources.Res
-import medcalculator.shared.generated.resources.age_supporting_months
-import medcalculator.shared.generated.resources.age_supporting_years
 import medcalculator.shared.generated.resources.weight_supporting_text
 import org.dishch.medcalculator.domain.model.AgeUnit
+import org.dishch.medcalculator.ui.helpers.supportingText
 import org.jetbrains.compose.resources.StringResource
 
 data class ErrorMessages(
@@ -25,11 +24,7 @@ class ValidationErrorMessagesUseCase {
         }
 
         val ageError = if (!validationState.isValid && validationState.age == null) {
-            if (ageUnit == AgeUnit.MONTHS) {
-                Res.string.age_supporting_months
-            } else {
-                Res.string.age_supporting_years
-            }
+            ageUnit.supportingText
         } else {
             null
         }

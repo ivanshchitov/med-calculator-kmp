@@ -24,6 +24,7 @@ import medcalculator.shared.generated.resources.years_suffix
 import org.dishch.medcalculator.domain.model.AgeUnit
 import org.dishch.medcalculator.domain.model.DosageRegimen
 import org.dishch.medcalculator.domain.model.DosageUnit
+import org.dishch.medcalculator.domain.model.isWeightRangeValid
 import org.dishch.medcalculator.formatAsDecimal
 import org.jetbrains.compose.resources.PluralStringResource
 import org.jetbrains.compose.resources.StringResource
@@ -55,9 +56,6 @@ fun Int.toAgePluralsString(): String {
 }
 
 // DosageRegimen extensions
-
-val DosageRegimen.fromMonthsInYears: Int
-    get() = fromMonths.toAge()
 
 val DosageRegimen.formattedMinDose: String
     get() = minDose?.formatAsDecimal() ?: ""
@@ -112,13 +110,11 @@ val DosageRegimen.doseDisplayString: String
 
 val DosageRegimen.icon: ImageVector
     get() = when {
-        fromMonthsInYears < 1 -> Icons.Outlined.ChildFriendly // Infant
-        fromMonthsInYears < 12 -> Icons.Outlined.Face3        // Child
-        fromMonthsInYears < 18 -> Icons.Outlined.Face2        // Teen
-        else -> Icons.Outlined.Face6                        // Senior
+        fromMonths < 12 -> Icons.Outlined.ChildFriendly   // less than 1 year
+        fromMonths.toAge() < 8 -> Icons.Outlined.Face3    // less than 8 years
+        fromMonths.toAge() < 14 -> Icons.Outlined.Face2   // less than 14
+        else -> Icons.Outlined.Face6                      // 15 years and older
     }
-
-fun DosageRegimen.isWeightRangeValid(): Boolean = fromKg != null && toKg != null
 
 // AgeUnit formatting helpers
 

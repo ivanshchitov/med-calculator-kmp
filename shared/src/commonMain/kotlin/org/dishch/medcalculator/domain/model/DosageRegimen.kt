@@ -28,3 +28,5 @@ data class DosageRegimen(
     val dosageUnit: DosageUnit,
     val medicationId: String
 )
+
+fun DosageRegimen.isWeightRangeValid(): Boolean = fromKg != null && toKg != null

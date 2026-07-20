@@ -44,11 +44,11 @@ import org.dishch.medcalculator.domain.model.DosageRegimen
 import org.dishch.medcalculator.domain.model.Medication
 import org.dishch.medcalculator.domain.model.formattedDosage
 import org.dishch.medcalculator.domain.model.formattedMaxSingleDose
+import org.dishch.medcalculator.domain.model.isWeightRangeValid
 import org.dishch.medcalculator.ui.helpers.doseDisplayString
 import org.dishch.medcalculator.ui.helpers.formattedAgeRange
 import org.dishch.medcalculator.ui.helpers.formattedWeightRange
 import org.dishch.medcalculator.ui.helpers.icon
-import org.dishch.medcalculator.ui.helpers.isWeightRangeValid
 import org.dishch.medcalculator.ui.helpers.toFormattedAgeLimit
 import org.dishch.medcalculator.ui.theme.AppColors
 import org.dishch.medcalculator.ui.theme.AppDimens
