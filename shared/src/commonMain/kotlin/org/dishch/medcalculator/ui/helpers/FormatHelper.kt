@@ -10,16 +10,16 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.age_limit_months_plurals
 import medcalculator.shared.generated.resources.age_limit_years_plurals
-import medcalculator.shared.generated.resources.age_months
 import medcalculator.shared.generated.resources.age_range_format
 import medcalculator.shared.generated.resources.age_supporting_months
 import medcalculator.shared.generated.resources.age_supporting_years
-import medcalculator.shared.generated.resources.age_years
 import medcalculator.shared.generated.resources.contraindicated
 import medcalculator.shared.generated.resources.mg_format
 import medcalculator.shared.generated.resources.mg_per_kg_format
+import medcalculator.shared.generated.resources.months_format
 import medcalculator.shared.generated.resources.months_suffix
 import medcalculator.shared.generated.resources.weight_range_format
+import medcalculator.shared.generated.resources.years_format
 import medcalculator.shared.generated.resources.years_suffix
 import org.dishch.medcalculator.domain.model.AgeUnit
 import org.dishch.medcalculator.domain.model.DosageRegimen
@@ -50,7 +50,7 @@ fun Int.toFormattedAgeLimit(): String {
 
 @Composable
 fun Int.toAgePluralsString(): String {
-    val pluralsRes = if (isYears()) Res.plurals.age_years else Res.plurals.age_months
+    val pluralsRes = if (isYears()) Res.plurals.years_format else Res.plurals.months_format
     return pluralStringResource(pluralsRes, this.toAge(), this.toAge())
 }
 

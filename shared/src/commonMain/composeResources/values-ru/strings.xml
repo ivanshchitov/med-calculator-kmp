@@ -5,20 +5,6 @@
     <string name="patient_weight">Вес пациента</string>
     <string name="patient_age">Возраст пациента</string>
     <string name="chosen_medication">Выбранный препарат</string>
-    <string name="months">мес.</string>
-    <string name="years">лет</string>
-    <plurals name="months_suffix">
-        <item quantity="one">месяц</item>
-        <item quantity="few">месяца</item>
-        <item quantity="many">месяцев</item>
-        <item quantity="other">месяца</item>
-    </plurals>
-    <plurals name="years_suffix">
-        <item quantity="one">год</item>
-        <item quantity="few">года</item>
-        <item quantity="many">лет</item>
-        <item quantity="other">года</item>
-    </plurals>
     <string name="months_full">Месяцы</string>
     <string name="years_full">Годы</string>
     <string name="kg">кг.</string>
@@ -38,7 +24,6 @@
     <string name="new_calculation">Новый расчет</string>
     <string name="ml">мл.</string>
     <string name="mg">мг.</string>
-    <string name="ml_per_kg">мл/кг</string>
     <string name="mg_per_ml_format">%1$s мг/мл</string>
     <string name="mg_format">%1$s мг.</string>
     <string name="age_limit">Ограничение по возрасту</string>
@@ -49,6 +34,27 @@
     <string name="route_im">в/м</string>
     <string name="route_sc">п/к</string>
     <string name="mg_per_kg_format">%1$s мг/кг</string>
+    <string name="age_range_format">%1$s – %2$s</string>
+    <string name="weight_range_format">%1$s–%2$s кг.</string>
+    <string name="calculation_warning">Информация носит исключительно рекомендательный характер. Все назначения должны производиться только лечащим врачом или фельдшером.</string>
+    <string name="administration_routes">Пути введения</string>
+    <string name="contraindicated">Противопоказано</string>
+    <string name="contraindicated_short">п/пок.</string>
+    <string name="medication_info">Информация о препарате</string>
+
+    <!-- Plurals -->
+    <plurals name="months_suffix">
+        <item quantity="one">мес.</item>
+        <item quantity="few">мес.</item>
+        <item quantity="many">мес.</item>
+        <item quantity="other">мес.</item>
+    </plurals>
+    <plurals name="years_suffix">
+        <item quantity="one">год</item>
+        <item quantity="few">года</item>
+        <item quantity="many">лет</item>
+        <item quantity="other">года</item>
+    </plurals>
     <plurals name="age_limit_months_plurals">
         <item quantity="one">от %1$d месяца</item>
         <item quantity="few">от %1$d месяцев</item>
@@ -61,23 +67,16 @@
         <item quantity="many">от %1$d лет</item>
         <item quantity="other">от %1$d лет</item>
     </plurals>
-    <plurals name="age_months">
-        <item quantity="one">%1$d месяц</item>
-        <item quantity="few">%1$d месяца</item>
-        <item quantity="many">%1$d месяцев</item>
-        <item quantity="other">%1$d месяца</item>
+    <plurals name="months_format">
+        <item quantity="one">%1$d мес.</item>
+        <item quantity="few">%1$d мес.</item>
+        <item quantity="many">%1$d мес.</item>
+        <item quantity="other">%1$d мес.</item>
     </plurals>
-    <plurals name="age_years">
+    <plurals name="years_format">
         <item quantity="one">%1$d год</item>
         <item quantity="few">%1$d года</item>
         <item quantity="many">%1$d лет</item>
         <item quantity="other">%1$d года</item>
     </plurals>
-    <string name="age_range_format">%1$s – %2$s</string>
-    <string name="weight_range_format">%1$s–%2$s кг.</string>
-    <string name="calculation_warning">Информация носит исключительно рекомендательный характер. Все назначения должны производиться только лечащим врачом или фельдшером.</string>
-    <string name="administration_routes">Пути введения</string>
-    <string name="contraindicated">Противопоказано</string>
-    <string name="contraindicated_short">п/пок.</string>
-    <string name="medication_info">Информация о препарате</string>
 </resources>

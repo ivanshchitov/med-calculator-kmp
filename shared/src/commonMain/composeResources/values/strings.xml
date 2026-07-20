@@ -5,16 +5,6 @@
     <string name="patient_weight">Patient weight</string>
     <string name="patient_age">Patient age</string>
     <string name="chosen_medication">Chosen medication</string>
-    <string name="months">months</string>
-    <string name="years">years</string>
-    <plurals name="months_suffix">
-        <item quantity="one">month</item>
-        <item quantity="other">months</item>
-    </plurals>
-    <plurals name="years_suffix">
-        <item quantity="one">year</item>
-        <item quantity="other">years</item>
-    </plurals>
     <string name="months_full">Months</string>
     <string name="years_full">Years</string>
     <string name="kg">kg</string>
@@ -34,7 +24,6 @@
     <string name="new_calculation">New calculation</string>
     <string name="ml">ml</string>
     <string name="mg">mg</string>
-    <string name="ml_per_kg">ml/kg</string>
     <string name="mg_per_ml_format">%1$s mg/ml</string>
     <string name="mg_format">%1$s mg</string>
     <string name="age_limit">Age limit</string>
@@ -45,6 +34,23 @@
     <string name="route_im">IM</string>
     <string name="route_sc">SC</string>
     <string name="mg_per_kg_format">%1$s mg/kg</string>
+    <string name="age_range_format">%1$s – %2$s</string>
+    <string name="weight_range_format">%1$s–%2$s kg</string>
+    <string name="calculation_warning">This information is for advisory purposes only. All prescriptions should be made only by the attending physician or paramedic.</string>
+    <string name="administration_routes">Administration Routes</string>
+    <string name="contraindicated">Contraindicated</string>
+    <string name="contraindicated_short">c/i</string>
+    <string name="medication_info">Medication info</string>
+
+    <!-- Plurals -->
+    <plurals name="months_suffix">
+        <item quantity="one">mo</item>
+        <item quantity="other">mos</item>
+    </plurals>
+    <plurals name="years_suffix">
+        <item quantity="one">year</item>
+        <item quantity="other">years</item>
+    </plurals>
     <plurals name="age_limit_months_plurals">
         <item quantity="one">from %1$d month</item>
         <item quantity="other">from %1$d months</item>
@@ -53,19 +59,12 @@
         <item quantity="one">from %1$d year</item>
         <item quantity="other">from %1$d years</item>
     </plurals>
-    <plurals name="age_months">
-        <item quantity="one">%1$d month</item>
-        <item quantity="other">%1$d months</item>
+    <plurals name="months_format">
+        <item quantity="one">%1$d mo</item>
+        <item quantity="other">%1$d mos</item>
     </plurals>
-    <plurals name="age_years">
+    <plurals name="years_format">
         <item quantity="one">%1$d year</item>
         <item quantity="other">%1$d years</item>
     </plurals>
-    <string name="age_range_format">%1$s – %2$s</string>
-    <string name="weight_range_format">%1$s–%2$s kg</string>
-    <string name="calculation_warning">This information is for advisory purposes only. All prescriptions should be made only by the attending physician or paramedic.</string>
-    <string name="administration_routes">Administration Routes</string>
-    <string name="contraindicated">Contraindicated</string>
-    <string name="contraindicated_short">c/i</string>
-    <string name="medication_info">Medication info</string>
 </resources>
