@@ -79,11 +79,12 @@ fun ResultRow(
         Spacer(modifier = Modifier.width(AppDimens.SpacingSmall))
 
         Column(horizontalAlignment = Alignment.End,
-            modifier = Modifier.wrapContentWidth()
+            modifier = Modifier.width(IntrinsicSize.Max)
         ) {
-            Row(verticalAlignment = Alignment.Bottom) {
+            Row(verticalAlignment = Alignment.Bottom,
+                modifier = Modifier.wrapContentWidth()) {
                 Text(
-                    modifier = Modifier.width(IntrinsicSize.Min),
+                    modifier = Modifier.width(if (unit == null) IntrinsicSize.Min else IntrinsicSize.Max),
                     text = value,
                     style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
                     color = valueColor,
@@ -92,10 +93,11 @@ fun ResultRow(
                 if (unit != null) {
                     Spacer(modifier = Modifier.width(AppDimens.SpacingExtraSmall))
                     Text(
-                        modifier = Modifier.align(Alignment.CenterVertically),
+                        modifier = Modifier.wrapContentWidth().align(Alignment.CenterVertically),
                         text = unit,
                         style = MaterialTheme.typography.bodyMedium,
-                        color = AppColors.TextSecondary
+                        color = AppColors.TextSecondary,
+                        textAlign = TextAlign.End
                     )
                 }
             }
@@ -119,6 +121,19 @@ fun ResultRowPreview() {
             label = "Препарат",
             value = "Транексамовая кислота",
             unit = ""
+        )
+    }
+}
+
+@Composable
+@Preview
+fun ResultRowWithUnitPreview() {
+    MedCalculatorAppTheme {
+        ResultRow(
+            icon = Icons.Filled.ArrowUpward,
+            label = "Доза препарата",
+            value = "100",
+            unit = "мг."
         )
     }
 }
