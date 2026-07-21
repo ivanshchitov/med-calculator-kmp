@@ -42,7 +42,7 @@ fun RouteSelectionCard(
     ) {
         Row(
             modifier = Modifier
-                .padding(if (isSubCard) AppDimens.SpacingMediumSmall else AppDimens.SpacingMedium)
+                .padding(AppDimens.SpacingMediumSmall)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {

@@ -131,10 +131,10 @@ private fun RegimensSection(regimens: List<DosageRegimen>) {
         color = AppColors.Surface
     ) {
         Column(modifier = Modifier.padding(
-            horizontal = AppDimens.SpacingMedium
+            horizontal = AppDimens.SpacingMediumSmall
         ).fillMaxWidth()) {
             Row(
-                modifier = Modifier.padding(top = AppDimens.SpacingMedium),
+                modifier = Modifier.padding(top = AppDimens.SpacingMediumSmall),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(

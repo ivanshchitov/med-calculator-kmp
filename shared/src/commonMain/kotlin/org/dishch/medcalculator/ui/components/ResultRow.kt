@@ -48,7 +48,7 @@ fun ResultRow(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(AppDimens.SpacingMedium),
+            .padding(AppDimens.SpacingMediumSmall),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Surface(

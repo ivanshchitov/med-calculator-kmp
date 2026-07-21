@@ -23,7 +23,7 @@ fun CalculationWarningCard(modifier: Modifier = Modifier) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(AppDimens.SpacingMedium),
+                .padding(AppDimens.SpacingMediumSmall),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Surface(

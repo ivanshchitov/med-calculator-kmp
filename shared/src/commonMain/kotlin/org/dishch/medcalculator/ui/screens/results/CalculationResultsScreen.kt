@@ -104,7 +104,7 @@ fun CalculationResultsScreen(
                 .padding(horizontal = AppDimens.SpacingMedium)
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(AppDimens.SpacingMedium)
+            verticalArrangement = Arrangement.spacedBy(AppDimens.SpacingMediumSmall)
         ) {
             SectionTitle(stringResource(Res.string.input_data))
 
@@ -188,7 +188,7 @@ fun CalculationResultsScreen(
 
             ResultCard {
                 MedicationFullInfo(result.medication, result.dosageRegimens, isForResults = true,
-                    modifier = Modifier.fillMaxWidth().padding(AppDimens.SpacingMedium),
+                    modifier = Modifier.fillMaxWidth().padding(AppDimens.SpacingMediumSmall),
                 )
             }
 

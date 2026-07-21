@@ -36,7 +36,7 @@ fun MaxDoseCard(isExceeded: Boolean, modifier: Modifier = Modifier) {
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {
         Row(
-            modifier = Modifier.padding(AppDimens.SpacingMedium),
+            modifier = Modifier.padding(AppDimens.SpacingMediumSmall),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Surface(
