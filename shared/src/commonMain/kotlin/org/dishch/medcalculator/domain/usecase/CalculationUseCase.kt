@@ -56,6 +56,7 @@ class CalculationUseCase {
             else weight * (regimen.maxDose ?: 0.0)
 
             val concentration = medication.dosage.takeIf { it > 0.0 } ?: 1.0
+            val maxSingleDose = regimen.maxDoseMg ?: medication.maxSingleDose
 
             regimen.route to RouteCalculationResults(
                 minDoseMg = minDoseMg,
@@ -63,9 +64,10 @@ class CalculationUseCase {
                 minVolMl = minDoseMg / concentration,
                 maxVolMl = maxDoseMg / concentration,
                 contraindicated = contraindicated,
-                isMaxDailyDoseExceeded =
-                    (regimen.maxDoseMg != null && maxDoseMg > (regimen.maxDoseMg))
-                            || (medication.maxSingleDose != null && maxDoseMg > medication.maxSingleDose)
+                maxSingleDose = maxSingleDose,
+                isMaxDailyDoseExceeded = maxSingleDose != null && maxDoseMg > maxSingleDose
+//                    (regimen.maxDoseMg != null && maxDoseMg > (regimen.maxDoseMg))
+//                            || (medication.maxSingleDose != null && maxDoseMg > medication.maxSingleDose)
             )
         }
 

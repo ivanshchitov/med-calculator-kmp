@@ -34,6 +34,7 @@
     <string name="mg_format">%1$s mg</string>
     <string name="age_limit">Age limit</string>
     <string name="max_single_dose">Max single dose</string>
+    <string name="single_dose">Single dose</string>
     <string name="dosage_label">Dosage: %1$s mg/ml</string>
     <string name="dosage_regimen">Dosage regimen</string>
     <string name="route_iv">IV</string>

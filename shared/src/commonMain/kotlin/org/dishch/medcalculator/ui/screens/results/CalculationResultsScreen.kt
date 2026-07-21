@@ -30,6 +30,7 @@ import org.dishch.medcalculator.domain.model.Route
 import org.dishch.medcalculator.domain.model.RouteCalculationResults
 import org.dishch.medcalculator.domain.model.formattedDosage
 import org.dishch.medcalculator.domain.model.formattedDoseRange
+import org.dishch.medcalculator.domain.model.formattedMaxSingleDose
 import org.dishch.medcalculator.domain.model.formattedVolumeRange
 import org.dishch.medcalculator.formatAsDecimal
 import org.dishch.medcalculator.ui.components.ResultRow
@@ -137,10 +138,10 @@ fun CalculationResultsScreen(
             var selectedRoute by rememberSaveable { mutableStateOf(resultsByRoute.keys.firstOrNull()) }
             val selectedRouteResults by remember(resultsByRoute, selectedRoute) {
                 derivedStateOf {
-                    selectedRoute?.let { route -> resultsByRoute[route] } ?: null
+                    selectedRoute?.let { route -> resultsByRoute[route] }
                 }
             }
-            val contraindicated = selectedRouteResults?.let { it.contraindicated } == true
+            val contraindicated = selectedRouteResults?.contraindicated == true
 
             RouteSelectionCard(
                 routes = resultsByRoute.keys.map { it },
@@ -181,7 +182,10 @@ fun CalculationResultsScreen(
             }
 
             if (!contraindicated) {
-                MaxDoseCard(isExceeded = selectedRouteResults?.isMaxDailyDoseExceeded ?: false)
+                MaxDoseCard(
+                    maxSingleDoseString = selectedRouteResults?.formattedMaxSingleDose,
+                    isExceeded = selectedRouteResults?.isMaxDailyDoseExceeded ?: false
+                )
             }
 
             SectionTitle(stringResource(Res.string.medication_info))
@@ -233,6 +237,7 @@ fun CalculationResultsScreenPreview() {
                         maxDoseMg = 160.0,
                         minVolMl = 6.25,
                         maxVolMl = 7.55,
+                        maxSingleDose = 2000.0,
                         contraindicated = true,
                         isMaxDailyDoseExceeded = false
                     ),
@@ -241,6 +246,7 @@ fun CalculationResultsScreenPreview() {
                         maxDoseMg = 160.0,
                         minVolMl = 6.25,
                         maxVolMl = 7.55,
+                        maxSingleDose = 2000.0,
                         contraindicated = true,
                         isMaxDailyDoseExceeded = false
                     ),
@@ -267,7 +273,8 @@ fun CalculationResultsScreenExceededPreview() {
                         maxDoseMg = 1600.0,
                         minVolMl = 6.25,
                         maxVolMl = 7.55,
-                        contraindicated = true,
+                        maxSingleDose = 1000.0,
+                        contraindicated = false,
                         isMaxDailyDoseExceeded = true
                     ),
                     Route.IM to RouteCalculationResults(
@@ -275,7 +282,8 @@ fun CalculationResultsScreenExceededPreview() {
                         maxDoseMg = 1600.0,
                         minVolMl = 6.25,
                         maxVolMl = 7.55,
-                        contraindicated = true,
+                        maxSingleDose = 1000.0,
+                        contraindicated = false,
                         isMaxDailyDoseExceeded = true
                     ),
                 )

@@ -36,6 +36,7 @@
     <string name="mg_format">%1$s мг.</string>
     <string name="age_limit">Ограничение по возрасту</string>
     <string name="max_single_dose">Максимальная разовая доза</string>
+    <string name="single_dose">Разовая доза</string>
     <string name="dosage_label">Дозировка: %1$s мг/мл</string>
     <string name="dosage_regimen">Режим дозирования</string>
     <string name="route_iv">в/в</string>

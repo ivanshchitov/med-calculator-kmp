@@ -37,6 +37,7 @@ import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.age_limit
 import medcalculator.shared.generated.resources.dosage_regimen
 import medcalculator.shared.generated.resources.max_single_dose
+import medcalculator.shared.generated.resources.maximum
 import medcalculator.shared.generated.resources.medication
 import medcalculator.shared.generated.resources.mg_format
 import medcalculator.shared.generated.resources.mg_per_ml_format
@@ -45,7 +46,6 @@ import org.dishch.medcalculator.domain.model.Medication
 import org.dishch.medcalculator.domain.model.formattedDosage
 import org.dishch.medcalculator.domain.model.formattedMaxSingleDose
 import org.dishch.medcalculator.domain.model.isWeightRangeValid
-import org.dishch.medcalculator.formatAsDecimal
 import org.dishch.medcalculator.ui.helpers.doseDisplayString
 import org.dishch.medcalculator.ui.helpers.formattedAgeRange
 import org.dishch.medcalculator.ui.helpers.formattedMaxSingleDose
@@ -227,7 +227,7 @@ private fun RegimenItem(regimen: DosageRegimen) {
                 modifier = Modifier.width(IntrinsicSize.Min)
             ) {
                 Text(
-                    text = "Максимум",
+                    text = stringResource(Res.string.maximum),
                     style = MaterialTheme.typography.bodyMedium,
                     color = AppColors.TextPrimary
                 )
