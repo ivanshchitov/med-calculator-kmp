@@ -45,8 +45,10 @@ import org.dishch.medcalculator.domain.model.Medication
 import org.dishch.medcalculator.domain.model.formattedDosage
 import org.dishch.medcalculator.domain.model.formattedMaxSingleDose
 import org.dishch.medcalculator.domain.model.isWeightRangeValid
+import org.dishch.medcalculator.formatAsDecimal
 import org.dishch.medcalculator.ui.helpers.doseDisplayString
 import org.dishch.medcalculator.ui.helpers.formattedAgeRange
+import org.dishch.medcalculator.ui.helpers.formattedMaxSingleDose
 import org.dishch.medcalculator.ui.helpers.formattedWeightRange
 import org.dishch.medcalculator.ui.helpers.icon
 import org.dishch.medcalculator.ui.helpers.toFormattedAgeLimit
@@ -98,7 +100,7 @@ fun MedicationFullInfo(
             Spacer(modifier = Modifier.height(SpacingSmall))
         }
 
-        val uniqueRoutes = regimens.map { it.route }.filterNotNull().distinct()
+        val uniqueRoutes = regimens.map { it.route }.distinct()
         var selectedRoute by rememberSaveable { mutableStateOf(uniqueRoutes.firstOrNull()) }
 
         if (uniqueRoutes.isNotEmpty() && selectedRoute != null) {
@@ -216,6 +218,26 @@ private fun RegimenItem(regimen: DosageRegimen) {
                 fontWeight = FontWeight.Bold,
                 color = AppColors.TextPrimary
             )
+        }
+
+        if (regimen.maxDoseMg != null) {
+            Spacer(modifier = Modifier.weight(1f))
+            Column(
+                horizontalAlignment = Alignment.End,
+                modifier = Modifier.width(IntrinsicSize.Min)
+            ) {
+                Text(
+                    text = "Максимум",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = AppColors.TextPrimary
+                )
+                Text(
+                    text = regimen.formattedMaxSingleDose,
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Bold,
+                    color = AppColors.TextPrimary
+                )
+            }
         }
     }
 }

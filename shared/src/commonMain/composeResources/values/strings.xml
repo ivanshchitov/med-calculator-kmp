@@ -47,6 +47,7 @@
     <string name="contraindicated">Contraindicated</string>
     <string name="contraindicated_short">c/i</string>
     <string name="medication_info">Medication info</string>
+    <string name="maximum">Maximum</string>
 
     <!-- Plurals -->
     <plurals name="months_suffix">

@@ -110,6 +110,10 @@ val DosageRegimen.doseDisplayString: String
     else
         stringResource(unitStringFormat, formattedDoseRange)
 
+val DosageRegimen.formattedMaxSingleDose: String
+    @Composable
+    get() = stringResource(Res.string.mg_format, maxDoseMg?.formatAsDecimal() ?: "")
+
 val DosageRegimen.icon: ImageVector
     get() = when {
         fromMonths < 12 -> Icons.Outlined.ChildFriendly   // less than 1 year

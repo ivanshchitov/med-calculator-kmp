@@ -49,6 +49,7 @@
     <string name="contraindicated">Противопоказано</string>
     <string name="contraindicated_short">п/пок.</string>
     <string name="medication_info">Информация о препарате</string>
+    <string name="maximum">Максимум</string>
 
     <!-- Plurals -->
     <plurals name="months_suffix">

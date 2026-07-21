@@ -68,6 +68,7 @@ fun RouteSelectionCard(
                 color = AppColors.Primary,
                 modifier = Modifier.weight(1f)
             )
+            Spacer(modifier = Modifier.width(AppDimens.SpacingSmall))
 
             // Segmented buttons
             AppSegmentedButtonRow(
