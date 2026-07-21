@@ -55,7 +55,7 @@ fun CalculationResultsScreen(
 ) {
 
     Scaffold(
-        containerColor = AppColors.Background,
+        containerColor = MaterialTheme.colorScheme.background,
         topBar = {
             TopAppBar(
                 title = {
