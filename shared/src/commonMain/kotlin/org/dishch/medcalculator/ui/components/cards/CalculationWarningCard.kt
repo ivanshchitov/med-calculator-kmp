@@ -3,7 +3,7 @@ package org.dishch.medcalculator.ui.components.cards
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.MedicalServices
+import androidx.compose.material.icons.outlined.MedicalInformation
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -33,7 +33,7 @@ fun CalculationWarningCard(modifier: Modifier = Modifier) {
             ) {
                 Box(contentAlignment = Alignment.Center) {
                     Icon(
-                        imageVector = Icons.Outlined.MedicalServices,
+                        imageVector = Icons.Outlined.MedicalInformation,
                         contentDescription = null,
                         tint = AppColors.Primary,
                         modifier = Modifier.size(AppDimens.IconSize)

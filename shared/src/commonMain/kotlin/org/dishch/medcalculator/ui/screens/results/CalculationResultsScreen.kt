@@ -11,13 +11,14 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.Medication
 import androidx.compose.material.icons.outlined.Opacity
-import androidx.compose.material.icons.outlined.Scale
+import androidx.compose.material.icons.outlined.Today
 import androidx.compose.material.icons.outlined.Vaccines
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import org.jetbrains.compose.resources.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -111,14 +112,14 @@ fun CalculationResultsScreen(
 
             ResultCard {
                 ResultRow(
-                    icon = Icons.Outlined.CalendarMonth,
+                    icon = Icons.Outlined.Today,
                     label = stringResource(Res.string.patient_age),
                     value = result.age.toString(),
                     unit = pluralStringResource(result.ageUnit.suffix, result.age)
                 )
                 ItemDivider()
                 ResultRow(
-                    icon = Icons.Outlined.Scale,
+                    icon = vectorResource(Res.drawable.ic_weight),
                     label = stringResource(Res.string.patient_weight),
                     value = result.weight.formatAsDecimal(),
                     unit = stringResource(Res.string.kg)

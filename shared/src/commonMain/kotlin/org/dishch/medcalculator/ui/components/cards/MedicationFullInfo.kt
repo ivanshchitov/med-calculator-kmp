@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.age_limit
 import medcalculator.shared.generated.resources.dosage_regimen
+import medcalculator.shared.generated.resources.ic_prescriptions
 import medcalculator.shared.generated.resources.max_single_dose
 import medcalculator.shared.generated.resources.maximum
 import medcalculator.shared.generated.resources.medication
@@ -57,6 +58,7 @@ import org.dishch.medcalculator.ui.theme.AppDimens
 import org.dishch.medcalculator.ui.theme.AppDimens.SpacingExtraSmall
 import org.dishch.medcalculator.ui.theme.AppDimens.SpacingSmall
 import org.dishch.medcalculator.ui.theme.MedCalculatorAppTheme
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -140,7 +142,7 @@ private fun RegimensSection(regimens: List<DosageRegimen>) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(
-                    Icons.AutoMirrored.Outlined.Assignment,
+                    painter = painterResource(Res.drawable.ic_prescriptions),
                     contentDescription = null,
                     tint = AppColors.Success
                 )

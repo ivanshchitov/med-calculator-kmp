@@ -2,8 +2,6 @@ package org.dishch.medcalculator.ui.components.cards
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Scale
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
@@ -13,6 +11,7 @@ import medcalculator.shared.generated.resources.*
 import org.dishch.medcalculator.ui.components.InputTextField
 import org.dishch.medcalculator.ui.theme.MedCalculatorAppTheme
 import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.resources.vectorResource
 
 @Composable
 fun WeightCard(
@@ -26,7 +25,7 @@ fun WeightCard(
 
     AppCard(
         title = stringResource(Res.string.patient_weight),
-        icon = Icons.Outlined.Scale
+        icon = vectorResource(Res.drawable.ic_weight)
     ) {
         InputTextField(
             value = weight,

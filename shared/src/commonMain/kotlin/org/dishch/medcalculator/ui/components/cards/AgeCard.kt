@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.CalendarMonth
+import androidx.compose.material.icons.outlined.Today
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -34,7 +35,7 @@ fun AgeCard(
 
     AppCard(
         title = stringResource(Res.string.patient_age),
-        icon = Icons.Outlined.CalendarMonth
+        icon = Icons.Outlined.Today
     ) {
         InputTextField(
             value = age,

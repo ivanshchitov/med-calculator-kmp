@@ -3,8 +3,6 @@ package org.dishch.medcalculator.ui.components.cards
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.outlined.AltRoute
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -15,12 +13,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.administration_routes
+import medcalculator.shared.generated.resources.ic_syringe
 import org.dishch.medcalculator.domain.model.Route
 import org.dishch.medcalculator.ui.components.AppSegmentedButton
 import org.dishch.medcalculator.ui.components.AppSegmentedButtonRow
 import org.dishch.medcalculator.ui.theme.AppColors
 import org.dishch.medcalculator.ui.theme.AppDimens
 import org.dishch.medcalculator.ui.theme.MedCalculatorAppTheme
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -53,7 +53,7 @@ fun RouteSelectionCard(
             ) {
                 Box(contentAlignment = Alignment.Center) {
                     Icon(
-                        imageVector = Icons.AutoMirrored.Outlined.AltRoute,
+                        painter = painterResource(Res.drawable.ic_syringe),
                         contentDescription = null,
                         tint = AppColors.Primary,
                         modifier = Modifier.size(AppDimens.IconSize)
