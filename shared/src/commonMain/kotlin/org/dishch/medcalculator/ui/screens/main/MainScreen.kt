@@ -7,6 +7,7 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Calculate
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -39,6 +40,7 @@ fun MainScreen(
     viewModel: MainViewModel = koinViewModel(),
     onChooseMedication: () -> Unit,
     onCalculate: (CalculationResults) -> Unit,
+    onAbout: () -> Unit,
 ) {
 
     val scope = rememberCoroutineScope()
@@ -61,6 +63,14 @@ fun MainScreen(
                         text = stringResource(Res.string.dosage_calculation),
                         style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)
                     )
+                },
+                actions = {
+                    IconButton(onClick = onAbout) {
+                        Icon(
+                            imageVector = Icons.Outlined.Info,
+                            contentDescription = null
+                        )
+                    }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.background

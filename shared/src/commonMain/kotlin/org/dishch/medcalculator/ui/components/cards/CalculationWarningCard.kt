@@ -24,7 +24,7 @@ fun CalculationWarningCard(modifier: Modifier = Modifier) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(AppDimens.SpacingMediumSmall),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.Top
         ) {
             Surface(
                 modifier = Modifier.size(AppDimens.ResultIconContainerSize),

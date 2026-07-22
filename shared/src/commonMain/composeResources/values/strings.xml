@@ -50,6 +50,19 @@
     <string name="medication_info">Medication info</string>
     <string name="maximum">Maximum</string>
 
+    <string name="about_app">About app</string>
+    <string name="app_subtitle">Dosage calculation for children</string>
+    <string name="version_format">Version %1$s (%2$d)</string>
+    <string name="about_description_title">About app</string>
+    <string name="about_description_text">MedCalculator helps medical professionals calculate medications dosages in children based on weight, age and actual data from the government registers.</string>
+    <string name="authors_title">Authors</string>
+    <string name="author_developer_role">Development and support</string>
+    <string name="author_med_consultant_role">Medical consultant</string>
+    <string name="data_sources_title">Data sources</string>
+    <string name="source_grls">State Register of Medicines</string>
+    <string name="source_geotar">GEOTAR Pharmaceuticals Reference</string>
+    <string name="source_ohlp">EAEU Register of SmPCs and Package Leaflets</string>
+
     <!-- Plurals -->
     <plurals name="months_suffix">
         <item quantity="one">mo</item>

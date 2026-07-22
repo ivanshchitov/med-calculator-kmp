@@ -10,6 +10,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import kotlinx.serialization.Serializable
+import org.dishch.medcalculator.ui.screens.about.AboutScreen
 import org.dishch.medcalculator.ui.screens.choose.ChooseMedicationScreen
 import org.dishch.medcalculator.ui.screens.main.MainScreen
 import org.dishch.medcalculator.ui.screens.main.MainViewModel
@@ -23,6 +24,9 @@ object MainRoute
 
 @Serializable
 object ChooseMedicationRoute
+
+@Serializable
+object AboutRoute
 
 @Composable
 private fun getMainViewModel(navController: NavController): MainViewModel {
@@ -55,6 +59,9 @@ fun AppNavigation() {
                     val serialized = CalculationResultSerializer.serialize(result)
                     navController.navigate(CalculationResultsRoute(serialized))
                 },
+                onAbout = {
+                    navController.navigate(AboutRoute)
+                },
                 viewModel = mainViewModel
             )
         }
@@ -75,6 +82,13 @@ fun AppNavigation() {
             val result = CalculationResultSerializer.deserialize(route.serializedResult)
             CalculationResultsScreen(
                 result = result,
+                onBack = {
+                    navController.navigateUp()
+                }
+            )
+        }
+        composable<AboutRoute> {
+            AboutScreen(
                 onBack = {
                     navController.navigateUp()
                 }
