@@ -1,4 +1,6 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.io.FileInputStream
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.androidApplication)
@@ -30,6 +32,23 @@ android {
         versionCode = libs.versions.version.code.get().toInt()
         versionName = libs.versions.version.name.get()
     }
+    signingConfigs {
+        create("release") {
+            val properties = Properties().apply {
+                val propertiesFile = rootProject.file("local.properties")
+                if (propertiesFile.exists()) {
+                    load(FileInputStream(propertiesFile))
+                }
+            }
+
+            // Reference variables from local.properties
+            storeFile = file(properties.getProperty("RELEASE_STORE_FILE") ?: "")
+            storePassword = properties.getProperty("RELEASE_STORE_PASSWORD") ?: ""
+            keyAlias = properties.getProperty("RELEASE_KEY_ALIAS") ?: ""
+            keyPassword = properties.getProperty("RELEASE_KEY_PASSWORD") ?: ""
+        }
+    }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -37,6 +56,7 @@ android {
     }
     buildTypes {
         getByName("release") {
+            signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = false
         }
     }
