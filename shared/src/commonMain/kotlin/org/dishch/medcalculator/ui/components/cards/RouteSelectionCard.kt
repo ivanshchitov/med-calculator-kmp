@@ -80,7 +80,7 @@ fun RouteSelectionCard(
                         selected = selectedRoute == route,
                         onClick = { onRouteSelected(route) },
                         label = stringResource(route.stringRes),
-                        modifier = Modifier.width(48.dp)
+                        modifier = Modifier.width(52.dp)
                     )
                 }
             }
