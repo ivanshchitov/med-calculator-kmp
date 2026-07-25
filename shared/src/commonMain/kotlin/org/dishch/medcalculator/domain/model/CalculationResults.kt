@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import kotlinx.serialization.Serializable
 import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.mg_format
+import medcalculator.shared.generated.resources.ml_format
 import org.dishch.medcalculator.formatAsDecimal
 import org.jetbrains.compose.resources.stringResource
 
@@ -24,6 +25,7 @@ data class RouteCalculationResults(
     val minVolMl: Double,
     val maxVolMl: Double,
     val maxSingleDose: Double?,
+    val maxSingleVolume: Double?,
     val contraindicated: Boolean,
     val isMaxDailyDoseExceeded: Boolean,
 )
@@ -45,3 +47,7 @@ val RouteCalculationResults.formattedVolumeRange: String
 val RouteCalculationResults.formattedMaxSingleDose: String
     @Composable
     get() = stringResource(Res.string.mg_format, maxSingleDose?.formatAsDecimal() ?: "")
+
+val RouteCalculationResults.formattedMaxSingleVolume: String
+    @Composable
+    get() = stringResource(Res.string.ml_format, maxSingleVolume?.formatAsDecimal() ?: "")

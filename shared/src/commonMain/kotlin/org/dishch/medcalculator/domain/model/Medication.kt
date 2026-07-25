@@ -13,7 +13,7 @@ data class Medication(
 )
 
 val Medication.formattedDosage: String
-    get() = dosage.formatAsDecimal()
+    get() = dosage.formatAsDecimal(3)
 
 val Medication.formattedMaxSingleDose: String
-    get() = maxSingleDose?.formatAsDecimal() ?: ""
+    get() = maxSingleDose?.formatAsDecimal(3) ?: ""

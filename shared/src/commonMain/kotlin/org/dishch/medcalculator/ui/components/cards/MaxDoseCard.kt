@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import medcalculator.shared.generated.resources.Res
 import medcalculator.shared.generated.resources.exceeded
@@ -19,10 +20,16 @@ import medcalculator.shared.generated.resources.not_exceeded
 import medcalculator.shared.generated.resources.single_dose
 import org.dishch.medcalculator.ui.theme.AppColors
 import org.dishch.medcalculator.ui.theme.AppDimens
+import org.dishch.medcalculator.ui.theme.MedCalculatorAppTheme
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun MaxDoseCard(maxSingleDoseString: String?, isExceeded: Boolean, modifier: Modifier = Modifier) {
+fun MaxDoseCard(
+    maxSingleDoseString: String?,
+    maxSingleVolumeString: String?,
+    isExceeded: Boolean,
+    modifier: Modifier = Modifier
+) {
     val iconContainerColor = if (isExceeded) AppColors.WarningContainer else AppColors.SuccessContainer
     val iconColor = if (isExceeded) MaterialTheme.colorScheme.error else AppColors.Success
     val icon = if (isExceeded) Icons.Outlined.WarningAmber else Icons.Outlined.CheckCircle
@@ -37,7 +44,7 @@ fun MaxDoseCard(maxSingleDoseString: String?, isExceeded: Boolean, modifier: Mod
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {
         Row(
-            modifier = Modifier.padding(AppDimens.SpacingMediumSmall),
+            modifier = Modifier.fillMaxWidth().padding(AppDimens.SpacingMediumSmall),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Surface(
@@ -55,11 +62,14 @@ fun MaxDoseCard(maxSingleDoseString: String?, isExceeded: Boolean, modifier: Mod
                 }
             }
             Spacer(modifier = Modifier.width(AppDimens.SpacingSmall))
-            Column {
+            Column (
+                modifier = Modifier.weight(1f)
+            ) {
                 Text(
                     text = stringResource(Res.string.single_dose),
                     style = MaterialTheme.typography.bodyLarge,
-                    color = AppColors.TextPrimary
+                    color = AppColors.TextPrimary,
+                    softWrap = true
                 )
                 Text(
                     text = message,
@@ -69,13 +79,14 @@ fun MaxDoseCard(maxSingleDoseString: String?, isExceeded: Boolean, modifier: Mod
             }
 
             if (!maxSingleDoseString.isNullOrBlank()) {
-                Spacer(modifier = Modifier.weight(1f))
+                Spacer(modifier = Modifier.width(AppDimens.SpacingExtraSmall))
                 Column(
                     horizontalAlignment = Alignment.End,
-                    modifier = Modifier.width(IntrinsicSize.Min)
+                    modifier = Modifier.width(IntrinsicSize.Max)
                 ) {
                     Text(
-                        text = maxSingleDoseString,
+                        modifier = Modifier.wrapContentWidth(),
+                        text = "$maxSingleDoseString/$maxSingleVolumeString",
                         style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
                         color = textColor
                     )
@@ -87,5 +98,17 @@ fun MaxDoseCard(maxSingleDoseString: String?, isExceeded: Boolean, modifier: Mod
                 }
             }
         }
+    }
+}
+
+@Composable
+@Preview
+fun MaxDoseCardPreview() {
+    MedCalculatorAppTheme {
+        MaxDoseCard(
+            maxSingleDoseString = "1.5 мг.",
+            maxSingleVolumeString = "1.5 мл.",
+            isExceeded = false
+        )
     }
 }

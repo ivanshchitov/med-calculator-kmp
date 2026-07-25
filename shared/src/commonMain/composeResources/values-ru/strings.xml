@@ -34,6 +34,7 @@
     <string name="mg">мг.</string>
     <string name="mg_per_ml_format">%1$s мг/мл</string>
     <string name="mg_format">%1$s мг.</string>
+    <string name="ml_format">%1$s мл.</string>
     <string name="age_limit">Ограничение по возрасту</string>
     <string name="max_single_dose">Максимальная разовая доза</string>
     <string name="single_dose">Разовая доза</string>

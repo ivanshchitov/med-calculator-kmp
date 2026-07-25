@@ -8,7 +8,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
-import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.Medication
 import androidx.compose.material.icons.outlined.Opacity
 import androidx.compose.material.icons.outlined.Today
@@ -32,6 +31,7 @@ import org.dishch.medcalculator.domain.model.RouteCalculationResults
 import org.dishch.medcalculator.domain.model.formattedDosage
 import org.dishch.medcalculator.domain.model.formattedDoseRange
 import org.dishch.medcalculator.domain.model.formattedMaxSingleDose
+import org.dishch.medcalculator.domain.model.formattedMaxSingleVolume
 import org.dishch.medcalculator.domain.model.formattedVolumeRange
 import org.dishch.medcalculator.formatAsDecimal
 import org.dishch.medcalculator.ui.components.ResultRow
@@ -182,9 +182,10 @@ fun CalculationResultsScreen(
                 )
             }
 
-            if (!contraindicated) {
+            if (!contraindicated && selectedRouteResults?.maxSingleDose != null) {
                 MaxDoseCard(
                     maxSingleDoseString = selectedRouteResults?.formattedMaxSingleDose,
+                    maxSingleVolumeString = selectedRouteResults?.formattedMaxSingleVolume,
                     isExceeded = selectedRouteResults?.isMaxDailyDoseExceeded ?: false
                 )
             }
@@ -239,6 +240,7 @@ fun CalculationResultsScreenPreview() {
                         minVolMl = 6.25,
                         maxVolMl = 7.55,
                         maxSingleDose = 2000.0,
+                        maxSingleVolume = 30.0,
                         contraindicated = true,
                         isMaxDailyDoseExceeded = false
                     ),
@@ -248,6 +250,7 @@ fun CalculationResultsScreenPreview() {
                         minVolMl = 6.25,
                         maxVolMl = 7.55,
                         maxSingleDose = 2000.0,
+                        maxSingleVolume = 30.0,
                         contraindicated = true,
                         isMaxDailyDoseExceeded = false
                     ),
@@ -275,6 +278,7 @@ fun CalculationResultsScreenExceededPreview() {
                         minVolMl = 6.25,
                         maxVolMl = 7.55,
                         maxSingleDose = 1000.0,
+                        maxSingleVolume = 30.0,
                         contraindicated = false,
                         isMaxDailyDoseExceeded = true
                     ),
@@ -284,6 +288,7 @@ fun CalculationResultsScreenExceededPreview() {
                         minVolMl = 6.25,
                         maxVolMl = 7.55,
                         maxSingleDose = 1000.0,
+                        maxSingleVolume = 30.0,
                         contraindicated = false,
                         isMaxDailyDoseExceeded = true
                     ),

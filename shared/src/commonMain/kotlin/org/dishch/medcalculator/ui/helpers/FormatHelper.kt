@@ -60,10 +60,10 @@ fun Int.toAgePluralsString(): String {
 // DosageRegimen extensions
 
 val DosageRegimen.formattedMinDose: String
-    get() = minDose?.formatAsDecimal() ?: ""
+    get() = minDose?.formatAsDecimal(3) ?: ""
 
 val DosageRegimen.formattedMaxDose: String
-    get() = maxDose?.formatAsDecimal() ?: ""
+    get() = maxDose?.formatAsDecimal(3) ?: ""
 
 val DosageRegimen.formattedDoseRange: String
     get() = if (minDose == maxDose)
@@ -112,7 +112,7 @@ val DosageRegimen.doseDisplayString: String
 
 val DosageRegimen.formattedMaxSingleDose: String
     @Composable
-    get() = stringResource(Res.string.mg_format, maxDoseMg?.formatAsDecimal() ?: "")
+    get() = stringResource(Res.string.mg_format, maxDoseMg?.formatAsDecimal(3) ?: "")
 
 val DosageRegimen.icon: ImageVector
     get() = when {

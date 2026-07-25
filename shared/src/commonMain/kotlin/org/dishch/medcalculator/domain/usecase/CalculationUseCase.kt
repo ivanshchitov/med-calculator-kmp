@@ -44,7 +44,7 @@ class CalculationUseCase {
             } else {
                 ageInMonths in it.fromMonths..it.toMonths
             }
-        } ?: return null
+        }
 
         val resultsByRoute = regimens.associate { regimen ->
             val contraindicated = regimen.minDose == null || regimen.maxDose == null
@@ -65,9 +65,8 @@ class CalculationUseCase {
                 maxVolMl = maxDoseMg / concentration,
                 contraindicated = contraindicated,
                 maxSingleDose = maxSingleDose,
+                maxSingleVolume = maxSingleDose?.div(concentration),
                 isMaxDailyDoseExceeded = maxSingleDose != null && maxDoseMg > maxSingleDose
-//                    (regimen.maxDoseMg != null && maxDoseMg > (regimen.maxDoseMg))
-//                            || (medication.maxSingleDose != null && maxDoseMg > medication.maxSingleDose)
             )
         }
 

@@ -32,6 +32,7 @@
     <string name="mg">mg</string>
     <string name="mg_per_ml_format">%1$s mg/ml</string>
     <string name="mg_format">%1$s mg</string>
+    <string name="ml_format">%1$s mg.</string>
     <string name="age_limit">Age limit</string>
     <string name="max_single_dose">Max single dose</string>
     <string name="single_dose">Single dose</string>
