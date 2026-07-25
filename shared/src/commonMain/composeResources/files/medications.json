@@ -9,7 +9,7 @@
       "maxSingleDoseMg": 1,
       "dosageRegimens": [
         {
-          "route": "IV",
+          "route": "IM",
           "rules": [
             {
               "fromMonths": 0,
@@ -25,7 +25,7 @@
           ]
         },
         {
-          "route": "IM",
+          "route": "IV",
           "rules": [
             {
               "fromMonths": 0,
@@ -67,15 +67,15 @@
       "maxSingleDoseMg": null,
       "dosageRegimens": [
         {
-          "route": "IV",
+          "route": "IM",
           "rules": [
             {
               "fromMonths": 3,
               "toMonths": 11,
               "fromKg": null,
               "toKg": null,
-              "doseMin": null,
-              "doseMax": null,
+              "doseMin": 50,
+              "doseMax": 100,
               "unit": "MG",
               "maxDoseMg": null,
               "note": null
@@ -149,15 +149,15 @@
           ]
         },
         {
-          "route": "IM",
+          "route": "IV",
           "rules": [
             {
               "fromMonths": 3,
               "toMonths": 11,
               "fromKg": null,
               "toKg": null,
-              "doseMin": 50,
-              "doseMax": 100,
+              "doseMin": null,
+              "doseMax": null,
               "unit": "MG",
               "maxDoseMg": null,
               "note": null
@@ -245,7 +245,7 @@
       "maxSingleDoseMg": null,
       "dosageRegimens": [
         {
-          "route": "IV",
+          "route": "IM",
           "rules": [
             {
               "fromMonths": 0,
@@ -261,7 +261,7 @@
           ]
         },
         {
-          "route": "IM",
+          "route": "IV",
           "rules": [
             {
               "fromMonths": 0,
@@ -303,10 +303,6 @@
       "maxSingleDoseMg": 12,
       "dosageRegimens": [
         {
-          "route": "IV",
-          "rules": []
-        },
-        {
           "route": "IM",
           "rules": [
             {
@@ -323,6 +319,10 @@
           ]
         },
         {
+          "route": "IV",
+          "rules": []
+        },
+        {
           "route": "SC",
           "rules": []
         }
@@ -336,10 +336,6 @@
       "minAgeMonths": 36,
       "maxSingleDoseMg": 80,
       "dosageRegimens": [
-        {
-          "route": "IV",
-          "rules": []
-        },
         {
           "route": "IM",
           "rules": [
@@ -357,6 +353,10 @@
           ]
         },
         {
+          "route": "IV",
+          "rules": []
+        },
+        {
           "route": "SC",
           "rules": []
         }
@@ -371,7 +371,7 @@
       "maxSingleDoseMg": 30,
       "dosageRegimens": [
         {
-          "route": "IV",
+          "route": "IM",
           "rules": [
             {
               "fromMonths": 192,
@@ -387,7 +387,7 @@
           ]
         },
         {
-          "route": "IM",
+          "route": "IV",
           "rules": [
             {
               "fromMonths": 192,
@@ -417,6 +417,10 @@
       "maxSingleDoseMg": 2500,
       "dosageRegimens": [
         {
+          "route": "IM",
+          "rules": []
+        },
+        {
           "route": "IV",
           "rules": [
             {
@@ -433,10 +437,6 @@
           ]
         },
         {
-          "route": "IM",
-          "rules": []
-        },
-        {
           "route": "SC",
           "rules": []
         }
@@ -451,7 +451,7 @@
       "maxSingleDoseMg": null,
       "dosageRegimens": [
         {
-          "route": "IV",
+          "route": "IM",
           "rules": [
             {
               "fromMonths": 24,
@@ -478,7 +478,7 @@
           ]
         },
         {
-          "route": "IM",
+          "route": "IV",
           "rules": [
             {
               "fromMonths": 24,
@@ -542,22 +542,6 @@
       "maxSingleDoseMg": 20,
       "dosageRegimens": [
         {
-          "route": "IV",
-          "rules": [
-            {
-              "fromMonths": 24,
-              "toMonths": 216,
-              "fromKg": null,
-              "toKg": null,
-              "doseMin": 0.05,
-              "doseMax": 0.1,
-              "unit": "MG_PER_KG",
-              "maxDoseMg": null,
-              "note": null
-            }
-          ]
-        },
-        {
           "route": "IM",
           "rules": [
             {
@@ -567,6 +551,22 @@
               "toKg": null,
               "doseMin": 0.05,
               "doseMax": 0.2,
+              "unit": "MG_PER_KG",
+              "maxDoseMg": null,
+              "note": null
+            }
+          ]
+        },
+        {
+          "route": "IV",
+          "rules": [
+            {
+              "fromMonths": 24,
+              "toMonths": 216,
+              "fromKg": null,
+              "toKg": null,
+              "doseMin": 0.05,
+              "doseMax": 0.1,
               "unit": "MG_PER_KG",
               "maxDoseMg": null,
               "note": null
@@ -588,7 +588,7 @@
       "maxSingleDoseMg": 2,
       "dosageRegimens": [
         {
-          "route": "IV",
+          "route": "IM",
           "rules": [
             {
               "fromMonths": 0,
@@ -604,7 +604,7 @@
           ]
         },
         {
-          "route": "IM",
+          "route": "IV",
           "rules": [
             {
               "fromMonths": 0,
@@ -634,7 +634,7 @@
       "maxSingleDoseMg": 40,
       "dosageRegimens": [
         {
-          "route": "IV",
+          "route": "IM",
           "rules": [
             {
               "fromMonths": 6,
@@ -661,7 +661,7 @@
           ]
         },
         {
-          "route": "IM",
+          "route": "IV",
           "rules": [
             {
               "fromMonths": 6,
@@ -702,6 +702,10 @@
       "maxSingleDoseMg": 100,
       "dosageRegimens": [
         {
+          "route": "IM",
+          "rules": []
+        },
+        {
           "route": "IV",
           "rules": [
             {
@@ -718,10 +722,6 @@
           ]
         },
         {
-          "route": "IM",
-          "rules": []
-        },
-        {
           "route": "SC",
           "rules": []
         }
@@ -736,11 +736,11 @@
       "maxSingleDoseMg": 10,
       "dosageRegimens": [
         {
-          "route": "IV",
+          "route": "IM",
           "rules": []
         },
         {
-          "route": "IM",
+          "route": "IV",
           "rules": []
         },
         {
@@ -814,7 +814,7 @@
       "maxSingleDoseMg": 120,
       "dosageRegimens": [
         {
-          "route": "IV",
+          "route": "IM",
           "rules": [
             {
               "fromMonths": 2,
@@ -852,7 +852,7 @@
           ]
         },
         {
-          "route": "IM",
+          "route": "IV",
           "rules": [
             {
               "fromMonths": 2,
@@ -904,7 +904,7 @@
       "maxSingleDoseMg": 40,
       "dosageRegimens": [
         {
-          "route": "IV",
+          "route": "IM",
           "rules": [
             {
               "fromMonths": 24,
@@ -920,7 +920,7 @@
           ]
         },
         {
-          "route": "IM",
+          "route": "IV",
           "rules": [
             {
               "fromMonths": 24,
@@ -950,33 +950,6 @@
       "maxSingleDoseMg": null,
       "dosageRegimens": [
         {
-          "route": "IV",
-          "rules": [
-            {
-              "fromMonths": 1,
-              "toMonths": 60,
-              "fromKg": null,
-              "toKg": null,
-              "doseMin": 0.2,
-              "doseMax": 0.5,
-              "unit": "MG_PER_KG",
-              "maxDoseMg": 5,
-              "note": null
-            },
-            {
-              "fromMonths": 61,
-              "toMonths": 216,
-              "fromKg": null,
-              "toKg": null,
-              "doseMin": 0.2,
-              "doseMax": 0.5,
-              "unit": "MG_PER_KG",
-              "maxDoseMg": 10,
-              "note": null
-            }
-          ]
-        },
-        {
           "route": "IM",
           "rules": [
             {
@@ -1004,6 +977,33 @@
           ]
         },
         {
+          "route": "IV",
+          "rules": [
+            {
+              "fromMonths": 1,
+              "toMonths": 60,
+              "fromKg": null,
+              "toKg": null,
+              "doseMin": 0.2,
+              "doseMax": 0.5,
+              "unit": "MG_PER_KG",
+              "maxDoseMg": 5,
+              "note": null
+            },
+            {
+              "fromMonths": 61,
+              "toMonths": 216,
+              "fromKg": null,
+              "toKg": null,
+              "doseMin": 0.2,
+              "doseMax": 0.5,
+              "unit": "MG_PER_KG",
+              "maxDoseMg": 10,
+              "note": null
+            }
+          ]
+        },
+        {
           "route": "SC",
           "rules": []
         }
@@ -1017,88 +1017,6 @@
       "minAgeMonths": 3,
       "maxSingleDoseMg": 2500,
       "dosageRegimens": [
-        {
-          "route": "IV",
-          "rules": [
-            {
-              "fromMonths": 3,
-              "toMonths": 11,
-              "fromKg": 5,
-              "toKg": 8.9,
-              "doseMin": null,
-              "doseMax": null,
-              "unit": "MG",
-              "maxDoseMg": null,
-              "note": null
-            },
-            {
-              "fromMonths": 12,
-              "toMonths": 35,
-              "fromKg": 9,
-              "toKg": 15.9,
-              "doseMin": 50,
-              "doseMax": 100,
-              "unit": "MG",
-              "maxDoseMg": null,
-              "note": null
-            },
-            {
-              "fromMonths": 36,
-              "toMonths": 59,
-              "fromKg": 16,
-              "toKg": 23.9,
-              "doseMin": 100,
-              "doseMax": 150,
-              "unit": "MG",
-              "maxDoseMg": null,
-              "note": null
-            },
-            {
-              "fromMonths": 60,
-              "toMonths": 95,
-              "fromKg": 24,
-              "toKg": 30.9,
-              "doseMin": 150,
-              "doseMax": 200,
-              "unit": "MG",
-              "maxDoseMg": null,
-              "note": null
-            },
-            {
-              "fromMonths": 96,
-              "toMonths": 144,
-              "fromKg": 31,
-              "toKg": 45.9,
-              "doseMin": 250,
-              "doseMax": 300,
-              "unit": "MG",
-              "maxDoseMg": null,
-              "note": null
-            },
-            {
-              "fromMonths": 145,
-              "toMonths": 180,
-              "fromKg": 46,
-              "toKg": 53.9,
-              "doseMin": 400,
-              "doseMax": 500,
-              "unit": "MG",
-              "maxDoseMg": null,
-              "note": null
-            },
-            {
-              "fromMonths": 181,
-              "toMonths": 216,
-              "fromKg": null,
-              "toKg": null,
-              "doseMin": 1000,
-              "doseMax": 2500,
-              "unit": "MG",
-              "maxDoseMg": null,
-              "note": null
-            }
-          ]
-        },
         {
           "route": "IM",
           "rules": [
@@ -1182,6 +1100,88 @@
           ]
         },
         {
+          "route": "IV",
+          "rules": [
+            {
+              "fromMonths": 3,
+              "toMonths": 11,
+              "fromKg": 5,
+              "toKg": 8.9,
+              "doseMin": null,
+              "doseMax": null,
+              "unit": "MG",
+              "maxDoseMg": null,
+              "note": null
+            },
+            {
+              "fromMonths": 12,
+              "toMonths": 35,
+              "fromKg": 9,
+              "toKg": 15.9,
+              "doseMin": 50,
+              "doseMax": 100,
+              "unit": "MG",
+              "maxDoseMg": null,
+              "note": null
+            },
+            {
+              "fromMonths": 36,
+              "toMonths": 59,
+              "fromKg": 16,
+              "toKg": 23.9,
+              "doseMin": 100,
+              "doseMax": 150,
+              "unit": "MG",
+              "maxDoseMg": null,
+              "note": null
+            },
+            {
+              "fromMonths": 60,
+              "toMonths": 95,
+              "fromKg": 24,
+              "toKg": 30.9,
+              "doseMin": 150,
+              "doseMax": 200,
+              "unit": "MG",
+              "maxDoseMg": null,
+              "note": null
+            },
+            {
+              "fromMonths": 96,
+              "toMonths": 144,
+              "fromKg": 31,
+              "toKg": 45.9,
+              "doseMin": 250,
+              "doseMax": 300,
+              "unit": "MG",
+              "maxDoseMg": null,
+              "note": null
+            },
+            {
+              "fromMonths": 145,
+              "toMonths": 180,
+              "fromKg": 46,
+              "toKg": 53.9,
+              "doseMin": 400,
+              "doseMax": 500,
+              "unit": "MG",
+              "maxDoseMg": null,
+              "note": null
+            },
+            {
+              "fromMonths": 181,
+              "toMonths": 216,
+              "fromKg": null,
+              "toKg": null,
+              "doseMin": 1000,
+              "doseMax": 2500,
+              "unit": "MG",
+              "maxDoseMg": null,
+              "note": null
+            }
+          ]
+        },
+        {
           "route": "SC",
           "rules": []
         }
@@ -1196,7 +1196,7 @@
       "maxSingleDoseMg": 100,
       "dosageRegimens": [
         {
-          "route": "IV",
+          "route": "IM",
           "rules": [
             {
               "fromMonths": 12,
@@ -1223,7 +1223,7 @@
           ]
         },
         {
-          "route": "IM",
+          "route": "IV",
           "rules": [
             {
               "fromMonths": 12,
@@ -1264,6 +1264,10 @@
       "maxSingleDoseMg": null,
       "dosageRegimens": [
         {
+          "route": "IM",
+          "rules": []
+        },
+        {
           "route": "IV",
           "rules": [
             {
@@ -1280,10 +1284,6 @@
           ]
         },
         {
-          "route": "IM",
-          "rules": []
-        },
-        {
           "route": "SC",
           "rules": []
         }
@@ -1298,7 +1298,7 @@
       "maxSingleDoseMg": 0.05,
       "dosageRegimens": [
         {
-          "route": "IV",
+          "route": "IM",
           "rules": [
             {
               "fromMonths": 12,
@@ -1314,7 +1314,7 @@
           ]
         },
         {
-          "route": "IM",
+          "route": "IV",
           "rules": [
             {
               "fromMonths": 12,
@@ -1344,7 +1344,7 @@
       "maxSingleDoseMg": 20,
       "dosageRegimens": [
         {
-          "route": "IV",
+          "route": "IM",
           "rules": [
             {
               "fromMonths": 0,
@@ -1360,7 +1360,7 @@
           ]
         },
         {
-          "route": "IM",
+          "route": "IV",
           "rules": [
             {
               "fromMonths": 0,
@@ -1389,10 +1389,6 @@
       "minAgeMonths": 1,
       "maxSingleDoseMg": 40,
       "dosageRegimens": [
-        {
-          "route": "IV",
-          "rules": []
-        },
         {
           "route": "IM",
           "rules": [
@@ -1443,6 +1439,10 @@
           ]
         },
         {
+          "route": "IV",
+          "rules": []
+        },
+        {
           "route": "SC",
           "rules": []
         }
@@ -1456,10 +1456,6 @@
       "minAgeMonths": 0,
       "maxSingleDoseMg": 2000,
       "dosageRegimens": [
-        {
-          "route": "IV",
-          "rules": []
-        },
         {
           "route": "IM",
           "rules": [
@@ -1477,6 +1473,10 @@
           ]
         },
         {
+          "route": "IV",
+          "rules": []
+        },
+        {
           "route": "SC",
           "rules": []
         }
@@ -1491,7 +1491,7 @@
       "maxSingleDoseMg": 500,
       "dosageRegimens": [
         {
-          "route": "IV",
+          "route": "IM",
           "rules": [
             {
               "fromMonths": 0,
@@ -1507,7 +1507,7 @@
           ]
         },
         {
-          "route": "IM",
+          "route": "IV",
           "rules": [
             {
               "fromMonths": 0,
@@ -1537,6 +1537,10 @@
       "maxSingleDoseMg": 250,
       "dosageRegimens": [
         {
+          "route": "IM",
+          "rules": []
+        },
+        {
           "route": "IV",
           "rules": [
             {
@@ -1551,10 +1555,6 @@
               "note": null
             }
           ]
-        },
-        {
-          "route": "IM",
-          "rules": []
         },
         {
           "route": "SC",
