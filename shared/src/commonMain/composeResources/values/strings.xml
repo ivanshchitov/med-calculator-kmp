@@ -44,6 +44,7 @@
     <string name="mg_per_kg_format">%1$s mg/kg</string>
     <string name="age_range_format">%1$s – %2$s</string>
     <string name="weight_range_format">%1$s–%2$s kg</string>
+    <string name="from_kg_format">from %1$s kg</string>
     <string name="calculation_warning">This information is for advisory purposes only. All prescriptions should be made only by the attending physician or paramedic.</string>
     <string name="administration_routes">Administration Routes</string>
     <string name="contraindicated">Contraindicated</string>

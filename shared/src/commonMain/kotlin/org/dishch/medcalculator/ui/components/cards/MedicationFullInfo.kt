@@ -46,6 +46,7 @@ import org.dishch.medcalculator.domain.model.DosageRegimen
 import org.dishch.medcalculator.domain.model.Medication
 import org.dishch.medcalculator.domain.model.formattedDosage
 import org.dishch.medcalculator.domain.model.formattedMaxSingleDose
+import org.dishch.medcalculator.domain.model.isFromKgValid
 import org.dishch.medcalculator.domain.model.isWeightRangeValid
 import org.dishch.medcalculator.ui.helpers.doseDisplayString
 import org.dishch.medcalculator.ui.helpers.formattedAgeRange
@@ -201,7 +202,7 @@ private fun RegimenItem(regimen: DosageRegimen) {
                     style = MaterialTheme.typography.bodyMedium,
                     color = AppColors.TextPrimary
                 )
-                if (regimen.isWeightRangeValid()) {
+                if (regimen.isWeightRangeValid() || regimen.isFromKgValid()) {
                     VerticalDivider(
                         modifier = Modifier.fillMaxHeight().padding(AppDimens.SpacingExtraSmall),
                         thickness = AppDimens.SubCardBorderWidth,

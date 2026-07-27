@@ -1089,7 +1089,7 @@
             {
               "fromMonths": 181,
               "toMonths": 216,
-              "fromKg": null,
+              "fromKg": 54,
               "toKg": null,
               "doseMin": 1000,
               "doseMax": 2500,
@@ -1171,7 +1171,7 @@
             {
               "fromMonths": 181,
               "toMonths": 216,
-              "fromKg": null,
+              "fromKg": 54,
               "toKg": null,
               "doseMin": 1000,
               "doseMax": 2500,

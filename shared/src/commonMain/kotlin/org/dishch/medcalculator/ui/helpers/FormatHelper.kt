@@ -14,6 +14,7 @@ import medcalculator.shared.generated.resources.age_range_format
 import medcalculator.shared.generated.resources.age_supporting_months
 import medcalculator.shared.generated.resources.age_supporting_years
 import medcalculator.shared.generated.resources.contraindicated
+import medcalculator.shared.generated.resources.from_kg_format
 import medcalculator.shared.generated.resources.mg_format
 import medcalculator.shared.generated.resources.mg_per_kg_format
 import medcalculator.shared.generated.resources.months_format
@@ -24,6 +25,7 @@ import medcalculator.shared.generated.resources.years_suffix
 import org.dishch.medcalculator.domain.model.AgeUnit
 import org.dishch.medcalculator.domain.model.DosageRegimen
 import org.dishch.medcalculator.domain.model.DosageUnit
+import org.dishch.medcalculator.domain.model.isFromKgValid
 import org.dishch.medcalculator.domain.model.isWeightRangeValid
 import org.dishch.medcalculator.domain.usecase.ValidationError
 import org.dishch.medcalculator.domain.usecase.ValidationMessage
@@ -95,6 +97,8 @@ val DosageRegimen.formattedWeightRange: String
             fromKg?.formatAsDecimal() ?: "",
             toKg?.formatAsDecimal() ?: ""
         )
+    } else if (isFromKgValid()) {
+        stringResource(Res.string.from_kg_format, fromKg?.formatAsDecimal() ?: "")
     } else ""
 
 val DosageRegimen.unitStringFormat: StringResource

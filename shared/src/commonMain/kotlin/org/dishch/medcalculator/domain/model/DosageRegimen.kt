@@ -29,4 +29,6 @@ data class DosageRegimen(
     val medicationId: String
 )
 
-fun DosageRegimen.isWeightRangeValid(): Boolean = fromKg != null && toKg != null
+fun DosageRegimen.isWeightRangeValid(): Boolean = isFromKgValid() && isToKgValid()
+fun DosageRegimen.isFromKgValid(): Boolean = fromKg != null
+fun DosageRegimen.isToKgValid(): Boolean = toKg != null

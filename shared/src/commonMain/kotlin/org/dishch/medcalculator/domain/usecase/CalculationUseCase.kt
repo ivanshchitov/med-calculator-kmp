@@ -41,6 +41,8 @@ class CalculationUseCase {
         val regimens = dosageRegimens.filter {
             if (it.fromKg != null && it.toKg != null) {
                 weight in it.fromKg..it.toKg
+            } else if (it.fromKg != null) {
+                weight >= it.fromKg
             } else {
                 ageInMonths in it.fromMonths..it.toMonths
             }
