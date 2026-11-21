@@ -99,11 +99,21 @@
     (function () {
         const viewport = window.visualViewport;
 
+        let resizeFrame = 0;
+
         function updateAppHeight() {
             const height = viewport ? viewport.height : window.innerHeight;
             const offsetTop = viewport ? viewport.offsetTop : 0;
             document.documentElement.style.setProperty("--app-height", height + "px");
             document.documentElement.style.setProperty("--app-offset-top", offsetTop + "px");
+
+            // Compose resizes its canvas on window.resize. visualViewport changes
+            // do not fire that event, so the canvas would stay full height and
+            // keep its old scroll viewport after the keyboard opens.
+            cancelAnimationFrame(resizeFrame);
+            resizeFrame = requestAnimationFrame(function () {
+                window.dispatchEvent(new Event("resize"));
+            });
         }
 
         updateAppHeight();
