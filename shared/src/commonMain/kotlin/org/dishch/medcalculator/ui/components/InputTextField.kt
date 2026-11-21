@@ -32,6 +32,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.dishch.medcalculator.needsManualKeyboardScroll
 import org.dishch.medcalculator.ui.theme.AppColors
 import org.dishch.medcalculator.ui.theme.AppDimens
 
@@ -54,11 +55,12 @@ fun InputTextField(
     val bringIntoViewRequester = remember { BringIntoViewRequester() }
     val coroutineScope = rememberCoroutineScope()
     val windowInfo = LocalWindowInfo.current
+    val manualKeyboardScroll = remember { needsManualKeyboardScroll() }
     var isFocused by remember { mutableStateOf(false) }
 
     LaunchedEffect(windowInfo, bringIntoViewRequester) {
         snapshotFlow { windowInfo.containerSize }.collect {
-            if (isFocused) {
+            if (manualKeyboardScroll && isFocused) {
                 delay(50)
                 try {
                     bringIntoViewRequester.bringIntoView()
@@ -75,7 +77,7 @@ fun InputTextField(
             .bringIntoViewRequester(bringIntoViewRequester)
             .onFocusChanged { focusState ->
                 isFocused = focusState.isFocused
-                if (focusState.isFocused) {
+                if (manualKeyboardScroll && focusState.isFocused) {
                     coroutineScope.launch {
                         // iOS opens the keyboard asynchronously and resizes the viewport
                         // after the focus event. Retry while the keyboard animation runs.
