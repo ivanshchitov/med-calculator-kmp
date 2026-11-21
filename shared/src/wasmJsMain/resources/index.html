@@ -104,13 +104,15 @@
             (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 
         function updateAppHeight() {
-            const height = viewport ? viewport.height : window.innerHeight;
-            // iOS pans the visual viewport when the keyboard opens. Android Chrome
-            // resizes the content viewport instead, so applying offsetTop there
-            // shifts the whole app too far up.
-            const offsetTop = isIOS && viewport ? viewport.offsetTop : 0;
-            document.documentElement.style.setProperty("--app-height", height + "px");
-            document.documentElement.style.setProperty("--app-offset-top", offsetTop + "px");
+            // iOS Safari keeps the layout viewport full height and only pans/resizes
+            // the visual viewport. Android Chrome resizes the layout viewport itself.
+            // Applying the visual-viewport workaround there double-shifts Compose.
+            if (!isIOS || !viewport) {
+                return;
+            }
+
+            document.documentElement.style.setProperty("--app-height", viewport.height + "px");
+            document.documentElement.style.setProperty("--app-offset-top", viewport.offsetTop + "px");
 
             // Compose resizes its canvas on window.resize. visualViewport changes
             // do not fire that event, so the canvas would stay full height and
@@ -121,12 +123,14 @@
             });
         }
 
-        updateAppHeight();
-        if (viewport) {
-            viewport.addEventListener("resize", updateAppHeight);
-            viewport.addEventListener("scroll", updateAppHeight);
+        if (isIOS) {
+            updateAppHeight();
+            if (viewport) {
+                viewport.addEventListener("resize", updateAppHeight);
+                viewport.addEventListener("scroll", updateAppHeight);
+            }
+            window.addEventListener("orientationchange", updateAppHeight);
         }
-        window.addEventListener("orientationchange", updateAppHeight);
 
         document.addEventListener("gesturestart", function (event) {
             event.preventDefault();
