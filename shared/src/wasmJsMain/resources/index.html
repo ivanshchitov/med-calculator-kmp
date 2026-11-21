@@ -19,6 +19,7 @@
     <style>
         :root {
             --app-height: 100dvh;
+            --app-offset-top: 0px;
             --app-background: #F6F7FB;
         }
 
@@ -36,9 +37,13 @@
         }
 
         #app {
+            position: absolute;
+            top: 0;
+            left: 0;
             box-sizing: border-box;
             width: 100%;
             height: var(--app-height);
+            transform: translateY(var(--app-offset-top));
             padding-top: env(safe-area-inset-top);
             padding-right: env(safe-area-inset-right);
             padding-bottom: env(safe-area-inset-bottom);
@@ -96,7 +101,9 @@
 
         function updateAppHeight() {
             const height = viewport ? viewport.height : window.innerHeight;
+            const offsetTop = viewport ? viewport.offsetTop : 0;
             document.documentElement.style.setProperty("--app-height", height + "px");
+            document.documentElement.style.setProperty("--app-offset-top", offsetTop + "px");
         }
 
         updateAppHeight();
