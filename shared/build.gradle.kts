@@ -5,6 +5,7 @@ import org.gradle.api.DefaultTask
 import org.gradle.api.file.ConfigurableFileCollection
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.file.RegularFileProperty
+import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.InputFiles
 import org.gradle.api.tasks.Internal
 import org.gradle.api.tasks.OutputFile
@@ -133,6 +134,7 @@ dependencies {
 }
 
 
+@CacheableTask
 abstract class GeneratePrecacheManifest : DefaultTask() {
     @get:Internal
     abstract val distributionDir: DirectoryProperty
@@ -147,7 +149,7 @@ abstract class GeneratePrecacheManifest : DefaultTask() {
     @TaskAction
     fun generate() {
         val distDir = distributionDir.get().asFile
-        val excluded = setOf("sw.js", "precache-manifest.json", "_headers")
+        val excluded = setOf("sw.js", "precache-manifest.json")
         val files = inputFiles.files
             .asSequence()
             .filter { it.isFile }
@@ -159,8 +161,12 @@ abstract class GeneratePrecacheManifest : DefaultTask() {
 
         val digest = MessageDigest.getInstance("SHA-256")
         (files + "sw.js").forEach { relativePath ->
+            val source = distDir.resolve(relativePath)
+            require(source.isFile) {
+                "Missing file for precache manifest: ${source.path}"
+            }
             digest.update(relativePath.toByteArray())
-            distDir.resolve(relativePath).inputStream().use { input ->
+            source.inputStream().use { input ->
                 val buffer = ByteArray(DEFAULT_BUFFER_SIZE)
                 while (true) {
                     val read = input.read(buffer)

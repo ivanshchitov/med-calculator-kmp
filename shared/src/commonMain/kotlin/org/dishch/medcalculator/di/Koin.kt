@@ -37,7 +37,11 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
         )
     }.koin.also { koin ->
         MainScope().launch {
-            initializePlatformData(koin)
+            runCatching {
+                initializePlatformData(koin)
+            }.onFailure { error ->
+                println("Platform initialization failed: ${error.stackTraceToString()}")
+            }
         }
     }
 

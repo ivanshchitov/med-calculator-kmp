@@ -41,10 +41,16 @@ class WebMedicationRepository(
     }
 
     @OptIn(ExperimentalResourceApi::class)
-    private suspend fun loadData(): MedicationsDataJson = mutex.withLock {
-        cachedData ?: json.decodeFromString<MedicationsDataJson>(
+    private suspend fun loadData(): MedicationsDataJson {
+        cachedData?.let { return it }
+
+        val loaded = json.decodeFromString<MedicationsDataJson>(
             Res.readBytes("files/medications.json").decodeToString()
-        ).also { cachedData = it }
+        )
+
+        return mutex.withLock {
+            cachedData ?: loaded.also { cachedData = it }
+        }
     }
 }
 
@@ -58,10 +64,10 @@ private fun MedicationJson.toDomain(language: String): Medication =
     )
 
 private fun List<DosageRegimenJson>?.toDomainRegimens(medicationId: String): List<DosageRegimen> =
-    this.orEmpty().flatMap { regimen ->
-        regimen.rules.mapIndexed { index, rule ->
+    this.orEmpty().flatMapIndexed { regimenIndex, regimen ->
+        regimen.rules.mapIndexed { ruleIndex, rule ->
             DosageRegimen(
-                id = index.toLong(),
+                id = "$medicationId-${regimen.route}-$regimenIndex-$ruleIndex".hashCode().toLong(),
                 fromMonths = rule.fromMonths,
                 toMonths = rule.toMonths,
                 fromKg = rule.fromKg,

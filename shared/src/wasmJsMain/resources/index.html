@@ -82,6 +82,16 @@
 
         if ("serviceWorker" in navigator &&
             (location.protocol === "https:" || location.hostname === "localhost")) {
+            let refreshing = false;
+
+            navigator.serviceWorker.addEventListener("controllerchange", function () {
+                if (refreshing) {
+                    return;
+                }
+                refreshing = true;
+                window.location.reload();
+            });
+
             window.addEventListener("load", function () {
                 navigator.serviceWorker.register("./sw.js").catch(function (error) {
                     console.error("Service worker registration failed", error);
