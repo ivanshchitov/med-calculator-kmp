@@ -18,6 +18,7 @@ fun MedCalculatorAppTheme(
     PlatformTheme(darkTheme = darkTheme) {
         MaterialTheme(
             colorScheme = colorScheme,
+            typography = appTypography(),
             content = content
         )
     }

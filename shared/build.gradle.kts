@@ -1,5 +1,16 @@
 @file:OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 
+import java.security.MessageDigest
+import org.gradle.api.DefaultTask
+import org.gradle.api.file.ConfigurableFileCollection
+import org.gradle.api.file.DirectoryProperty
+import org.gradle.api.file.RegularFileProperty
+import org.gradle.api.tasks.InputFiles
+import org.gradle.api.tasks.Internal
+import org.gradle.api.tasks.OutputFile
+import org.gradle.api.tasks.PathSensitive
+import org.gradle.api.tasks.PathSensitivity
+import org.gradle.api.tasks.TaskAction
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -119,4 +130,75 @@ dependencies {
     add("kspIosX64", libs.room.compiler)
     add("kspIosArm64", libs.room.compiler)
 
+}
+
+
+abstract class GeneratePrecacheManifest : DefaultTask() {
+    @get:Internal
+    abstract val distributionDir: DirectoryProperty
+
+    @get:InputFiles
+    @get:PathSensitive(PathSensitivity.RELATIVE)
+    abstract val inputFiles: ConfigurableFileCollection
+
+    @get:OutputFile
+    abstract val manifestFile: RegularFileProperty
+
+    @TaskAction
+    fun generate() {
+        val distDir = distributionDir.get().asFile
+        val excluded = setOf("sw.js", "precache-manifest.json", "_headers")
+        val files = inputFiles.files
+            .asSequence()
+            .filter { it.isFile }
+            .map { it.relativeTo(distDir).invariantSeparatorsPath }
+            .filterNot { it in excluded }
+            .filterNot { it.endsWith(".map") || it.endsWith(".LICENSE.txt") }
+            .sorted()
+            .toList()
+
+        val digest = MessageDigest.getInstance("SHA-256")
+        (files + "sw.js").forEach { relativePath ->
+            digest.update(relativePath.toByteArray())
+            distDir.resolve(relativePath).inputStream().use { input ->
+                val buffer = ByteArray(DEFAULT_BUFFER_SIZE)
+                while (true) {
+                    val read = input.read(buffer)
+                    if (read <= 0) break
+                    digest.update(buffer, 0, read)
+                }
+            }
+        }
+        val version = digest.digest().joinToString("") { byte -> "%02x".format(byte) }.take(12)
+
+        val json = buildString {
+            append("{\"version\":\"")
+            append(version)
+            append("\",\"files\":[")
+            files.forEachIndexed { index, file ->
+                if (index > 0) append(',')
+                append('"')
+                append(file.replace("\\", "\\\\").replace("\"", "\\\""))
+                append('"')
+            }
+            append("]}")
+        }
+
+        manifestFile.get().asFile.writeText(json)
+    }
+}
+
+val wasmDistributionDir = layout.buildDirectory.dir("dist/wasmJs/productionExecutable")
+val generatePrecacheManifest = tasks.register<GeneratePrecacheManifest>("generatePrecacheManifest") {
+    distributionDir.set(wasmDistributionDir)
+    inputFiles.from(
+        fileTree(wasmDistributionDir) {
+            exclude("precache-manifest.json")
+        }
+    )
+    manifestFile.set(wasmDistributionDir.map { it.file("precache-manifest.json") })
+}
+
+tasks.matching { it.name == "wasmJsBrowserDistribution" }.configureEach {
+    finalizedBy(generatePrecacheManifest)
 }
