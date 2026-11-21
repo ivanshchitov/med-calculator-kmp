@@ -28,6 +28,10 @@ self.addEventListener("activate", (event) => {
             }
         }
 
+        if (!activeCacheName) {
+            return;
+        }
+
         const keys = await caches.keys();
         await Promise.all(
             keys
