@@ -30,6 +30,12 @@ kotlin {
             isStatic = true
         }
     }
+
+    @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
+    wasmJs {
+        browser()
+        binaries.executable()
+    }
     
     androidLibrary {
        namespace = "org.dishch.medcalculator.shared"
@@ -83,11 +89,17 @@ kotlin {
             implementation(libs.androidx.navigation.compose)
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.kotlinx.coroutines.core)
-            implementation(libs.androidx.datastore)
-            implementation(libs.androidx.datastore.preferences)
+            implementation(libs.androidx.datastore.core)
+            implementation(libs.androidx.datastore.preferences.core)
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
+        }
+        wasmJsMain.dependencies {
+            implementation(libs.androidx.datastore.core.web)
+            implementation(libs.androidx.datastore.preferences.core.web)
+            implementation(libs.androidx.datastore.core.okio.web)
+            implementation(libs.kotlinx.browser)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
