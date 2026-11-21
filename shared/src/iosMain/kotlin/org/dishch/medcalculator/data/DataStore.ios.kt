@@ -1,12 +1,16 @@
 package org.dishch.medcalculator.data
 
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.PreferenceDataStoreFactory
+import androidx.datastore.preferences.core.Preferences
 import kotlinx.cinterop.ExperimentalForeignApi
+import okio.Path.Companion.toPath
 import platform.Foundation.NSDocumentDirectory
 import platform.Foundation.NSFileManager
 import platform.Foundation.NSUserDomainMask
 
 @OptIn(ExperimentalForeignApi::class)
-actual fun dataStorePath(): String {
+fun dataStorePath(): String {
     val documentDirectory = NSFileManager.defaultManager.URLForDirectory(
         directory = NSDocumentDirectory,
         inDomain = NSUserDomainMask,
@@ -16,3 +20,8 @@ actual fun dataStorePath(): String {
     )
     return requireNotNull(documentDirectory?.path) + "/" + dataStoreFileName
 }
+
+fun createDataStore(): DataStore<Preferences> =
+    PreferenceDataStoreFactory.createWithPath(
+        produceFile = { dataStorePath().toPath() }
+    )

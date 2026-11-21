@@ -1,3 +1,5 @@
+@file:OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
+
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -45,7 +47,25 @@ kotlin {
        }
     }
     
+    applyDefaultHierarchyTemplate {
+        common {
+            group("nonWeb") {
+                group("android") {
+                    withAndroidTarget()
+                }
+                group("apple") {
+                    withIos()
+                }
+            }
+        }
+    }
+
     sourceSets {
+        getByName("androidMain").dependsOn(getByName("nonWebMain"))
+        getByName("nonWebMain").dependencies {
+            implementation(libs.room.runtime)
+            implementation(libs.sqlite.bundled)
+        }
         androidMain.dependencies {
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.androidx.core.ktx)
@@ -63,8 +83,6 @@ kotlin {
             implementation(libs.androidx.navigation.compose)
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.kotlinx.coroutines.core)
-            implementation(libs.room.runtime)
-            implementation(libs.sqlite.bundled)
             implementation(libs.androidx.datastore)
             implementation(libs.androidx.datastore.preferences)
             implementation(libs.koin.core)
@@ -84,8 +102,6 @@ room {
 dependencies {
     androidRuntimeClasspath(libs.compose.uiTooling)
 
-    // Process common metadata code
-    add("kspCommonMainMetadata", libs.room.compiler)
     // Process specific target platforms
     add("kspAndroid", libs.room.compiler)
     add("kspIosX64", libs.room.compiler)
