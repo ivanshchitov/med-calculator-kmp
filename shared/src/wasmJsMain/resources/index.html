@@ -59,6 +59,36 @@
 </head>
 <body>
 <div id="app"></div>
+<script>
+    /*
+     * Compose 1.10.x checks document.activeElement before its second focus request.
+     * The backing input lives in a shadow root, so document.activeElement is the host,
+     * and Compose calls focus() again in requestAnimationFrame. On iOS 27 that second
+     * request is not treated as user interaction and prevents the keyboard from opening.
+     * See CMP-10825 and WebKit commit 64ee64bad41e5d511964c29b8ab00ee77269821a.
+     */
+    (function () {
+        const nativeFocus = HTMLElement.prototype.focus;
+
+        HTMLElement.prototype.focus = function (...args) {
+            try {
+                const root = this.getRootNode && this.getRootNode();
+                const isBackingField =
+                    (this.tagName === "TEXTAREA" || this.tagName === "INPUT") &&
+                    root &&
+                    root.host;
+
+                if (isBackingField && root.activeElement === this) {
+                    return;
+                }
+            } catch (error) {
+                // Fall through to the native focus implementation.
+            }
+
+            return nativeFocus.apply(this, args);
+        };
+    })();
+</script>
 <script src="shared.js"></script>
 <script>
     (function () {
