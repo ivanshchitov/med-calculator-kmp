@@ -99,6 +99,7 @@ Pods/
 # ==================================================
 .env
 .env.*
+!.env.template
 secrets.properties
 google-services.json
 GoogleService-Info.plist
