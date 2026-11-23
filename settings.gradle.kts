@@ -25,6 +25,12 @@ dependencyResolutionManagement {
             }
         }
         mavenCentral()
+        maven {
+            url = uri("https://nexus-external.rustore.ru/repository/maven-rustore-exposed")
+            mavenContent {
+                includeGroupAndSubgroups("ru.rustore.sdk")
+            }
+        }
     }
 }
 

@@ -32,9 +32,13 @@ kotlin {
 dependencies {
     implementation(projects.shared)
     implementation(libs.androidx.activity.compose)
+    implementation(libs.compose.material3)
+    implementation(libs.compose.material.icons.extended)
     implementation(libs.compose.uiToolingPreview)
     implementation(libs.koin.android)
     implementation(libs.mytracker.sdk)
+    implementation(platform(libs.rustore.bom))
+    implementation(libs.rustore.appupdate)
     debugImplementation(libs.compose.uiTooling)
 }
 

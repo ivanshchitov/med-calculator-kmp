@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">МедКалькулятор</string>
+    <string name="update_available_title">Доступно обновление</string>
+    <string name="update_available_text">Новая версия приложения готова к загрузке.</string>
+    <string name="update_downloading_title">Загрузка обновления…</string>
+    <string name="update_downloading_progress">Загрузка обновления… %1$d%%</string>
+    <string name="update_ready_title">Обновление загружено</string>
+    <string name="update_ready_text">Перезапустите приложение, чтобы завершить установку.</string>
+    <string name="update_installing_title">Установка обновления…</string>
+    <string name="update_action_download">Обновить</string>
+    <string name="update_action_restart">Перезапустить</string>
+    <string name="update_action_close">Закрыть</string>
 </resources>

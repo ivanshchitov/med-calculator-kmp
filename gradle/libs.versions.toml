@@ -24,6 +24,7 @@ ksp = "2.3.9"
 koin = "4.2.2"
 buildconfig = "6.0.10"
 mytracker = "3.4.2"
+rustore = "2026.10.01"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -63,6 +64,10 @@ kotlinx-browser = { module = "org.jetbrains.kotlinx:kotlinx-browser", version.re
 
 # Analytics
 mytracker-sdk = { group = "com.my.tracker", name = "mytracker-sdk", version.ref = "mytracker" }
+
+# RuStore
+rustore-bom = { module = "ru.rustore.sdk:bom", version.ref = "rustore" }
+rustore-appupdate = { module = "ru.rustore.sdk:appupdate" }
 
 # DI
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
