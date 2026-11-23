@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">MedCalculator</string>
+    <string name="update_available_title">Update available</string>
+    <string name="update_available_text">A new version of the app is ready to download.</string>
+    <string name="update_downloading_title">Downloading update…</string>
+    <string name="update_downloading_progress">Downloading update… %1$d%%</string>
+    <string name="update_ready_title">Update downloaded</string>
+    <string name="update_ready_text">Restart the app to finish installing.</string>
+    <string name="update_installing_title">Installing update…</string>
+    <string name="update_action_download">Update</string>
+    <string name="update_action_restart">Restart</string>
+    <string name="update_action_close">Close</string>
 </resources>
