@@ -47,11 +47,17 @@
             --app-background: #F6F7FB;
         }
 
+        /*
+         * Keep html, body and #app on the same height variable. In an installed
+         * iOS web app the layout viewport (100%) can be shorter than the height
+         * reported to JS by visualViewport, so a percentage body would clip the
+         * bottom of #app, including the primary button.
+         */
         html, body {
             margin: 0;
             padding: 0;
             width: 100%;
-            height: 100%;
+            height: var(--app-height);
             overflow: hidden;
             background: var(--app-background);
         }
@@ -62,22 +68,33 @@
 
         #app {
             position: absolute;
-            top: 0;
-            left: 0;
+            top: env(safe-area-inset-top, 0px);
+            left: env(safe-area-inset-left, 0px);
             box-sizing: border-box;
-            width: 100%;
-            height: var(--app-height);
+            width: calc(100% - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px));
+            /*
+             * Compose sizes its canvas from clientHeight, which includes padding.
+             * Never put padding on #app: the canvas would start after padding-top
+             * and overflow the container by that amount, clipping the bottom bar.
+             * Position the container itself inside the safe area instead.
+             */
+            height: calc(var(--app-height) - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
             transform: translateY(var(--app-offset-top));
-            padding-top: env(safe-area-inset-top);
-            padding-right: env(safe-area-inset-right);
-            padding-bottom: env(safe-area-inset-bottom);
-            padding-left: env(safe-area-inset-left);
             overflow: hidden;
             background: var(--app-background);
         }
 
         #app canvas {
             touch-action: none;
+        }
+
+        /*
+         * Standalone iOS may expose a viewport that ends above the physical
+         * screen bottom (the status-bar-sized strip stays outside it). The
+         * home indicator lives in that strip, so do not reserve its inset twice.
+         */
+        html.viewport-truncated #app {
+            height: calc(var(--app-height) - env(safe-area-inset-top, 0px));
         }
 
         /* Compose uses a hidden textarea for IME. Safari zooms when it is smaller than 16px. */
@@ -126,6 +143,7 @@
         let resizeFrame = 0;
         const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
             (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+        const isStandalone = navigator.standalone === true;
 
         function updateAppHeight() {
             // iOS Safari keeps the layout viewport full height and only pans/resizes
@@ -137,6 +155,12 @@
 
             document.documentElement.style.setProperty("--app-height", viewport.height + "px");
             document.documentElement.style.setProperty("--app-offset-top", viewport.offsetTop + "px");
+
+            const screenBottom = viewport.offsetTop + viewport.height;
+            document.documentElement.classList.toggle(
+                "viewport-truncated",
+                isStandalone && Math.round(window.screen.height - screenBottom) > 1
+            );
 
             // Compose resizes its canvas on window.resize. visualViewport changes
             // do not fire that event, so the canvas would stay full height and
