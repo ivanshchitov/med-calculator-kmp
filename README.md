@@ -102,6 +102,9 @@ Configuration (`.env`):
 The bucket must have public read access and static website hosting enabled with `index.html` as the index document. No CDN is used, so there is no cache invalidation step.
 
 ## Release Notes
+### 1.0.1
+- Fixed the bottom bar being clipped in the installed iOS web app (standalone PWA).
+
 ### 1.0.0
 - Added the web version (Kotlin/Wasm + Compose Multiplatform) as an installable offline PWA.
 - Added MyTracker analytics on Android and Web; it replaces Yandex Metrica on the web.
